@@ -47,10 +47,10 @@
         <td>
         <td>
         <td>
-        <td><img src="Images/logopucp.png" alt="Logo" width="47" height="47" class="d-inline-block align-text-top"></td>
+        <td><img src="../resources/Images/logopucp.png" alt="Logo" width="47" height="47" class="d-inline-block align-text-top"></td>
         <td><h6 style="color:#051D57; font-family:Giorgia, serif"><b> GIGACONTROL</b><br style="color:#051D57"> <strong>PUCP </strong> </h6></td>
         <td width="1200px" ></td>
-        <td><a class="dropdown-item" href="crear_cuenta_nueva.html"><u style="color:#1A3B85"> <b> Volver </b></u></a></td>
+        <td><a class="dropdown-item" href=<%=request.getContextPath()%>/Registro><u style="color:#1A3B85"> <b> Volver </b></u></a></td>
         </td>
         </td>
         </td>
@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="d-flex justify-content-center">
-                                        <a class="btn btn-primary" href="Inicio.html" role="button" style="margin-left: 0.5rem; background-color: rgb(62, 181, 228); border: none;">OK</a>
+                                        <a class="btn btn-primary" href=<%=request.getContextPath()%>/Index role="button" style="margin-left: 0.5rem; background-color: rgb(62, 181, 228); border: none;">OK</a>
                                     </div>
                                 </div>
                             </div>

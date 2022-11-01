@@ -38,7 +38,7 @@
                     <a class="nav-link active"  href="usuarios.jsp" aria-current="page" href="#" style="color:#FFFFFF">Usuarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="registro.jsp" aria-current="page" href="#" style="color:#FFFFFF">Registrar Usuario</a>
+                    <a class="nav-link active" href="registroAdmi.jsp" aria-current="page" href="#" style="color:#FFFFFF">Registrar Usuario</a>
                 </li>
             </ul>
         </div>

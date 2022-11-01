@@ -85,10 +85,8 @@
     <div class="d-grid gap-2 col-8 mx-auto mb-2">
       <a href=<%=request.getContextPath()%>/RegistroUsuario style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" class="btn btn-secondary" style="color:#686B6E;width: 18rem; font-size: 15px"><b>Usuario PUCP</b></button></a>
       <p></p>
-      <a href=<%request.getContextPath()%>/RegistroSeguridad style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" style="color:#686B6E; width: 18rem; font-size: 15px"><b>Seguridad</b></button></a>
-      <p></p>
-      <button class="d-grid gap-1 col-2 mx-auto btn btn-primary" type="button">Ingresar</button>
-      <p></p>
+      <a href=<%=request.getContextPath()%>/RegistroSeguridad style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" style="color:#686B6E; width: 18rem; font-size: 15px"><b>Seguridad</b></button></a>
+
     </div>
   </div>
   </div>

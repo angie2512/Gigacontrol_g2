@@ -11,7 +11,7 @@ public class VerIncidencia extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
-            RequestDispatcher vista = request.getRequestDispatcher("VerIncidencia.jsp");
+            RequestDispatcher vista = request.getRequestDispatcher("Usuario/VerIncidencia.jsp");
             vista.forward(request, response);
         }catch(ServletException e){
 

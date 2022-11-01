@@ -7,14 +7,14 @@
     <title>Registro de usuarios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
-<body style="background-image: url(Images/background.jpg);
+<body style="background-image: url(../resources/Images/background.jpg);
                background-repeat: no-repeat;
                background-position: center center;
                background-attachment: fixed;
                background-size: cover;">
 <nav class="navbar navbar-expand-lg" style="background-color: #458BCA;" aria-label="Eighth navbar example">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
+        <a class="navbar-brand" href="#"><img src="../resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,13 +23,10 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <li class="nav-item">
-                    <a class="nav-link active" href="perfil.html" aria-current="page" style="color:#FFFFFF">Perfil</a>
+                    <a class="nav-link active" href=<%=request.getContextPath()%>/PerfilUsuario aria-current="page" style="color:#FFFFFF">Perfil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="nuevaIncidencia.html" style="color:#FFFFFF">Nueva Incidencia</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="misIncidencias.html" style="color:#FFFFFF">Mis Incidencias</a>
+                    <a class="nav-link active" aria-current="page" href=<%=request.getContextPath()%>/MisIncidencias style="color:#FFFFFF">Mis Incidencias</a>
                 </li>
             </ul>
         </div>
@@ -53,7 +50,7 @@
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <a class="dropdown-item" href="Inicio.html"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
+                <a class="dropdown-item" href=<%=request.getContextPath()%>/Index><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
             </form>
 
         </div>
@@ -209,12 +206,12 @@
                                         <div class="modal-body">
                                             <div class="d-flex justify-content-center">
                                                 <h3 style="color:#399934">Nueva Incidencia Registrada</h3>
-                                                <img src="Images/check-png.webp" class="rounded mx-auto d-block " alt="userphoto" height="37rem" width="50rem">
+                                                <img src="../resources/Images/check-png.webp" class="rounded mx-auto d-block " alt="userphoto" height="37rem" width="50rem">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <div class="d-flex justify-content-center">
-                                                <a class="btn btn-primary" href="misIncidencias.html" role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">SALIR</a>
+                                                <a class="btn btn-primary" href=<%=request.getContextPath()%>/InicioUsuario role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">Listo</a>
                                             </div>
                                         </div>
                                     </div>
@@ -231,7 +228,7 @@
 <br><br>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <br></br>
-<a class="btn btn-primary" href="inicioUsuario.html" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+<a class="btn btn-primary" href=<%=request.getContextPath()%>/InicioUsuario role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
 <br><br>
 </body>
 </html>

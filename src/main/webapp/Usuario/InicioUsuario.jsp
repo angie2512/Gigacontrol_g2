@@ -16,7 +16,7 @@
             background-attachment: fixed;
             margin: 0;
             height: 100vh;
-            bgcolor = "#800000";
+            bgcolor: "#800000";
         }
         @font-face {
             font-family: Decor;
@@ -38,7 +38,7 @@
 <body>
 <nav class="navbar navbar-expand-lg" style="background-color: #458BCA;" aria-label="Eighth navbar example">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL PUCP </b> </a>
+        <a class="navbar-brand" href="#"><img src="../resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL PUCP </b> </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,7 +47,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <p></p>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="perfil.html" style="color:#FFFFFF">PERFIL</a>
+                    <a class="nav-link active" aria-current="page" href=<%=request.getContextPath()%>/PerfilUsuario style="color:#FFFFFF">PERFIL</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="nuevaIncidencia.html" style="color:#FFFFFF">NUEVA INCIDENCIA</a>
@@ -81,7 +81,7 @@
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <a class="dropdown-item" href="Inicio.html"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
+                <a class="dropdown-item" href=<%=request.getContextPath()%>/Index><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
             </form>
 
 
