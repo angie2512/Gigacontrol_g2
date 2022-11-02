@@ -4,6 +4,7 @@ import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoNivelDeUrgencia;
 
 import java.sql.*;
 import java.util.ArrayList;
+import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.NivelDeUrgencia;
 
 public class DaoNivelDeUrgencia {
 

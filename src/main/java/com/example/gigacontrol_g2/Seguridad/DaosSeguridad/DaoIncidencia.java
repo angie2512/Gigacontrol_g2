@@ -1,8 +1,11 @@
 package com.example.gigacontrol_g2.Seguridad.DaosSeguridad;
-import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia;
+import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.*;
+
 import java.sql.*;
 import java.util.ArrayList;
-
+import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia;
+import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.TipoDeIncidencia;
+import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Estado;
 public class DaoIncidencia {
     public ArrayList<Incidencia> obtenerListaDeIncidencias(){
         ArrayList<Incidencia> listaDeIncidencias= new ArrayList<>();

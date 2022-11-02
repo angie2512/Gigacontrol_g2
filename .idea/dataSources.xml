@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="gigacontrol@localhost" uuid="3a487737-ccf2-49a6-a141-ddd07978e547">
+    <data-source source="LOCAL" name="gigacontrol@localhost" uuid="8bb83bd5-a498-4a51-beba-eb874e8078c3">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
