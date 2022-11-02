@@ -56,7 +56,7 @@
                 <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">SEBASTIAN G. SEGURA ABANTO</b></a></li>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                        <img src="Images/usu.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="resources/Images/usu.png" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                 </div>
             </ul>
