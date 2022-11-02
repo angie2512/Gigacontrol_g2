@@ -107,7 +107,7 @@
                         <br>
                         <table>
                             <tr>
-                                <td><img src="../Images/cristian.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+                                <td><img src="resources/Images/userSeguridad.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
                                 <td style="padding-left: 2rem; color:#2C3166"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
                                     <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
                                     <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p>

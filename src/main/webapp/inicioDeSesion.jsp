@@ -94,7 +94,7 @@
   </div>
 </center>
 <br></br>
-<a class="btn btn-primary" href="index.jsp" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/Index" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
 
 </body>
 

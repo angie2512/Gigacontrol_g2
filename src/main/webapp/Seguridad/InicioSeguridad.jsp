@@ -4,7 +4,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.gigacontrol_g2.Beans.NivelDeUrgencia" %>
 <%@ page import="com.example.gigacontrol_g2.Beans.Incidencia" %>
-
+<%@ page import="com.example.gigacontrol_g2.Servlets.InicioSeguridad" %>
 
 <%
   ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
