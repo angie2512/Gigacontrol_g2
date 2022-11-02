@@ -1,6 +1,6 @@
 package com.example.gigacontrol_g2.Seguridad.DaosSeguridad;
 
-import com.example.webappseguridad.Beans.Usuario;
+import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Usuario;
 import java.util.ArrayList;
 import java.sql.*;
 
