@@ -5,9 +5,10 @@
 <%@ page import="com.example.gigacontrol_g2.Beans.NivelDeUrgencia" %>
 <%@ page import="com.example.gigacontrol_g2.Beans.Incidencia" %>
 
+
 <%
-  ArrayList <Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
-  ArrayList <TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
+  ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
+  ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
   ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
   ArrayList<Incidencia> listaDeIncidencias = ( ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
 %>
@@ -51,7 +52,7 @@
 <body>
 <nav class="navbar navbar-expand-lg" style="background-color: #4C9978;" aria-label="Eighth navbar example">
   <div class="container">
-    <a class="navbar-brand" href="#"><img src="Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
+    <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -81,7 +82,7 @@
         <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">CRISTIAN DOMINGUEZ CASTRO</b></a></li>
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-            <img src="Images/cristian.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="resources/Images/userSeguridad.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
         </div>
       </ul>
@@ -197,7 +198,10 @@
                             <p style="color:#D62525"><b>Código: 20203040</b></p>
                           </td>
                           <td>
-                            <p class="text-end"><b>Tipo de Incidencia:</b>Robo</p>
+                            <% for (int i=0; i<listaTipoDeIncidencias.size(); i++){ %>
+                              <% if (incidencia.getIdTipoIncidencia() == listaTipoDeIncidencias.get(i).getIdTipoDeIncidencia()){%>
+                            <p class="text-end"><b>Tipo de Incidencia:</b> <%=listaTipoDeIncidencias.get(i).getNombre()%></p>
+                            <%}}%>
                           </td>
                         </tr>
                         <tr>
@@ -205,7 +209,10 @@
                             <p><b>Descripción:</b></p>
                           </td>
                           <td>
-                            <p class="text-end"><b>Nivel de Urgencia:</b>Crítico</p>
+                            <% for (int i=0; i<listaNivelesDeUrgencia.size(); i++){ %>
+                            <% if (incidencia.getIdNivelUrgencia() == listaNivelesDeUrgencia.get(i).getIdNivelDeUrgencia()){%>
+                            <p class="text-end"><b>Nivel de Urgencia:</b> <%=listaNivelesDeUrgencia.get(i).getNombre()%></p>
+                            <%}}%>
                           </td>
                         </tr>
                         <tr>

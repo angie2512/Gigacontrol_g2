@@ -70,7 +70,7 @@
         <p></p>
         <p></p>
         <h2 style="font-family: 'KrinkesDecorPERSONAL'; color:#FFFFFF" class="card-title"><b>CREAR CUENTA NUEVA</b></h2>
-        <h6 style="font-family: 'Candara', cursive, sans-serif; color:#FFFFFF" class="card-subtitle"><b>SEGURIDAD</b></h6>
+        <h6 style="font-family: 'Candara', cursive, sans-serif; color:#e7de71" class="card-subtitle"><b>SEGURIDAD</b></h6>
         <center>
             <img src="https://pngimage.net/wp-content/uploads/2018/05/cuadrado-azul-png-5.png" alt="linea" width="520" height="6">
         </center>

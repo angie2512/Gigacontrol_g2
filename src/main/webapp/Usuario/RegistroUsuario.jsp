@@ -47,7 +47,7 @@
         <td>
         <td>
         <td>
-        <td><img src="../resources/Images/logopucp.png" alt="Logo" width="47" height="47" class="d-inline-block align-text-top"></td>
+        <td><img src="resources/Images/logopucp.png" alt="Logo" width="47" height="47" class="d-inline-block align-text-top"></td>
         <td><h6 style="color:#1F4375; font-family:Giorgia, serif"><b> GIGACONTROL</b><br style="color:#1F4375"> PUCP</h6></td>
 
         </td>
