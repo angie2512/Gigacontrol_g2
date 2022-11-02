@@ -42,6 +42,7 @@ public class DaoTipoDeIncidencia {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        //comentario de christian
 
         return listaTipoDeIncidencias;
     }
