@@ -183,8 +183,8 @@
                           </td>
                           <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                              <a href="VerIncidencia" class="btn btn-danger">Ver</a>
-                              <a href="ReporteIncidencia" class="btn btn-primary">Descargar</a>
+                              <a href="<%=request.getContextPath()%>/VerIncidencia" class="btn btn-danger">Ver</a>
+                              <a href="<%=request.getContextPath()%>/ReporteIncidencia" class="btn btn-primary">Descargar</a>
                             </div>
                           </td>
                         </tr>
