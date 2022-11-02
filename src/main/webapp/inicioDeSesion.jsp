@@ -1,4 +1,4 @@
-<%@ page import="com.example.gigacontrol_g2.Servlets.InicioSeguridad" %>
+<%@ page import="com.example.gigacontrol_g2.Usuario.Servlets.InicioSeguridad" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!doctype html>

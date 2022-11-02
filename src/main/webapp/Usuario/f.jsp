@@ -27,12 +27,12 @@
 
 
 
-<%@ page import="com.example.gigacontrol_g2.Beans.Estado" %>
-<%@ page import="com.example.gigacontrol_g2.Beans.TipoDeIncidencia" %>
+<%@ page import="com.example.gigacontrol_g2.Usuario.Beans.Estado" %>
+<%@ page import="com.example.gigacontrol_g2.Usuario.Beans.TipoDeIncidencia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.example.gigacontrol_g2.Beans.NivelDeUrgencia" %>
-<%@ page import="com.example.gigacontrol_g2.Beans.Incidencia" %>
+<%@ page import="com.example.gigacontrol_g2.Usuario.Beans.NivelDeUrgencia" %>
+<%@ page import="com.example.gigacontrol_g2.Usuario.Beans.Incidencia" %>
 
 
 <%
