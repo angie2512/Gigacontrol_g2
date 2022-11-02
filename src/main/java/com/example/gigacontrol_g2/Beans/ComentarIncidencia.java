@@ -7,6 +7,7 @@ public class ComentarIncidencia {
     }
 
     public void setIdComentario(int idComentario) {
+
         this.idComentario = idComentario;
     }
 
