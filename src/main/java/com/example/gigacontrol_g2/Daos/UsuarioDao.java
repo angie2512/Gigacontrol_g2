@@ -33,7 +33,6 @@ public class UsuarioDao {
 
             while (rs.next()) {
                 Usuario nombreUsuario = new Usuario();
-
                 nombreUsuario.setIdUsuario(rs.getInt(1));
                 nombreUsuario.setNombre(rs.getString(2));
                 nombreUsuario.setApellido(rs.getString(3));

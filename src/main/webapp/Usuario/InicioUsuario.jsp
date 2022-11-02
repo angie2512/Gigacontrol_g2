@@ -4,7 +4,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.gigacontrol_g2.Beans.NivelDeUrgencia" %>
 <%@ page import="com.example.gigacontrol_g2.Beans.Incidencia" %>
-<%@ page import="com.example.gigacontrol_g2.Beans.Usuario" %>
 <%@ page import="com.example.gigacontrol_g2.Servlets.InicioSeguridad" %>
 
 <%
@@ -119,13 +118,13 @@
     </aside>
     <center>
         <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
-            <main class ="bd-main order-1;overflow-auto" style="width: 820px; height:1650px; background-color: #FFFFFF">
-                <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; height:1700px; background-color: #FFFFFF99;" >
+            <main class ="bd-main order-1;overflow-auto" style="width: 820px; height:1650px; background-color: #FFFFFF99">
+                <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; height:1700px; background-color: #051D57;" >
                     <h4 class="border-bottom pb-2 mb-2" style="background-color:#051D57;color:#FFFFFF;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">TODAS LAS INCIDENCIAS</b></center></h4>
                     <p></p>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-                        <button class="btn btn-outline-primary" type="submit" style="color: darkblue; border:1px solid darkblue">Buscar</button>
+                        <button class="btn btn-outline-primary" type="submit">Buscar</button>
                     </form>
 
 

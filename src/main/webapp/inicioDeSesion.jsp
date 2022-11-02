@@ -88,7 +88,7 @@
     </div>
     <p></p>
     <p></p>
-    <a href=<%=request.getContextPath()%>/InicioSeguridad><button class="d-grid gap-1 col-2 mx-auto btn btn-primary" type="button">Ingresar</button></a>
+    <a href="<%=request.getContextPath()%>/InicioSeguridad"><button class="d-grid gap-1 col-2 mx-auto btn btn-primary" type="button">Ingresar</button></a>
     <p></p>
   </div>
   </div>
