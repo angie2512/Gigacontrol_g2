@@ -6,16 +6,13 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "VerIncidencia", value = "/VerIncidencia")
-public class VerIncidencia extends HttpServlet {
+@WebServlet(name = "ReporteIncidencia", value = "/ReporteIncidencia")
+public class ReporteIncidencia extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try{
-            RequestDispatcher vista = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
-            vista.forward(request, response);
-        }catch(ServletException e){
 
-        }
+        RequestDispatcher vista = request.getRequestDispatcher("Seguridad/ReporteIncidencia.jsp");
+        vista.forward(request, response);
 
     }
 

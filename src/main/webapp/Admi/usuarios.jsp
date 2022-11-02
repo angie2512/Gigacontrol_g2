@@ -14,14 +14,14 @@
   <title>Admin-ListaUsuarios</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
-<body style="background-image: url(Images/background.jpg);
+<body style="background-image: url(resources/Images/background.jpg);
                background-repeat: no-repeat;
                background-position: center center;
                background-attachment: fixed;
                background-size: cover;">
 <nav class="navbar navbar-expand-lg" style="background-color: #131950;" aria-label="Eighth navbar example">
   <div class="container">
-    <a class="navbar-brand" href="#"><img src="Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
+    <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -29,16 +29,10 @@
     <div class="collapse navbar-collapse" id="navbarsExample07">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" href="InicioAdmi.jsp" aria-current="page" href="#" style="color:#FFFFFF">Inicio</a>
+          <a class="nav-link active" href="<%=request.getContextPath()%>/InicioAdmi" aria-current="page" href="#" style="color:#FFFFFF">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="perfil.jsp" aria-current="page" href="#" style="color:#FFFFFF">Perfil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active"  href="usuarios.jsp" aria-current="page" href="#" style="color:#FFFFFF">Usuarios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="registroAdmi.jsp" aria-current="page" href="#" style="color:#FFFFFF">Registrar Usuario</a>
+          <a class="nav-link active" href="<%=request.getContextPath()%>/AdmiRegistroUsuarios" aria-current="page" href="#" style="color:#FFFFFF">Registrar Usuario</a>
         </li>
       </ul>
     </div>
@@ -56,13 +50,13 @@
         <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">SEBASTIAN G. SEGURA ABANTO</b></a></li>
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-            <img src="Images/usu.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="resources/Images/usu.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
         </div>
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <a class="dropdown-item" href="Inicio.html"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
+        <a class="dropdown-item" href="<%=request.getContextPath()%>/Index"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
       </form>
 
     </div>
@@ -80,12 +74,12 @@
         <div class="card-body">
           <table>
             <tr>
-              <td><img src="Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+              <td><img src="resources/Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
               <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
                 <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
                 <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>
 
-              <td style="padding-left: 3rem;"><a href="editar_usuario.jsp" class="btn btn-primary">Editar</a></td>
+              <td style="padding-left: 3rem;"><a href="<%=request.getContextPath()%>/AdmiEditarUsuario" class="btn btn-primary">Editar</a></td>
             </tr>
           </table>
         </div>
@@ -95,22 +89,7 @@
         <div class="card-body">
           <table>
             <tr>
-              <td><img src="Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
-              <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
-                <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
-                <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>
-
-              <td style="padding-left: 3rem;"><a href="editUser.html" class="btn btn-primary">Editar</a></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <br>
-      <div class="card">
-        <div class="card-body">
-          <table>
-            <tr>
-              <td><img src="Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+              <td><img src="resources/Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
               <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
                 <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
                 <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>
@@ -125,7 +104,7 @@
         <div class="card-body">
           <table>
             <tr>
-              <td><img src="Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+              <td><img src="resources/Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
               <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
                 <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
                 <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>
@@ -140,7 +119,7 @@
         <div class="card-body">
           <table>
             <tr>
-              <td><img src="Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+              <td><img src="resources/Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
               <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
                 <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
                 <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>
@@ -155,7 +134,22 @@
         <div class="card-body">
           <table>
             <tr>
-              <td><img src="Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+              <td><img src="resources/Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+              <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
+                <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
+                <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>
+
+              <td style="padding-left: 3rem;"><a href="editUser.html" class="btn btn-primary">Editar</a></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <br>
+      <div class="card">
+        <div class="card-body">
+          <table>
+            <tr>
+              <td><img src="resources/Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
               <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
                 <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
                 <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>

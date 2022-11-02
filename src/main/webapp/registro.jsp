@@ -86,7 +86,7 @@
       <a href="<%=request.getContextPath()%>/RegistroUsuario" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" class="btn btn-secondary" style="color:#686B6E;width: 18rem; font-size: 15px"><b>Usuario PUCP</b></button></a>
       <p></p>
       <a href="<%=request.getContextPath()%>/RegistroSeguridad" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" style="color:#686B6E; width: 18rem; font-size: 15px"><b>Seguridad</b></button></a>
-
+      <p></p>
     </div>
   </div>
   </div>

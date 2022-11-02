@@ -10,7 +10,7 @@
   ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
   ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
   ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
-  ArrayList<Incidencia> listaDeIncidencias = ( ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
+  ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
 %>
 <!doctype html>
 <html lang="en">
@@ -60,10 +60,7 @@
     <div class="collapse navbar-collapse" id="navbarsExample07">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" href="Inicio" aria-current="page" style="color:#FFFFFF">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="Perfil" aria-current="page" style="color:#FFFFFF">Perfil</a>
+          <a class="nav-link active" href="<%=request.getContextPath()%>/PerfilSeguridad" aria-current="page" style="color:#FFFFFF">Perfil</a>
         </li>
       </ul>
     </div>
@@ -88,7 +85,7 @@
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <a class="dropdown-item" href="../index.jsp"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
+        <a class="dropdown-item" href="<%=request.getContextPath()%>/Index"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
       </form>
 
 

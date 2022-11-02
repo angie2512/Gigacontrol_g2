@@ -15,14 +15,14 @@
     <title>VerMas-ListaUsuarios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
-<body style="background-image: url(../Images/background.jpg);
+<body style="background-image: url(resources/Images/background.jpg);
                background-repeat: no-repeat;
                background-position: center center;
                background-attachment: fixed;
                background-size: cover;">
 <nav class="navbar navbar-expand-lg" style="background-color: #4C9978;" aria-label="Eighth navbar example">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="../Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
+        <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,10 +30,10 @@
         <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="" aria-current="page" style="color:#FFFFFF">Inicio</a>
+                    <a class="nav-link active" href="<%=request.getContextPath()%>/InicioSeguridad" aria-current="page" style="color:#FFFFFF">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="Perfil" aria-current="page" style="color:#FFFFFF">Perfil</a>
+                    <a class="nav-link active" href="<%=request.getContextPath()%>/PerfilSeguridad" aria-current="page" style="color:#FFFFFF">Perfil</a>
                 </li>
             </ul>
         </div>
@@ -51,7 +51,7 @@
                 <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">CRISTIAN DOMINGUEZ CASTRO</b></a></li>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                        <img src="../Images/cristian.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="resources/Images/userSeguridad.png" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                 </div>
             </ul>
@@ -252,12 +252,12 @@
                 <div class="modal-body">
                     <div class="d-flex justify-content-center">
                         <h3 style="color:#399934">Cambios correctamente guardados</h3>
-                        <img src="../Images/check-png.webp" class="rounded mx-auto d-block " alt="userphoto" height="37rem" width="50rem">
+                        <img src="resources/Images/check-png.webp" class="rounded mx-auto d-block " alt="userphoto" height="37rem" width="50rem">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex justify-content-center">
-                        <a class="btn btn-primary" href="" role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">SALIR</a>
+                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/InicioSeguridad" role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">SALIR</a>
                     </div>
                 </div>
             </div>
