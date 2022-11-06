@@ -1,5 +1,8 @@
 package com.example.gigacontrol_g2.Usuario.Servlets;
 
+import com.example.gigacontrol_g2.Usuario.Beans.ComentarIncidencia;
+import com.example.gigacontrol_g2.Usuario.Beans.Incidencia;
+import com.example.gigacontrol_g2.Usuario.Daos.DaoIncidencia;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -10,17 +13,50 @@ import java.io.IOException;
 public class VerIncidencia extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try{
-            RequestDispatcher vista = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
-            vista.forward(request, response);
-        }catch(ServletException e){
+        String action = request.getParameter("action");
+        action = (action == null) ? "mostrar" : action;
+        RequestDispatcher vista;
+        String idIncidenciaStr = request.getParameter("id");
+        int idIncidencia = Integer.parseInt(idIncidenciaStr);
+        DaoIncidencia daoIncidencia = new DaoIncidencia();
+
+
+        switch (action) {
+            case "mostrar":
+                Incidencia incidencia = daoIncidencia.buscarIncidencia(idIncidencia);
+                request.setAttribute("Incidencia", incidencia);
+                vista = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
+                vista.forward(request, response);
+
+                response.sendRedirect(request.getContextPath() + "/InicioSeguridad");
+                break;
+            case "mostrarReporte":
+                Incidencia incidencia1 = daoIncidencia.buscarIncidencia(idIncidencia);
+                request.setAttribute("Incidencia", incidencia1);
+                vista = request.getRequestDispatcher("Seguridad/ReporteIncidencia.jsp");
+                vista.forward(request, response);
+
+                response.sendRedirect(request.getContextPath() + "/InicioSeguridad");
 
         }
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            String action= request.getParameter("action");
+            DaoIncidencia daoIncidencia = new DaoIncidencia();
+
+            switch (action){
+                case "guardar":
+                    String idIncidenciaStr = request.getParameter("idIncidencia");
+                    int idIncidencia = Integer.parseInt(idIncidenciaStr);
+                    String resolucion = request.getParameter("resolucionIncidencia");
+
+                    daoIncidencia.guardarComentario(idIncidencia,resolucion);
+
+                    response.sendRedirect(request.getContextPath()+"/InicioSeguridad");
+                    break;
+            }
 
     }
 }

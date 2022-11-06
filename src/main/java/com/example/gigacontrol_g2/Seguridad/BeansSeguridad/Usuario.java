@@ -11,7 +11,7 @@ public class Usuario {
     private String celular;
     private String categoria;
     private String fotoPerfil;
-    private int idRol;
+    private Rol rol;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -93,11 +93,11 @@ public class Usuario {
         this.fotoPerfil = fotoPerfil;
     }
 
-    public int getIdRol() {
-        return idRol;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }

@@ -27,20 +27,17 @@ public class ComentarIncidencia {
         this.idIncidencia = idIncidencia;
     }
 
-    public int getComentarioIncidencia() {
-        return ComentarioIncidencia;
-    }
-
-    public void setComentarioIncidencia(int comentarioIncidencia) {
-        ComentarioIncidencia = comentarioIncidencia;
-    }
 
     private int idComentario;
     private int idUsuario;
     private int idIncidencia;
-    private int ComentarioIncidencia;
+    private String ComentarioIncidencia;
 
+    public String getComentarioIncidencia() {
+        return ComentarioIncidencia;
+    }
 
-
-
+    public void setComentarioIncidencia(String comentarioIncidencia) {
+        ComentarioIncidencia = comentarioIncidencia;
+    }
 }

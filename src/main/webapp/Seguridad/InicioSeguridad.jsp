@@ -180,8 +180,8 @@
                           </td>
                           <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                              <a href="<%=request.getContextPath()%>/VerIncidencia" class="btn btn-danger">Ver</a>
-                              <a href="<%=request.getContextPath()%>/ReporteIncidencia" class="btn btn-primary">Descargar</a>
+                              <a href="<%=request.getContextPath()%>/VerIncidencia?action=mostrar&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver</a>
+                              <a href="<%=request.getContextPath()%>/ReporteIncidencia?action=mostrarReporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a>
                             </div>
                           </td>
                         </tr>

@@ -18,13 +18,13 @@ public class InicioSeguridad extends HttpServlet {
         DaoTipoDeIncidencia daoTipoDeIncidencia = new DaoTipoDeIncidencia();
         DaoNivelDeUrgencia daoNivelDeUrgencia = new DaoNivelDeUrgencia();
         DaoIncidencia daoIncidencia = new DaoIncidencia();
+        RequestDispatcher vista;
         request.setAttribute("ListaEstados", daoestado.obtenerListaEstados());
         request.setAttribute("ListaTipoDeIncidencias", daoTipoDeIncidencia.obtenerListaTipoDeIncidencias());
         request.setAttribute("ListaNivelesDeUrgencia", daoNivelDeUrgencia.obtenerListaNivelesDeUrgencia());
         request.setAttribute("ListaDeIncidencias", daoIncidencia.obtenerListaDeIncidencias());
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
-
-        requestDispatcher.forward(request, response);
+        vista = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
+        vista.forward(request, response);
     }
 
     @Override

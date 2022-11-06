@@ -53,10 +53,10 @@ public class DaoIncidencia {
                 incidencia.setUsuario(usuario);
                 DaoTipoDeIncidencia daoTipoDeIncidencia = new DaoTipoDeIncidencia();
                 TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
-                for (TipoDeIncidencia tipoDeInciden : daoTipoDeIncidencia.obtenerListaTipoDeIncidencias()){
-                    if(tipoDeInciden.getIdTipoDeIncidencia()==rs.getInt(8)){
+                for (TipoDeIncidencia tdi: daoTipoDeIncidencia.obtenerListaTipoDeIncidencias()){
+                    if(tdi.getIdTipoDeIncidencia()==rs.getInt(8)){
                         tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt(8));
-                        tipoDeIncidencia.setNombre(tipoDeInciden.getNombre());
+                        tipoDeIncidencia.setNombre(tdi.getNombre());
                     }
                 }
                 incidencia.setTipoDeIncidencia(tipoDeIncidencia);
@@ -90,7 +90,7 @@ public class DaoIncidencia {
         return listaDeIncidencias;
     }
 
-    public Incidencia buscarPorId(String idIncidencia) {
+    public Incidencia buscarIncidencia(int idIncidencia) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -105,7 +105,7 @@ public class DaoIncidencia {
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
              PreparedStatement pstmt = connection.prepareStatement(sql);) {
 
-            pstmt.setString(1, idIncidencia);
+            pstmt.setInt(1, idIncidencia);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -121,5 +121,32 @@ public class DaoIncidencia {
             throw new RuntimeException(e);
         }
         return incidencia;
+    }
+
+    public void guardarComentario(int idIncidencia, String comentario){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/gigacontrol";
+
+        String sql="insert into comentarincidencia (idUsuario,idIncidencia,ComentarioIncidencia) " +
+                    "values (?,?,?)";
+
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setNull(1,Types.INTEGER); //idUsuario
+            pstmt.setInt(2, idIncidencia);
+            pstmt.setString(3, comentario);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

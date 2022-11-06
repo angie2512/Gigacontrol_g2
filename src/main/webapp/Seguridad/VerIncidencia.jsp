@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.example.gigacontrol_g2.Usuario.Beans.Incidencia" %><%--
   Created by IntelliJ IDEA.
   User: Angie
   Date: 1/11/2022
@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% Incidencia incidencia = (Incidencia) request.getParameter("Incidencia"); %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -74,7 +75,7 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <h2 class="card-text"><b style="color:#2C3166">Dejé mi Laptop en CIA y desapareció</b></h2>
+                                    <h2 class="card-text"><b style="color:#2C3166"><%=incidencia.getNombreDeIncidencia()%></b></h2>
                                 </td>
                                 <td>
                                     <a href="ReporteIncidencia" class="btn btn-primary" style="margin-left:60px;">Descargar Reporte</a>
@@ -133,16 +134,13 @@
                                 <table>
                                     <tr>
                                         <td>
-                                            <h6> Estaba en el cuarto piso de cia dentro del cúbiculo 34 y deje mis cosas</h6>
-                                            <h6> para ir a comprar algo. Luego, cuando fui a preguntar al de seguridad,</h6>
-                                            <h6> no me resolvió mi problema y mañana tengo laboratorio de Ingenieria</h6>
-                                            <h6> Web</h6>
+                                            <h6><%=incidencia.getDescripcion()%></h6>
                                         </td>
                                     </tr>
                                 </table>
                                 <br>
                                 <table>
-                                    <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> Biblioteca de Innovación CIA</h6></td></tr>
+                                    <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPucp()%></h6></td></tr>
                                 </table>
                                 <br>
                                 <table>
@@ -170,8 +168,10 @@
                                     </tr>
                                 </table>
                             </div>
+                            <form method="post" action="<%=request.getContextPath()%>/VerIncidencia?action=guardar">
                             <div style="margin-left:40px">
-                                <input type="text" class="form-control" style="height:500px;width:260px" placeholder="Redacte su Resolución Aquí..." aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="hidden" name="idIncidencia" value="<%=incidencia.getIdIncidencia()%>">
+                                <input type="text" class="form-control" style="height:500px;width:260px" placeholder="Redacte su Resolución Aquí..." aria-label="Username" aria-describedby="basic-addon1" name="resolucionIncidencia">
                             </div>
                         </div>
                         <br>
@@ -237,10 +237,10 @@
 </div>
 <br>
 <div class="d-flex justify-content-center">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
+    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
         Guardar cambios
     </button>
-
+    </form>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
