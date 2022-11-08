@@ -1,7 +1,7 @@
 package com.example.gigacontrol_g2.Usuario.Servlets;
 
 import com.example.gigacontrol_g2.Usuario.Daos.DaoEstado;
-import com.example.gigacontrol_g2.Usuario.Daos.DaoIncidencia;
+import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoIncidencia;
 import com.example.gigacontrol_g2.Usuario.Daos.DaoNivelDeUrgencia;
 import com.example.gigacontrol_g2.Usuario.Daos.DaoTipoDeIncidencia;
 import jakarta.servlet.*;

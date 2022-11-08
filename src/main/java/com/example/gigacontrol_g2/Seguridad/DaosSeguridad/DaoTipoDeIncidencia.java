@@ -1,6 +1,6 @@
 package com.example.gigacontrol_g2.Seguridad.DaosSeguridad;
 
-import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoTipoDeIncidencia;
+import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.TipoDeIncidencia;
 
 import java.sql.*;
 import java.util.ArrayList;

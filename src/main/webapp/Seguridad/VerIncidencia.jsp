@@ -1,12 +1,7 @@
-<%@ page import="com.example.gigacontrol_g2.Usuario.Beans.Incidencia" %><%--
-  Created by IntelliJ IDEA.
-  User: Angie
-  Date: 1/11/2022
-  Time: 11:59
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <% Incidencia incidencia = (Incidencia) request.getParameter("Incidencia"); %>
 <!doctype html>
 <html lang="en">
@@ -75,7 +70,7 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <h2 class="card-text"><b style="color:#2C3166"><%=incidencia.getNombreDeIncidencia()%></b></h2>
+                                    <h2 class="card-text"><b style="color:#2C3166"><%=incidencia.getNombreIncidencia()%></b></h2>
                                 </td>
                                 <td>
                                     <a href="ReporteIncidencia" class="btn btn-primary" style="margin-left:60px;">Descargar Reporte</a>
@@ -109,9 +104,9 @@
                         <table>
                             <tr>
                                 <td><img src="resources/Images/userSeguridad.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
-                                <td style="padding-left: 2rem; color:#2C3166"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
-                                    <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
-                                    <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p>
+                                <td style="padding-left: 2rem; color:#2C3166"><p class="card-text"><b><%=incidencia.getUsuario().getApellido()%>, <%=incidencia.getUsuario().getNombre()%> </b>
+                                    <b style="color:#B1120D; padding-left: 2rem;"><%=incidencia.getUsuario().getCodigo()%></b>
+                                    <b style="color:#C0C4C7; padding-left: 2rem;"><%=incidencia.getUsuario().getCategoria()%></b></p>
                                 </td>
                                 <td>
                                     <b style="color:#B1120D; padding-left: 4.2rem;">Resolución de Incidencia:</b>
@@ -124,7 +119,7 @@
                             <div>
                                 <table>
                                     <tr>
-                                        <td style="padding-left: 0rem; color:#2C3166"><p class="card-text"><b>Tipo de Incidencia: </b> Robo
+                                        <td style="padding-left: 0rem; color:#2C3166"><p class="card-text"><b>Tipo de Incidencia: </b> <%=incidencia.getTipoDeIncidencia().getNombre()%>
                                             <b style="color:#F0C00D; padding-left: 8rem;">★ Destacados</b>
                                             <b style="padding-left: 3rem;">👤 15 </b></p></td>
                                     </tr>
@@ -140,7 +135,7 @@
                                 </table>
                                 <br>
                                 <table>
-                                    <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPucp()%></h6></td></tr>
+                                    <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPUCP()%></h6></td></tr>
                                 </table>
                                 <br>
                                 <table>

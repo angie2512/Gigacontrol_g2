@@ -1,8 +1,7 @@
 package com.example.gigacontrol_g2.Usuario.Servlets;
 
-import com.example.gigacontrol_g2.Usuario.Beans.ComentarIncidencia;
-import com.example.gigacontrol_g2.Usuario.Beans.Incidencia;
-import com.example.gigacontrol_g2.Usuario.Daos.DaoIncidencia;
+import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia;
+import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoIncidencia;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -16,13 +15,13 @@ public class VerIncidencia extends HttpServlet {
         String action = request.getParameter("action");
         action = (action == null) ? "mostrar" : action;
         RequestDispatcher vista;
-        String idIncidenciaStr = request.getParameter("id");
-        int idIncidencia = Integer.parseInt(idIncidenciaStr);
         DaoIncidencia daoIncidencia = new DaoIncidencia();
 
 
         switch (action) {
             case "mostrar":
+                String idIncidenciaStr = request.getParameter("id");
+                int idIncidencia = Integer.parseInt(idIncidenciaStr);
                 Incidencia incidencia = daoIncidencia.buscarIncidencia(idIncidencia);
                 request.setAttribute("Incidencia", incidencia);
                 vista = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
@@ -30,8 +29,11 @@ public class VerIncidencia extends HttpServlet {
 
                 response.sendRedirect(request.getContextPath() + "/InicioSeguridad");
                 break;
+
             case "mostrarReporte":
-                Incidencia incidencia1 = daoIncidencia.buscarIncidencia(idIncidencia);
+                String idIncidencia1Str = request.getParameter("id");
+                int idIncidencia1 = Integer.parseInt(idIncidencia1Str);
+                Incidencia incidencia1 = daoIncidencia.buscarIncidencia(idIncidencia1);
                 request.setAttribute("Incidencia", incidencia1);
                 vista = request.getRequestDispatcher("Seguridad/ReporteIncidencia.jsp");
                 vista.forward(request, response);

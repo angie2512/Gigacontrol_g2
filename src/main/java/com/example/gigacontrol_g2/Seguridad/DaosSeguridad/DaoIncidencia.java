@@ -4,9 +4,8 @@ import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.*;
 import java.sql.*;
 import java.util.ArrayList;
 import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia;
-import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.TipoDeIncidencia;
-import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Estado;
-public class DaoIncidencia {
+
+public class DaoIncidencia{
     public ArrayList<Incidencia> obtenerListaDeIncidencias(){
         ArrayList<Incidencia> listaDeIncidencias= new ArrayList<>();
 
@@ -53,7 +52,7 @@ public class DaoIncidencia {
                 incidencia.setUsuario(usuario);
                 DaoTipoDeIncidencia daoTipoDeIncidencia = new DaoTipoDeIncidencia();
                 TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
-                for (TipoDeIncidencia tdi: daoTipoDeIncidencia.obtenerListaTipoDeIncidencias()){
+                for (TipoDeIncidencia tdi : daoTipoDeIncidencia.obtenerListaTipoDeIncidencias()){
                     if(tdi.getIdTipoDeIncidencia()==rs.getInt(8)){
                         tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt(8));
                         tipoDeIncidencia.setNombre(tdi.getNombre());
@@ -103,7 +102,7 @@ public class DaoIncidencia {
 
         String sql = "select * from incidencia WHERE idIncidencia = ?";
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
-             PreparedStatement pstmt = connection.prepareStatement(sql);) {
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             pstmt.setInt(1, idIncidencia);
 
@@ -115,6 +114,45 @@ public class DaoIncidencia {
                     incidencia.setDescripcion(rs.getString(3));
                     incidencia.setZonaPUCP(rs.getString(4));
                     incidencia.setUbicacion(rs.getString(5));
+                    DaoUsuario daoUsuario = new DaoUsuario();
+                    Usuario usuario1 = new Usuario();
+                    for (Usuario usuar : daoUsuario.obtenerListaDeUsuarios()){
+                        if(usuar.getIdUsuario()==rs.getInt(7)){
+                            usuario1.setIdUsuario(rs.getInt(7));
+                            usuario1.setNombre(usuar.getNombre());
+                            usuario1.setApellido(usuar.getApellido());
+                            usuario1.setCodigo(usuar.getCodigo());
+                            usuario1.setCategoria(usuar.getCategoria());
+                        }
+                    }
+                    incidencia.setUsuario(usuario1);
+                    DaoTipoDeIncidencia daoTipoDeIncidencia = new DaoTipoDeIncidencia();
+                    TipoDeIncidencia tipoDeIncidencia1 = new TipoDeIncidencia();
+                    for (TipoDeIncidencia tdi : daoTipoDeIncidencia.obtenerListaTipoDeIncidencias()){
+                        if(tdi.getIdTipoDeIncidencia()==rs.getInt(8)){
+                            tipoDeIncidencia1.setIdTipoDeIncidencia(rs.getInt(8));
+                            tipoDeIncidencia1.setNombre(tdi.getNombre());
+                        }
+                    }
+                    incidencia.setTipoDeIncidencia(tipoDeIncidencia1);
+                    DaoNivelDeUrgencia daoNivelDeUrgencia= new DaoNivelDeUrgencia();
+                    NivelDeUrgencia nivelDeUrgencia1 = new NivelDeUrgencia();
+                    for (NivelDeUrgencia nivelUrgencia : daoNivelDeUrgencia.obtenerListaNivelesDeUrgencia()){
+                        if(nivelUrgencia.getIdNivelDeUrgencia()==rs.getInt(9)){
+                            nivelDeUrgencia1.setIdNivelDeUrgencia(rs.getInt(9));
+                            nivelDeUrgencia1.setNombre(nivelUrgencia.getNombre());
+                        }
+                    }
+                    incidencia.setNivelDeUrgencia(nivelDeUrgencia1);
+                    DaoEstado daoEstado= new DaoEstado();
+                    Estado estado1 = new Estado();
+                    for (Estado est: daoEstado.obtenerListaEstados()){
+                        if(est.getIdEstado()==rs.getInt(10)){
+                            estado1.setIdEstado(rs.getInt(10));
+                            estado1.setNombre(est.getNombre());
+                        }
+                    }
+                    incidencia.setEstado(estado1);
                 }
             }
         } catch (SQLException e) {

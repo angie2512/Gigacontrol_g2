@@ -1,6 +1,5 @@
 package com.example.gigacontrol_g2.Seguridad.DaosSeguridad;
 
-import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoNivelDeUrgencia;
 
 import java.sql.*;
 import java.util.ArrayList;

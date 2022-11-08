@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class DaoIncidencia {
     public ArrayList<Incidencia> obtenerListaDeIncidencias(){
-        ArrayList<Incidencia> listaDeIncidencias= new ArrayList<>();
+        ArrayList<Incidencia> listaDeIncidencias = new ArrayList<>();
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

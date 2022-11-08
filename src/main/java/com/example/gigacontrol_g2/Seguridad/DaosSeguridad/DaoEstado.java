@@ -2,6 +2,8 @@ package com.example.gigacontrol_g2.Seguridad.DaosSeguridad;
 
 import java.sql.*;
 import java.util.ArrayList;
+
+import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Estado;
 import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoEstado;
 
 public class DaoEstado {
