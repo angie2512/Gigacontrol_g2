@@ -166,7 +166,10 @@
                             <form method="post" action="<%=request.getContextPath()%>/VerIncidencia?action=guardar">
                             <div style="margin-left:40px">
                                 <input type="hidden" name="idIncidencia" value="<%=incidencia.getIdIncidencia()%>">
-                                <input type="text" class="form-control" style="height:500px;width:260px" placeholder="Redacte su Resolución Aquí..." aria-label="Username" aria-describedby="basic-addon1" name="resolucionIncidencia">
+                                <div class="form-floating">
+                                    <input style="height:500px;width:260px" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="resolucionIncidencia" >
+                                    <label for="floatingTextarea2">Redacte su Resolución Aquí...</label>
+                                </div>
                             </div>
                         </div>
                         <br>
