@@ -1,9 +1,9 @@
 package com.example.gigacontrol_g2.Seguridad.DaosSeguridad;
 import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.*;
 
+
 import java.sql.*;
 import java.util.ArrayList;
-import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia;
 
 public class DaoIncidencia{
     public ArrayList<Incidencia> obtenerListaDeIncidencias(){
@@ -174,7 +174,7 @@ public class DaoIncidencia{
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setNull(1,Types.INTEGER); //idUsuario
+            pstmt.setInt(1,Types.INTEGER); //idUsuario
             pstmt.setInt(2, idIncidencia);
             pstmt.setString(3, comentario);
 
