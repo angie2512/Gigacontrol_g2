@@ -13,36 +13,21 @@ public class VerIncidencia extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        action = (action == null) ? "mostrar" : action;
         RequestDispatcher vista;
         DaoIncidencia daoIncidencia = new DaoIncidencia();
+        String idIncidenciaStr = request.getParameter("id");
+        int idIncidencia = Integer.parseInt(idIncidenciaStr);
 
 
         switch (action) {
             case "mostrar":
-                String idIncidenciaStr = request.getParameter("id");
-                int idIncidencia = Integer.parseInt(idIncidenciaStr);
                 Incidencia incidencia = daoIncidencia.buscarIncidencia(idIncidencia);
-                System.out.println(incidencia.getIdIncidencia());
-                System.out.println(incidencia.getUsuario().getNombre());
-                System.out.println(incidencia.getDescripcion());
-                System.out.println(incidencia.getUsuario().getCodigo());
                 request.setAttribute("incidencia", incidencia);
                 vista = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
                 vista.forward(request, response);
 
-                response.sendRedirect(request.getContextPath() + "/InicioSeguridad");
+                //response.sendRedirect(request.getContextPath() + "/InicioSeguridad");
                 break;
-
-            case "mostrarReporte":
-                String idIncidencia1Str = request.getParameter("id");
-                int idIncidencia1 = Integer.parseInt(idIncidencia1Str);
-                Incidencia incidencia1 = daoIncidencia.buscarIncidencia(idIncidencia1);
-                request.setAttribute("Incidencia", incidencia1);
-                vista = request.getRequestDispatcher("Seguridad/ReporteIncidencia.jsp");
-                vista.forward(request, response);
-
-                response.sendRedirect(request.getContextPath() + "/InicioSeguridad");
 
         }
     }

@@ -1,4 +1,6 @@
+<%@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% Incidencia incidencia = (Incidencia) request.getAttribute("incidencia2");%>
 <!doctype html>
 <html lang="en">
   <head>
@@ -30,7 +32,7 @@
                 <tbody>
                   <tr>
                     <td>
-                      <h2 class="card-text"><b style="color:#2C3166">Dejé mi Laptop en CIA y desapareció</b></h2>
+                      <h2 class="card-text"><b style="color:#2C3166"><%=incidencia.getNombreIncidencia()%></b></h2>
                     </td>
                   </tr>
                 </tbody>
@@ -38,9 +40,9 @@
               <br>
               <table style="display:flex">
                 <tr>
-                  <td><h6 class="card-text" style="color:#B1120D;padding-right: 5rem;margin-right:40px"><b>ESTADO: EN PROCESO</b></h6>
+                  <td><h6 class="card-text" style="color:#B1120D;padding-right: 5rem;margin-right:40px"><b>ESTADO: <%=incidencia.getEstado().getNombre()%></b></h6>
                   </td>
-                  <td style="background-color:#DAD9BA"><h6>Nivel de urgencia: <b>CRITICO</b></h6>
+                  <td style="background-color:#DAD9BA"><h6>Nivel de urgencia: <b><%=incidencia.getNivelDeUrgencia().getNombre()%></b></h6>
                   </td>
                 </tr>
               </table>
@@ -48,9 +50,9 @@
               <table>
                 <tr>
                   <td><img src="resources/Images/userSeguridad.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
-                  <td style="padding-left: 2rem; color:#2C3166"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
-                    <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
-                    <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p>
+                  <td style="padding-left: 2rem; color:#2C3166"><p class="card-text"><b><%=incidencia.getUsuario().getApellido()%>, <%=incidencia.getUsuario().getNombre()%> </b>
+                    <b style="color:#B1120D; padding-left: 2rem;"><%=incidencia.getUsuario().getCodigo()%></b>
+                    <b style="color:#C0C4C7; padding-left: 2rem;"><%=incidencia.getUsuario().getCategoria()%></b></p>
                   </td>
                   <td>
                     <b style="color:#B1120D; padding-left: 4.2rem;">Resolución de Incidencia:</b>
@@ -63,7 +65,7 @@
                 <div>
                   <table>
                     <tr>
-                      <td style="padding-left: 0rem; color:#2C3166"><p class="card-text"><b>Tipo de Incidencia: </b> Robo
+                      <td style="padding-left: 0rem; color:#2C3166"><p class="card-text"><b>Tipo de Incidencia: </b> <%=incidencia.getTipoDeIncidencia().getNombre()%>
                         <b style="color:#F0C00D; padding-left: 8rem;">★ Destacados</b>
                         <b style="padding-left: 3rem;">👤 15 </b></p></td>
                     </tr>
@@ -73,16 +75,13 @@
                   <table>
                     <tr>
                       <td>
-                        <h6> Estaba en el cuarto piso de cia dentro del cúbiculo 34 y deje mis cosas</h6>
-                        <h6> para ir a comprar algo. Luego, cuando fui a preguntar al de seguridad,</h6>
-                        <h6> no me resolvió mi problema y mañana tengo laboratorio de Ingenieria</h6>
-                        <h6> Web</h6>
+                        <h6><%=incidencia.getDescripcion()%></h6>
                       </td>
                     </tr>
                   </table>
                   <br>
                   <table>
-                    <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> Biblioteca de Innovación CIA</h6></td></tr>
+                    <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPUCP()%></h6></td></tr>
                   </table>
                   <br>
                   <table>
