@@ -25,7 +25,6 @@ public class DaoIncidencia{
 
         String sql = "select * from incidencia";
 
-
         try (Connection conn = DriverManager.getConnection(url, user, password);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -77,7 +76,6 @@ public class DaoIncidencia{
                     }
                 }
                 incidencia.setEstado(estado);
-                System.out.println(incidencia.getIdIncidencia());
                 listaDeIncidencias.add(incidencia);
             }
 
@@ -109,7 +107,7 @@ public class DaoIncidencia{
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     incidencia = new Incidencia();
-                    incidencia.setIdIncidencia(rs.getInt(1));
+                    incidencia.setIdIncidencia(idIncidencia);
                     incidencia.setNombreIncidencia(rs.getString(2));
                     incidencia.setDescripcion(rs.getString(3));
                     incidencia.setZonaPUCP(rs.getString(4));

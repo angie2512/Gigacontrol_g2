@@ -24,8 +24,7 @@ public class DaoUsuario {
 
         //Conexion a base de datos
 
-        String sql = "select u.*,c.comentarioIncidencia from usuario u "+
-                     "right join comentarincidencia c on c.idUsuario = u.idUsuario ";
+        String sql = "select * from usuario";
 
 
         try (Connection conn = DriverManager.getConnection(url, user, password);

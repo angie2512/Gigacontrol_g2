@@ -8,7 +8,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "VerIncidencia", value = "/VerIncidencia")
+@WebServlet(name = "VerIncidencia", urlPatterns= {"/VerIncidencia"})
 public class VerIncidencia extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +23,11 @@ public class VerIncidencia extends HttpServlet {
                 String idIncidenciaStr = request.getParameter("id");
                 int idIncidencia = Integer.parseInt(idIncidenciaStr);
                 Incidencia incidencia = daoIncidencia.buscarIncidencia(idIncidencia);
-                request.setAttribute("Incidencia", incidencia);
+                System.out.println(incidencia.getIdIncidencia());
+                System.out.println(incidencia.getUsuario().getNombre());
+                System.out.println(incidencia.getDescripcion());
+                System.out.println(incidencia.getUsuario().getCodigo());
+                request.setAttribute("incidencia", incidencia);
                 vista = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
                 vista.forward(request, response);
 

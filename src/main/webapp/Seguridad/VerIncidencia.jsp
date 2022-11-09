@@ -1,8 +1,7 @@
 <%@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% Incidencia incidencia = (Incidencia) request.getParameter("Incidencia"); %>
+<% Incidencia incidencia = (Incidencia) request.getAttribute("incidencia"); %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -81,10 +80,10 @@
                         <br>
                         <table style="display:flex">
                             <tr>
-                                <td><h6 class="card-text" style="color:#B1120D;padding-right: 5rem;margin-right:40px"><b>ESTADO: EN PROCESO</b></h6>
+                                <td><h6 class="card-text" style="color:#B1120D;padding-right: 5rem;margin-right:40px"><b>ESTADO: <%=incidencia.getEstado().getNombre()%></b></h6>
                                 </td>
                                 <td></td>
-                                <td style="background-color:#DAD9BA"><h6>Nivel de urgencia: <b>CRITICO</b></h6> </td>
+                                <td style="background-color:#DAD9BA"><h6>Nivel de urgencia: <b><%=incidencia.getNivelDeUrgencia().getNombre()%></b></h6> </td>
                                 <td>
                                     <div class="dropdown" style="padding-left: 7rem;margin-left:10px">
                                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -103,7 +102,7 @@
                         <br>
                         <table>
                             <tr>
-                                <td><img src="resources/Images/userSeguridad.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+                                <!--<td><img src="resources/Images/userSeguridad.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td> -->
                                 <td style="padding-left: 2rem; color:#2C3166"><p class="card-text"><b><%=incidencia.getUsuario().getApellido()%>, <%=incidencia.getUsuario().getNombre()%> </b>
                                     <b style="color:#B1120D; padding-left: 2rem;"><%=incidencia.getUsuario().getCodigo()%></b>
                                     <b style="color:#C0C4C7; padding-left: 2rem;"><%=incidencia.getUsuario().getCategoria()%></b></p>
@@ -170,7 +169,12 @@
                                     <input style="height:500px;width:260px" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="resolucionIncidencia" >
                                     <label for="floatingTextarea2">Redacte su Resolución Aquí...</label>
                                 </div>
+                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
+                                    Guardar cambios
+                                </button>
+
                             </div>
+                            </form>
                         </div>
                         <br>
 
@@ -235,10 +239,10 @@
 </div>
 <br>
 <div class="d-flex justify-content-center">
-    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
+    <!--<button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
         Guardar cambios
-    </button>
-    </form>
+    </button> -->
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
