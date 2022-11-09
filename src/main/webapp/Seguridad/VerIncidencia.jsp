@@ -65,7 +65,7 @@
             <div class="card-body">
                 <div class="card" style="width:850px">
                     <div class="card-body">
-                        <table style="display: flex">
+                        <table style="display: flex; justify-items:auto">
                             <tbody>
                             <tr>
                                 <td>
@@ -78,7 +78,7 @@
                             </tbody>
                         </table>
                         <br>
-                        <table style="display:flex">
+                        <table style="display:flex; justify-items: center">
                             <tr>
                                 <td><h6 class="card-text" style="color:#B1120D;padding-right: 5rem;margin-right:40px"><b>ESTADO: <%=incidencia.getEstado().getNombre()%></b></h6>
                                 </td>
@@ -100,8 +100,8 @@
                             </tr>
                         </table>
                         <br>
-                        <table>
-                            <tr>
+                        <table style="display:flex ; justify-items: center">
+                            <tr style="justify-items: center">
                                 <td><img src="resources/Images/userSeguridad.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
                                 <td style="padding-left: 2rem; color:#2C3166"><p class="card-text"><b><%=incidencia.getUsuario().getApellido()%>, <%=incidencia.getUsuario().getNombre()%> </b>
                                     <b style="color:#B1120D; padding-left: 2rem;"><%=incidencia.getUsuario().getCodigo()%></b>
@@ -114,9 +114,9 @@
 
                         </table>
                         <br>
-                        <div style="display:flex">
+                        <div style="display:flex ; justify-items: auto">
                             <div>
-                                <table>
+                                <table style="display:flex ; justify-items: center">
                                     <tr>
                                         <td style="padding-left: 0rem; color:#2C3166"><p class="card-text"><b>Tipo de Incidencia: </b> <%=incidencia.getTipoDeIncidencia().getNombre()%>
                                             <b style="color:#F0C00D; padding-left: 8rem;">★ Destacados</b>
