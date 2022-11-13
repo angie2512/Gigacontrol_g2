@@ -1,34 +1,20 @@
 package com.example.gigacontrol_g2.Usuario.Daos;
 
+import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.BaseDao;
 import com.example.gigacontrol_g2.Usuario.Beans.NivelDeUrgencia;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DaoNivelDeUrgencia {
+public class DaoNivelDeUrgencia extends BaseDao {
     public ArrayList<NivelDeUrgencia> obtenerListaNivelesDeUrgencia() {
         ArrayList<NivelDeUrgencia> listaNivelesDeUrgencia = new ArrayList<>();
-
-        //Registro de driver
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        //Parametros de conexion
-
-        String user = "root";
-        String password = "root";
-        String url = "jdbc:mysql://127.0.0.1:3306/gigacontrol";
-
 
         //Conexion  a base de datos
 
         String sql = "select * from nivelurgencia";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = this.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
