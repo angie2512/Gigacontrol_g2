@@ -1,31 +1,17 @@
 package com.example.gigacontrol_g2.Seguridad.DaosSeguridad;
 import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.*;
 
-
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DaoIncidencia{
+public class DaoIncidencia extends  BaseDao{
+
     public ArrayList<Incidencia> obtenerListaDeIncidencias(){
         ArrayList<Incidencia> listaDeIncidencias= new ArrayList<>();
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        //Parametros de Conexion
-
-        String user = "root";
-        String password = "root";
-        String url = "jdbc:mysql://127.0.0.1:3306/gigacontrol";
-
-        //Conexion a base de datos
-
         String sql = "select * from incidencia";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = this.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
@@ -88,18 +74,12 @@ public class DaoIncidencia{
     }
 
     public Incidencia buscarIncidencia(int idIncidencia) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        String url = "jdbc:mysql://localhost:3306/gigacontrol";
 
         Incidencia incidencia = null;
 
         String sql = "select * from incidencia WHERE idIncidencia = ?";
-        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+
+        try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             pstmt.setInt(1, idIncidencia);
@@ -160,18 +140,11 @@ public class DaoIncidencia{
     }
 
     public void guardarComentario(int idIncidencia, String comentario){
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        String url = "jdbc:mysql://localhost:3306/gigacontrol";
 
         String sql="insert into comentarincidencia (idUsuario,idIncidencia,ComentarioIncidencia) " +
                     "values (?,?,?)";
 
-        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+        try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             pstmt.setInt(1,Types.INTEGER); //idUsuario

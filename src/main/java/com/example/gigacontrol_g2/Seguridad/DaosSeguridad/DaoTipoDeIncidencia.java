@@ -5,29 +5,15 @@ import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.TipoDeIncidencia;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DaoTipoDeIncidencia {
+public class DaoTipoDeIncidencia extends BaseDao{
     public ArrayList<TipoDeIncidencia> obtenerListaTipoDeIncidencias(){
         ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = new ArrayList<>();
-
-        //Registro de Driver
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        //Parametros de Conexion
-
-        String user = "root";
-        String password = "root";
-        String url = "jdbc:mysql://127.0.0.1:3306/gigacontrol";
 
         //Conexion a base de datos
 
         String sql = "select * from tipoincidencia";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = this.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 

@@ -4,30 +4,16 @@ import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Usuario;
 import java.util.ArrayList;
 import java.sql.*;
 
-public class DaoUsuario {
+public class DaoUsuario extends BaseDao{
     public ArrayList<Usuario> obtenerListaDeUsuarios(){
         ArrayList<Usuario> listaDeUsuarios = new ArrayList<>();
-
-        //Registro de Driver
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        //Parametros de Conexion
-
-        String user = "root";
-        String password = "root";
-        String url = "jdbc:mysql://127.0.0.1:3306/gigacontrol";
 
         //Conexion a base de datos
 
         String sql = "select * from usuario";
 
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = this.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 

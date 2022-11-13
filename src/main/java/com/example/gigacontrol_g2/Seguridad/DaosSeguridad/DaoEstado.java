@@ -6,29 +6,17 @@ import java.util.ArrayList;
 import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Estado;
 import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoEstado;
 
-public class DaoEstado {
+public class DaoEstado extends BaseDao{
 
     public ArrayList<Estado> obtenerListaEstados(){
         ArrayList<Estado> listaEstados = new ArrayList<>();
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        //Parametros de Conexion
-
-        String user = "root";
-        String password = "root";
-        String url = "jdbc:mysql://127.0.0.1:3306/gigacontrol";
 
         //Conexion a base de datos
 
         String sql = "select * from estado";
 
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = this.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
