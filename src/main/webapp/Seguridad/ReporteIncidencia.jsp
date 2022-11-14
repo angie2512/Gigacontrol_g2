@@ -60,6 +60,10 @@
                 </tr>
 
               </table>
+              <form method="post" action="<%=request.getContextPath()%>/subirfoto" enctype="multipart/form-data">
+                <input type="file" name="foto">
+                <button type="btn" name="">subir foto</button>
+              </form>
               <br>
               <div style="display:flex">
                 <div>
