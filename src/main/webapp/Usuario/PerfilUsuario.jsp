@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Perfil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/46baa8e193.js" crossorigin="anonymous"></script>
 </head>
+
+
 <body style="background-image: url(resources/Images/background.jpg);
                background-repeat: no-repeat;
                background-position: center center;
@@ -65,7 +68,12 @@
 
 <div class="container" style="width: 500px;">
     <div class="abs-center">
-        <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
+        <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem" style="margin-top: 10px; margin-bottom:-35px">
+        <td class="text-center">
+            <a type="button" class="btn btn-danger", style="background-color: #ffffff;border-color: #ffffff;border-radius: 60px 60px 60px 60px;margin-left: 270px; margin-bottom:25px">
+             <img src="https://img.icons8.com/metro/26/null/camera.png"/>
+            </a>
+        </td>
         <br>
         <div class="card"style="background-color:#F2F2F3">
             <div class="card-body" >
