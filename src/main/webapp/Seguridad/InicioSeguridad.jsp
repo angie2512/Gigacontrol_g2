@@ -5,9 +5,8 @@
 <%@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
 <% String currentPage = request.getParameter("currentPage");%>
-<!-- jsp:useBean id="usuarioSession type="BeansSeguridad.Usuario" scope="session" class="BeansSeguridad.Usuario" /> -->
+<jsp:useBean id="usuarioSession" type="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Usuario" scope="session" class="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Usuario" />
 
 <%
   //ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
