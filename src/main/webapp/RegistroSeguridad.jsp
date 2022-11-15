@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="d-flex justify-content-center">
-                                        <a class="btn btn-primary" href=<%=request.getContextPath()%>/Index role="button" style="margin-left: 0.5rem; background-color: rgb(62, 181, 228); border: none;">OK</a>
+                                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio" role="button" style="margin-left: 0.5rem; background-color: rgb(62, 181, 228); border: none;">OK</a>
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@
     </div>
 </center>
 <br></br>
-
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
 </body>
 
 </html>
