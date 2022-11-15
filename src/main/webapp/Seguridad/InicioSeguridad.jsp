@@ -10,9 +10,9 @@
 <!-- jsp:useBean id="usuarioSession type="BeansSeguridad.Usuario" scope="session" class="BeansSeguridad.Usuario" /> -->
 
 <%
-  ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
-  ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
-  ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
+  //ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
+  //ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
+  //ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
   ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
 %>
 
@@ -97,7 +97,10 @@
   </div>
 </header>
 
-<div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
+  <!-- Segun Burga , es recomendable mejor eliminar el Filtro de Incidencias de Seguridad-->
+
+
+<!-- <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
   <aside class="bd-sidebar" style="width: 380px; height:450px; background-color: #37745C95">
     <div id="region-menu-box">
       <div class="d-flex flex-column flex-shrink-0 p-3">
@@ -106,15 +109,15 @@
         </center>
         <br>
         <h5 style="color:#BEE7A7 ; background-color: #37745C90;font-family: 'Trebuchet MS',Helvetica, sans-serif;">> Estado</h5>
-        <%for (Estado est : listaEstados) { %>
+        < %for (Estado est : listaEstados) { %>
         <div class="form-check" style="color:white;font-size:15px">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
           <label class="form-check-label" for="flexCheckDefault">
-            <%=est.getNombre()%>
+            < %=est.getNombre()%>
           </label>
         </div>
 
-        <% } %>
+        < % } %>
 
 
         <h5 style="color:#BEE7A7; background-color: #37745C90;font-family: 'Trebuchet MS',Helvetica, sans-serif;">> Número de Destacados</h5>
@@ -132,30 +135,30 @@
         </div>
 
         <h5 style="color:#BEE7A7; background-color: #37745C90; font-family: 'Trebuchet MS',Helvetica, sans-serif;">> Tipo de Incidencia</h5>
-        <%for (TipoDeIncidencia tipoIndici : listaTipoDeIncidencias) { %>
+        < %for (TipoDeIncidencia tipoIndici : listaTipoDeIncidencias) { %>
         <div class="form-check" style="color:white;font-size:15px">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
           <label class="form-check-label" for="flexCheckDefault">
-            <%=tipoIndici.getNombre()%>
+            < %=tipoIndici.getNombre()%>
           </label>
         </div>
 
-        <% } %>
+        < % } %>
         <h5 style="color:#BEE7A7; background-color: #37745C90; font-family: 'Trebuchet MS',Helvetica, sans-serif;">> Nivel de Urgencia</h5>
-        <%for(NivelDeUrgencia nu : listaNivelesDeUrgencia) {%>
+        < %for(NivelDeUrgencia nu : listaNivelesDeUrgencia) {%>
         <div class="form-check" style="color:white;">
           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
           <label class="form-check-label" for="flexCheckDefault">
-            <%=nu.getNombre()%>
+            < %=nu.getNombre()%>
           </label>
         </div>
-        <%
+        < %
           }
         %>
         <<button type="button" class="btn btn-danger">Buscar</button>
       </div>
     </div>
-  </aside>
+  </aside> -->
   <center>
     <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
       <main class ="bd-main order-1;overflow-auto" style="width: 820px; height:1650px; background-color: #FFFFFF99">
