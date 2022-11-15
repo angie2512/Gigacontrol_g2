@@ -92,4 +92,5 @@ public class Incidencia {
     }
 
     private int idEstado;
+
 }

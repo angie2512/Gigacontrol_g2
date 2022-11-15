@@ -34,7 +34,6 @@ public class SeguridadDao extends BaseDao{
         return listaEstados;
     }
 
-
     public ArrayList<Incidencia> obtenerListaDeIncidencias(){
         ArrayList<Incidencia> listaDeIncidencias= new ArrayList<>();
 
@@ -43,7 +42,6 @@ public class SeguridadDao extends BaseDao{
         try (Connection conn = this.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-
 
             while (rs.next()) {
                 Incidencia incidencia = new Incidencia();

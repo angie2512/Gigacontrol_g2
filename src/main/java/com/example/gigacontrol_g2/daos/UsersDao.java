@@ -258,5 +258,4 @@ public class UsersDao extends BaseDao{
     //
     //        return usuario;
     //    }
-
 }

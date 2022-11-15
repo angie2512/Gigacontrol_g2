@@ -19,4 +19,5 @@ public class Rol {
     public void setNombre(char nombre) {
         this.nombre = nombre;
     }
+
 }
