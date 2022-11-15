@@ -1,12 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Angie
+  User: USUARIO
   Date: 26/10/2022
-  Time: 11:20
+  Time: 11:47
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -21,7 +20,7 @@
                background-size: cover;">
 <nav class="navbar navbar-expand-lg" style="background-color: #131950;" aria-label="Eighth navbar example">
   <div class="container">
-    <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
+    <a class="navbar-brand" href="/AdminInicio.jsp"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -29,10 +28,16 @@
     <div class="collapse navbar-collapse" id="navbarsExample07">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" href="<%=request.getContextPath()%>/InicioAdmi" aria-current="page" href="#" style="color:#FFFFFF">Inicio</a>
+          <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=Inicio" aria-current="page" href="#" style="color:#FFFFFF">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active"  href="<%=request.getContextPath()%>/UsuariosAdmi" aria-current="page" href="#" style="color:#FFFFFF">Usuarios</a>
+          <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=Perfil" aria-current="page" href="#" style="color:#FFFFFF">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active"  href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios" aria-current="page" href="#" style="color:#FFFFFF">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=nuevoUsuario" aria-current="page" href="#" style="color:#FFFFFF">Registrar Usuario</a>
         </li>
       </ul>
     </div>
@@ -47,7 +52,7 @@
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">SEBASTIAN G. SEGURA ABANTO</b></a></li>
+        <li><a href="<%=request.getContextPath()%>/ServletAdmin?action=Inicio" class="nav-link px-2"><b style="color:#1A3B85">SEBASTIAN G. SEGURA ABANTO</b></a></li>
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
             <img src="resources/Images/usu.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -56,7 +61,7 @@
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <a class="dropdown-item" href="<%=request.getContextPath()%>/Index"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
+        <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
       </form>
 
     </div>
@@ -67,7 +72,9 @@
 <div class="d-inline p-3" style="font-size: 1.5rem;background-color:#347199;"><b style="color:#FFFFFF; font-family:'Palatino Linotype','Book Antiqua',Palatino, serif"> REGISTRO</b></div>
 <br><br><br>
 <div class="d-flex justify-content-center">
+
   <table>
+
     <tr>
       <td>
         <img src="resources/Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="230rem" width="230rem">
@@ -76,6 +83,7 @@
       <td>
         <div class="card">
           <div class="card-body">
+            <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=guardar">
             <table>
               <tr>
                 <td>
@@ -94,23 +102,22 @@
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item" style="border-radius: 10%;">Celular:</li>
                   </ul>
-
                 </td>
                 <td style="padding-left: 1rem;">
                   <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                    <input type="text" class="form-control"   id="nombre" name="nombre"  value="">
                   </ul>
                   <br>
                   <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value=" ">
+                    <input type="text" class="form-control"   id="apellido" name="apellido"  value=" ">
                   </ul>
                   <br>
                   <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                    <input type="text" class="form-control"   id="dni" name="dni"  value="">
                   </ul>
                   <br>
                   <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                    <input type="text" class="form-control"   id="celular" name="celular"  value="">
                   </ul>
                 </td>
               </tr>
@@ -129,7 +136,7 @@
                 <td>
                 <td>
                   <ul class="list-group list-group-flush">
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                    <input type="text" class="form-control"   id="codigo" name="codigo"  value="">
                   </ul>
                 </td>
                 </td>
@@ -143,7 +150,7 @@
                 <td>
                 <td>
                   <ul class="list-group list-group-flush">
-                    <input type="email class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                    <input type="text" class="form-control"   id="correo" name="correo"  value="">
                   </ul>
                 </td>
                 </td>
@@ -160,13 +167,12 @@
                 <td>
                   <br>
                   <div class="input-group mb-3">
-                    <select class="form-select" id="inputGroupSelect01">
+                    <select class="form-select" id="categoria" name="categoria">
                       <option selected>Elegir...</option>
-                      <option value="1">Estudiante</option>
+                      <option value="1">Alumno</option>
                       <option value="2">Profesor</option>
                       <option value="3">Jefe de páctica</option>
-                      <option value="2">Personal de seguridad</option>
-                      <option value="3">Personal Administrativo</option>
+                      <option value="4">Administrativo</option>
                     </select>
                   </div>
                 </td>
@@ -182,11 +188,11 @@
                 <td>
                   <br>
                   <div class="input-group mb-3">
-                    <select class="form-select" id="inputGroupSelect01">
+                    <select class="form-select" id="rolID" name="rolID">
                       <option selected>Elegir...</option>
-                      <option value="1">Usuario PUCP</option>
-                      <option value="2">Usuario Seguridad</option>
-                      <option value="3">Administrador</option>
+                      <option value="1">seguridad</option>
+                      <option value="2">usuario pucp</option>
+                      <option value="3">administrador</option>
                     </select>
                   </div>
                 </td>
@@ -197,24 +203,24 @@
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Validar Registro
               </button>
-
               <!-- Modal -->
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Registro Completo</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Se creará un nuevo usuario</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                       <div class="d-flex justify-content-center">
-                        <h3 style="color:#399934">Usuario Registrado</h3>
-                        <img src="resources/Images/check-png.webp" class="rounded mx-auto d-block " alt="userphoto" height="37rem" width="50rem">
+                        <h3 style="color:#399934">¿Desea Continuar?</h3>
                       </div>
                     </div>
                     <div class="modal-footer">
                       <div class="d-flex justify-content-center">
-                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/InicioAdmi" role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">SALIR</a>
+                        <button type="submit" class="btn btn-primary">Confirmar</button>
+                        <br>
+                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletAdmin?action=nuevoUsuario" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> Cancelar </a>
                       </div>
                     </div>
                   </div>
@@ -222,9 +228,11 @@
               </div>
             </div>
           </div>
+         </form>
         </div>
       </td>
     </tr>
+
   </table>
 </div>
 <br>

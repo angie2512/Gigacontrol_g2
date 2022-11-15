@@ -9,9 +9,9 @@
 <jsp:useBean id="usuarioSession" type="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Usuario" scope="session" class="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Usuario" />
 
 <%
-  //ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
-  //ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
-  //ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
+  ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
+  ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
+  ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
   ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
 %>
 
