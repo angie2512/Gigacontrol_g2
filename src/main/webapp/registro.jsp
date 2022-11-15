@@ -83,9 +83,9 @@
     <h4 style="font-family: 'Times New Roman', Times, serif; color:#78BBFD" class="card-text"><b> Elige una OPCIÓN </b></h4>
     <p></p>
     <div class="d-grid gap-2 col-8 mx-auto mb-2">
-      <a href="<%=request.getContextPath()%>/RegistroUsuario" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" class="btn btn-secondary" style="color:#686B6E;width: 18rem; font-size: 15px"><b>Usuario PUCP</b></button></a>
+      <a href="<%=request.getContextPath()%>/ServletInicio?action=Registrousuario" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" class="btn btn-secondary" style="color:#686B6E;width: 18rem; font-size: 15px"><b>Usuario PUCP</b></button></a>
       <p></p>
-      <a href="<%=request.getContextPath()%>/RegistroSeguridad" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" style="color:#686B6E; width: 18rem; font-size: 15px"><b>Seguridad</b></button></a>
+      <a href="<%=request.getContextPath()%>/ServletInicio?action=Registroseguridad" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" style="color:#686B6E; width: 18rem; font-size: 15px"><b>Seguridad</b></button></a>
       <p></p>
     </div>
   </div>

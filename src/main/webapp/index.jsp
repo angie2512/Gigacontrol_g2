@@ -78,8 +78,8 @@
             <h4 style="font-family: 'Times New Roman', Times, serif; color:#78BBFD" class="card-text"><b> SELECCIONE LA OPCIÓN </b></h4>
             <br>
             <div class="d-grid gap-2 col-6 mx-auto">
-                <a href=<%=request.getContextPath()%>/InicioDeSesion style="color: rgb(141, 15, 15);"><button class="btn btn-light btn-lg" type="button" style="color:#686B6E; font-size:16px">Iniciar Sesión</button></a>
-                <a href=<%=request.getContextPath()%>/Registro style="color: rgb(141, 15, 15);"><button class="btn btn-light btn-lg" type="button" style="color:#686B6E; font-size: 17px;">Registrarse</button></a>
+                <a href="<%=request.getContextPath()%>/ServletInicio?action=LogIn" style="color: rgb(141, 15, 15);"><button class="btn btn-light btn-lg" type="button" style="color:#686B6E; font-size:16px">Iniciar Sesión</button></a>
+                <a href="<%=request.getContextPath()%>/ServletInicio?action=registro" style="color: rgb(141, 15, 15);"><button class="btn btn-light btn-lg" type="button" style="color:#686B6E; font-size: 17px;">Registrarse</button></a>
                 <br>
             </div>
         </div>
