@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-    <title>Inicie Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Registro Usuario</title>
     <style>
         body {
             background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
@@ -47,7 +49,7 @@
         <td>
         <td>
         <td>
-        <td><img src="resources/Images/logopucp.png" alt="Logo" width="47" height="47" class="d-inline-block align-text-top"></td>
+        <td><img src="resources/Images/logopucp.png" alt="Logo" width="40rem" height="40rem" class="d-inline-block align-text-top"></td>
         <td><h6 style="color:#1F4375; font-family:Giorgia, serif"><b> GIGACONTROL</b><br style="color:#1F4375"> PUCP</h6></td>
 
         </td>
@@ -65,13 +67,13 @@
 <p></p>
 <p></p>
 <center>
-    <div class="card" style="width: 48rem; background-color:#00000090">
+    <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
         <p></p>
         <p></p>
         <h1 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>CREAR CUENTA NUEVA</b></h1>
         <center>
             <h6 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#D598D4" class="card-subtitle"><b>USUARIO PUCP</b></h6>
-            <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png" alt="linea" width="480" height="10">
+            <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png" alt="linea" class="card-img" width="90%" height="10%">
         </center>
         <p></p>
         <h4 style="font-family: 'Times New Roman', Times, serif; color:#78BBFD" class="card-text"><b> Ingrese sus DATOS </b></h4>
