@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
   <title>Iniciar Sesión</title>
   <style>
     body {
@@ -49,7 +51,7 @@
     <td>
     <td>
     <td>
-    <td><img src="resources/Images/logopucp.png" alt="Logo" width="47" height="47" class="d-inline-block align-text-top"></td>
+    <td><img src="resources/Images/logopucp.png" alt="Logo" width="40rem" height="40rem" class="d-inline-block align-text-top"></td>
     <td><h6 style="color:#1F4375; font-family:Giorgia, serif"><b> GIGACONTROL</b><br style="color:#1F4375"> PUCP</h6></td>
 
     </td>
@@ -67,12 +69,12 @@
 <p></p>
 <p></p>
 <center>
-  <div class="card" style="width: 48rem; background-color:#00000090">
+  <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
     <p></p>
     <p></p>
     <h2 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>INICIO DE SESIÓN</b></h2>
     <center>
-      <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png" alt="linea" width="480" height="10">
+      <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png" alt="linea" class="card-img" width="90%" height="10%">
     </center>
     <p></p>
     <p></p>
@@ -109,6 +111,7 @@
 </center>
 <br></br>
 <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 </body>
 
