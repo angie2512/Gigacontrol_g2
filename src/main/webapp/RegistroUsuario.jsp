@@ -87,12 +87,13 @@
                 <label align="left" for="exampleInputPassword1" class="form-label" style="color:#FFFFFF">Password</label>
                 <input type="password" class="form-control" id="exampleInputPassword1">
             </div>
+            <!-- MODAL -->
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Enviar
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
                     <div class="modal-dialog" style="color:#00000090">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -100,7 +101,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="d-flex justify-content-center">
+                                <div class="d-flex justify-content-center mb-3">
                                     <table>
                                         <td>
                                             <h1 style="font-family: 'Times New Roman', Times, serif; color:#49AC3E" class="card-title" align="center"><font size= 7><b>LISTO!</b></font></h1>
@@ -109,9 +110,9 @@
                                             <h6 style="font-family: 'Times New Roman', Times, serif; color:#000000" class="card-subtitle" align="center">Como último paso, ingrese al Link enviado a su correo electronico y establezca su nueva contraseña.</h6>
                                             <!--<h6 style="font-family: 'Times New Roman', Times, serif; color:#000000" class="card-subtitle" align="center">enviado a su correo electronico </h6>
                                             <h6 style="font-family: 'Times New Roman', Times, serifS; color:#000000" class="card-subtitle" align="center">y establezca su nueva contraseña.</h6>-->
+                                        </td>
                                         <td>
-                                        <td>
-                                            <img src="https://us.123rf.com/450wm/hermandesign2015/hermandesign20151706/hermandesign2015170600317/80903732-dibujo-animado-de-b%C3%BAho-puntiagudo.jpg" alt="buho Paideia" width="230" lign="right">
+                                            <img src="https://us.123rf.com/450wm/hermandesign2015/hermandesign20151706/hermandesign2015170600317/80903732-dibujo-animado-de-b%C3%BAho-puntiagudo.jpg" alt="buho Paideia" class="img-rounded" width="304" height="236"/>
                                         </td>
                                     </table>
                                 </div>
@@ -126,16 +127,17 @@
                 </div>
             </div>
             <br>
-    </div>
-    </div>
+      </div>
+     </div>
     </form>
     <p></p>
 
     </div>
     </div>
 </center>
-<br></br>
+<br>
 <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 
 </html>
