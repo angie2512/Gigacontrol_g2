@@ -102,18 +102,28 @@
                             </div>
                             <div class="modal-body">
                                 <div class="d-flex justify-content-center mb-3">
-                                    <table>
-                                        <td>
-                                            <h1 style="font-family: 'Times New Roman', Times, serif; color:#49AC3E" class="card-title" align="center"><font size= 7><b>LISTO!</b></font></h1>
-                                            <h5 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#F7E44A" class="card-subtitle" align="center"><b>Ya falta poco...</b></h5>
-                                            <p></p>
-                                            <h6 style="font-family: 'Times New Roman', Times, serif; color:#000000" class="card-subtitle" align="center">Como último paso, ingrese al Link enviado a su correo electronico y establezca su nueva contraseña.</h6>
-                                            <!--<h6 style="font-family: 'Times New Roman', Times, serif; color:#000000" class="card-subtitle" align="center">enviado a su correo electronico </h6>
-                                            <h6 style="font-family: 'Times New Roman', Times, serifS; color:#000000" class="card-subtitle" align="center">y establezca su nueva contraseña.</h6>-->
-                                        </td>
-                                        <td>
-                                            <img src="https://us.123rf.com/450wm/hermandesign2015/hermandesign20151706/hermandesign2015170600317/80903732-dibujo-animado-de-b%C3%BAho-puntiagudo.jpg" alt="buho Paideia" class="img-rounded" width="304" height="236"/>
-                                        </td>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <td>
+                                                    <h1 style="font-family: 'Times New Roman', Times, serif; color:#49AC3E" class="card-title" align="center"><font size= 7><b>LISTO!</b></font></h1>
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h5 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#F7E44A" class="card-subtitle" align="center"><b>Ya falta poco...</b></h5>
+                                                    <p></p>
+                                                    <h6 style="font-family: 'Times New Roman', Times, serif; color:#000000" class="card-subtitle" align="center">Como último paso, ingrese al Link enviado a su correo electronico y establezca su nueva contraseña.</h6>
+                                                    <!--<h6 style="font-family: 'Times New Roman', Times, serif; color:#000000" class="card-subtitle" align="center">enviado a su correo electronico </h6>
+                                                    <h6 style="font-family: 'Times New Roman', Times, serifS; color:#000000" class="card-subtitle" align="center">y establezca su nueva contraseña.</h6>-->
+                                                </td>
+                                                <td>
+                                                    <img src="https://us.123rf.com/450wm/hermandesign2015/hermandesign20151706/hermandesign2015170600317/80903732-dibujo-animado-de-b%C3%BAho-puntiagudo.jpg" alt="buho Paideia" class="img-fluid"  />
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
