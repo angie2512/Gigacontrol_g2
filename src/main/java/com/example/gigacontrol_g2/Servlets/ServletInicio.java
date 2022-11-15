@@ -35,17 +35,14 @@ public class ServletInicio extends HttpServlet {
 
 
                 case "registro":
-                    System.out.println("en registro buen");
                     requestDispatcher = request.getRequestDispatcher("registro.jsp");
                     requestDispatcher.forward(request,response);
                     break;
                 case "Registrousuario":
-                    System.out.println("en usuario good");
                     requestDispatcher = request.getRequestDispatcher("RegistroUsuario.jsp");
                     requestDispatcher.forward(request,response);
                     break;
                 case "Registroseguridad":
-                    System.out.println("En usuario good");
                     requestDispatcher = request.getRequestDispatcher("RegistroSeguridad.jsp");
                     requestDispatcher.forward(request,response);
                     break;
