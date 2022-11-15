@@ -78,18 +78,26 @@
     <p></p>
     <h5 style="font-family: 'Times New Roman', Times, serif; color:#C6D6F5" class="card-text"><b> Ingrese sus DATOS </b></h5>
     <p></p>
+    <form method="post" class="form-signin" action="<%=request.getContextPath()%>/InicioDeSesion" >
     <div class="d-grid gap-2 col-8 mx-auto form-floating mb-3">
-      <input type="numbers" class="form-control" id="floatingInput" placeholder="20203589">
+      <input type="numbers" class="form-control" id="floatingInput" placeholder="Código" name="codigo">
       <label for="floatingInput">Código de Usuario</label>
     </div>
     <div class="d-grid gap-2 col-8 mx-auto form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" name="contrasena">
       <label for="floatingPassword">Contraseña</label>
     </div>
     <p></p>
     <p></p>
-    <a href="<%=request.getContextPath()%>/InicioSeguridad"><button class="d-grid gap-1 col-2 mx-auto btn btn-primary" type="button">Ingresar</button></a>
+      <% if (request.getParameter("error")!= null) {%>
+    <div class="text-danger mb-2">Hubo un Error en su Codigo o Contraseña , Vuelva a Ingresar </div>
+      <% } %>
+    <!-- <a href="< %=request.getContextPath()%>/InicioSeguridad"><button class="d-grid gap-1 col-2 mx-auto btn btn-primary" type="button">Ingresar</button></a> -->
+      <button type="submit" class="d-grid gap-1 col-2 mx-auto btn btn-primary">
+        Ingresar
+      </button>
     <p></p>
+    </form>
   </div>
   </div>
 </center>
