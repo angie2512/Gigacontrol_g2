@@ -6,6 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
   <title>Iniciar Sesión</title>
@@ -67,12 +68,12 @@
 <p></p>
 <p></p>
 <center>
-  <div class="card" style="width: 48rem; background-color:#00000090">
+  <div class="card" style="max-width: 58rem; background-color:#00000090">
     <p></p>
     <p></p>
     <h2 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>INICIO DE SESIÓN</b></h2>
     <center>
-      <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png" alt="linea" width="480" height="10">
+      <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png" alt="linea" class="card-img" width="90%" height="10%">
     </center>
     <p></p>
     <p></p>
@@ -93,15 +94,21 @@
     <div class="text-danger mb-2">Hubo un Error en su Codigo o Contraseña , Vuelva a Ingresar </div>
       <% } %>
     <!-- <a href="< %=request.getContextPath()%>/InicioSeguridad"><button class="d-grid gap-1 col-2 mx-auto btn btn-primary" type="button">Ingresar</button></a> -->
-      <button type="submit" class="d-grid gap-1 col-2 mx-auto btn btn-primary">
+    <!--  <button type="submit" class="btn btn-primary">
         Ingresar
-      </button>
+      </button> -->
+
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <a href=<%=request.getContextPath()%>/InicioSeguridad style="color: rgb(141, 15, 15);"><button class="btn btn-primary btn-lg" type="button" style="color:#FFFFFF; font-size:16px">Ingresar</button></a>
+        <br>
+      </div>
+
     <p></p>
     </form>
   </div>
   </div>
 </center>
-<br></br>
+<br>
 <a class="btn btn-primary" href="<%=request.getContextPath()%>/Index" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
 
 </body>
