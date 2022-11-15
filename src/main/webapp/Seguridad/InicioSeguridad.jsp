@@ -6,12 +6,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
+<% String currentPage = request.getParameter("currentPage");%>
+<!-- jsp:useBean id="usuarioSession type="BeansSeguridad.Usuario" scope="session" class="BeansSeguridad.Usuario" /> -->
+
 <%
   ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
   ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
   ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
   ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
 %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -76,7 +80,7 @@
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">CRISTIAN DOMINGUEZ CASTRO</b></a></li>
+        <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">BIENVENIDO <%=usuarioSession.getFirstName()%> <%=usuarioSession.getFirstName()%> <!--CRISTIAN DOMINGUEZ CASTRO --></b></a></li>
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
             <img src="resources/Images/userSeguridad.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -85,7 +89,7 @@
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <a class="dropdown-item" href="<%=request.getContextPath()%>/Index"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
+        <a class="dropdown-item" href="<%=request.getContextPath()%>/InicioDeSesion?action=LogOut"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
       </form>
 
 
