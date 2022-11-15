@@ -5,19 +5,15 @@ import com.example.gigacontrol_g2.beans.BUsuarios;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class UsersDao {
+public class UsersDao extends BaseDao{
     public ArrayList<BUsuarios> getUsersList() {
         ArrayList<BUsuarios> usersList = new ArrayList<>();
-        try {
-            String user = "root";
-            String passw = "root";
-            String url = "jdbc:mysql://localhost:3306/gigacontrol";
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        String sql = "select * from usuario";
 
-            Connection connection = DriverManager.getConnection(url, user, passw);
-            Statement statement = connection.createStatement();
-            String sql = "select * from usuario";
-            ResultSet resultSet = statement.executeQuery(sql);
+        try (Connection conn = this.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet resultSet = stmt.executeQuery(sql)) {
+
             while (resultSet.next()) {
                 BUsuarios newUser = new BUsuarios();
                 newUser.setIdUsuario(resultSet.getInt(1));
@@ -34,7 +30,7 @@ public class UsersDao {
                 usersList.add(newUser);
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return usersList;
@@ -42,17 +38,15 @@ public class UsersDao {
 
     public BUsuarios getAdmin() {
         BUsuarios admin = new BUsuarios();
-        try {
-            String user = "root";
-            String passw = "root";
-            String url = "jdbc:mysql://localhost:3306/gigacontrol";
-            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Connection connection = DriverManager.getConnection(url, user, passw);
-            Statement statement = connection.createStatement();
-            String sql = "SELECT * FROM gigacontrol.usuario\n" +
-                    "where Rol_idRol=3";
-            ResultSet resultSet = statement.executeQuery(sql);
+        String sql = "SELECT * FROM gigacontrol.usuario\n" +
+                "where Rol_idRol=3";
+
+        try (Connection conn = this.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet resultSet = stmt.executeQuery(sql)){
+
+
             while (resultSet.next()) {
                 admin.setNombre(resultSet.getString(2));
                 admin.setApellido(resultSet.getString(3));
@@ -65,26 +59,18 @@ public class UsersDao {
                 admin.setRolId(resultSet.getInt(11));
             }
 
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return admin;
     }
     public BUsuarios buscarPorId(String userID) {
         BUsuarios user = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        String url = "jdbc:mysql://localhost:3306/gigacontrol";
-
-
 
         String sql = "select * from usuario WHERE idUsuario = ?";
-        try (Connection connection = DriverManager.getConnection(url, "root", "root");
-             PreparedStatement pstmt = connection.prepareStatement(sql);) {
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
             System.out.println("entro a buscar");
 
             pstmt.setString(1, userID);
@@ -109,17 +95,11 @@ public class UsersDao {
         return user;
     }
     public void actualizar(int userID, String nombre, String apellido, String DNI, String codigo, String correo, String categoria, int rolID) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
 
-        String url = "jdbc:mysql://localhost:3306/gigacontrol";
         String sql = "UPDATE usuario SET Nombre = ?, Apellido = ?, Correo = ?, Codigo = ?, DNI = ?, Categoria = ?, ROl_idRol = ? WHERE idUsuario = ?";
 
-        try (Connection connection = DriverManager.getConnection(url, "root", "root");
-             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             System.out.println(nombre);
             pstmt.setString(1,nombre);
             pstmt.setString(2,apellido);
@@ -138,16 +118,10 @@ public class UsersDao {
     }
 
     public void guardar(BUsuarios user) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
 
-        String url = "jdbc:mysql://localhost:3306/gigacontrol";
         String sql = "INSERT INTO usuario (Nombre,Apellido,Correo,Codigo,DNI,Celular,Categoria,Rol_idRol,Contrasenia) VALUES (?,?,?,?,?,?,?,?,?)";
 
-        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+        try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             pstmt.setString(1, user.getNombre());
@@ -181,16 +155,10 @@ public class UsersDao {
     }
 
     public void borrar(String userID) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
 
-        String url = "jdbc:mysql://localhost:3306/gigacontrol";
         String sql = "DELETE FROM usuario WHERE idUsuario = ?";
 
-        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+        try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             pstmt.setString(1, userID);
@@ -200,5 +168,95 @@ public class UsersDao {
             throw new RuntimeException(e);
         }
     }
+
+
+    //public ArrayList<Usuario> obtenerListaDeUsuarios() {
+    //        ArrayList<Usuario> listaDeUsuarios = new ArrayList<>();
+    //
+    //        //Conexion a base de datos
+    //
+    //        String sql = "select * from usuario";
+    //
+    //
+    //        try (Connection conn = this.getConnection();
+    //             Statement stmt = conn.createStatement();
+    //             ResultSet rs = stmt.executeQuery(sql)) {
+    //
+    //            while (rs.next()) {
+    //                Usuario usuario = new Usuario();
+    //                usuario.setIdUsuario(rs.getInt(1));
+    //                usuario.setNombre(rs.getString(2));
+    //                usuario.setApellido(rs.getString(3));
+    //                usuario.setCodigo(rs.getString(6));
+    //                usuario.setCategoria(rs.getString(9));
+    //                listaDeUsuarios.add(usuario);
+    //            }
+    //
+    //
+    //        } catch (SQLException throwables) {
+    //            throwables.printStackTrace();
+    //        }
+    //
+    //        return listaDeUsuarios;
+    //    }
+    //
+    //    public Usuario obtenerUsuario(int idUsuario) {
+    //
+    //        Usuario usuario = null;
+    //
+    //        String sql = "select * from usuario WHERE idUsuario = ?";
+    //
+    //        try (Connection connection = this.getConnection();
+    //             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+    //
+    //            pstmt.setInt(1, idUsuario);
+    //
+    //            try (ResultSet rs = pstmt.executeQuery()) {
+    //                if (rs.next()) {
+    //                    usuario = new Usuario();
+    //                    usuario.setIdUsuario(idUsuario);
+    //                    usuario.setNombre(rs.getString(2));
+    //                    usuario.setApellido(rs.getString(3));
+    //                    usuario.setCodigo(rs.getString(6));
+    //                    usuario.setCategoria(rs.getString(9));
+    //                    Rol rol = new Rol();
+    //                    rol.setIdRol(rs.getInt(11));
+    //                    usuario.setRol(rol);
+    //                    //se podria tambien agregar una columna de facultad en la tabla usuario
+    //                    //debido a la vista del perfil de usuario pucp
+    //                }
+    //            }
+    //        } catch (SQLException e) {
+    //            throw new RuntimeException(e);
+    //        }
+    //
+    //        return usuario;
+    //    }
+    //
+    //    public Usuario validarUsuarioPasswordHashed(String codigo, String contrasena) {
+    //
+    //        Usuario usuario = null;
+    //
+    //        String sql = "select * from usuario where Codigo = ? and ContraseniaHashed = SHA2(?,256) ";
+    //
+    //        try (Connection connection = this.getConnection();
+    //             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+    //
+    //            pstmt.setString(1, contrasena);
+    //            pstmt.setString(2, contrasena);
+    //
+    //            try (ResultSet rs = pstmt.executeQuery()) {
+    //                if (rs.next()) {
+    //                    int idUsuario = rs.getInt(1);
+    //                    usuario = this.obtenerUsuario(idUsuario);
+    //                }
+    //            }
+    //
+    //        } catch (SQLException e) {
+    //            throw new RuntimeException(e);
+    //        }
+    //
+    //        return usuario;
+    //    }
 
 }

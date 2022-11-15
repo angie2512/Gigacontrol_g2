@@ -1,6 +1,5 @@
 package com.example.gigacontrol_g2.Usuario.Daos;
 
-import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.BaseDao;
 import com.example.gigacontrol_g2.Usuario.Beans.Incidencia;
 
 import java.sql.*;

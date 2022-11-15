@@ -1,11 +1,10 @@
-package com.example.gigacontrol_g2.Seguridad.DaosSeguridad;
+package com.example.gigacontrol_g2.daos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class BaseDao {
-
+public class BaseDao{
 
     public Connection getConnection() throws SQLException {
         try{
@@ -14,7 +13,7 @@ public class BaseDao {
             throw new RuntimeException(e);
         }
         String user = "root";
-        String pass = "123456";
+        String pass = "root";
         String url = "jdbc:mysql://localhost:3306/gigacontrol";
         return DriverManager.getConnection(url, user, pass);
     }

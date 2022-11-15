@@ -1,4 +1,4 @@
-package com.example.gigacontrol_g2.Seguridad.BeansSeguridad;
+package com.example.gigacontrol_g2.beans;
 
 public class TipoDeIncidencia {
     private int idTipoDeIncidencia;

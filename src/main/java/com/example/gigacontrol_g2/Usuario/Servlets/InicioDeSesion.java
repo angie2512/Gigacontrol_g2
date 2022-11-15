@@ -1,7 +1,6 @@
 package com.example.gigacontrol_g2.Usuario.Servlets;
 
 import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Usuario;
-import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoUsuario;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;

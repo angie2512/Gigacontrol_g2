@@ -1,10 +1,39 @@
-package com.example.gigacontrol_g2.Seguridad.DaosSeguridad;
-import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.*;
+package com.example.gigacontrol_g2.daos;
+
+import com.example.gigacontrol_g2.beans.Estado;
+import com.example.gigacontrol_g2.beans.Incidencia;
+import com.example.gigacontrol_g2.beans.NivelDeUrgencia;
+import com.example.gigacontrol_g2.beans.TipoDeIncidencia;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DaoIncidencia extends  BaseDao{
+public class SeguridadDao extends BaseDao{
+
+    public ArrayList<Estado> obtenerListaEstados(){
+        ArrayList<Estado> listaEstados = new ArrayList<>();
+
+        //Conexion a base de datos
+        String sql = "select * from estado";
+
+        try (Connection conn = this.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Estado estado = new Estado();
+                estado.setIdEstado(rs.getInt(1));
+                estado.setNombre(rs.getString(2));
+                listaEstados.add(estado);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return listaEstados;
+    }
+
 
     public ArrayList<Incidencia> obtenerListaDeIncidencias(){
         ArrayList<Incidencia> listaDeIncidencias= new ArrayList<>();
@@ -142,7 +171,7 @@ public class DaoIncidencia extends  BaseDao{
     public void guardarComentario(int idIncidencia, String comentario){
 
         String sql="insert into comentarincidencia (idUsuario,idIncidencia,ComentarioIncidencia) " +
-                    "values (?,?,?)";
+                "values (?,?,?)";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -158,4 +187,55 @@ public class DaoIncidencia extends  BaseDao{
         }
 
     }
+
+    public ArrayList<NivelDeUrgencia> obtenerListaNivelesDeUrgencia() {
+        ArrayList<NivelDeUrgencia> listaNivelesDeUrgencia = new ArrayList<>();
+
+        //Conexion  a base de datos
+
+        String sql = "select * from nivelurgencia";
+
+        try (Connection conn = this.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+
+            while (rs.next()) {
+                NivelDeUrgencia nivelDeUrgencia = new NivelDeUrgencia();
+                nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt(1));
+                nivelDeUrgencia.setNombre(rs.getString(2));
+                listaNivelesDeUrgencia.add(nivelDeUrgencia);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return listaNivelesDeUrgencia;
+    }
+
+    public ArrayList<TipoDeIncidencia> obtenerListaTipoDeIncidencias(){
+        ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = new ArrayList<>();
+
+        //Conexion a base de datos
+
+        String sql = "select * from tipoincidencia";
+
+        try (Connection conn = this.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
+                tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt(1));
+                tipoDeIncidencia.setNombre(rs.getString(2));
+                listaTipoDeIncidencias.add(tipoDeIncidencia);
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return listaTipoDeIncidencias;
+    }
+
 }
