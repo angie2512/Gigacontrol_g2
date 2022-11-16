@@ -17,7 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet"/>
     <title>Inicio Usuario</title>
     <style>
         body {
@@ -167,9 +167,8 @@
                                                     <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%=incidencia.getNombreDeIncidencia()%></b></h4>
                                                 </td>
                                                 <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
+                                                    <div class="card-body d-flex align-items-right"  aria-label="Basic mixed styles example" style="padding-final: 3rem;">
                                                         <a href="<%=request.getContextPath()%>/VerIncidencia?action=mostrar&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver</a>
-                                                        <a href="<%=request.getContextPath()%>/ReporteIncidencia?action=mostrarReporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a>
                                                     </div>
                                                 </td>
                                             </tr>
