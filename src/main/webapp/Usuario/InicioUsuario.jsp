@@ -1,5 +1,12 @@
-
+<%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    //ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
+    //ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
+    //ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
+    ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
+%>
 
 
 <!doctype html>
@@ -41,7 +48,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body class="p-3 m-0 border-0 bd-example">
+<body>
     <nav class="navbar navbar-expand-lg" style="background-color: #458BCA;" aria-label="Eighth navbar example">
         <div class="container">
             <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
@@ -65,7 +72,7 @@
 
 
                 <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">ROSA A. SALAZAR CASTILLA</b></a></li>
+                    <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">ROSA A. SALAZAR CASTILLA </b></a></li>
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
                             <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -74,8 +81,7 @@
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
-                            style="color:#FFFFFF"><b>Cerrar sesion > </b></u></a>
+                    <a class="dropdown-item" href=<%=request.getContextPath()%>/Index><u style="color:rgb(35,30,30)"> <b>Cerrar sesión > </b></u></a>
                 </form>
             </div>
         </div>
@@ -113,12 +119,12 @@
 </header>
 --%>
 <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
-    <aside class="bd-sidebar" style="max-width:30rem; height:30rem;background-color: #11559290">
+    <aside class="bd-sidebar" style="width: 380px; height:400px; background-color: #11559290">
         <div id="region-menu-box">
             <div class="d-flex flex-column flex-shrink-0 p-3">
                 <center>
                     <br>
-                    <h4 style="color:#FFFFFF; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b> BIENVENIDA/O </b> </h4>
+                    <h2 style="color:#FFFFFF; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b> BIENVENIDA/O </b> </h2>
                     <hr>
                     <h6 style="color:#0A321E; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b>PASOS PARA REGISTRAR</b> </h6>
                     <h6 style="color:#0A321E; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b>UNA INCIDENCIA </b></h6> </center>
@@ -137,8 +143,8 @@
     </aside>
     <center>
         <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
-            <main class ="bd-main order-1;overflow-auto" style="width: 820px; background-color: #FFFFFF99">
-                <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; background-color: #051D57;" >
+            <main class ="bd-main order-1;overflow-auto" style="width: 820px; height:1650px; background-color: #FFFFFF99">
+                <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; height:3500px; background-color: #051D57;" >
                     <h4 class="border-bottom pb-2 mb-2" style="background-color:#051D57;color:#FFFFFF;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">TODAS LAS INCIDENCIAS </b></center></h4>
                     <p></p>
                     <form class="d-flex" role="search">
@@ -153,65 +159,67 @@
                                 <img src="https://elcomercio.pe/resizer/hE0dXgCo-KfAjkgGRXLIlDayLYo=/1200x1200/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/JRZOEF5WCRCCPO32AV7OYXXNCU.jpg" class="flex-shrink-0 me-3" alt="..." width="140" height="140">
                                 <div>
 
-                                    <center>
-                                            <% //for(Incidencia incidencia : listaDeIncidencias) { %>
-                                        <div class="card-body">
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%//=incidencia.getNombreDeIncidencia()%></b></h4>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h6 style="color:#585151; font-family:Georgia, serif"><b>NOMBRE Y APELLIDO: Jorge Campos Sanchez</b> </h6>
-                                                    <td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <p style="color:#D62525"><b>Código: 20203040</b></p>
-                                                    </td>
-                                                    <td>
-                                                        <% //for (int i=0; i<listaTipoDeIncidencias.size(); i++){ %>
-                                                        <% //if (incidencia.getIdTipoIncidencia() == listaTipoDeIncidencias.get(i).getIdTipoDeIncidencia()){%>
-                                                        <p class="text-end"><b>Tipo de Incidencia:</b> <%//=listaTipoDeIncidencias.get(i).getNombre()%></p>
-                                                        <%//}%>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <p><b>Descripción:</b></p>
-                                                    </td>
-                                                    <td>
-                                                        <% //for (int i=0; i<listaNivelesDeUrgencia.size(); i++){ %>
-                                                        <% //if (incidencia.getIdNivelUrgencia() == listaNivelesDeUrgencia.get(i).getIdNivelDeUrgencia()){%>
-                                                        <p class="text-end"><b>Nivel de Urgencia:</b> <%//=listaNivelesDeUrgencia.get(i).getNombre()%></p>
-                                                        <%//}}%>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-
-                                                    <td>
-                                                        <p><%//=incidencia.getDescripcion()%></p>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <table>
-                                                <tr>
-                                                    <div class="d-flex flex-row-reverse">
-                                                        <div class="p-2"><b style="color:#DCBA38 ">Estado:Registrado</b></div>
-                                                        <div class="p-2"><b>👤 15</b></div>
-                                                        <div class="p-2"><b style="color:#F0C00D">★ Destacados</b></div>
+                                    <%for(Incidencia incidencia : listaDeIncidencias) { %>
+                                    <div class="card-body">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%=incidencia.getNombreDeIncidencia()%></b></h4>
+                                                </td>
+                                                <td>
+                                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
+                                                        <a href="<%=request.getContextPath()%>/VerIncidencia?action=mostrar&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver</a>
+                                                        <a href="<%=request.getContextPath()%>/ReporteIncidencia?action=mostrarReporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a>
                                                     </div>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                            <% //} %>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h6 style="color:#585151; font-family:Georgia, serif"><b>NOMBRE Y APELLIDO: <%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%></b> </h6>
+                                                <td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p style="color:#D62525"><b>Código: <%=incidencia.getUsuario().getCodigo()%></b></p>
+                                                </td>
+                                                <td>
+                                                    <p class="text-end"><b>Tipo de Incidencia:</b> <%=incidencia.getTipoDeIncidencia().getNombre()%></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p><b>Descripción:</b></p>
+                                                </td>
+                                                <td>
+                                                    <p class="text-end"><b>Nivel de Urgencia:</b> <%=incidencia.getNivelDeUrgencia().getNombre()%></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>
+                                                    <p><%=incidencia.getDescripcion()%></p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table>
+                                            <tr>
+                                                <div class="d-flex flex-row-reverse">
+                                                    <div class="p-2"><b style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%></b></div>
+                                                    <div class="p-2"><b>👤 15</b></div>
+                                                    <div class="p-2"><b style="color:#F0C00D">★ Destacados</b></div>
+                                                </div>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </main>
+        </div>
     </center>
-    <br>
+</div>
   </body>
 </html>

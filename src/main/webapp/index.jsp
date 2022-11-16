@@ -69,7 +69,7 @@
         <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
             <br>
             <h1 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>BIENVENID@ A GIGACONTROL</b></h1>
-            <h6 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#FFFFFF" class="card-subtitle mb-2 text-muted">Servicio de ayuda a incidencias en la comunidad PUCP</h6>
+            <h6 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#000000" class="card-subtitle mb-2 text-muted">Servicio de ayuda a incidencias en la comunidad PUCP</h6>
             <center>
                 <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png" alt="linea" class="card-img" width="90%" height="10%">
             </center>

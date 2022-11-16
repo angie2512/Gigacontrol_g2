@@ -1,6 +1,7 @@
 package com.example.gigacontrol_g2.daos;
 
 import com.example.gigacontrol_g2.beans.BUsuarios;
+import com.example.gigacontrol_g2.beans.Incidencia;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -34,6 +35,31 @@ public class UsersDao extends BaseDao{
             e.printStackTrace();
         }
         return usersList;
+    }
+
+    public ArrayList<Incidencia> BuscarIncidencia(String incidencia){
+
+        String sql = "select * from incidencia where NombreDeIncidencia like ?";
+        ArrayList<Incidencia> listaFiltrada = new ArrayList<>();
+
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);){
+            pstmt.setString(1,"%"+incidencia+"%");
+            try(ResultSet rs = pstmt.executeQuery();){
+                while(rs.next()){
+                    Incidencia incidencia1 = new Incidencia();
+                    incidencia1.setIdIncidencia(rs.getInt("idIncidencia"));
+                    incidencia1.setNombreDeIncidencia(rs.getString("NombreDeIncidencia"));
+                    incidencia1.setDescripcion(rs.getString("Descripcion"));
+                    incidencia1.setZonaPucp(rs.getString("ZonaPUCP"));
+                    incidencia1.setUbicacion(rs.getString("Ubicacion"));
+                    incidencia1.setFoto(rs.getString("Foto"));
+                    listaFiltrada.add(incidencia1);
+                }}
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return listaFiltrada;
     }
 
     public BUsuarios buscarPorId(String userID) {
