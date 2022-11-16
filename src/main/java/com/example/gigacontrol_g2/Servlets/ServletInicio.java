@@ -50,7 +50,6 @@ public class ServletInicio extends HttpServlet {
                     requestDispatcher = request.getRequestDispatcher("RegistroSeguridad.jsp");
                     requestDispatcher.forward(request,response);
                     break;
-
             }
         }
     }
