@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="user" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="request"/>
+<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session"/>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -53,7 +54,7 @@
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">SEBASTIAN G. SEGURA ABANTO</b></a></li>
+        <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85"><%=userlogged.getNombre().toUpperCase() + " " +userlogged.getApellido().toUpperCase()%></b></a></li>
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
             <img src="resources/Images/usu.png" alt="mdo" width="32" height="32" class="rounded-circle">

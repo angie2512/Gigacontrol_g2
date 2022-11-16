@@ -23,16 +23,10 @@ public class ServletAdmin extends HttpServlet {
 
         switch (action) {
             case "Inicio":
-                admin = usersDao.getAdmin();
-
-                request.setAttribute("admin", admin);
                 requestDispatcher = request.getRequestDispatcher("Admi/AdminInicio.jsp");
                 requestDispatcher.forward(request, response);
                 break;
             case "Perfil":
-                admin = usersDao.getAdmin();
-
-                request.setAttribute("admin", admin);
                 requestDispatcher = request.getRequestDispatcher("Admi/perfil.jsp");
                 requestDispatcher.forward(request, response);
                 break;

@@ -1,17 +1,7 @@
-<%@ page import="com.example.gigacontrol_g2.Usuario.Beans.Estado" %>
-<%@ page import="com.example.gigacontrol_g2.Usuario.Beans.TipoDeIncidencia" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="com.example.gigacontrol_g2.Usuario.Beans.NivelDeUrgencia" %>
-<%@ page import="com.example.gigacontrol_g2.Usuario.Beans.Incidencia" %>
-<%@ page import="com.example.gigacontrol_g2.Usuario.Servlets.InicioSeguridad" %>
 
-<%
-    ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
-    ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
-    ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
-    ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
-%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -135,12 +125,12 @@
                                 <div>
 
                                     <center>
-                                            <% for(Incidencia incidencia : listaDeIncidencias) { %>
+                                            <% //for(Incidencia incidencia : listaDeIncidencias) { %>
                                         <div class="card-body">
                                             <table>
                                                 <tr>
                                                     <td>
-                                                        <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%=incidencia.getNombreDeIncidencia()%></b></h4>
+                                                        <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%//=incidencia.getNombreDeIncidencia()%></b></h4>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -153,10 +143,10 @@
                                                         <p style="color:#D62525"><b>Código: 20203040</b></p>
                                                     </td>
                                                     <td>
-                                                        <% for (int i=0; i<listaTipoDeIncidencias.size(); i++){ %>
-                                                        <% if (incidencia.getIdTipoIncidencia() == listaTipoDeIncidencias.get(i).getIdTipoDeIncidencia()){%>
-                                                        <p class="text-end"><b>Tipo de Incidencia:</b> <%=listaTipoDeIncidencias.get(i).getNombre()%></p>
-                                                        <%}}%>
+                                                        <% //for (int i=0; i<listaTipoDeIncidencias.size(); i++){ %>
+                                                        <% //if (incidencia.getIdTipoIncidencia() == listaTipoDeIncidencias.get(i).getIdTipoDeIncidencia()){%>
+                                                        <p class="text-end"><b>Tipo de Incidencia:</b> <%//=listaTipoDeIncidencias.get(i).getNombre()%></p>
+                                                        <%//}%>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -164,16 +154,16 @@
                                                         <p><b>Descripción:</b></p>
                                                     </td>
                                                     <td>
-                                                        <% for (int i=0; i<listaNivelesDeUrgencia.size(); i++){ %>
-                                                        <% if (incidencia.getIdNivelUrgencia() == listaNivelesDeUrgencia.get(i).getIdNivelDeUrgencia()){%>
-                                                        <p class="text-end"><b>Nivel de Urgencia:</b> <%=listaNivelesDeUrgencia.get(i).getNombre()%></p>
-                                                        <%}}%>
+                                                        <% //for (int i=0; i<listaNivelesDeUrgencia.size(); i++){ %>
+                                                        <% //if (incidencia.getIdNivelUrgencia() == listaNivelesDeUrgencia.get(i).getIdNivelDeUrgencia()){%>
+                                                        <p class="text-end"><b>Nivel de Urgencia:</b> <%//=listaNivelesDeUrgencia.get(i).getNombre()%></p>
+                                                        <%//}}%>
                                                     </td>
                                                 </tr>
                                                 <tr>
 
                                                     <td>
-                                                        <p><%=incidencia.getDescripcion()%></p>
+                                                        <p><%//=incidencia.getDescripcion()%></p>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -187,7 +177,7 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                            <% } %>
+                                            <% //} %>
                                 </div>
                             </div>
                         </div>

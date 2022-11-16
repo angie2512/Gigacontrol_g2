@@ -82,12 +82,12 @@
     <p></p>
     <form method="post" class="form-signin" action="<%=request.getContextPath()%>/ServletInicio" >
     <div class="d-grid gap-2 col-8 mx-auto form-floating mb-3">
-      <input type="numbers" class="form-control" id="floatingInput" placeholder="Código" name="codigo">
-      <label for="floatingInput">Código de Usuario</label>
+      <input type="numbers" class="form-control" id="codigo" placeholder="Código" name="codigo">
+      <label for="codigo">Código de Usuario</label>
     </div>
     <div class="d-grid gap-2 col-8 mx-auto form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" name="contrasena">
-      <label for="floatingPassword">Contraseña</label>
+      <input type="password" class="form-control" id="contrasena" placeholder="Contraseña" name="contrasena">
+      <label for="contrasena">Contraseña</label>
     </div>
     <p></p>
     <p></p>
@@ -99,12 +99,6 @@
         Ingresar
       </button>
     </form>
-    <br><br>
-    <a href="/InicioSeguridad"><button class="d-grid gap-1 col-2 mx-auto btn btn-primary" type="button">Ingresar Seguridad</button></a>
-    <br>
-    <a href="/InicioUsuario"><button class="d-grid gap-1 col-2 mx-auto btn btn-primary" type="button">Ingresar User</button></a>
-    <br>
-    <a href="<%=request.getContextPath()%>/ServletAdmin?action=Inicio"><button class="d-grid gap-1 col-2 mx-auto btn btn-primary" type="button">Ingresar Admin</button></a>
     <br>
   </div>
   </div>

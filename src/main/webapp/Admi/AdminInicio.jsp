@@ -2,7 +2,8 @@
 <%@ page import="com.example.gigacontrol_g2.beans.BUsuarios" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:useBean id="admin" scope="request" type="com.example.gigacontrol_g2.beans.BUsuarios"/>
+
+<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session"/>
 
 <html lang="en">
 <head>
@@ -54,7 +55,7 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="<%=request.getContextPath()%>/ServletAdmin?action=Inicio" class="nav-link px-2"><b style="color:#1A3B85"><%=admin.getNombre().toUpperCase() + " " +admin.getApellido().toUpperCase()%></b></a></li>
+                <li><a href="<%=request.getContextPath()%>/ServletAdmin?action=Inicio" class="nav-link px-2"><b style="color:#1A3B85"><%=userlogged.getNombre().toUpperCase() + " " +userlogged.getApellido().toUpperCase()%></b></a></li>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
                         <img src="resources/Images/usu.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -79,14 +80,14 @@
         <div class="card"style="background-color:#F2F2F3">
             <div class="card-body" >
                 <div class="p-1 mb-8 text-white" style="background-color:#3071A4">
-                    <h4 style="text-align: center; color: white; font-family:Giorgia, serif"><b><%=admin.getCategoria()%></b></h4>
+                    <h4 style="text-align: center; color: white; font-family:Giorgia, serif"><b><%=userlogged.getCategoria()%></b></h4>
                 </div>
 
                 <p></p>
                 <blockquote class="blockquote mb-0">
-                    <h5 style="text-align: center;color:#21547D"><%=admin.getNombre() + " " +admin.getApellido()%></h5>
-                    <h6 style="text-align: center;"><%=admin.getCategoria()%></h6>
-                    <h6 style="text-align: center;"><%=admin.getCodigo()%></h6>
+                    <h5 style="text-align: center;color:#21547D"><%=userlogged.getNombre() + " " +userlogged.getApellido()%></h5>
+                    <h6 style="text-align: center;"><%=userlogged.getCategoria()%></h6>
+                    <h6 style="text-align: center;"><%=userlogged.getCodigo()%></h6>
                 </blockquote>
             </div>
         </div>

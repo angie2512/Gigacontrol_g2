@@ -36,34 +36,6 @@ public class UsersDao extends BaseDao{
         return usersList;
     }
 
-    public BUsuarios getAdmin() {
-        BUsuarios admin = new BUsuarios();
-
-        String sql = "SELECT * FROM gigacontrol.usuario\n" +
-                "where Rol_idRol=3";
-
-        try (Connection conn = this.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet resultSet = stmt.executeQuery(sql)){
-
-
-            while (resultSet.next()) {
-                admin.setNombre(resultSet.getString(2));
-                admin.setApellido(resultSet.getString(3));
-                admin.setCorreo(resultSet.getString(4));
-                admin.setContrasena(resultSet.getString(5));
-                admin.setCodigo(resultSet.getString(6));
-                admin.setDni(resultSet.getString(7));
-                admin.setCelular(resultSet.getString(8));
-                admin.setCategoria(resultSet.getString(9));
-                admin.setRolId(resultSet.getInt(11));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return admin;
-    }
     public BUsuarios buscarPorId(String userID) {
         BUsuarios user = null;
 
@@ -119,7 +91,7 @@ public class UsersDao extends BaseDao{
 
     public void guardar(BUsuarios user) {
 
-        String sql = "INSERT INTO usuario (Nombre,Apellido,Correo,Codigo,DNI,Celular,Categoria,Rol_idRol,Contrasenia) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO usuario (Nombre,Apellido,Correo,Codigo,DNI,Celular,Categoria,Rol_idRol,Contrasenia) VALUES (?,?,?,?,?,?,?,?,sha2(?,256))";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -229,29 +201,5 @@ public class UsersDao extends BaseDao{
 
            return usuario;
        }
-    public BUsuarios validarUsuarioPasswordHashed(String codigo, String contrasena) {
 
-           BUsuarios usuario = null;
-
-           String sql = "select * from usuario where Codigo = ? and Contrasenia = SHA2(?,256) ";
-
-         try (Connection connection = this.getConnection();
-                PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
-              pstmt.setString(1, contrasena);
-              pstmt.setString(2, contrasena);
-
-               try (ResultSet rs = pstmt.executeQuery()) {
-                   if (rs.next()) {
-                        int idUsuario = rs.getInt(1);
-                       usuario = this.obtenerUsuario(idUsuario);
-                   }
-               }
-
-           } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-
-           return usuario;
-        }
 }

@@ -1,6 +1,7 @@
 package com.example.gigacontrol_g2.Servlets;
 
 import com.example.gigacontrol_g2.beans.BUsuarios;
+import com.example.gigacontrol_g2.daos.DaoDatosFijos;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -14,25 +15,15 @@ public class ServletInicio extends HttpServlet {
         String action = request.getParameter("action");
         RequestDispatcher requestDispatcher;
         if(action==null){
-            System.out.println("en index");
             RequestDispatcher view = request.getRequestDispatcher("index.jsp");
             view.forward(request,response);
         }
         else{
             switch (action){
                 case "LogIn":
-                    BUsuarios us = (BUsuarios) request.getSession().getAttribute("usuarioSession");
-
-                    //Se valida que la sesion exista  y tambien el id de ese usuario
-                    if( us!=null && us.getIdUsuario() !=0){
-                        response.sendRedirect(request.getContextPath());
-                    }else{
-                        requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
-                        requestDispatcher.forward(request, response);
-                    }
+                    requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
+                    requestDispatcher.forward(request, response);
                     break;
-
-
                 case "registro":
                     requestDispatcher = request.getRequestDispatcher("registro.jsp");
                     requestDispatcher.forward(request,response);
@@ -54,29 +45,30 @@ public class ServletInicio extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("ACA?");
-        /*DaoUsuario daoUsuario = new DaoUsuario();
+
+        DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
 
         String codigo = request.getParameter("codigo");
         String contrasena  = request.getParameter("contrasena");
-
-        Usuario usuario = daoUsuario.validarUsuarioPasswordHashed(codigo,contrasena);
-
-        if(usuario !=null){
+        BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo,contrasena);
+        if(usuariolog !=null){
+            System.out.println("Entra");
             HttpSession session = request.getSession();
-            session.setAttribute("usuarioSession",usuario);
+            session.setAttribute("userlogged",usuariolog);
+            System.out.println("se tiene usuario");
+            System.out.println(usuariolog.getRolId());
+            if (usuariolog.getRolId()==3){
+                response.sendRedirect("ServletAdmin?action=Inicio");
+            }else if (usuariolog.getRolId()==1){
 
-            if (usuario.getRol().getIdRol()==2){
-                if(usuario.getCategoria() == "administrativo"){
-                    response.sendRedirect(request.getContextPath()+"/InicioAdmi");
-                }else{
-                    response.sendRedirect(request.getContextPath()+"/InicioUsuario");
-                }
-            }else{
-                response.sendRedirect(request.getContextPath()+"/InicioSeguridad");
+                response.sendRedirect("InicioSeguridad");
+            }
+            else {
+                System.out.println("messi");
+                response.sendRedirect("/InicioUsuario");
             }
         }else{
-            response.sendRedirect(request.getContextPath() + "/InicioDeSesion?error");
-        }*/
+            response.sendRedirect(request.getContextPath() + "ServletInicio?action=LogIn&error");
+        }
     }
 }

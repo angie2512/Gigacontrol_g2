@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="admin" scope="request" type="com.example.gigacontrol_g2.beans.BUsuarios"/>
+
+<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session"/>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -53,7 +54,7 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="<%=request.getContextPath()%>/ServletAdmin?action=Inicio" class="nav-link px-2"><b style="color:#1A3B85"><%=admin.getNombre().toUpperCase() + " " +admin.getApellido().toUpperCase()%></b></a></li>
+                <li><a href="<%=request.getContextPath()%>/ServletAdmin?action=Inicio" class="nav-link px-2"><b style="color:#1A3B85"><%=userlogged.getNombre().toUpperCase() + " " +userlogged.getApellido().toUpperCase()%></b></a></li>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
                         <img src="resources/Images/usu.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -98,23 +99,23 @@
                 </td>
                 <td style="padding-left: 2rem;">
                     <ul class="list-group list-group-flush">
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="<%=admin.getNombre()%>">
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="<%=userlogged.getNombre()%>">
                     </ul>
                     <br>
                     <ul class="list-group list-group-flush">
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="<%=admin.getApellido()%>">
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="<%=userlogged.getApellido()%>">
                     </ul>
                     <br>
                     <ul class="list-group list-group-flush">
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="<%=admin.getCorreo()%>">
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="<%=userlogged.getCorreo()%>">
                     </ul>
                     <br>
                     <ul class="list-group list-group-flush">
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="<%=admin.getDni()%>">
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="<%=userlogged.getDni()%>">
                     </ul>
                     <br>
                     <ul class="list-group list-group-flush">
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="<%=admin.getCelular()%>">
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="<%=userlogged.getCelular()%>">
                     </ul>
                 </td>
             </tr>
