@@ -24,6 +24,11 @@ public class ServletInicio extends HttpServlet {
                     requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
                     requestDispatcher.forward(request, response);
                     break;
+                case "logout":
+                    HttpSession session = request.getSession();
+                    session.invalidate();
+                    response.sendRedirect("/ServletInicio");
+                    break;
                 case "registro":
                     requestDispatcher = request.getRequestDispatcher("registro.jsp");
                     requestDispatcher.forward(request,response);
@@ -52,11 +57,8 @@ public class ServletInicio extends HttpServlet {
         String contrasena  = request.getParameter("contrasena");
         BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo,contrasena);
         if(usuariolog !=null){
-            System.out.println("Entra");
             HttpSession session = request.getSession();
             session.setAttribute("userlogged",usuariolog);
-            System.out.println("se tiene usuario");
-            System.out.println(usuariolog.getRolId());
             if (usuariolog.getRolId()==3){
                 response.sendRedirect("ServletAdmin?action=Inicio");
             }else if (usuariolog.getRolId()==1){
