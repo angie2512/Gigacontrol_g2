@@ -127,20 +127,13 @@
             </div>
         </nav>
 
-
-
-
-
-
-
-
         <div class="d-inline p-3" style="font-size: 1.5rem;background-color:#347199;"><b
                 style="color:#FFFFFF; font-family:'Palatino Linotype','Book Antiqua',Palatino, serif"> REGISTRO</b>
         </div>
         <br><br><br>
 
 
-        <div class="d-flex justify-content-center">
+        <!--<div class="d-flex justify-content-center">
             <div class="col-3">
                 <img src="resources/Images/usu.png" class="img-fluid">
                 <%--<img src="Images/usu.png" class="rounded mx-auto d-block " alt="userphoto"
@@ -148,7 +141,7 @@
                      width="230rem" alt="userphoto">--%>
             </div>
             <div class="col-6.5">
-                <div class="card">
+                <div class="card mb-3" style="max-width: 68rem;">
                     <div class="card-body">
                         <form action="<%=request.getContextPath()%>/ServletAdmin?action=guardar" method="post">
                             <table class="table table-borderless">
@@ -275,6 +268,185 @@
                                         data-bs-target="#exampleModal">
                                     Validar Registro
                                 </button>
+                                 Modal -->
+        <!--
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Se creará
+                                                    un
+                                                    nuevo usuario</h5>
+                                                <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="d-flex justify-content-center">
+                                                    <h3 style="color:#399934">¿Desea Continuar?</h3>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="d-flex justify-content-center">
+                                                    <button type="submit" class="btn btn-primary">
+                                                        Confirmar
+                                                        >
+                                                    </button>
+                                                    <br>
+                                                    <a class="btn btn-primary"
+                                                       href="<%=request.getContextPath()%>/ServletAdmin?action=nuevoUsuario"
+                                                       role="button"
+                                                       style="margin-left: 0rem; background-color:#D12C22 ; border: none;">
+                                                        Cancelar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+        <center>
+        <div class="card mb-3" style="max-width:68rem;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <br>
+                    <img src="resources/Images/usu.png" class="img-fluid rounded-start" alt="Usuario">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">INGRESE SUS DATOS</h5>
+                        <form action="<%=request.getContextPath()%>/ServletAdmin?action=guardar" method="post">
+                            <table class="table table-borderless">
+                                <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="col-auto">
+                                            <label for="inputName" class="col-form-label">Nombres:</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-auto">
+                                            <input type="password" id="inputName" class="form-control"
+                                                   aria-describedby="passwordHelpInline">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="row g-3 align-items-center">
+                                            <div class="col-auto">
+                                                <label for="inputLastName" class="col-form-label">Apellidos:</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-auto">
+                                            <input type="password" id="inputLastName" class="form-control"
+                                                   aria-describedby="passwordHelpInline">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-auto">
+                                            <label for="inputDNI" class="col-form-label">DNI:</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-auto">
+                                            <input type="password" id="inputDNI" class="form-control"
+                                                   aria-describedby="passwordHelpInline">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-auto">
+                                            <label for="inputCel" class="col-form-label">Celular:</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-auto">
+                                            <input type="password" id="inputCel" class="form-control"
+                                                   aria-describedby="passwordHelpInline">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-auto">
+                                            <label for="inputCodigoPUCP" class="col-form-label">Código PUCP:</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-auto">
+                                            <input type="password" id="inputCodigoPUCP" class="form-control"
+                                                   aria-describedby="passwordHelpInline">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-auto">
+                                            <label for="inputCorreoPUCP" class="col-form-label">Correo PUCP:</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-auto">
+                                            <input type="password" id="inputCorreoPUCP" class="form-control"
+                                                   aria-describedby="passwordHelpInline">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-auto">
+                                            <label for="categoria" class="col-form-label">Categoría PUCP:</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="categoria" name="categoria">
+                                                <option selected>Elegir...</option>
+                                                <option value="1">Alumno</option>
+                                                <option value="2">Profesor</option>
+                                                <option value="3">Jefe de páctica</option>
+                                                <option value="4">Administrativo</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-auto">
+                                            <label for="rolID" class="col-form-label">Rol:</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="rolID" name="rolID">
+                                                <option selected>Elegir...</option>
+                                                <option value="1">seguridad</option>
+                                                <option value="2">usuario pucp</option>
+                                                <option value="3">administrador</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                    Validar Registro
+                                </button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1"
                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -316,6 +488,7 @@
                 </div>
             </div>
         </div>
+        </center>
 
 
         <br>
