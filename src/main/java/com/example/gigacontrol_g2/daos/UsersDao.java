@@ -209,7 +209,7 @@ public class UsersDao extends BaseDao{
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        
+
         ArrayList<BUsuarios> lista = new ArrayList<>();
         String sql = "select * from usuario where apellido = ?";
         try (Connection connection = this.getConnection();
