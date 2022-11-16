@@ -68,7 +68,7 @@ public class ServletInicio extends HttpServlet {
             if (usuariolog.getRolId()==3){
                 response.sendRedirect("ServletAdmin?action=Inicio");
             }else if (usuariolog.getRolId()==1){
-                response.sendRedirect("InicioSeguridad");
+                response.sendRedirect(request.getContextPath() + "/ServletSeguridad?action=listarIncidencia");
             }
             else {
                 response.sendRedirect("InicioUsuario");

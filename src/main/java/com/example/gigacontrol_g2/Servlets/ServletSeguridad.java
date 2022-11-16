@@ -8,7 +8,6 @@ import com.example.gigacontrol_g2.daos.UsersDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import jdk.javadoc.internal.doclets.toolkit.SerializedFormWriter;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,17 +57,6 @@ public class ServletSeguridad extends HttpServlet {
                 requestDispatcher.forward(request, response);
                 break;
 
-            case "Inicio":
-                BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
-                if(user != null){
-                    requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
-                    requestDispatcher.forward(request, response);
-                }
-                else {
-                    requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
-                    requestDispatcher.forward(request, response);
-                }
-                break;
 
         }
 

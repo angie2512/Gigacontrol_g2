@@ -13,7 +13,7 @@ public class BaseDao{
             throw new RuntimeException(e);
         }
         String user = "root";
-        String pass = "root";
+        String pass = "123456";
         String url = "jdbc:mysql://localhost:3306/gigacontrol";
         return DriverManager.getConnection(url, user, pass);
     }

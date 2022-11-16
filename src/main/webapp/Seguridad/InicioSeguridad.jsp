@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-  ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("listaDeIncidencias");
+  ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("listaIncidencias");
 %>
 
 <!doctype html>
