@@ -6,35 +6,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-    <title>Registro de usuarios</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Nueva Incidencia</title>
+    <style>
+        body {
+            background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            height: 100vh;
+            bgcolor: "#800000";
+
+        }
+        @font-face {
+            font-family: Decor;
+            src: url(KrinkesDecorPERSONAL.ttf);
+        }
+        @font-face{
+            font-family: Decor;
+            src: url(KrinkesRegularPERSONAL.ttf);
+            font-style: italic;
+        }
+        p{
+            font-family: Decor;
+        }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body style="background-image: url(resources/Images/background.jpg);
-               background-repeat: no-repeat;
-               background-position: center center;
-               background-attachment: fixed;
-               background-size: cover;" class="p-3 m-0 border-0 bd-example">
 <nav class="navbar navbar-expand-lg" style="background-color: #458BCA;" aria-label="Eighth navbar example">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <table>
+            <tr>
+                <th><a class="navbar-brand" href="InicioUsuario.jsp"><img src="resources/Images/logopucp.png" alt="Logo"
+                                                                          width="40"
+                                                                          height="40"
+                                                                          class="d-inline-block align-text-top"><b
+                        style="color:#FFFFFF"> GIGACONTROL</b></a>
 
-        <div class="collapse navbar-collapse" id="navbarsExample07">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button></th>
+            </tr>
+            <tr>
+                <td><ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">CRISTIAN DOMINGUEZ CASTRO</b></a></li>
+                    <div class="dropdown text-end">
+                        <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
+                            <img src="resources/Images/userSeguridad.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        </a>
+                    </div>
+                </ul></td>
+                <td><div class="collapse navbar-collapse" id="navbarsExample07">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active"
+                               href="<%=request.getContextPath()%>/InicioUsuario"
+                               aria-current="page" href="#" style="color:#FFFFFF">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<%=request.getContextPath()%>/PerfilUsuario"
+                               aria-current="page" href="#" style="color:#FFFFFF">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active"
+                               href="<%=request.getContextPath()%>/MisIncidencias"
+                               aria-current="page" href="#" style="color:#FFFFFF">Mis Incidencias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active"
+                               href="<%=request.getContextPath()%>/NuevaIncidencia" aria-current="page"
+                               href="#" style="color:#FFFFFF">Nueva Incidencia</a>
+                        </li>
+                    </ul>
+                </div></td>
+                <td>                            </td>
+                <td>                            </td>
+                <td>                            </td>
+                <td>           <div class="d-flex flex-wrap align-items-center justify-content-right justify-content-lg-start">
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                        <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio"><u
+                                style="color:#FFFFFF"><b>Cerrar sesión > </b></u></a>
+                    </form>
+                </div>
+                </td>
 
-                <li class="nav-item">
-                    <a class="nav-link active" href=<%=request.getContextPath()%>/PerfilUsuario aria-current="page" style="color:#FFFFFF">Perfil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href=<%=request.getContextPath()%>/MisIncidencias style="color:#FFFFFF">Mis Incidencias</a>
-                </li>
-            </ul>
-        </div>
+            </tr>
+        </table>
+
     </div>
 </nav>
 <br>
+<%--
 <header class="p-3 mb-3 border-bottom" style="background-color: #FFFFFF">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -58,9 +126,12 @@
         </div>
     </div>
 </header>
-
-<div class="d-inline p-3" style="font-size: 1.5rem;background-color:#347199;"><b style="color:#FFFFFF; font-family:'Palatino Linotype','Book Antiqua',Palatino, serif"> NUEVA INCIDENCIA</b></div>
-<br><br><br>
+--%>
+<br>
+<center>
+<h3 style="color:#051D57; font-family:'Trebuchet MS',Helvetica, sans-serif"> <b> NUEVA INCIDENCIA </b> </h3>
+</center>
+<br><br>
 <div class="d-flex justify-content-center">
     <table>
         <tr>
@@ -71,15 +142,22 @@
                             <tr>
                                 <td>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">Nombres:</li>
+                                        <li class="list-group-item" style="border-radius: 10%;">Nombre:</li>
                                     </ul>
                                     <br>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item" style="border-radius: 10%;">Descripción:</li>
                                     </ul>
+                                    <br>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item" style="border-radius: 10%;">Zona PUCP:</li>
+                                    </ul>
+                                    <br>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item" style="border-radius: 10%;">Ubicación:</li>
+                                    </ul>
                                 </td>
                                 <td style="padding-left: 1rem;">
-
                                     <ul class="list-group list-group-flush">
                                         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value=" ">
                                     </ul>
@@ -88,78 +166,31 @@
                                         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
                                     </ul>
                                     <br>
-
-                                </td>
-                            </tr>
-                        </table>
-
-                        <table>
-                            <tr>
-                                <td>
-                                <td>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">Ubicación:</li>
+                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
                                     </ul>
-                                </td>
-                                </td>
-                                <td>
-                                <td>
+                                    <br>
                                     <ul class="list-group list-group-flush">
                                         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
                                     </ul>
                                 </td>
-                                </td>
-                                <td>
-                                <td>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">Foto:</li>
-                                    </ul>
-                                </td>
-                                </td>
-                                <td>
-                                <td>
-                                    <ul class="list-group list-group-flush">
-                                        <input type="email class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                                    </ul>
-                                </td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                <td>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">Zona PUCP: </li>
-                                    </ul>
-                                </td>
-                                </td>
-                                <td>
-                                <td>
-                                    <br>
-                                    <div class="input-group mb-3">
-                                        <select class="form-select" id="inputGroupSelect01">
-                                            <option selected>Elegir...</option>
-                                            <option value="2">Pabellon A</option>
-                                            <option value="3">Pabellon B</option>
-                                            <option value="2">Pabellon V</option>
-                                            <option value="3">Pabellon P</option>
-                                            <option value="4">Otros...</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                </td>
-                                <td>
                                 <td>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item" style="border-radius: 10%;">Tipo de incidencia: </li>
                                     </ul>
-                                </td>
-                                </td>
-                                <td>
-                                <td>
                                     <br>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item" style="border-radius: 10%;">Nivel de Urgencia:</li>
+                                    </ul>
+                                    <br>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item" style="border-radius: 10%;">Insertar Foto:</li>
+                                    </ul>
+                                </td>
+                                <td>
                                     <div class="input-group mb-3">
                                         <select class="form-select" id="inputGroupSelect01">
-                                            <option selected>Elegir...</option>
+                                            <option selected>Seleccionar...</option>
                                             <option value="1">Robo</option>
                                             <option value="2">Objeto perdido</option>
                                             <option value="3">Infraestructura en mal estado</option>
@@ -168,30 +199,24 @@
                                             <option value="4">Otros...</option>
                                         </select>
                                     </div>
-                                </td>
-                                </td>
-                                <td>
-                                <td>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">Nivel de Urgencia:</li>
-                                    </ul>
-                                </td>
-                                </td>
-                                <td>
-                                <td>
                                     <br>
                                     <div class="input-group mb-3">
                                         <select class="form-select" id="inputGroupSelect01">
-                                            <option selected>Elegir...</option>
+                                            <option selected>Seleccionar...</option>
                                             <option value="1">Leve</option>
                                             <option value="2">Moderado</option>
                                             <option value="3">Crítico</option>
                                         </select>
                                     </div>
+                                    <br>
+                                    <ul class="list-group list-group-flush">
+                                        <input type="file" id="imagen" class="btn btn-light">
+                                    </ul>
                                 </td>
-                                </td>
-                            </tr>
+                            <br>
                         </table>
+                        <br>
+
                         <div class="d-flex justify-content-center">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
                                 Enviar
@@ -226,11 +251,5 @@
         </tr>
     </table>
 </div>
-<br>
-<br><br>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-<br></br>
-<a class="btn btn-primary" href=<%=request.getContextPath()%>/InicioUsuario role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
-<br><br>
 </body>
 </html>
