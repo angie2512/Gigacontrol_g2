@@ -41,7 +41,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body>
+<body class="p-3 m-0 border-0 bd-example">
     <nav class="navbar navbar-expand-lg" style="background-color: #458BCA;" aria-label="Eighth navbar example">
         <div class="container">
             <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
@@ -102,12 +102,12 @@
 </header>
 --%>
 <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
-    <aside class="bd-sidebar" style="width: 380px; height:400px; background-color: #11559290">
+    <aside class="bd-sidebar" style="max-width:30rem; height:30rem;background-color: #11559290">
         <div id="region-menu-box">
             <div class="d-flex flex-column flex-shrink-0 p-3">
                 <center>
                     <br>
-                    <h2 style="color:#FFFFFF; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b> BIENVENIDA/O </b> </h2>
+                    <h4 style="color:#FFFFFF; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b> BIENVENIDA/O </b> </h4>
                     <hr>
                     <h6 style="color:#0A321E; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b>PASOS PARA REGISTRAR</b> </h6>
                     <h6 style="color:#0A321E; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b>UNA INCIDENCIA </b></h6> </center>
@@ -126,8 +126,8 @@
     </aside>
     <center>
         <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
-            <main class ="bd-main order-1;overflow-auto" style="width: 820px; height:1650px; background-color: #FFFFFF99">
-                <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; height:1700px; background-color: #051D57;" >
+            <main class ="bd-main order-1;overflow-auto" style="width: 820px; background-color: #FFFFFF99">
+                <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; background-color: #051D57;" >
                     <h4 class="border-bottom pb-2 mb-2" style="background-color:#051D57;color:#FFFFFF;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">TODAS LAS INCIDENCIAS </b></center></h4>
                     <p></p>
                     <form class="d-flex" role="search">
