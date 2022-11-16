@@ -130,6 +130,10 @@
 
 
         <br><br><br><br><br>
+
+
+
+<!--
         <div class="table-responsive">
             <div class="container">
                 <div class="d-flex justify-content-center">
@@ -191,6 +195,62 @@
                 </div>
             </div>
         </div>
+        -->
+<br><br><br>
+
+        <center>
+            <div class="card mb-3 d-flex " style="max-width: 60rem;background-color: #FFFFFF90">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <br>
+                        <img src="resources/Images/usu.png" class="img-fluid rounded-start" alt="FotoPerfil">
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <form>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" style="border-radius: 10%;background-color: #FFFFFF"><b>Nombre:</b></label>
+                                    <div class="col-sm-10">
+                                        <li class="list-group-item" style="border-radius: 10%; background-color: #A2DAE2"><%=userlogged.getNombre()%>
+                                        </li>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" style="border-radius: 10%;background-color: #FFFFFF"><b>Apellidos:</b></label>
+                                    <div class="col-sm-10">
+                                        <li class="list-group-item" style="border-radius: 10%; background-color: #A2DAE2"><%=userlogged.getApellido()%>
+                                        </li>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" style="border-radius: 10%;background-color: #FFFFFF"><b>Correo:</b></label>
+                                    <div class="col-sm-10">
+                                        <li class="list-group-item" style="border-radius: 10%;  background-color: #A2DAE2"><%=userlogged.getCorreo()%>
+                                        </li>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" style="border-radius: 10%;background-color: #FFFFFF"><b>DNI:</b></label>
+                                    <div class="col-sm-10">
+                                        <li class="list-group-item" style="border-radius: 10%; background-color: #A2DAE2"><%=userlogged.getDni()%>
+                                        </li>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label" style="border-radius: 10%;background-color: #FFFFFF"><b>Celular:</b></label>
+                                    <div class="col-sm-10">
+                                        <li class="list-group-item" style="border-radius: 10%; background-color: #A2DAE2"><%=userlogged.getCelular()%>
+                                        </li>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </center>
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
