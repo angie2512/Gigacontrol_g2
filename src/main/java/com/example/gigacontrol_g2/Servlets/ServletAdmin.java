@@ -131,7 +131,7 @@ public class ServletAdmin extends HttpServlet {
                 request.setAttribute("lista", lista);
                 request.setAttribute("searchText", searchText);
 
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("listaUsuarios.jsp");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("Admi/listaUsuarios.jsp");
                 requestDispatcher.forward(request, response);
                 break;
         }

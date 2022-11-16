@@ -212,11 +212,11 @@ public class UsersDao extends BaseDao{
 
         String url = "jdbc:mysql://localhost:3306/gigacontrol";
         ArrayList<BUsuarios> lista = new ArrayList<>();
-        String sql = "select * from usuario where apellido = ?";
+        String sql = "select * from usuario where lower(apellido) like ?";
         try (Connection connection = DriverManager.getConnection(url, "root", "root");
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setString(1, apellido);
+            pstmt.setString(1, "%"+apellido+"%");
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {

@@ -157,11 +157,11 @@
                                 </div>
                                 <div class="col-auto">
                                     <input type="text" name="searchText" class="form-control" id="floatingInput"
-                                           placeholder="Buscar trabajo" value="<%=searchText!=null?searchText:""%>">
+                                           placeholder="Buscar Usuario" value="<%=searchText!=null?searchText:""%>">
                                 </div>
                             </form>
                             <div class="col-2">
-                                <a href="<%=request.getContextPath()%>/ServletAdmin"
+                                <a href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios"
                                    class="btn btn-secondary">borrar</a>
                             </div>
                         </div>
