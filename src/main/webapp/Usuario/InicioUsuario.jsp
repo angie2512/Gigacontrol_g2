@@ -41,68 +41,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body>
-<nav class="navbar navbar-expand-lg" style="background-color: #458BCA;" aria-label="Eighth navbar example">
-    <div class="container">
-        <table>
-            <tr>
-                <th><a class="navbar-brand" href="InicioUsuario.jsp"><img src="resources/Images/logopucp.png" alt="Logo"
-                                                                          width="40"
-                                                                          height="40"
-                                                                          class="d-inline-block align-text-top"><b
-                        style="color:#FFFFFF"> GIGACONTROL</b></a>
+<body class="p-3 m-0 border-0 bd-example">
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button></th>
-            </tr>
-            <tr>
-                <td><ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+    <nav class="navbar navbar-expand-lg" style="background-color: #458BCA;" aria-label="Eighth navbar example">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample07">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">CRISTIAN DOMINGUEZ CASTRO</b></a></li>
-                    <div class="dropdown text-end">
-                        <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                            <img src="resources/Images/userSeguridad.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                        </a>
-                    </div>
-                </ul></td>
-                <td><div class="collapse navbar-collapse" id="navbarsExample07">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="<%=request.getContextPath()%>/PerfilUsuario"
-                               aria-current="page" href="#" style="color:#FFFFFF">Perfil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active"
-                               href="<%=request.getContextPath()%>/MisIncidencias"
-                               aria-current="page" href="#" style="color:#FFFFFF">Mis Incidencias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active"
-                               href="<%=request.getContextPath()%>/NuevaIncidencia" aria-current="page"
-                               href="#" style="color:#FFFFFF">Nueva Incidencia</a>
-                        </li>
-                    </ul>
-                </div></td>
-                <td>                            </td>
-                <td>                            </td>
-                <td>                            </td>
-                <td>           <div class="d-flex flex-wrap align-items-center justify-content-right justify-content-lg-start">
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                        <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio"><u
-                                style="color:#FFFFFF"><b>Cerrar sesión > </b></u></a>
-                    </form>
-                    </div>
-                </td>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="<%=request.getContextPath()%>/PerfilUsuario" aria-current="page" style="color:#FFFFFF">Perfil</a>
+                    </li>
 
-            </tr>
-        </table>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="<%=request.getContextPath()%>/MisIncidencias" aria-current="page" style="color:#FFFFFF">Mis Incidencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="<%=request.getContextPath()%>/NuevaIncidencia" aria-current="page" style="color:#FFFFFF">Nueva incidencia</a>
+                    </li>
+                </ul>
+            </div>
 
-    </div>
-</nav>
-<p></p>
-<p></p>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
+                        style="color:#FFFFFF"><b>Cerrar sesion > </b></u></a>
+            </form>
+        </div>
+    </nav>
+
+<br>
 <%--
 <header class="p-3 mb-3 border-bottom" style="background-color: #FFFFFF">
    <div class="container">

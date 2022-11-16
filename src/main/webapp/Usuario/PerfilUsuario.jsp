@@ -42,9 +42,10 @@
     </div>
 </nav>
 
+<br><br>
 
-<div class="container" style="width: 500px;">
-    <div class="abs-center" style="margin-top: 60px">
+<div class="container" style="max-width: 40rem;">
+    <div class="abs-center">
         <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem" style="margin-top: 10px; margin-bottom:-35px">
         <td class="text-center">
             <a type="button" class="btn btn-danger", style="background-color: #ffffff;border-color: #ffffff;border-radius: 60px 60px 60px 60px;margin-left: 270px; margin-bottom:25px">
@@ -73,7 +74,7 @@
 <br><br>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-<br></br>
+<br>
 <a class="btn btn-primary" href=<%=request.getContextPath()%>/InicioUsuario role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
 <br><br>
 </body>
