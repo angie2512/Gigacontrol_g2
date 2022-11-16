@@ -23,6 +23,8 @@ for(BUsuarios u : lista){
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
   <title>Admin-ListaUsuarios</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
@@ -30,7 +32,7 @@ for(BUsuarios u : lista){
                background-repeat: no-repeat;
                background-position: center center;
                background-attachment: fixed;
-               background-size: cover;">
+               background-size: cover;" class="p-3 m-0 border-0 bd-example">
 <nav class="navbar navbar-expand-lg" style="background-color: #131950;" aria-label="Eighth navbar example">
   <div class="container">
     <a class="navbar-brand" href="AdminInicio.jsp"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>

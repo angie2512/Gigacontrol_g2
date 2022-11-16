@@ -17,7 +17,7 @@
             background-attachment: fixed;
             margin: 0;
             height: 100vh;
-            bgcolor = "#800000";
+            bgcolor : "#800000";
         }
         @font-face {
             font-family: Decor;
