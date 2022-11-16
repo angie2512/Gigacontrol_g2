@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/gigacontrol</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="gigacontrol@localhost [2]" uuid="d9f86912-3c0f-4872-b983-7fd4e94ad14e">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/gigacontrol</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

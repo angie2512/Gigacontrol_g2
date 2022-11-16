@@ -202,4 +202,37 @@ public class UsersDao extends BaseDao{
            return usuario;
        }
 
+
+    public ArrayList<BUsuarios> buscarPorApellido(String apellido) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String url = "jdbc:mysql://localhost:3306/gigacontrol";
+        ArrayList<BUsuarios> lista = new ArrayList<>();
+        String sql = "select * from usuario where apellido = ?";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, apellido);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    BUsuarios usuario = new BUsuarios();
+                    usuario.setIdUsuario(rs.getInt(1));
+                    usuario.setNombre(rs.getString(2));
+                    usuario.setApellido(rs.getString(3));
+                    usuario.setCategoria(rs.getString("Categoria"));
+                    usuario.setCodigo(rs.getString("Codigo"));
+                    lista.add(usuario);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lista;
+    }
+
 }

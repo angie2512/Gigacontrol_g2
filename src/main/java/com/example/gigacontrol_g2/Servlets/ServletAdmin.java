@@ -38,7 +38,7 @@ public class ServletAdmin extends HttpServlet {
                 break;
             case "Editar":
                 String userID = request.getParameter("id");
-                user= usersDao.buscarPorId(userID);
+                user = usersDao.buscarPorId(userID);
 
                 if (user != null) { //abro el form para editar
                     request.setAttribute("user", user);
@@ -81,7 +81,7 @@ public class ServletAdmin extends HttpServlet {
                 try {
                     int rolID = Integer.parseInt(rolstr);
                     int userID = Integer.parseInt(userIDstr);
-                    usersDao.actualizar(userID,nombre,apellido,dni,codigo,correo,categoria,rolID);
+                    usersDao.actualizar(userID, nombre, apellido, dni, codigo, correo, categoria, rolID);
                     response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
                 } catch (NumberFormatException e) {
                     response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Editar&id=" + userIDstr);
@@ -114,6 +114,18 @@ public class ServletAdmin extends HttpServlet {
                 } catch (NumberFormatException e) {
                     response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=guardar");
                 }
+                break;
+
+
+            case "buscar":
+                String searchText = request.getParameter("searchText");
+
+                ArrayList<BUsuarios> lista = usersDao.buscarPorApellido(searchText);
+                request.setAttribute("lista", lista);
+                request.setAttribute("searchText", searchText);
+
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("listaUsuarios.jsp");
+                requestDispatcher.forward(request, response);
                 break;
         }
     }
