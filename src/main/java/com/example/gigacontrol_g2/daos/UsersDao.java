@@ -1,7 +1,6 @@
 package com.example.gigacontrol_g2.daos;
 
-import com.example.gigacontrol_g2.beans.BUsuarios;
-import com.example.gigacontrol_g2.beans.Incidencia;
+import com.example.gigacontrol_g2.beans.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -36,7 +35,48 @@ public class UsersDao extends BaseDao{
         }
         return usersList;
     }
+    public ArrayList<Incidencia> obtenerListaDeIncidencias(){
+        ArrayList<Incidencia> listaDeIncidencias= new ArrayList<>();
 
+        String sql = "select  u.Nombre, u.Codigo, u.Rol_idRol from destacarincidencia dest inner join incidencia i on dest.idIncidencia = i.idIncidencia\n" +
+                "inner join usuario u on dest.idUsuario = u.idUsuario";
+
+        try (Connection conn = this.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Incidencia incidencia = new Incidencia();
+                DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
+                incidencia.setIdIncidencia(rs.getInt(1));
+                incidencia.setNombreDeIncidencia(rs.getString(2));
+                incidencia.setDescripcion(rs.getString(3));
+                incidencia.setZonaPucp(rs.getString(4));
+                incidencia.setUbicacion(rs.getString(5));
+                UsersDao userDao = new UsersDao();
+                BUsuarios usuario = new BUsuarios();
+                for (BUsuarios usuar : userDao.getUsersList()){
+                    if(usuar.getIdUsuario()==rs.getInt(7)){
+                        usuario.setIdUsuario(rs.getInt(7));
+                        usuario.setRolId(rs.getInt(7));
+                        usuario.setNombre(usuar.getNombre());
+                        usuario.setApellido(usuar.getApellido());
+                        usuario.setCodigo(usuar.getCodigo());
+                        usuario.setCategoria(usuar.getCategoria());
+                    }
+                }
+                incidencia.setUsuario(usuario);
+
+                listaDeIncidencias.add(incidencia);
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return listaDeIncidencias;
+    }
     public ArrayList<Incidencia> BuscarIncidencia(String incidencia){
 
         String sql = "select * from incidencia where NombreDeIncidencia like ?";
