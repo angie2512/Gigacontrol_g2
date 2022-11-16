@@ -206,4 +206,49 @@ public class SeguridadDao extends BaseDao{
         return listaTipoDeIncidencias;
     }
 
+
+    public ArrayList<Incidencia> buscarPorIncidencia(String nombreDeIncidencia){
+
+        String sql = "select * from incidencia where NombreDeIncidencia like ?";
+
+        ArrayList<Incidencia> listaFiltrada1 = new ArrayList<>();
+
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);){
+
+            pstmt.setString(1,"%"+nombreDeIncidencia+"%");
+            try(ResultSet rs = pstmt.executeQuery();){
+
+                while(rs.next()){
+                    Incidencia incidencia = new Incidencia();
+                    BUsuarios bUsuarios = new BUsuarios();
+                    Estado estado = new Estado();
+                    NivelDeUrgencia nivelDeUrgencia = new NivelDeUrgencia();
+                    TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
+
+                    incidencia.setNombreDeIncidencia(rs.getString("NombreDeIncidencia"));
+                    incidencia.setDescripcion(rs.getString("Descripcion"));
+                    incidencia.setZonaPucp(rs.getString("ZonaPUCP"));
+                    incidencia.setUbicacion(rs.getString("Ubicacion"));
+                    incidencia.setFoto(rs.getString("Foto"));
+                    bUsuarios.setIdUsuario(rs.getInt("idUsuario"));
+                    tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt("idTipoIncidencia"));
+                    nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt("idNivelUrgencia"));
+                    estado.setIdEstado(rs.getInt("idEstado"));
+
+                    incidencia.setUsuario(bUsuarios);
+                    incidencia.setTipoDeIncidencia(tipoDeIncidencia);
+                    incidencia.setNivelDeUrgencia(nivelDeUrgencia);
+                    incidencia.setEstado(estado);
+
+                    listaFiltrada1.add(incidencia);
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return listaFiltrada1;
+    }
+
+
 }
