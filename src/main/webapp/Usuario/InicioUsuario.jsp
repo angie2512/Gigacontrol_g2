@@ -51,7 +51,6 @@
 
             <div class="collapse navbar-collapse" id="navbarsExample07">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">ROSA A. SALAZAR CASTILLA</b></a></li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/PerfilUsuario" style="color:#FFFFFF">Perfil</a>
                     </li>
@@ -63,8 +62,19 @@
                     </li>
 
                 </ul>
+
+
+                <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">CRISTIAN DOMINGUEZ CASTRO</b></a></li>
+                    <div class="dropdown text-end">
+                        <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
+                            <img src="resources/Images/userSeguridad.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        </a>
+                    </div>
+                </ul>
+
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <a class="dropdown-item" href=<%=request.getContextPath()%>/Index><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
+                    <a class="dropdown-item" href=<%=request.getContextPath()%>/Index><u style="color:rgb(35,30,30)"> <b>Cerrar sesión > </b></u></a>
                 </form>
             </div>
         </div>
