@@ -77,53 +77,106 @@
     </div>
 </nav>
 <br>
+
 <div class="d-inline p-3" style="font-size: 1.5rem;background-color:#347199;"><b style="color:#FFFFFF; font-family:'Palatino Linotype','Book Antiqua',Palatino, serif"> MI INCIDENCIA</b></div>
 <br><br><br>
 <div class="d-flex justify-content-center">
+
     <table>
         <tr>
             <td>
-                <div class="card">
+                <div class="card" style="width: 50rem">
+                    <br>
                     <div class="card-body">
+                        <center><h3>Dejé mi laptop y desaparecio</h3></center>
+                        <br>
                         <table>
                             <tr>
-                                <td>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">Nombres:</li>
-                                    </ul>
-                                    <br>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">Apellidos:</li>
-                                    </ul>
-                                    <br>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">DNI:</li>
-                                    </ul>
-                                    <br>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">Celular:</li>
-                                    </ul>
 
+                                <td>
+                                        <td>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item" style="border-radius: 10%;">Nombres:</li>
+                                            </ul>
+                                            <br>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item" style="border-radius: 10%;">Apellidos:</li>
+                                            </ul>
+                                            <br>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item" style="border-radius: 10%;">DNI:</li>
+                                            </ul>
+                                            <br>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item" style="border-radius: 10%;">Celular:</li>
+                                            </ul>
+
+                                        </td>
+                                        <td style="padding-left: 1rem;">
+                                            <ul class="list-group list-group-flush">
+                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                                            </ul>
+                                            <br>
+                                            <ul class="list-group list-group-flush">
+                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value=" ">
+                                            </ul>
+                                            <br>
+                                            <ul class="list-group list-group-flush">
+                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                                            </ul>
+                                            <br>
+                                            <ul class="list-group list-group-flush">
+                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                                            </ul>
+                                        </td>
                                 </td>
-                                <td style="padding-left: 1rem;">
-                                    <ul class="list-group list-group-flush">
-                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                                    </ul>
-                                    <br>
-                                    <ul class="list-group list-group-flush">
-                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value=" ">
-                                    </ul>
-                                    <br>
-                                    <ul class="list-group list-group-flush">
-                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                                    </ul>
-                                    <br>
-                                    <ul class="list-group list-group-flush">
-                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                                    </ul>
+                                    <td style="padding-left: 2rem;">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Nivel de Urgencia</option>
+                                            <option value="1">Leve</option>
+                                            <option value="2">Moderado</option>
+                                            <option value="3">Critico</option>
+                                        </select>
+
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item" style="border-radius: 10%;">Estado:</li>
+                                            <input class="form-control" type="text" placeholder="Atendido" aria-label="Disabled input example" disabled>
+                                        </ul>
+
+                                        <br>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    El problema fue atendido siguiendo las normas de la universidad
+                                                </div>
+                                            </div>
+                                        <br>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                ¿Está de acuerdo con el estado de la incidencia?
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                De acuerdo
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                Desacuerdo
+                                            </label>
+                                        </div>
+                                        <br>
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                                            <label for="floatingTextarea">Escribir un comentario...</label>
+                                        </div>
                                 </td>
                             </tr>
                         </table>
+                        <br>
+                        <center><button type="button" class="btn btn-danger">Enviar</button></center>
                     </div>
                 </div>
             </td>
@@ -133,8 +186,8 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-<br></br>
-<a class="btn btn-primary" href="inicioUsuario.html" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+<br>
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/InicioUsuario" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
 <br><br>
 
 </body>
