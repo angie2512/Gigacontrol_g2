@@ -1,6 +1,7 @@
 package com.example.gigacontrol_g2.Usuario.Servlets;
 
-import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoIncidencia;
+import com.example.gigacontrol_g2.beans.Incidencia;
+import com.example.gigacontrol_g2.daos.SeguridadDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -13,13 +14,13 @@ public class ReporteIncidencia extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         RequestDispatcher vista;
-        DaoIncidencia daoIncidencia = new DaoIncidencia();
+        SeguridadDao seguridadDao = new SeguridadDao();
         String idIncidenciaStr = request.getParameter("id");
         int idIncidencia = Integer.parseInt(idIncidenciaStr);
 
         switch (action) {
             case "mostrarReporte":
-                Incidencia incidencia = daoIncidencia.buscarIncidencia(idIncidencia);
+                Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
                 request.setAttribute("incidencia2", incidencia);
                 vista = request.getRequestDispatcher("Seguridad/ReporteIncidencia.jsp");
                 vista.forward(request, response);

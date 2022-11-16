@@ -1,38 +1,12 @@
 package com.example.gigacontrol_g2.daos;
 
-import com.example.gigacontrol_g2.beans.Estado;
-import com.example.gigacontrol_g2.beans.Incidencia;
-import com.example.gigacontrol_g2.beans.NivelDeUrgencia;
-import com.example.gigacontrol_g2.beans.TipoDeIncidencia;
+import com.example.gigacontrol_g2.beans.*;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class SeguridadDao extends BaseDao{
 
-    public ArrayList<Estado> obtenerListaEstados(){
-        ArrayList<Estado> listaEstados = new ArrayList<>();
-
-        //Conexion a base de datos
-        String sql = "select * from estado";
-
-        try (Connection conn = this.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {
-                Estado estado = new Estado();
-                estado.setIdEstado(rs.getInt(1));
-                estado.setNombre(rs.getString(2));
-                listaEstados.add(estado);
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return listaEstados;
-    }
 
     public ArrayList<Incidencia> obtenerListaDeIncidencias(){
         ArrayList<Incidencia> listaDeIncidencias= new ArrayList<>();
@@ -45,14 +19,15 @@ public class SeguridadDao extends BaseDao{
 
             while (rs.next()) {
                 Incidencia incidencia = new Incidencia();
+                DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
                 incidencia.setIdIncidencia(rs.getInt(1));
-                incidencia.setNombreIncidencia(rs.getString(2));
+                incidencia.setNombreDeIncidencia(rs.getString(2));
                 incidencia.setDescripcion(rs.getString(3));
-                incidencia.setZonaPUCP(rs.getString(4));
+                incidencia.setZonaPucp(rs.getString(4));
                 incidencia.setUbicacion(rs.getString(5));
-                DaoUsuario daoUsuario = new DaoUsuario();
-                Usuario usuario = new Usuario();
-                for (Usuario usuar : daoUsuario.obtenerListaDeUsuarios()){
+                UsersDao userDao = new UsersDao();
+                BUsuarios usuario = new BUsuarios();
+                for (BUsuarios usuar : userDao.getUsersList()){
                     if(usuar.getIdUsuario()==rs.getInt(7)){
                         usuario.setIdUsuario(rs.getInt(7));
                         usuario.setNombre(usuar.getNombre());
@@ -62,27 +37,24 @@ public class SeguridadDao extends BaseDao{
                     }
                 }
                 incidencia.setUsuario(usuario);
-                DaoTipoDeIncidencia daoTipoDeIncidencia = new DaoTipoDeIncidencia();
                 TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
-                for (TipoDeIncidencia tdi : daoTipoDeIncidencia.obtenerListaTipoDeIncidencias()){
+                for (TipoDeIncidencia tdi : this.obtenerListaTipoDeIncidencias()){
                     if(tdi.getIdTipoDeIncidencia()==rs.getInt(8)){
                         tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt(8));
                         tipoDeIncidencia.setNombre(tdi.getNombre());
                     }
                 }
                 incidencia.setTipoDeIncidencia(tipoDeIncidencia);
-                DaoNivelDeUrgencia daoNivelDeUrgencia= new DaoNivelDeUrgencia();
                 NivelDeUrgencia nivelDeUrgencia = new NivelDeUrgencia();
-                for (NivelDeUrgencia nivelUrgencia : daoNivelDeUrgencia.obtenerListaNivelesDeUrgencia()){
+                for (NivelDeUrgencia nivelUrgencia : this.obtenerListaNivelesDeUrgencia()){
                     if(nivelUrgencia.getIdNivelDeUrgencia()==rs.getInt(9)){
                         nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt(9));
                         nivelDeUrgencia.setNombre(nivelUrgencia.getNombre());
                     }
                 }
                 incidencia.setNivelDeUrgencia(nivelDeUrgencia);
-                DaoEstado daoEstado= new DaoEstado();
                 Estado estado = new Estado();
-                for (Estado est: daoEstado.obtenerListaEstados()){
+                for (Estado est: daoDatosFijos.obtenerListaEstados()){
                     if(est.getIdEstado()==rs.getInt(10)){
                         estado.setIdEstado(rs.getInt(10));
                         estado.setNombre(est.getNombre());
@@ -114,14 +86,15 @@ public class SeguridadDao extends BaseDao{
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     incidencia = new Incidencia();
+                    DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
+                    UsersDao usersDao = new UsersDao();
                     incidencia.setIdIncidencia(idIncidencia);
-                    incidencia.setNombreIncidencia(rs.getString(2));
+                    incidencia.setNombreDeIncidencia(rs.getString(2));
                     incidencia.setDescripcion(rs.getString(3));
-                    incidencia.setZonaPUCP(rs.getString(4));
+                    incidencia.setZonaPucp(rs.getString(4));
                     incidencia.setUbicacion(rs.getString(5));
-                    DaoUsuario daoUsuario = new DaoUsuario();
-                    Usuario usuario1 = new Usuario();
-                    for (Usuario usuar : daoUsuario.obtenerListaDeUsuarios()){
+                    BUsuarios usuario1 = new BUsuarios();
+                    for (BUsuarios usuar : usersDao.getUsersList()){
                         if(usuar.getIdUsuario()==rs.getInt(7)){
                             usuario1.setIdUsuario(rs.getInt(7));
                             usuario1.setNombre(usuar.getNombre());
@@ -131,27 +104,24 @@ public class SeguridadDao extends BaseDao{
                         }
                     }
                     incidencia.setUsuario(usuario1);
-                    DaoTipoDeIncidencia daoTipoDeIncidencia = new DaoTipoDeIncidencia();
                     TipoDeIncidencia tipoDeIncidencia1 = new TipoDeIncidencia();
-                    for (TipoDeIncidencia tdi : daoTipoDeIncidencia.obtenerListaTipoDeIncidencias()){
+                    for (TipoDeIncidencia tdi : daoDatosFijos.obtenerListaTipoDeIncidencias()){
                         if(tdi.getIdTipoDeIncidencia()==rs.getInt(8)){
                             tipoDeIncidencia1.setIdTipoDeIncidencia(rs.getInt(8));
                             tipoDeIncidencia1.setNombre(tdi.getNombre());
                         }
                     }
                     incidencia.setTipoDeIncidencia(tipoDeIncidencia1);
-                    DaoNivelDeUrgencia daoNivelDeUrgencia= new DaoNivelDeUrgencia();
                     NivelDeUrgencia nivelDeUrgencia1 = new NivelDeUrgencia();
-                    for (NivelDeUrgencia nivelUrgencia : daoNivelDeUrgencia.obtenerListaNivelesDeUrgencia()){
+                    for (NivelDeUrgencia nivelUrgencia : daoDatosFijos.obtenerListaNivelesDeUrgencia()){
                         if(nivelUrgencia.getIdNivelDeUrgencia()==rs.getInt(9)){
                             nivelDeUrgencia1.setIdNivelDeUrgencia(rs.getInt(9));
                             nivelDeUrgencia1.setNombre(nivelUrgencia.getNombre());
                         }
                     }
                     incidencia.setNivelDeUrgencia(nivelDeUrgencia1);
-                    DaoEstado daoEstado= new DaoEstado();
                     Estado estado1 = new Estado();
-                    for (Estado est: daoEstado.obtenerListaEstados()){
+                    for (Estado est: daoDatosFijos.obtenerListaEstados()){
                         if(est.getIdEstado()==rs.getInt(10)){
                             estado1.setIdEstado(rs.getInt(10));
                             estado1.setNombre(est.getNombre());

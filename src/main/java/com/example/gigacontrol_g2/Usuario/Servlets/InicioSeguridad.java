@@ -1,9 +1,7 @@
 package com.example.gigacontrol_g2.Usuario.Servlets;
 
-import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoEstado;
-import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoIncidencia;
-import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoNivelDeUrgencia;
-import com.example.gigacontrol_g2.Seguridad.DaosSeguridad.DaoTipoDeIncidencia;
+
+import com.example.gigacontrol_g2.daos.SeguridadDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -14,15 +12,14 @@ import java.io.IOException;
 public class InicioSeguridad extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DaoEstado daoestado = new DaoEstado();
-        DaoTipoDeIncidencia daoTipoDeIncidencia = new DaoTipoDeIncidencia();
-        DaoNivelDeUrgencia daoNivelDeUrgencia = new DaoNivelDeUrgencia();
-        DaoIncidencia daoIncidencia = new DaoIncidencia();
+        //DaoEstado daoestado = new DaoEstado();
+        //DaoNivelDeUrgencia daoNivelDeUrgencia = new DaoNivelDeUrgencia();
+        SeguridadDao seguridadDao = new SeguridadDao();
         RequestDispatcher vista;
-        request.setAttribute("ListaEstados", daoestado.obtenerListaEstados());
-        request.setAttribute("ListaTipoDeIncidencias", daoTipoDeIncidencia.obtenerListaTipoDeIncidencias());
-        request.setAttribute("ListaNivelesDeUrgencia", daoNivelDeUrgencia.obtenerListaNivelesDeUrgencia());
-        request.setAttribute("ListaDeIncidencias", daoIncidencia.obtenerListaDeIncidencias());
+        //request.setAttribute("ListaEstados", daoestado.obtenerListaEstados());
+        //request.setAttribute("ListaTipoDeIncidencias", daoTipoDeIncidencia.obtenerListaTipoDeIncidencias());
+        //request.setAttribute("ListaNivelesDeUrgencia", daoNivelDeUrgencia.obtenerListaNivelesDeUrgencia());
+        request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
         vista = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
         vista.forward(request, response);
     }

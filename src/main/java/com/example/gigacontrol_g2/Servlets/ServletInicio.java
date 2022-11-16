@@ -1,6 +1,6 @@
 package com.example.gigacontrol_g2.Servlets;
 
-import com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Usuario;
+import com.example.gigacontrol_g2.beans.BUsuarios;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -21,7 +21,7 @@ public class ServletInicio extends HttpServlet {
         else{
             switch (action){
                 case "LogIn":
-                    Usuario us = (Usuario) request.getSession().getAttribute("usuarioSession");
+                    BUsuarios us = (BUsuarios) request.getSession().getAttribute("usuarioSession");
 
                     //Se valida que la sesion exista  y tambien el id de ese usuario
                     if( us!=null && us.getIdUsuario() !=0){

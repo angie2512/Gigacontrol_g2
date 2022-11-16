@@ -7,9 +7,11 @@ public class Incidencia {
     private String zonaPucp;
     private String ubicacion;
     private String foto;
-    private int idUsuario;
-    private int idTipoIncidencia;
-    private int idNivelUrgencia;
+    private BUsuarios usuario;
+    private TipoDeIncidencia tipoDeIncidencia;
+    private NivelDeUrgencia nivelDeUrgencia;
+
+    private Estado estado;
 
     public int getIdIncidencia() {
         return idIncidencia;
@@ -59,38 +61,35 @@ public class Incidencia {
         this.foto = foto;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public BUsuarios getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(BUsuarios usuario) {
+        this.usuario = usuario;
     }
 
-    public int getIdTipoIncidencia() {
-        return idTipoIncidencia;
+    public TipoDeIncidencia getTipoDeIncidencia() {
+        return tipoDeIncidencia;
     }
 
-    public void setIdTipoIncidencia(int idTipoIncidencia) {
-        this.idTipoIncidencia = idTipoIncidencia;
+    public void setTipoDeIncidencia(TipoDeIncidencia tipoDeIncidencia) {
+        this.tipoDeIncidencia = tipoDeIncidencia;
     }
 
-    public int getIdNivelUrgencia() {
-        return idNivelUrgencia;
+    public NivelDeUrgencia getNivelDeUrgencia() {
+        return nivelDeUrgencia;
     }
 
-    public void setIdNivelUrgencia(int idNivelUrgencia) {
-        this.idNivelUrgencia = idNivelUrgencia;
+    public void setNivelDeUrgencia(NivelDeUrgencia nivelDeUrgencia) {
+        this.nivelDeUrgencia = nivelDeUrgencia;
     }
 
-    public int getIdEstado() {
-        return idEstado;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setIdEstado(int idEstado) {
-        this.idEstado = idEstado;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
-
-    private int idEstado;
-
 }

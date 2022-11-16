@@ -2,7 +2,7 @@ package com.example.gigacontrol_g2.beans;
 
 public class Rol {
     private int idRol;
-    private char nombre;
+    private String nombre;
 
     public int getIdRol() {
         return idRol;
@@ -12,12 +12,11 @@ public class Rol {
         this.idRol = idRol;
     }
 
-    public char getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(char nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 }
