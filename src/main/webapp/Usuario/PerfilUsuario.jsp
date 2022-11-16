@@ -46,12 +46,20 @@
 
 <div class="container" style="max-width: 40rem;">
     <div class="abs-center">
-        <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem" style="margin-top: 10px; margin-bottom:-35px">
+        <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" class="rounded mx-auto d-block " alt="userphoto" height="200rem" max-width="210rem" style="margin-top: 10px; margin-bottom:-35px">
         <td class="text-center">
-            <a type="button" class="btn btn-danger", style="background-color: #ffffff;border-color: #ffffff;border-radius: 60px 60px 60px 60px;margin-left: 270px; margin-bottom:25px">
+           <!-- <a type="button" class="btn btn-danger", style="background-color: #ffffff;border-color: #ffffff;border-radius: 60px 60px 60px 60px;margin-left: 270px; margin-bottom:25px" for="inputGroupFile01">
              <img src="https://img.icons8.com/metro/26/null/camera.png"/>
-            </a>
+            </a> -->
+            <br>
+            <center>
+            <div class="input-group mb-3" style="max-width: 10rem">
+                <label class="input-group-text" for="inputGroupFile01"><img src="https://img.icons8.com/metro/26/null/camera.png"/></label>
+                <input type="file" class="form-control" id="inputGroupFile01">
+            </div>
+            </center>
         </td>
+
         <br>
         <div class="card"style="background-color:#F2F2F3">
             <div class="card-body" >
