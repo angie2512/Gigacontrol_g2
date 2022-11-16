@@ -1,7 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
-
-<% Incidencia incidencia = (Incidencia) request.getAttribute("Incidencia"); %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -92,19 +89,19 @@
                             <tr>
                                 <td>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">Nombres: <%=incidencia.getUsuario().getNombre()%></li>
+                                        <li class="list-group-item" style="border-radius: 10%;">Nombres:</li>
                                     </ul>
                                     <br>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">Apellidos:<%=incidencia.getUsuario().getApellido()%></li>
+                                        <li class="list-group-item" style="border-radius: 10%;">Apellidos:</li>
                                     </ul>
                                     <br>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">DNI: <%=incidencia.getUsuario().getDni()%></li>
+                                        <li class="list-group-item" style="border-radius: 10%;">DNI:</li>
                                     </ul>
                                     <br>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">Celular: <%=incidencia.getUsuario().getCelular()%></li>
+                                        <li class="list-group-item" style="border-radius: 10%;">Celular:</li>
                                     </ul>
 
                                 </td>

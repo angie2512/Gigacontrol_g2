@@ -213,7 +213,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <div class="d-flex justify-content-center">
-                                                <a class="btn btn-primary" href=<%=request.getContextPath()%>/InicioUsuario role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">Listo</a>
+                                                <a class="btn btn-primary" href="<%=request.getContextPath()%>/InicioUsuario" role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">Listo</a>
                                             </div>
                                         </div>
                                     </div>

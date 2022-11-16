@@ -33,34 +33,14 @@
                     <a class="nav-link active" href="<%=request.getContextPath()%>/PerfilSeguridad" aria-current="page" style="color:#FFFFFF">Perfil</a>
                 </li>
             </ul>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
+                        style="color:#FFFFFF"><b>Cerrar sesion > </b></u></a>
+            </form>
         </div>
     </div>
 </nav>
-<br>
-<header class="p-3 mb-3 border-bottom" style="background-color: #FFFFFF">
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-            </a>
-
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">CRISTIAN DOMINGUEZ CASTRO</b></a></li>
-                <div class="dropdown text-end">
-                    <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                        <img src="resources/Images/userSeguridad.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                    </a>
-                </div>
-            </ul>
-
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <a class="dropdown-item" href="index.jsp"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
-            </form>
-
-        </div>
-    </div>
-</header>
-<br><br><br>
+<br><br>
 <div style="display:flex; justify-content:space-around">
     <div style="display:flex; justify-content:space-around">
         <div class="card">
