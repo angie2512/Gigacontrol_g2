@@ -53,8 +53,6 @@ public class ServletInicio extends HttpServlet {
 
             }
         }
-
-
     }
 
     @Override
