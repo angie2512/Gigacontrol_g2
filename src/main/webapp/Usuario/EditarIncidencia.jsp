@@ -116,14 +116,16 @@
                                 <td>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item" style="border-radius: 10%;">Foto:</li>
+
                                     </ul>
                                 </td>
                                 </td>
                                 <td>
                                 <td>
-                                    <ul class="list-group list-group-flush">
-                                        <input type="email class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
-                                    </ul>
+                                    <div class="input-group mb-3" style="max-width: 20rem">
+                                        <label class="input-group-text" for="inputGroupFile01"><img src="https://img.icons8.com/metro/26/null/camera.png"/></label>
+                                        <input type="file" class="form-control" id="inputGroupFile01">
+                                    </div>
                                 </td>
                                 </td>
                             </tr>
