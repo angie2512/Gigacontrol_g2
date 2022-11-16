@@ -79,11 +79,7 @@
 
         <nav class="navbar navbar-expand-lg" style="background-color: #131950;" aria-label="Eighth navbar example">
             <div class="container">
-                <a class="navbar-brand" href="/AdminInicio.jsp"><img src="/resources/Images/logopucp.png" alt="Logo"
-                                                                     width="40"
-                                                                     height="40"
-                                                                     class="d-inline-block align-text-top"><b
-                        style="color:#FFFFFF"> GIGACONTROL</b></a>
+                <a class="navbar-brand" href="/AdminInicio.jsp"><img src="resources/Images/logopucp.png" alt="Logo" width="40"  height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
 
 
                 <%--<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">

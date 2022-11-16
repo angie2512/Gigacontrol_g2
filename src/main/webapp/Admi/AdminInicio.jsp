@@ -124,12 +124,14 @@
             </div>
         </nav>
 
-        <div class="container" style="width: 500px;">
+        <div class="container" style="max-width: 500px;">
             <div class="abs-center">
+                <br>
+                <br>
                 <img src="resources/Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="200rem"
                      width="200rem">
                 <br>
-                <div class="card" style="background-color:#F2F2F3">
+                <div class="card mb-3" style="max-width:38rem ;background-color:#F2F2F3">
                     <div class="card-body">
                         <div class="p-1 mb-8 text-white" style="background-color:#3071A4">
                             <h4 style="text-align: center; color: white; font-family:Giorgia, serif">
