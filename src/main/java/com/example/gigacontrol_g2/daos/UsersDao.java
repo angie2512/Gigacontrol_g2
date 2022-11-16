@@ -209,14 +209,14 @@ public class UsersDao extends BaseDao{
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-        String url = "jdbc:mysql://localhost:3306/gigacontrol";
+        
         ArrayList<BUsuarios> lista = new ArrayList<>();
-        String sql = "select * from usuario where lower(apellido) like ?";
-        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+        String sql = "select * from usuario where apellido = ?";
+        try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setString(1, "%"+apellido+"%");
+
+            pstmt.setString(1,apellido);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
