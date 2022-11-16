@@ -27,7 +27,6 @@ public class ServletAdmin extends HttpServlet {
                     requestDispatcher.forward(request, response);
                 }
                 else {
-                    System.out.println("nulo");
                     requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
                     requestDispatcher.forward(request, response);
                 }

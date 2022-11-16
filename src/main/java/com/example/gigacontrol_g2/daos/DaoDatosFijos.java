@@ -122,9 +122,7 @@ public class DaoDatosFijos extends BaseDao{
         {
             pstm.setString(1,codigo);
             pstm.setString(2,password);
-
             try(ResultSet rs = pstm.executeQuery();) {
-                System.out.println("ACAA");
                 if(rs.next()){
                     int userID = rs.getInt(1);
                     user = this.buscarPorId(userID);

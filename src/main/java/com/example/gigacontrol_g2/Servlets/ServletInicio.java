@@ -25,16 +25,18 @@ public class ServletInicio extends HttpServlet {
 
                     if(user != null && user.getIdUsuario() !=0){
                         response.sendRedirect(request.getContextPath());
+                        System.out.println("aca?");
                     }
                     else {
                         requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
                         requestDispatcher.forward(request, response);
+                        System.out.println("aqui");
                     }
                     break;
                 case "logout":
                     HttpSession session = request.getSession();
                     session.invalidate();
-                    response.sendRedirect("/ServletInicio");
+                    response.sendRedirect( request.getContextPath() + "/ServletInicio");
                     break;
                 case "registro":
                     requestDispatcher = request.getRequestDispatcher("registro.jsp");

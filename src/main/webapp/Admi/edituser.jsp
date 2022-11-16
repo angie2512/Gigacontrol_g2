@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="user" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="request"/>
-<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session"/>
+<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -89,7 +89,7 @@
       </ul>
 
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <a class="dropdown-item" href="/ServletInicio?action=logout"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
+        <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
       </form>
 
     </div>

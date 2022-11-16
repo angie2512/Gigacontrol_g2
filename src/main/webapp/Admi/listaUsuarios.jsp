@@ -14,14 +14,7 @@
 %>
 
 <jsp:useBean id="lista" scope="request" type="java.util.ArrayList<com.example.gigacontrol_g2.beans.BUsuarios>"/>
-<%
-    BUsuarios userLog = new BUsuarios();
-    for (BUsuarios u : lista) {
-        if (u.getRolId() == 3) {
-            userLog = u;
-        }
-    }
-%>
+
 <html lang="en">
 
     <head>
@@ -133,7 +126,7 @@
                 </div>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio"><u
+                    <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
                             style="color:#FFFFFF"><b>Cerrar sesión > </b></u></a>
                 </form>
             </div>
