@@ -51,49 +51,29 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body>
-<nav class="navbar navbar-expand-lg" style="background-color: #4C9978;" aria-label="Eighth navbar example">
-  <div class="container">
-    <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<body class="p-3 m-0 border-0 bd-example">
+      <nav class="navbar navbar-expand-lg" style="background-color: #4C9978;" aria-label="Eighth navbar example">
+        <div class="container">
+          <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExample07">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" href="<%=request.getContextPath()%>/PerfilSeguridad" aria-current="page" style="color:#FFFFFF">Perfil</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<p></p>
-<p></p>
-<header class="p-3 mb-3 border-bottom" style="background-color: #FFFFFF">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-      </a>
-
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">BIENVENIDO <%//=usuarioSession.getFirstName()%> <%//=usuarioSession.getFirstName()%> <!--CRISTIAN DOMINGUEZ CASTRO --></b></a></li>
-        <div class="dropdown text-end">
-          <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-            <img src="resources/Images/userSeguridad.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          </a>
+          <div class="collapse navbar-collapse" id="navbarsExample07">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href="<%=request.getContextPath()%>/PerfilSeguridad" aria-current="page" style="color:#FFFFFF">Perfil</a>
+              </li>
+            </ul>
+          </div>
+          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
+                    style="color:#FFFFFF"><b>Cerrar sesion > </b></u></a>
+          </form>
         </div>
-      </ul>
+      </nav>
 
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <a class="dropdown-item" href="<%//=request.getContextPath()%>/InicioDeSesion?action=LogOut"><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
-      </form>
-
-
-    </div>
-  </div>
-</header>
+      <br>
 
   <!-- Segun Burga , es recomendable mejor eliminar el Filtro de Incidencias de Seguridad-->
 
@@ -159,8 +139,8 @@
   </aside> -->
   <center>
     <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
-      <main class ="bd-main order-1;overflow-auto" style="width: 820px; height:1650px; background-color: #FFFFFF99">
-        <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; height:1700px; background-color: #8CC67A;" >
+      <main class ="bd-main order-1;overflow-auto" style="width: 820px; background-color: #FFFFFF99">
+        <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; background-color: #8CC67A;" >
           <h4 class="border-bottom pb-2 mb-2" style="background-color:#6FCE92;color:#18542E;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">INCIDENCIAS REPORTADAS</b></center></h4>
           <p></p>
           <form class="d-flex" role="search">
