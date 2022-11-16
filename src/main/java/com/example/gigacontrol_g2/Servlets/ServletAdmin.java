@@ -18,14 +18,20 @@ public class ServletAdmin extends HttpServlet {
 
         UsersDao usersDao = new UsersDao();
         ArrayList<BUsuarios> lista = usersDao.getUsersList();
-        BUsuarios admin = new BUsuarios();
-        BUsuarios user;
 
         switch (action) {
             case "Inicio":
-                requestDispatcher = request.getRequestDispatcher("Admi/AdminInicio.jsp");
-                requestDispatcher.forward(request, response);
+                BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
+                if(user != null){
+                    requestDispatcher = request.getRequestDispatcher("Admi/AdminInicio.jsp");
+                    requestDispatcher.forward(request, response);
+                }
+                else {
+                    requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
+                    requestDispatcher.forward(request, response);
+                }
                 break;
+
             case "Perfil":
                 requestDispatcher = request.getRequestDispatcher("Admi/perfil.jsp");
                 requestDispatcher.forward(request, response);

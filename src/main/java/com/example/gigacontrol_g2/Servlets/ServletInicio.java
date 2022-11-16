@@ -21,8 +21,15 @@ public class ServletInicio extends HttpServlet {
         else{
             switch (action){
                 case "LogIn":
-                    requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
-                    requestDispatcher.forward(request, response);
+                    BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged") ;
+
+                    if(user != null && user.getIdUsuario() !=0){
+                        response.sendRedirect(request.getContextPath());
+                    }
+                    else {
+                        requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
+                        requestDispatcher.forward(request, response);
+                    }
                     break;
                 case "logout":
                     HttpSession session = request.getSession();
