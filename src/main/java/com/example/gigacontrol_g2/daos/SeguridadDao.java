@@ -1,7 +1,11 @@
 package com.example.gigacontrol_g2.daos;
 
 import com.example.gigacontrol_g2.beans.*;
+import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -250,5 +254,47 @@ public class SeguridadDao extends BaseDao{
         return listaFiltrada1;
     }
 
+    public void editarFoto(int id, InputStream FotoPerfil){
+        String sql="UPDATE centro.usuario SET FotoPerfil = ?" +
+                "where idPersona = ?";
+
+        try(Connection conn= this.getConnection();
+            PreparedStatement pstmt= conn.prepareStatement(sql)){
+            pstmt.setBlob(1,FotoPerfil);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        }catch(SQLException e) {
+            System.out.println("Hubo un error en la conexión!");
+            e.printStackTrace();
+        }
+    }
+
+    public void mostrarImagen(int id, HttpServletResponse response){
+        String sql= "select u.FotoPerfil from usuario u where idUsuario=?";
+
+        response.setContentType("image/*");
+        InputStream inputStream=null;
+        OutputStream outputStream;
+
+        try(Connection conn= this.getConnection();
+            PreparedStatement pstmt= conn.prepareStatement(sql);){
+            pstmt.setInt(1, id);
+
+            try(ResultSet rs= pstmt.executeQuery();){
+                outputStream= response.getOutputStream();
+                if(rs.next()){
+                    inputStream= rs.getBinaryStream(1);
+                }
+                byte[] datosImagen= new byte[inputStream.available()];
+                inputStream.read(datosImagen,0,inputStream.available());
+                outputStream.write(datosImagen);
+                inputStream.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -11,6 +11,15 @@ public class BUsuarios {
     private String celular;
     private String categoria;
     private int rolId;
+    private  String fotoPerfil;
+
+    public String getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
 
     public String getCodigo() {
         return codigo;

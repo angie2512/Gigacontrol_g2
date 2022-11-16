@@ -1,48 +1,48 @@
 <%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.gigacontrol_g2.beans.Estado" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<% //String currentPage = request.getParameter("currentPage");%>
-
 <%
-  ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
+  ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("listaDeIncidencias");
 %>
 
 <!doctype html>
+
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-  <title>Inicio</title>
-  <style>
-    body {
-      background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
-      background-position: center center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      margin: 0;
-      height: 100vh;
-      bgcolor: "#800000";
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <title>Inicio</title>
+    <style>
+      body {
+        background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        height: 100vh;
+        bgcolor: "#800000";
 
-    }
-    @font-face {
-      font-family: Decor;
-      src: url( KrinkesDecorPERSONAL.ttf);
-    }
-    @font-face{
-      font-family: Decor;
-      src: url(KrinkesRegularPERSONAL.ttf);
-      font-style: italic;
-    }
-    p{
-      font-family: Decor;
-    }
+      }
+      @font-face {
+        font-family: Decor;
+        src: url( KrinkesDecorPERSONAL.ttf);
+      }
+      @font-face{
+        font-family: Decor;
+        src: url(KrinkesRegularPERSONAL.ttf);
+        font-style: italic;
+      }
+      p{
+        font-family: Decor;
+      }
 
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="p-3 m-0 border-0 bd-example">
@@ -56,7 +56,7 @@
           <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="<%=request.getContextPath()%>/PerfilSeguridad" aria-current="page" style="color:#FFFFFF">Perfil</a>
+                <a class="nav-link active" href="<%=request.getContextPath()%>/ServletSeguridad?action=perfil" aria-current="page" style="color:#FFFFFF">Perfil</a>
               </li>
             </ul>
           </div>
@@ -69,75 +69,13 @@
 
       <br>
 
-  <!-- Segun Burga , es recomendable mejor eliminar el Filtro de Incidencias de Seguridad-->
-
-
-<!-- <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
-  <aside class="bd-sidebar" style="width: 380px; height:450px; background-color: #37745C95">
-    <div id="region-menu-box">
-      <div class="d-flex flex-column flex-shrink-0 p-3">
-        <center>
-          <h4 style="color:white;font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif; background-color: #37745C"><b> FILTRAR INCIDENCIAS </b> </h4>
-        </center>
-        <br>
-        <h5 style="color:#BEE7A7 ; background-color: #37745C90;font-family: 'Trebuchet MS',Helvetica, sans-serif;">> Estado</h5>
-        < %for (Estado est : listaEstados) { %>
-        <div class="form-check" style="color:white;font-size:15px">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-            < %=est.getNombre()%>
-          </label>
-        </div>
-
-        < % } %>
-
-
-        <h5 style="color:#BEE7A7; background-color: #37745C90;font-family: 'Trebuchet MS',Helvetica, sans-serif;">> Número de Destacados</h5>
-        <div class="form-check" style="color:white;">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-            De Mayor a Menor
-          </label>
-        </div>
-        <div class="form-check" style="color:white;margin-bottom:13px;">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-            De Menor a Mayor
-          </label>
-        </div>
-
-        <h5 style="color:#BEE7A7; background-color: #37745C90; font-family: 'Trebuchet MS',Helvetica, sans-serif;">> Tipo de Incidencia</h5>
-        < %for (TipoDeIncidencia tipoIndici : listaTipoDeIncidencias) { %>
-        <div class="form-check" style="color:white;font-size:15px">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-            < %=tipoIndici.getNombre()%>
-          </label>
-        </div>
-
-        < % } %>
-        <h5 style="color:#BEE7A7; background-color: #37745C90; font-family: 'Trebuchet MS',Helvetica, sans-serif;">> Nivel de Urgencia</h5>
-        < %for(NivelDeUrgencia nu : listaNivelesDeUrgencia) {%>
-        <div class="form-check" style="color:white;">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-            < %=nu.getNombre()%>
-          </label>
-        </div>
-        < %
-          }
-        %>
-        <<button type="button" class="btn btn-danger">Buscar</button>
-      </div>
-    </div>
-  </aside> -->
   <center>
     <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
       <main class ="bd-main order-1;overflow-auto" style="width: 820px; background-color: #FFFFFF99">
         <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; background-color: #8CC67A;" >
           <h4 class="border-bottom pb-2 mb-2" style="background-color:#6FCE92;color:#18542E;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">INCIDENCIAS REPORTADAS</b></center></h4>
           <p></p>
-          <form class="d-flex" role="search">
+          <form class="d-flex" method="post" role="search" action="<%=request.getContextPath()%>/ServletSeguridad?accion=buscar">
             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
           </form>
@@ -158,8 +96,8 @@
                           </td>
                           <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                              <a href="<%=request.getContextPath()%>/VerIncidencia?action=mostrar&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver</a>
-                              <a href="<%=request.getContextPath()%>/ReporteIncidencia?action=mostrarReporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a>
+                              <a href="<%=request.getContextPath()%>/ServletSeguridad?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver</a>
+                              <a href="<%=request.getContextPath()%>/ServletSeguridad?action=reporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a>
                             </div>
                           </td>
                         </tr>
