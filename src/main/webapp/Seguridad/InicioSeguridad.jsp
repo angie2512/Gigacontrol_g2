@@ -1,17 +1,19 @@
+<%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%//@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Estado" %>
 <%//@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.TipoDeIncidencia" %>
-<%//@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%//@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.NivelDeUrgencia" %>
 <%//@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia" %>
 <%//@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% //String currentPage = request.getParameter("currentPage");%>
 
-<%/*
-  ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
-  ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
-  ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
-  ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");*/
+<%
+  //ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
+  //ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
+  //ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
+  ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
 %>
 
 <!doctype html>
@@ -155,31 +157,31 @@
                 <img src="https://elcomercio.pe/resizer/hE0dXgCo-KfAjkgGRXLIlDayLYo=/1200x1200/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/JRZOEF5WCRCCPO32AV7OYXXNCU.jpg" class="flex-shrink-0 me-3" alt="..." width="140" height="140">
                 <div>
 
-                      <%//for(Incidencia incidencia : listaDeIncidencias) { %>
+                      <%for(Incidencia incidencia : listaDeIncidencias) { %>
                     <div class="card-body">
                       <table>
                         <tr>
                           <td>
-                            <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%//=incidencia.getNombreIncidencia()%></b></h4>
+                            <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%=incidencia.getNombreDeIncidencia()%></b></h4>
                           </td>
                           <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                              <a href="<%=request.getContextPath()%>/VerIncidencia?action=mostrar&id=<%//=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver</a>
-                              <a href="<%=request.getContextPath()%>/ReporteIncidencia?action=mostrarReporte&id=<%//=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a>
+                              <a href="<%=request.getContextPath()%>/VerIncidencia?action=mostrar&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver</a>
+                              <a href="<%=request.getContextPath()%>/ReporteIncidencia?action=mostrarReporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a>
                             </div>
                           </td>
                         </tr>
                         <tr>
                           <td>
-                            <h6 style="color:#585151; font-family:Georgia, serif"><b>NOMBRE Y APELLIDO: <%//=incidencia.getUsuario().getNombre()%> <%//=incidencia.getUsuario().getApellido()%></b> </h6>
+                            <h6 style="color:#585151; font-family:Georgia, serif"><b>NOMBRE Y APELLIDO: <%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%></b> </h6>
                           <td>
                         </tr>
                         <tr>
                           <td>
-                            <p style="color:#D62525"><b>Código: <%//=incidencia.getUsuario().getCodigo()%></b></p>
+                            <p style="color:#D62525"><b>Código: <%=incidencia.getUsuario().getCodigo()%></b></p>
                           </td>
                           <td>
-                            <p class="text-end"><b>Tipo de Incidencia:</b> <%//=incidencia.getTipoDeIncidencia().getNombre()%></p>
+                            <p class="text-end"><b>Tipo de Incidencia:</b> <%=incidencia.getTipoDeIncidencia().getNombre()%></p>
                           </td>
                         </tr>
                         <tr>
@@ -187,27 +189,27 @@
                             <p><b>Descripción:</b></p>
                           </td>
                           <td>
-                            <p class="text-end"><b>Nivel de Urgencia:</b> <%//=incidencia.getNivelDeUrgencia().getNombre()%></p>
+                            <p class="text-end"><b>Nivel de Urgencia:</b> <%=incidencia.getNivelDeUrgencia().getNombre()%></p>
                           </td>
                         </tr>
                         <tr>
 
                           <td>
-                            <p><%//=incidencia.getDescripcion()%></p>
+                            <p><%=incidencia.getDescripcion()%></p>
                           </td>
                         </tr>
                       </table>
                       <table>
                         <tr>
                           <div class="d-flex flex-row-reverse">
-                            <div class="p-2"><b style="color:#DCBA38 ">Estado:<%//=incidencia.getEstado().getNombre()%></b></div>
+                            <div class="p-2"><b style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%></b></div>
                             <div class="p-2"><b>👤 15</b></div>
                             <div class="p-2"><b style="color:#F0C00D">★ Destacados</b></div>
                           </div>
                         </tr>
                       </table>
                     </div>
-                      <% //} %>
+                      <% } %>
                 </div>
               </div>
             </div>
