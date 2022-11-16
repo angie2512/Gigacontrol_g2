@@ -76,7 +76,7 @@ public class ServletInicio extends HttpServlet {
             }
             else {
                 System.out.println("messi");
-                response.sendRedirect("/InicioUsuario");
+                response.sendRedirect("InicioUsuario");
             }
         }else{
             response.sendRedirect(request.getContextPath() + "ServletInicio?action=LogIn&error");
