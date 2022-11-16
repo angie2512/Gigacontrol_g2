@@ -22,7 +22,7 @@ public class VerIncidencia extends HttpServlet {
         switch (action) {
             case "mostrar":
                 Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
-                request.setAttribute("incidencia", incidencia);
+                request.setAttribute("Incidencia", incidencia);
                 vista = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
                 vista.forward(request, response);
 
