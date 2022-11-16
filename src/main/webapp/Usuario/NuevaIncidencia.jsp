@@ -108,13 +108,14 @@
     <table>
         <tr>
             <td>
+                <center>
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" style="width: 1032px;">
                         <table>
                             <tr>
                                 <td>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="border-radius: 10%;">Nombre:</li>
+                                        <li class="list-group-item" style="border-radius: 10%;margin-bottom: 50px;">Nombre:</li>
                                     </ul>
                                     <br>
                                     <ul class="list-group list-group-flush">
@@ -131,11 +132,11 @@
                                 </td>
                                 <td style="padding-left: 1rem;">
                                     <ul class="list-group list-group-flush">
-                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value=" ">
+                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" >
                                     </ul>
                                     <br>
                                     <ul class="list-group list-group-flush">
-                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="">
+                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" style="height: 114px;">
                                     </ul>
                                     <br>
                                     <ul class="list-group list-group-flush">
@@ -187,12 +188,16 @@
                                 </td>
                             <br>
                         </table>
+
+
                         <br>
 
                         <div class="d-flex justify-content-center">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
                                 Enviar
                             </button>
+
+
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -217,11 +222,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                    </center>
+                </div>
                 </div>
             </td>
         </tr>
     </table>
 </div>
 </body>
+
 </html>

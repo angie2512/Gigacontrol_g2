@@ -37,7 +37,7 @@
             </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                 <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
-                        style="color:#FFFFFF"><b>Cerrar sesion > </b></u></a>
+                        style="color:#000000"><b>Cerrar sesion > </b></u></a>
             </form>
         </div>
     </div>
@@ -54,7 +54,7 @@
             </a> -->
             <br>
             <center>
-            <div class="input-group mb-3" style="max-width: 10rem">
+            <div class="input-group mb-3" style="max-width: 20rem">
                 <label class="input-group-text" for="inputGroupFile01"><img src="https://img.icons8.com/metro/26/null/camera.png"/></label>
                 <input type="file" class="form-control" id="inputGroupFile01">
             </div>
