@@ -1,18 +1,10 @@
 <%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
-<%//@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Estado" %>
-<%//@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.TipoDeIncidencia" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%//@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.NivelDeUrgencia" %>
-<%//@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia" %>
-<%//@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% //String currentPage = request.getParameter("currentPage");%>
 
 <%
-  //ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
-  //ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
-  //ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
   ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
 %>
 
