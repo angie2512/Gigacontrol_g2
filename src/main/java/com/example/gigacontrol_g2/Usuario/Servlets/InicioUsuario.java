@@ -33,19 +33,26 @@ public class InicioUsuario extends HttpServlet {
 
         switch (action) {
 
-            case ("buscar"):
-                String buscar = request.getParameter("keyword");
-                ArrayList<Incidencia> listaFiltrada = usersDao.BuscarIncidencia(buscar);
-                request.setAttribute("ListaHeroes", listaFiltrada);
-                view = request.getRequestDispatcher("/menuHeroes.jsp");
-                view.forward(request, response);
+
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
+        UsersDao usersDao = new UsersDao();
+
+        switch (action) {
+            case "buscar":
+                String searchText = request.getParameter("searchText");
+
+                ArrayList<Incidencia> lista = usersDao.BuscarIncidencia(searchText);
+                request.setAttribute("lista", lista);
+                request.setAttribute("searchText", searchText);
+
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
+                requestDispatcher.forward(request, response);
                 break;
-
         }
     }
-
-        @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        }
-    }
+}
