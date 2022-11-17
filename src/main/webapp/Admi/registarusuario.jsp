@@ -341,7 +341,7 @@
                                     </td>
                                     <td>
                                         <div class="col-auto">
-                                            <input type="password" id="inputName" class="form-control"
+                                            <input type="text" id="inputName" class="form-control"
                                                    aria-describedby="passwordHelpInline">
                                         </div>
                                     </td>
@@ -354,7 +354,7 @@
                                     </td>
                                     <td>
                                         <div class="col-auto">
-                                            <input type="password" id="inputLastName" class="form-control"
+                                            <input type="text" id="inputLastName" class="form-control"
                                                    aria-describedby="passwordHelpInline">
                                         </div>
                                     </td>
@@ -367,7 +367,7 @@
                                     </td>
                                     <td>
                                         <div class="col-auto">
-                                            <input type="password" id="inputDNI" class="form-control"
+                                            <input type="text" id="inputDNI" class="form-control"
                                                    aria-describedby="passwordHelpInline">
                                         </div>
                                     </td>
@@ -378,7 +378,7 @@
                                     </td>
                                     <td>
                                         <div class="col-auto">
-                                            <input type="password" id="inputCel" class="form-control"
+                                            <input type="text" id="inputCel" class="form-control"
                                                    aria-describedby="passwordHelpInline">
                                         </div>
                                     </td>
@@ -391,7 +391,7 @@
                                     </td>
                                     <td>
                                         <div class="col-auto">
-                                            <input type="password" id="inputCodigoPUCP" class="form-control"
+                                            <input type="text" id="inputCodigoPUCP" class="form-control"
                                                    aria-describedby="passwordHelpInline">
                                         </div>
                                     </td>
@@ -402,7 +402,7 @@
                                     </td>
                                     <td>
                                         <div class="col-auto">
-                                            <input type="password" id="inputCorreoPUCP" class="form-control"
+                                            <input type="text" id="inputCorreoPUCP" class="form-control"
                                                    aria-describedby="passwordHelpInline">
                                         </div>
                                     </td>

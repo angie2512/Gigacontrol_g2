@@ -8,6 +8,8 @@
     ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
 %>
 
+<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
+
 
 <!doctype html>
 <html lang="en">
@@ -59,6 +61,9 @@
             <div class="collapse navbar-collapse" id="navbarsExample07">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/InicioUsuario" style="color:#FFFFFF">Inicio</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/PerfilUsuario" style="color:#FFFFFF">Perfil</a>
                     </li>
                     <li class="nav-item">
@@ -72,7 +77,7 @@
 
 
                 <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">ROSA A. SALAZAR CASTILLA </b></a></li>
+                    <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85"><%=userlogged.getNombre() + userlogged.getApellido()%></b></a></li>
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
                             <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -81,7 +86,7 @@
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <a class="dropdown-item" href=<%=request.getContextPath()%>/Index><u style="color:rgb(35,30,30)"> <b>Cerrar sesión > </b></u></a>
+                    <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u style="color:rgb(35,30,30)"> <b>Cerrar sesión > </b></u></a>
                 </form>
             </div>
         </div>
@@ -147,7 +152,7 @@
                 <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; height:3500px; background-color: #051D57;" >
                     <h4 class="border-bottom pb-2 mb-2" style="background-color:#051D57;color:#FFFFFF;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">TODAS LAS INCIDENCIAS </b></center></h4>
                     <p></p>
-                    <form class="d-flex" role="search" action="<%=request.getContextPath()%>/InicioUsuario?accion=buscar">
+                    <form class="d-flex" role="search" action="<%=request.getContextPath()%>/InicioUsuario?action=buscar">
                         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
                         <button class="btn btn-outline-primary" type="submit">Buscar</button>
                     </form>

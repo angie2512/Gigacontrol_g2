@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,7 +29,9 @@
 
         <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/InicioUsuario" style="color:#FFFFFF">Inicio</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/NuevaIncidencia" style="color:#FFFFFF">Nueva Incidencia</a>
                 </li>
@@ -70,7 +74,7 @@
 
                 <p></p>
                 <blockquote class="blockquote mb-0">
-                    <h5 style="text-align: center;color:#21547D"><b>ROSA A. SALAZAR CASTILLA</b></h5>
+                    <h5 style="text-align: center;color:#21547D"><b><%=userlogged.getNombre() + userlogged.getApellido()%></b></h5>
                     <h6 style="text-align: center;">ALUMNO</h6>
                     <h6 style="text-align: center;"><I>Ciencias e Ingeniería</I></h6>
                     <h6 style="text-align: center;">20203368</h6>

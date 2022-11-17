@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
+
 <%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%@ page import="java.util.ArrayList" %>
 <%
@@ -39,7 +41,7 @@
 
 
             <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">ROSA A. SALAZAR CASTILLA</b></a></li>
+                <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85"><%=userlogged.getNombre()+userlogged.getApellido()%></b></a></li>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
                         <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -65,35 +67,119 @@
             <div class="card">
                 <div class="card-body">
                     <table>
-                        <thead>
                         <tr>
-                            <th scope="col"><center> # </center></th>
-                            <th scope="col"><center> Nombre </center></th>
-                            <th scope="col"><center> Codigo </center></th>
-                            <th scope="col"><center> Rol </center></th>
-                            <th scope="col"><center> Opciones </center></th>
+                            <td><img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+                            <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
+                                <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
+                                <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>
+
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
+                                    <a href=<%=request.getContextPath()%>/EditarIncidencia class="btn btn-danger">Editar</a>
+                                    <a href=<%=request.getContextPath()%>/VerIncidenciaUsuario class="btn btn-primary">Ver</a>
+                                </div>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        <%for(Incidencia incidencia : listaDeIncidencias) { %>
-                        <tr>
-                            <td> <%=incidencia.getUsuario().getIdUsuario()%>  </td>
-                            <td> <%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%> </td>
-                            <td><%=incidencia.getUsuario().getCodigo()%> </td>
-                            <td><%=incidencia.getUsuario().getRolId()%> </td>
-                            <td><div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                                <a href=<%=request.getContextPath()%>/EditarIncidencia class="btn btn-danger">Editar</a>
-                                <a href=<%=request.getContextPath()%>/VerIncidenciaUsuario class="btn btn-primary">Ver</a>
-                            </div></td>
-                        </tr>
-                        <% } %>
-                        </tbody>
                     </table>
                 </div>
             </div>
             <br>
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td><img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+                            <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
+                                <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
+                                <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
+                                    <a href="editarIncidencias.html" class="btn btn-danger">Editar</a>
+                                    <a href="verIncidencia.html" class="btn btn-primary">Ver</a>
+                                </div>
 
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td><img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+                            <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
+                                <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
+                                <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
+                                    <a href="editarIncidencias.html" class="btn btn-danger">Editar</a>
+                                    <a href="verIncidencia.html" class="btn btn-primary">Ver</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td><img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+                            <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
+                                <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
+                                <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>
 
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
+                                    <a href="editarIncidencias.html" class="btn btn-danger">Editar</a>
+                                    <a href="verIncidencia.html" class="btn btn-primary">Ver</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td><img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+                            <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
+                                <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
+                                <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>
+
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
+                                    <a href="editarIncidencias.html" class="btn btn-danger">Editar</a>
+                                    <a href="verIncidencia.html" class="btn btn-primary">Ver</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td><img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
+                            <td style="padding-left: 2rem;"><p class="card-text"><b>ROJAS MEDINA, Sebastian </b>
+                                <b style="color:#B1120D; padding-left: 2rem;">20203368</b>
+                                <b style="color:#C0C4C7; padding-left: 2rem;">Estudiante </b></p></td>
+
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
+                                    <a href="editarIncidencias.html" class="btn btn-danger">Editar</a>
+                                    <a href="verIncidencia.html" class="btn btn-primary">Ver</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
