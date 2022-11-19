@@ -75,7 +75,7 @@
         <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; background-color: #8CC67A;" >
           <h4 class="border-bottom pb-2 mb-2" style="background-color:#6FCE92;color:#18542E;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">INCIDENCIAS REPORTADAS</b></center></h4>
           <p></p>
-          <form class="d-flex" method="post" role="search" action="<%=request.getContextPath()%>/ServletSeguridad?accion=buscar">
+          <form class="d-flex" method="post" role="search" action="<%=request.getContextPath()%>/ServletSeguridad?action=buscar">
             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
           </form>

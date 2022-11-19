@@ -1,4 +1,4 @@
-<%@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia" %>
+<%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <% Incidencia incidencia = (Incidencia) request.getAttribute("incidencia"); %>
@@ -51,10 +51,10 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <h2 class="card-text"><b style="color:#2C3166"><%=incidencia.getNombreIncidencia()%></b></h2>
+                                    <h2 class="card-text"><b style="color:#2C3166"><%=incidencia.getNombreDeIncidencia()%></b></h2>
                                 </td>
                                 <td>
-                                    <a href="<%=request.getContextPath()%>/ReporteIncidencia?action=mostrarReporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary" style="margin-left:60px;">Descargar Reporte</a>
+                                    <a href="<%=request.getContextPath()%>/ServletSeguridad?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary" style="margin-left:60px;">Descargar Reporte</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -116,7 +116,7 @@
                                 </table>
                                 <br>
                                 <table>
-                                    <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPUCP()%></h6></td></tr>
+                                    <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPucp()%></h6></td></tr>
                                 </table>
                                 <br>
                                 <table>
@@ -144,7 +144,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            <form method="post" action="<%=request.getContextPath()%>/VerIncidencia?action=guardar">
+                            <form method="post" action="<%=request.getContextPath()%>/ServletSeguridad?action=guardar">
                             <div style="margin-left:40px">
                                 <input type="hidden" name="idIncidencia" value="<%=incidencia.getIdIncidencia()%>">
                                 <div class="form-floating">

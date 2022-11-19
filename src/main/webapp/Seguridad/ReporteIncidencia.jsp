@@ -1,4 +1,5 @@
 <%@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia" %>
+<%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Incidencia incidencia = (Incidencia) request.getAttribute("incidencia2");%>
 <!doctype html>
@@ -34,7 +35,7 @@
                 <tbody>
                   <tr>
                     <td>
-                      <h2 class="card-text"><b style="color:#2C3166"><%=incidencia.getNombreIncidencia()%></b></h2>
+                      <h2 class="card-text"><b style="color:#2C3166"><%=incidencia.getNombreDeIncidencia()%></b></h2>
                     </td>
                   </tr>
                 </tbody>
@@ -64,7 +65,7 @@
               </table>
               <form method="post" action="<%=request.getContextPath()%>/subirfoto" enctype="multipart/form-data">
                 <input type="file" name="foto">
-                <button type="btn" name="">subir foto</button>
+                <button type="btn" name="">Subir foto</button>
               </form>
               <br>
               <div style="display:flex">
@@ -87,7 +88,7 @@
                   </table>
                   <br>
                   <table>
-                    <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPUCP()%></h6></td></tr>
+                    <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPucp()%></h6></td></tr>
                   </table>
                   <br>
                   <table>

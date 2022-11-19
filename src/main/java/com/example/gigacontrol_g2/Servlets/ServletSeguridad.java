@@ -36,7 +36,7 @@ public class ServletSeguridad extends HttpServlet {
                 break;
 
             case "perfil":
-                requestDispatcher = request.getRequestDispatcher("Seguridad/Perfi.jsp");
+                requestDispatcher = request.getRequestDispatcher("Seguridad/Perfil.jsp");
                 requestDispatcher.forward(request, response);
                 break;
 
