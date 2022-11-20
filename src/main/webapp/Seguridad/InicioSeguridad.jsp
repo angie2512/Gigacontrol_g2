@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
+  String searchText = (String) request.getAttribute("searchText");
   ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("listaIncidencias");
 %>
 
@@ -79,8 +80,6 @@
             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
           </form>
-
-
           <div class="card" style="margin-top:10px">
             <div class="card-body">
               <div class="d-flex position-relative">

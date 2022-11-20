@@ -51,7 +51,7 @@
         <div class="collapse navbar-collapse" id="navbarsExample07">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" href="<%=request.getContextPath()%>/InicioSeguridad" aria-current="page" style="color:#FFFFFF">Inicio</a>
+              <a class="nav-link active" href="<%=request.getContextPath()%>/ServletSeguridad?action=listarIncidencia" aria-current="page" style="color:#FFFFFF">Inicio</a>
             </li>
           </ul>
         </div>
