@@ -29,7 +29,7 @@ public class ServletAdmin extends HttpServlet {
         switch (action) {
             case "Inicio":
                 BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
-                if(user != null){
+                if(user != null && user.getIdUsuario()!=1 && user.getIdUsuario()!=2 ){
                     requestDispatcher = request.getRequestDispatcher("Admi/AdminInicio.jsp");
                     requestDispatcher.forward(request, response);
                 }

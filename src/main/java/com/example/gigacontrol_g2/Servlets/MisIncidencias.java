@@ -1,16 +1,13 @@
-package com.example.gigacontrol_g2.Usuario.Servlets;
+package com.example.gigacontrol_g2.Servlets;
 
-import com.example.gigacontrol_g2.beans.Incidencia;
 import com.example.gigacontrol_g2.daos.DaoDatosFijos;
 import com.example.gigacontrol_g2.daos.SeguridadDao;
-import com.example.gigacontrol_g2.daos.UsersDao;
 import com.example.gigacontrol_g2.daos.UsersDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 @WebServlet(name = "MisIncidencias", value = "/MisIncidencias")
 public class MisIncidencias extends HttpServlet {

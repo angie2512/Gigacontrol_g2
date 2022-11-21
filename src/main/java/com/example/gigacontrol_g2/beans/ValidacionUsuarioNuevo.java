@@ -1,4 +1,4 @@
-package com.example.gigacontrol_g2.Usuario.Beans;
+package com.example.gigacontrol_g2.beans;
 
 public class ValidacionUsuarioNuevo {
     private int idUsuario;

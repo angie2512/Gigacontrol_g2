@@ -1,4 +1,4 @@
-package com.example.gigacontrol_g2.Usuario.Servlets;
+package com.example.gigacontrol_g2.Servlets;
 
 
 import com.example.gigacontrol_g2.beans.Incidencia;
