@@ -40,7 +40,7 @@ public class UsersDao extends BaseDao{
     public ArrayList<Incidencia> obtenerListaDeIncidencias(){
         ArrayList<Incidencia> listaDeIncidencias= new ArrayList<>();
 
-        String sql = "select  u.Nombre, u.Codigo, u.Rol_idRol from destacarincidencia dest inner join incidencia i on dest.idIncidencia = i.idIncidencia\n" +
+        String sql = "select u.Nombre, u.Codigo, u.Rol_idRol from destacarincidencia dest inner join incidencia i on dest.idIncidencia = i.idIncidencia\n" +
                 "inner join usuario u on dest.idUsuario = u.idUsuario";
 
         try (Connection conn = this.getConnection();

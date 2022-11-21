@@ -60,6 +60,7 @@
 
             <div class="collapse navbar-collapse" id="navbarsExample07">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/PerfilUsuario" style="color:#FFFFFF">Perfil</a>
                     </li>
@@ -69,6 +70,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/NuevaIncidencia" style="color:#FFFFFF">Nueva Incidencia</a>
                     </li>
+
                 </ul>
 
 
@@ -148,8 +150,8 @@
                 <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; height:3500px; background-color: #051D57;" >
                     <h4 class="border-bottom pb-2 mb-2" style="background-color:#051D57;color:#FFFFFF;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">TODAS LAS INCIDENCIAS </b></center></h4>
                     <p></p>
-                    <form class="d-flex" role="search" action="<%=request.getContextPath()%>/InicioUsuario?action=buscar">
-                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                    <form class="d-flex" role="search" method="post" action="<%=request.getContextPath()%>/InicioUsuario?action=buscar">
+                        <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar" aria-label="Buscar">
                         <button class="btn btn-outline-primary" type="submit">Buscar</button>
                     </form>
 
@@ -168,7 +170,7 @@
                                                     <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%=incidencia.getNombreDeIncidencia()%></b></h4>
                                                 </td>
                                                 <td>
-                                                    <div class="card-body d-flex align-items-right"  aria-label="Basic mixed styles example" style="padding-final: 3rem;">
+                                                    <div class="card-body d-flex align-items-right"  aria-label="Basic mixed styles example" style="padding-final: 3rem; margin-left: 200px;">
                                                         <a href="<%=request.getContextPath()%>/VerIncidencia?action=mostrar&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver</a>
                                                     </div>
                                                 </td>

@@ -47,11 +47,14 @@ public class InicioUsuario extends HttpServlet {
                 String searchText = request.getParameter("searchText");
 
                 ArrayList<Incidencia> lista = usersDao.BuscarIncidencia(searchText);
-                request.setAttribute("lista", lista);
+                request.setAttribute("ListaDeIncidencias", lista);
                 request.setAttribute("searchText", searchText);
+                request.setAttribute("ListaDeIncidencias", usersDao.obtenerListaDeIncidencias());
 
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
                 requestDispatcher.forward(request, response);
+
+
                 break;
         }
     }
