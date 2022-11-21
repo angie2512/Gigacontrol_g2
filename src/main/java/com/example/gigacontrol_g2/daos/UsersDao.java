@@ -14,6 +14,8 @@ public class UsersDao extends BaseDao{
              Statement stmt = conn.createStatement();
              ResultSet resultSet = stmt.executeQuery(sql)) {
 
+
+
             while (resultSet.next()) {
                 BUsuarios newUser = new BUsuarios();
                 newUser.setIdUsuario(resultSet.getInt(1));
@@ -208,36 +210,6 @@ public class UsersDao extends BaseDao{
     }
 
 
-    //public ArrayList<Usuario> obtenerListaDeUsuarios() {
-    //        ArrayList<Usuario> listaDeUsuarios = new ArrayList<>();
-    //
-    //        //Conexion a base de datos
-    //
-    //        String sql = "select * from usuario";
-    //
-    //
-    //        try (Connection conn = this.getConnection();
-    //             Statement stmt = conn.createStatement();
-    //             ResultSet rs = stmt.executeQuery(sql)) {
-    //
-    //            while (rs.next()) {
-    //                Usuario usuario = new Usuario();
-    //                usuario.setIdUsuario(rs.getInt(1));
-    //                usuario.setNombre(rs.getString(2));
-    //                usuario.setApellido(rs.getString(3));
-    //                usuario.setCodigo(rs.getString(6));
-    //                usuario.setCategoria(rs.getString(9));
-    //                listaDeUsuarios.add(usuario);
-    //            }
-    //
-    //
-    //        } catch (SQLException throwables) {
-    //            throwables.printStackTrace();
-    //        }
-    //
-    //        return listaDeUsuarios;
-    //    }
-    //
     public BUsuarios obtenerUsuario(int idUsuario) {
 
         BUsuarios usuario = null;
@@ -270,16 +242,10 @@ public class UsersDao extends BaseDao{
 
 
     public ArrayList<BUsuarios> buscarPorApellido(String apellido) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
 
-        String url = "jdbc:mysql://localhost:3306/gigacontrol";
         ArrayList<BUsuarios> lista = new ArrayList<>();
         String sql = "select * from usuario where lower(apellido) like ?";
-        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+        try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
             pstmt.setString(1, "%"+apellido+"%");
@@ -298,9 +264,32 @@ public class UsersDao extends BaseDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return lista;
     }
+
+
+    public String contar() {
+
+        String nro_filas_total = null;
+        String sql = "select count(*) from usuario";
+        try (Connection connection = this.getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql);) {
+
+            if(rs.next()){
+                nro_filas_total = rs.getString(1);
+            }
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return nro_filas_total;
+    }
+
+
 
 }
 
