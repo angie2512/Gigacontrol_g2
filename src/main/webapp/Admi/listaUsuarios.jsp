@@ -1,16 +1,22 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.gigacontrol_g2.beans.BUsuarios" %>
-<%@ page import="com.example.gigacontrol_g2.beans.BUsuarios" %><%--
-  Created by IntelliJ IDEA.
-  User: USUARIO
-  Date: 26/10/2022
-  Time: 11:38
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
     String searchText = (String) request.getAttribute("searchText");
+%>
+
+<%
+    int maxPag2 = (int) request.getAttribute("maxPag2");
+%>
+<%
+    int regMin = (int) request.getAttribute("regMin");
+%>
+<%
+    int regMax = (int) request.getAttribute("regMax");
+%>
+<%
+    int valor_pagina = (int) request.getAttribute("valor_pagina");
 %>
 
 <jsp:useBean id="lista" scope="request" type="java.util.ArrayList<com.example.gigacontrol_g2.beans.BUsuarios>"/>
@@ -174,10 +180,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% int i = 1;
-                                    for (BUsuarios usuario : lista) { %>
+                                <%
+                                    for (int i = regMin; i < regMax; i++) {
+                                        BUsuarios usuario = lista.get(i); %>
                                 <tr>
-                                    <th><%=i%>
+                                    <th><%=i+1%>
                                     </th>
                                     <td><img src="resources/Images/usu.png" class="rounded mx-auto d-block "
                                              alt="userphoto" height="60rem" width="60rem"></td>
@@ -192,7 +199,6 @@
                                             class="btn btn-primary">Editar</a></td>
                                 </tr>
                                 <%
-                                        i++;
                                     }
                                 %>
                             </tbody>
@@ -204,21 +210,71 @@
                 </div>
 
 
+                <%
+                    if (maxPag2 >= 1) {
+
+                %>
+
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
+
+                        <%if (valor_pagina != 1) {%>
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link" href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios&pg=<%=valor_pagina-1%>"
+                               aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <%}%>
+                        <%
+
+                            for (int i = 0; i < maxPag2; i++) {
+                                if (i + 1 == valor_pagina) {
+                        %>
+
+                        <li class="page-item active" aria-current="page">
+                            <span class="page-link"><%=i + 1%></span>
+                        </li>
+
+
+                        <% }
+                        else {%>
+
+
+
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                            <a class="page-link" href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios&pg=<%=i+1%>">
+                                <span aria-hidden="true"><%=i+1%></span>
+                            </a>
+                        </li>
+
+
+                        <%
+                            }
+                        %>
+
+
+                        <%
+                                }
+                            }
+                        %>
+
+
+                        <%if (valor_pagina != maxPag2) { %>
+
+                        <li class="page-item">
+                            <a class="page-link" href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios&pg=<%=valor_pagina+1%>"
+                               aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
+
+                        <%
+                            }
+                        %>
+
+
+
                     </ul>
                 </nav>
 
@@ -232,4 +288,16 @@
                 integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
                 crossorigin="anonymous"></script>
     </body>
+
+
+
+
+
+
+
+
+
+
+
+
 </html>

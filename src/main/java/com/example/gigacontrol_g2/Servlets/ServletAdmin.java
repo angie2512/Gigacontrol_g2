@@ -19,6 +19,13 @@ public class ServletAdmin extends HttpServlet {
         UsersDao usersDao = new UsersDao();
         ArrayList<BUsuarios> lista = usersDao.getUsersList();
 
+        String valor_total_filas_str = usersDao.contar();
+        int valor_total_filas_int = Integer.parseInt(valor_total_filas_str);
+        float valor_total_filas = Float.parseFloat(valor_total_filas_str);
+
+        float maxPag = (float) (valor_total_filas / 9);
+        int maxPag2 = (int) Math.ceil(maxPag);
+
         switch (action) {
             case "Inicio":
                 BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
@@ -38,7 +45,34 @@ public class ServletAdmin extends HttpServlet {
                 break;
             case "ListaUsuarios":
 
-                request.setAttribute("lista", usersDao.getUsersList());
+                int valor_pagina = 1;
+
+                request.setAttribute("lista", lista);
+
+
+                if (request.getParameter("pg") != null) {
+                    valor_pagina = Integer.parseInt(request.getParameter("pg"));
+                }
+
+
+                int regMin = (valor_pagina - 1) * 9;
+
+                if (valor_pagina != maxPag2){
+                    int regMax = valor_pagina * 9;
+                    request.setAttribute("maxPag2", maxPag2);
+                    request.setAttribute("regMin", regMin);
+                    request.setAttribute("regMax", regMax);
+                    request.setAttribute("valor_pagina", valor_pagina);
+                }else{
+                    int regMax = valor_total_filas_int;
+                    request.setAttribute("maxPag2", maxPag2);
+                    request.setAttribute("regMin", regMin);
+                    request.setAttribute("regMax", regMax);
+                    request.setAttribute("valor_pagina", valor_pagina);
+                }
+
+
+
                 requestDispatcher = request.getRequestDispatcher("Admi/listaUsuarios.jsp");
                 requestDispatcher.forward(request, response);
                 break;
