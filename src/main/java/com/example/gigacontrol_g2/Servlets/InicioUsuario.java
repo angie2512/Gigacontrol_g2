@@ -49,7 +49,6 @@ public class InicioUsuario extends HttpServlet {
                 ArrayList<Incidencia> lista = usersDao.BuscarIncidencia(searchText);
                 request.setAttribute("ListaDeIncidencias", lista);
                 request.setAttribute("searchText", searchText);
-                request.setAttribute("ListaDeIncidencias", usersDao.obtenerListaDeIncidencias());
 
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
                 requestDispatcher.forward(request, response);

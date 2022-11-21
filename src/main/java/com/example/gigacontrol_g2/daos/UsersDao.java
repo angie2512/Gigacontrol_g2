@@ -79,24 +79,60 @@ public class UsersDao extends BaseDao{
 
         return listaDeIncidencias;
     }
-    public ArrayList<Incidencia> BuscarIncidencia(String incidencia){
+    public ArrayList<Incidencia> BuscarIncidencia(String incidenciaFiltr){
+        DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
+        SeguridadDao seguridadDao = new SeguridadDao();
 
         String sql = "select * from incidencia where NombreDeIncidencia like ?";
         ArrayList<Incidencia> listaFiltrada = new ArrayList<>();
-
         try(Connection conn = this.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);){
-            pstmt.setString(1,"%"+incidencia+"%");
+            pstmt.setString(1,"%"+incidenciaFiltr+"%");
             try(ResultSet rs = pstmt.executeQuery();){
                 while(rs.next()){
-                    Incidencia incidencia1 = new Incidencia();
-                    incidencia1.setIdIncidencia(rs.getInt("idIncidencia"));
-                    incidencia1.setNombreDeIncidencia(rs.getString("NombreDeIncidencia"));
-                    incidencia1.setDescripcion(rs.getString("Descripcion"));
-                    incidencia1.setZonaPucp(rs.getString("ZonaPUCP"));
-                    incidencia1.setUbicacion(rs.getString("Ubicacion"));
-                    incidencia1.setFoto(rs.getString("Foto"));
-                    listaFiltrada.add(incidencia1);
+                    Incidencia incidencia = new Incidencia();
+                    incidencia.setIdIncidencia(rs.getInt(1));
+                    incidencia.setNombreDeIncidencia(rs.getString(2));
+                    incidencia.setDescripcion(rs.getString(3));
+                    incidencia.setZonaPucp(rs.getString(4));
+                    incidencia.setUbicacion(rs.getString(5));
+                    UsersDao userDao = new UsersDao();
+                    BUsuarios usuario = new BUsuarios();
+                    for (BUsuarios usuar : userDao.getUsersList()){
+                        if(usuar.getIdUsuario()==rs.getInt(7)){
+                            usuario.setIdUsuario(rs.getInt(7));
+                            usuario.setNombre(usuar.getNombre());
+                            usuario.setApellido(usuar.getApellido());
+                            usuario.setCodigo(usuar.getCodigo());
+                            usuario.setCategoria(usuar.getCategoria());
+                        }
+                    }
+                    incidencia.setUsuario(usuario);
+                    TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
+                    for (TipoDeIncidencia tdi : seguridadDao.obtenerListaTipoDeIncidencias()){
+                        if(tdi.getIdTipoDeIncidencia()==rs.getInt(8)){
+                            tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt(8));
+                            tipoDeIncidencia.setNombre(tdi.getNombre());
+                        }
+                    }
+                    incidencia.setTipoDeIncidencia(tipoDeIncidencia);
+                    NivelDeUrgencia nivelDeUrgencia = new NivelDeUrgencia();
+                    for (NivelDeUrgencia nivelUrgencia : seguridadDao.obtenerListaNivelesDeUrgencia()){
+                        if(nivelUrgencia.getIdNivelDeUrgencia()==rs.getInt(9)){
+                            nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt(9));
+                            nivelDeUrgencia.setNombre(nivelUrgencia.getNombre());
+                        }
+                    }
+                    incidencia.setNivelDeUrgencia(nivelDeUrgencia);
+                    Estado estado = new Estado();
+                    for (Estado est: daoDatosFijos.obtenerListaEstados()){
+                        if(est.getIdEstado()==rs.getInt(10)){
+                            estado.setIdEstado(rs.getInt(10));
+                            estado.setNombre(est.getNombre());
+                        }
+                    }
+                    incidencia.setEstado(estado);
+                    listaFiltrada.add(incidencia);
                 }}
         }catch (SQLException e){
             e.printStackTrace();
