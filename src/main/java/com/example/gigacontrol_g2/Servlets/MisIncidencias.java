@@ -19,7 +19,7 @@ public class MisIncidencias extends HttpServlet {
         SeguridadDao seguridadDao = new SeguridadDao();
         RequestDispatcher view;
         //asignar
-        request.setAttribute("ListaDeIncidencias", usersDao.obtenerListaDeIncidencias());
+        request.setAttribute("ListaDeIncidenciasDestacadas", usersDao.obtenerIncidenciasDestacadas());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/MisIncidencias.jsp");
         //enviar
         requestDispatcher.forward(request, response);
