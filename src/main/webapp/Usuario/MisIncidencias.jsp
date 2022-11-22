@@ -2,7 +2,7 @@
 <%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%@ page import="java.util.ArrayList" %>
 <%
-    ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
+    ArrayList<Incidencia> listaDestacadas = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidenciasDestacadas");
 %>
 <!doctype html>
 <html lang="en">
@@ -62,7 +62,7 @@
     <div class="card">
         <div class="card-body">
             <div class="p-7 mb-2 bg-primary text-white" style="--bs-bg-opacity: .5;">
-                <h4 style="text-align: center; color: white; font-family:'Times New Roman', Times, serif">MIS INCIDENCIAS</h4>
+                <h4 style="text-align: center; color: white; font-family:'Times New Roman', Times, serif">MIS INCIDENCIAS DESTACADAS</h4>
             </div>
             <br>
             <div class="card">
@@ -70,22 +70,17 @@
                     <table>
                         <thead>
                         <tr>
-                            <th scope="col"><center> # </center></th>
+                            <th scope="col"><center> Nombre Incidencia </center></th>
                             <th scope="col"><center> Nombre </center></th>
-                            <th scope="col"><center> Codigo </center></th>
-                            <th scope="col"><center> Rol </center></th>
                             <th scope="col"><center> Opciones </center></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <%for(Incidencia incidencia : listaDeIncidencias) { %>
+                        <%for(Incidencia incidencia : listaDestacadas) { %>
                         <tr>
-                            <td> <%=incidencia.getUsuario().getIdUsuario()%>  </td>
-                            <td> <%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%> </td>
-                            <td><%=incidencia.getUsuario().getCodigo()%> </td>
-                            <td><%=incidencia.getUsuario().getRolId()%> </td>
+                            <td> <%= incidencia.getNombreDeIncidencia() %></td>
+                            <td> <%= incidencia.getUsuario().getNombre() %> <%=incidencia.getUsuario().getApellido()%> </td>
                             <td><div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                                <a href=<%=request.getContextPath()%>/EditarIncidencia class="btn btn-danger">Editar</a>
                                 <a href=<%=request.getContextPath()%>/VerIncidenciaUsuario class="btn btn-primary">Ver</a>
                             </div></td>
                         </tr>
