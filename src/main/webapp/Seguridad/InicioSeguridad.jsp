@@ -1,8 +1,8 @@
 <%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.example.gigacontrol_g2.beans.Estado" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
+<!--Con "userlogged" en teoria podemos imprimir el nombre y apellido del usuario seguridad" -->
 <%
   String searchText = (String) request.getAttribute("searchText");
   ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("listaIncidencias");

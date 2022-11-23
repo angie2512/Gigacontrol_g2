@@ -24,7 +24,8 @@ public class ServletSeguridad extends HttpServlet {
 
         UsersDao usersDao = new UsersDao();
         SeguridadDao seguridadDao = new SeguridadDao();
-        ArrayList<Incidencia> lista = seguridadDao.obtenerListaDeIncidencias();
+        //ArrayList<Incidencia> lista = seguridadDao.obtenerListaDeIncidencias();
+        request.setAttribute("userlogged",request.getSession());
         //String idIncidenciaStr = request.getParameter("id");
         //int idIncidencia = Integer.parseInt("idIncidenciaStr");
 
