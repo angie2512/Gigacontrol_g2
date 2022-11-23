@@ -12,47 +12,54 @@ import java.io.IOException;
 public class ServletInicio extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        RequestDispatcher requestDispatcher;
-        if(action==null){
-            RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-            view.forward(request,response);
-        }
-        else{
-            switch (action){
+        //String action = request.getParameter("action");
+        String action = request.getParameter("action") == null ? "mostarIndex" : request.getParameter("action");
+        RequestDispatcher view;
+        /*if (action == null) {
+            view = request.getRequestDispatcher("index2.jsp");
+            view.forward(request, response);
+        } else {*/
+            switch (action) {
+                case "mostarIndex":
+                    view = request.getRequestDispatcher("index.jsp");
+                    view.forward(request,response);
                 case "LogIn":
-                    BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged") ;
+                    BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
 
-                    if(user != null && user.getIdUsuario() !=0){
-                        response.sendRedirect(request.getContextPath());
-                        System.out.println("aca?");
-                    }
-                    else {
-                        requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
-                        requestDispatcher.forward(request, response);
-                        System.out.println("aqui");
+                    if (user != null && user.getIdUsuario() != 0) {
+                        if (user.getRolId() == 1) {
+                            response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
+                        } else if (user.getRolId() == 2) {
+                            response.sendRedirect(request.getContextPath() + "/ServletUsuario");
+                        } else {
+                            response.sendRedirect(request.getContextPath() + "/ServletAdmin");
+                        }
+                        //response.sendRedirect(request.getContextPath());
+                    } else {
+                        view = request.getRequestDispatcher("inicioDeSesion.jsp");
+                        view.forward(request, response);
                     }
                     break;
                 case "logout":
                     HttpSession session = request.getSession();
                     session.invalidate();
-                    response.sendRedirect( request.getContextPath() + "/ServletInicio");
+                    response.sendRedirect(request.getContextPath() + "/ServletInicio");
                     break;
                 case "registro":
-                    requestDispatcher = request.getRequestDispatcher("registro.jsp");
-                    requestDispatcher.forward(request,response);
+                    view = request.getRequestDispatcher("registro.jsp");
+                    view.forward(request, response);
                     break;
                 case "Registrousuario":
-                    requestDispatcher = request.getRequestDispatcher("RegistroUsuario.jsp");
-                    requestDispatcher.forward(request,response);
+                    view = request.getRequestDispatcher("RegistroUsuario.jsp");
+                    view.forward(request, response);
                     break;
                 case "Registroseguridad":
-                    requestDispatcher = request.getRequestDispatcher("RegistroSeguridad.jsp");
-                    requestDispatcher.forward(request,response);
+                    view = request.getRequestDispatcher("RegistroSeguridad.jsp");
+                    view.forward(request, response);
                     break;
             }
         }
-    }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

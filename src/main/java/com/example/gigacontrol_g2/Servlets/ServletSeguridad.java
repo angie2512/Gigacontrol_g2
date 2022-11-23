@@ -25,6 +25,8 @@ public class ServletSeguridad extends HttpServlet {
         UsersDao usersDao = new UsersDao();
         SeguridadDao seguridadDao = new SeguridadDao();
         ArrayList<Incidencia> lista = seguridadDao.obtenerListaDeIncidencias();
+        //String idIncidenciaStr = request.getParameter("id");
+        //int idIncidencia = Integer.parseInt("idIncidenciaStr");
 
         switch (action){
 
@@ -48,11 +50,20 @@ public class ServletSeguridad extends HttpServlet {
                 break;
 
             case "reporte":
+                String idIncidenciaStr1 = request.getParameter("id");
+                int idIncidencia1 = Integer.parseInt(idIncidenciaStr1);
+                Incidencia incidencia1 = seguridadDao.buscarIncidencia(idIncidencia1);
+                request.setAttribute("indicencia",incidencia1);
+
                 requestDispatcher = request.getRequestDispatcher("Seguridad/ReporteIncidencia.jsp");
                 requestDispatcher.forward(request, response);
                 break;
 
             case "verIncidencia":
+                String idIncidenciaStr = request.getParameter("id");
+                int idIncidencia = Integer.parseInt(idIncidenciaStr);
+                Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
+                request.setAttribute("indicencia",incidencia);
                 requestDispatcher = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
                 requestDispatcher.forward(request, response);
                 break;
@@ -80,8 +91,8 @@ public class ServletSeguridad extends HttpServlet {
 
             case "buscar":
                 String buscar = request.getParameter("keyword");
-                ArrayList<Incidencia> lista = seguridadDao.buscarPorIncidencia(buscar);
-                request.setAttribute("lista", lista);
+                ArrayList<Incidencia> listaFiltrada1 = seguridadDao.buscarPorIncidencia(buscar);
+                request.setAttribute("listaIncidencias", listaFiltrada1);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ServletSeguridad");
                 requestDispatcher.forward(request, response);
                 break;
