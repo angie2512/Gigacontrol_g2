@@ -271,11 +271,11 @@ public class UsersDao extends BaseDao{
     public ArrayList<BUsuarios> buscarPorApellido(String apellido) {
 
         ArrayList<BUsuarios> lista = new ArrayList<>();
-        String sql = "select * from usuario where lower(apellido) like ?";
+        String sql = "select * from usuario where lower(apellido) = ?";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setString(1, "%"+apellido+"%");
+            pstmt.setString(1, apellido);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
@@ -314,6 +314,31 @@ public class UsersDao extends BaseDao{
         }
 
         return nro_filas_total;
+    }
+
+
+
+    public String contarxApellido(String apellido) {
+
+        String nro_filas_total_busqueda_apellido = null;
+        String sql = "select count(*) as conteo from usuario where lower(apellido) = ?";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, apellido);
+
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    nro_filas_total_busqueda_apellido = rs.getString("conteo");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return nro_filas_total_busqueda_apellido;
     }
 
 

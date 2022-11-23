@@ -2,22 +2,18 @@
 <%@ page import="com.example.gigacontrol_g2.beans.BUsuarios" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+
 <%
     String searchText = (String) request.getAttribute("searchText");
 %>
 
 <%
     int maxPag2 = (int) request.getAttribute("maxPag2");
-%>
-<%
     int regMin = (int) request.getAttribute("regMin");
-%>
-<%
     int regMax = (int) request.getAttribute("regMax");
-%>
-<%
     int valor_pagina = (int) request.getAttribute("valor_pagina");
 %>
+
 
 <jsp:useBean id="lista" scope="request" type="java.util.ArrayList<com.example.gigacontrol_g2.beans.BUsuarios>"/>
 
