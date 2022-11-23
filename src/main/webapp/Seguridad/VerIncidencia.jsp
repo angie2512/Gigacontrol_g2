@@ -54,7 +54,7 @@
                                     <h2 class="card-text"><b style="color:#2C3166"><%=incidencia.getNombreDeIncidencia()%></b></h2>
                                 </td>
                                 <td>
-                                    <a href="<%=request.getContextPath()%>/ServletSeguridad?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary" style="margin-left:60px;">Descargar Reporte</a>
+                                    <a href="<%=request.getContextPath()%>/ReporteIncidencia?action=mostrarReporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary" style="margin-left:60px;">Descargar Reporte</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -144,7 +144,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            <form method="post" action="<%=request.getContextPath()%>/ServletSeguridad?action=guardar">
+                            <form method="post" action="<%=request.getContextPath()%>/VerIncidencia?action=guardar">
                             <div style="margin-left:40px">
                                 <input type="hidden" name="idIncidencia" value="<%=incidencia.getIdIncidencia()%>">
                                 <div class="form-floating">

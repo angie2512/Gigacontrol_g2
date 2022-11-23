@@ -1,4 +1,4 @@
-<%@ page import="com.example.gigacontrol_g2.Seguridad.BeansSeguridad.Incidencia" %>
+<%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Incidencia incidencia = (Incidencia) request.getAttribute("incidencia2");%>

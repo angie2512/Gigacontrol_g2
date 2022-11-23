@@ -75,7 +75,7 @@ public class SeguridadDao extends BaseDao{
 
         return listaDeIncidencias;
     }
-
+// Para Ver la Incidencia
     public Incidencia buscarIncidencia(int idIncidencia) {
 
         Incidencia incidencia = null;
@@ -210,7 +210,7 @@ public class SeguridadDao extends BaseDao{
         return listaTipoDeIncidencias;
     }
 
-
+//Para el buscador
     public ArrayList<Incidencia> buscarPorIncidencia(String nombreDeIncidencia){
 
         String sql = "select * from incidencia where NombreDeIncidencia like ?";
