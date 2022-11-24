@@ -67,15 +67,23 @@
                                 <td></td>
                                 <td style="background-color:#DAD9BA"><h6>Nivel de urgencia: <b><%=incidencia.getNivelDeUrgencia().getNombre()%></b></h6> </td>
                                 <td>
-                                    <form method="post" action="<%=request.getContextPath()%>/ServletSeguridad?action=actualizarEstado">
-                                    <div class="form-group" >
-                                        <select name="estado" class="form-select" required>
-                                            <option selected disabled value="">Actualizar Estado</option>
-                                            <%for (Estado est: listaEstados){ %>
-                                            <option value="<%=est.getIdEstado()%>"><%=est.getNombre()%></option>
-                                            <%}%>
-                                        </select>
-                                        <div class="invalid-feedback">Seleccione un Estado</div>
+
+                                    <!-- <form id="myform">
+                                        <input id="something" type="text">
+                                    </form>
+                                    <input form="myform" id="something2" type="text">
+                                     <button form="myform" type="submit">Submit that form over there</button> -->
+                                    <form id="myform" method="post" action="<%=request.getContextPath()%>/ServletSeguridad?action=actualizarIncidencia">
+                                    <div class="btn btn-primary" >
+                                            <select class="form-select" id="estado" name="estado" required>
+                                                <option value="<%=incidencia.getEstado().getIdEstado()%>" selected>Actualizar Estado</option>
+                                                <%
+                                                    for (Estado est : listaEstados) {
+                                                %>
+                                                <option value="<%=est.getIdEstado()%>"><%=est.getNombre()%>
+                                                </option>
+                                                <%}%>
+                                            </select>
                                     </div>
                                     </form>
                                     <!-- <div class="dropdown" style="padding-left: 7rem;margin-left:10px">
@@ -155,20 +163,22 @@
                                     </tr>
                                 </table>
                             </div>
-                            <form method="post" action="<%=request.getContextPath()%>/ServletSeguridad?action=guardarComentario">
+                            <!-- <form method="post" action="< %=request.getContextPath()%>/ServletSeguridad?action=guardarComentario"> -->
                             <div style="margin-left:40px">
-                                <input type="hidden" name="idIncidencia" value="<%=incidencia.getIdIncidencia()%>">
+                                <input form="myform" type="hidden" name="idIncidencia" value="<%=incidencia.getIdIncidencia()%>">
                                 <div class="form-floating">
-                                    <input style="height:500px;width:260px" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="resolucionIncidencia" >
+                                    <input form="myform" style="height:500px;width:260px" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="resolucionIncidencia" >
                                     <label for="floatingTextarea2">Redacte su Comentario Aquí...</label>
                                 </div>
-                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
-                                    Guardar Comentario
+                                <button form="myform" ype="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
+                                    Guardar Cambios
                                 </button>
-
                             </div>
                             </form>
                         </div>
+                        <!--<button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
+                            Guardar Cambios
+                        </button> -->
                         <br>
 
                         <table>
@@ -252,7 +262,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex justify-content-center">
-                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/InicioSeguridad" role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">SALIR</a>
+                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletSeguridad" role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">SALIR</a>
                     </div>
                 </div>
             </div>

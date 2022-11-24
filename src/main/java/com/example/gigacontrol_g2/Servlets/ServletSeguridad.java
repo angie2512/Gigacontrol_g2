@@ -87,18 +87,36 @@ public class ServletSeguridad extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         SeguridadDao seguridadDao = new SeguridadDao();
+        String idIncidenciaStr = request.getParameter("idIncidencia");
+        int idIncidencia = Integer.parseInt(idIncidenciaStr);
 
         switch (action){
-            case "guardarComentario":
-                String idIncidenciaStr = request.getParameter("idIncidencia");
-                int idIncidencia = Integer.parseInt(idIncidenciaStr);
+            /*case "guardarComentario":
+                //String idIncidenciaStr = request.getParameter("idIncidencia");
+                //int idIncidencia = Integer.parseInt(idIncidenciaStr);
                 String resolucion = request.getParameter("resolucionIncidencia");
                 BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
                 seguridadDao.guardarComentario(userSeg.getIdUsuario(),idIncidencia,resolucion);
 
                 response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                 break;
+
             case "actualizarEstado":
+                String idEstadoStr = request.getParameter("estado");
+                int idEstado = Integer.parseInt(idEstadoStr);
+                seguridadDao.actualizarEstado(idEstado , idIncidencia);
+                break;
+             */
+
+            case "actualizarIncidencia":
+                String resolucion = request.getParameter("resolucionIncidencia");
+                BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
+                seguridadDao.guardarComentario(userSeg.getIdUsuario(),idIncidencia,resolucion);
+                String idEstadoStr = request.getParameter("estado");
+                int idEstado = Integer.parseInt(idEstadoStr);
+                seguridadDao.actualizarEstado(idEstado , idIncidencia);
+                response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
+                break;
 
             case "buscar":
                 String buscar = request.getParameter("keyword");

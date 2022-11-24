@@ -158,6 +158,24 @@ public class SeguridadDao extends BaseDao{
 
     }
 
+    public void actualizarEstado(int idEstado, int idIncidencia) {
+
+        String sql = "UPDATE incidencia set idEstado = ? WHERE idIncidencia = ? ";
+
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setInt(1,idEstado);
+            pstmt.setInt(2, idIncidencia);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 
 
 //Para el buscador
