@@ -107,6 +107,11 @@ public class ServletAdmin extends HttpServlet {
 
         UsersDao usersDao = new UsersDao();
 
+
+
+
+
+
         switch (action) {
             case "actualizar":
 
@@ -161,6 +166,39 @@ public class ServletAdmin extends HttpServlet {
                 String searchText = request.getParameter("searchText");
 
                 ArrayList<BUsuarios> lista = usersDao.buscarPorApellido(searchText);
+
+                int valor_pagina = 1;
+
+                String nro_filas_total_busqueda_apellido_str = usersDao.contarxApellido(searchText);
+                int nro_filas_total_busqueda_apellido_int = Integer.parseInt(nro_filas_total_busqueda_apellido_str);
+                float valor_total_filas = Float.parseFloat(nro_filas_total_busqueda_apellido_str);
+
+                float maxPag = (float) (valor_total_filas / 9);
+                int maxPag2 = (int) Math.ceil(maxPag);
+
+
+                if (request.getParameter("pg") != null) {
+                    valor_pagina = Integer.parseInt(request.getParameter("pg"));
+                }
+
+
+                int regMin = (valor_pagina - 1) * 9;
+
+                if (valor_pagina != maxPag2){
+                    int regMax = valor_pagina * 9;
+                    request.setAttribute("maxPag2", maxPag2);
+                    request.setAttribute("regMin", regMin);
+                    request.setAttribute("regMax", regMax);
+                    request.setAttribute("valor_pagina", valor_pagina);
+                }else{
+                    int regMax = nro_filas_total_busqueda_apellido_int;
+                    request.setAttribute("maxPag2", maxPag2);
+                    request.setAttribute("regMin", regMin);
+                    request.setAttribute("regMax", regMax);
+                    request.setAttribute("valor_pagina", valor_pagina);
+                }
+
+
                 request.setAttribute("lista", lista);
                 request.setAttribute("searchText", searchText);
 
