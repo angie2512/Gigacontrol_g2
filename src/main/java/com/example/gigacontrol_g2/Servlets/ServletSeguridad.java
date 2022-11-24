@@ -1,6 +1,7 @@
 package com.example.gigacontrol_g2.Servlets;
 
 import com.example.gigacontrol_g2.beans.BUsuarios;
+import com.example.gigacontrol_g2.beans.Estado;
 import com.example.gigacontrol_g2.beans.Incidencia;
 import com.example.gigacontrol_g2.daos.DaoDatosFijos;
 import com.example.gigacontrol_g2.daos.SeguridadDao;
@@ -19,23 +20,31 @@ public class ServletSeguridad extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String action = request.getParameter("action");
+        String action = request.getParameter("action") == null ? "listarIncidencia" : request.getParameter("action");
         RequestDispatcher requestDispatcher;
 
         UsersDao usersDao = new UsersDao();
+        DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         SeguridadDao seguridadDao = new SeguridadDao();
         request.setAttribute("userlogged", request.getSession());
-        //String idIncidenciaStr = request.getParameter("id");
-        //int idIncidencia = Integer.parseInt("idIncidenciaStr");
 
         switch (action) {
 
             case "listarIncidencia":
-                request.setAttribute("listaUsuarios", usersDao.getUsersList());
-                request.setAttribute("listaIncidencias", seguridadDao.obtenerListaDeIncidencias());
-                requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
-                requestDispatcher.forward(request, response);
+                BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
+                if(userSeg != null && userSeg.getRolId()==1 ) {
+                    request.setAttribute("listaUsuarios", usersDao.getUsersList());
+                    request.setAttribute("listaIncidencias", seguridadDao.obtenerListaDeIncidencias());
+                    requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
+                    requestDispatcher.forward(request, response);
+                }else{
+                    requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
+                    requestDispatcher.forward(request, response);
+                }
+
                 break;
+
+
 
             case "perfil":
                 requestDispatcher = request.getRequestDispatcher("Seguridad/Perfil.jsp");
@@ -53,6 +62,8 @@ public class ServletSeguridad extends HttpServlet {
                 int idIncidencia = Integer.parseInt(idIncidenciaStr);
                 Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
                 request.setAttribute("incidencia", incidencia);
+                ArrayList<Estado> listaEstados = daoDatosFijos.obtenerListaEstados();
+                request.setAttribute("ListaEstados",listaEstados);
                 requestDispatcher = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
                 requestDispatcher.forward(request, response);
                 break;
@@ -78,15 +89,16 @@ public class ServletSeguridad extends HttpServlet {
         SeguridadDao seguridadDao = new SeguridadDao();
 
         switch (action){
-            case "guardar":
+            case "guardarComentario":
                 String idIncidenciaStr = request.getParameter("idIncidencia");
                 int idIncidencia = Integer.parseInt(idIncidenciaStr);
                 String resolucion = request.getParameter("resolucionIncidencia");
+                BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
+                seguridadDao.guardarComentario(userSeg.getIdUsuario(),idIncidencia,resolucion);
 
-                seguridadDao.guardarComentario(idIncidencia,resolucion);
-
-                response.sendRedirect(request.getContextPath()+"/InicioSeguridad");
+                response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                 break;
+            case "actualizarEstado":
 
             case "buscar":
                 String buscar = request.getParameter("keyword");

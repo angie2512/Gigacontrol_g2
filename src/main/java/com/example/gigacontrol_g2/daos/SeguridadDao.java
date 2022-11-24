@@ -138,7 +138,7 @@ public class SeguridadDao extends BaseDao{
         return incidencia1;
     }
 
-    public void guardarComentario(int idIncidencia, String comentario){
+    public void guardarComentario(int idUsuario,int idIncidencia, String comentario){
 
         String sql="insert into comentarincidencia (idUsuario,idIncidencia,ComentarioIncidencia) " +
                 "values (?,?,?)";
@@ -146,7 +146,7 @@ public class SeguridadDao extends BaseDao{
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setInt(1,Types.INTEGER); //idUsuario
+            pstmt.setInt(1,idUsuario); //idUsuario
             pstmt.setInt(2, idIncidencia);
             pstmt.setString(3, comentario);
 

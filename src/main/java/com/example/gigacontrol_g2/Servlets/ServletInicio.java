@@ -20,9 +20,6 @@ public class ServletInicio extends HttpServlet {
             view.forward(request, response);
         } else {
             switch (action) {
-                /*case "mostarIndex":
-                    view = request.getRequestDispatcher("index.jsp");
-                    view.forward(request,response);*/
                 case "LogIn":
                     BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
 

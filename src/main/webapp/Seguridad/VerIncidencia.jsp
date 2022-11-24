@@ -1,6 +1,10 @@
 <%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
+<%@ page import="com.example.gigacontrol_g2.beans.Estado" %>
+<%@ page import="java.lang.reflect.Array" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Incidencia incidencia = (Incidencia) request.getAttribute("incidencia"); %>
+<% ArrayList<Estado> listaEstados = (ArrayList<Estado>) request.getAttribute("ListaEstados"); %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,10 +30,10 @@
         <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="<%=request.getContextPath()%>/InicioSeguridad" aria-current="page" style="color:#FFFFFF">Inicio</a>
+                    <a class="nav-link active" href="<%=request.getContextPath()%>/ServletSeguridad" aria-current="page" style="color:#FFFFFF">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="<%=request.getContextPath()%>/PerfilSeguridad" aria-current="page" style="color:#FFFFFF">Perfil</a>
+                    <a class="nav-link active" href="<%=request.getContextPath()%>/ServletSeguridad?action=perfil" aria-current="page" style="color:#FFFFFF">Perfil</a>
                 </li>
             </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -52,9 +56,6 @@
                                 <td>
                                     <h2 class="card-text"><b style="color:#2C3166"><%=incidencia.getNombreDeIncidencia()%></b></h2>
                                 </td>
-                                <!--<td>
-                                    <a href="< %=request.getContextPath()%>/ReporteIncidencia?action=mostrarReporte&id=< %=incidencia.getIdIncidencia()%>" class="btn btn-primary" style="margin-left:60px;">Descargar Reporte</a>
-                                </td> -->
                             </tr>
                             </tbody>
                         </table>
@@ -66,7 +67,18 @@
                                 <td></td>
                                 <td style="background-color:#DAD9BA"><h6>Nivel de urgencia: <b><%=incidencia.getNivelDeUrgencia().getNombre()%></b></h6> </td>
                                 <td>
-                                    <div class="dropdown" style="padding-left: 7rem;margin-left:10px">
+                                    <form method="post" action="<%=request.getContextPath()%>/ServletSeguridad?action=actualizarEstado">
+                                    <div class="form-group" >
+                                        <select name="estado" class="form-select" required>
+                                            <option selected disabled value="">Actualizar Estado</option>
+                                            <%for (Estado est: listaEstados){ %>
+                                            <option value="<%=est.getIdEstado()%>"><%=est.getNombre()%></option>
+                                            <%}%>
+                                        </select>
+                                        <div class="invalid-feedback">Seleccione un Estado</div>
+                                    </div>
+                                    </form>
+                                    <!-- <div class="dropdown" style="padding-left: 7rem;margin-left:10px">
                                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Actualizar Estado
                                         </a>
@@ -76,7 +88,7 @@
                                             <li><a class="dropdown-item" href="#">Atendido</a></li>
                                             <li><a class="dropdown-item" href="#">Registrado</a></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                                 </td>
                             </tr>
                         </table>
@@ -89,7 +101,7 @@
                                     <b style="color:#C0C4C7; padding-left: 2rem;"><%=incidencia.getUsuario().getCategoria()%></b></p>
                                 </td>
                                 <td>
-                                    <b style="color:#B1120D; padding-left: 4.2rem;">Resolución de Incidencia:</b>
+                                    <b style="color:#B1120D; padding-left: 4.2rem;">Comentario de Incidencia:</b>
                                 </td>
                             </tr>
 
@@ -143,15 +155,15 @@
                                     </tr>
                                 </table>
                             </div>
-                            <form method="post" action="<%=request.getContextPath()%>/VerIncidencia?action=guardar">
+                            <form method="post" action="<%=request.getContextPath()%>/ServletSeguridad?action=guardarComentario">
                             <div style="margin-left:40px">
                                 <input type="hidden" name="idIncidencia" value="<%=incidencia.getIdIncidencia()%>">
                                 <div class="form-floating">
                                     <input style="height:500px;width:260px" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="resolucionIncidencia" >
-                                    <label for="floatingTextarea2">Redacte su Resolución Aquí...</label>
+                                    <label for="floatingTextarea2">Redacte su Comentario Aquí...</label>
                                 </div>
                                 <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
-                                    Guardar cambios
+                                    Guardar Comentario
                                 </button>
 
                             </div>
@@ -201,7 +213,7 @@
             </div>
         </div>
         <div class="card" style="width:350px;margin-left:20px">
-            <h5 class="card-header">Resoluciones de Incidencia</h5>
+            <h5 class="card-header">Comentarios de Incidencia</h5>
             <div class="card-body">
                 <ol>
                     <li class="card-text">
