@@ -24,12 +24,11 @@ public class ServletSeguridad extends HttpServlet {
 
         UsersDao usersDao = new UsersDao();
         SeguridadDao seguridadDao = new SeguridadDao();
-        //ArrayList<Incidencia> lista = seguridadDao.obtenerListaDeIncidencias();
-        request.setAttribute("userlogged",request.getSession());
+        request.setAttribute("userlogged", request.getSession());
         //String idIncidenciaStr = request.getParameter("id");
         //int idIncidencia = Integer.parseInt("idIncidenciaStr");
 
-        switch (action){
+        switch (action) {
 
             case "listarIncidencia":
                 request.setAttribute("listaUsuarios", usersDao.getUsersList());
@@ -45,35 +44,34 @@ public class ServletSeguridad extends HttpServlet {
 
 
             case "entregaImagen":
-                HttpSession session= request.getSession();
+                HttpSession session = request.getSession();
                 BUsuarios bUsuarios = (BUsuarios) session.getAttribute("clienteLog");
                 seguridadDao.mostrarImagen(bUsuarios.getIdUsuario(), response);
+                break;
+            case "verIncidencia":
+                String idIncidenciaStr = request.getParameter("id");
+                int idIncidencia = Integer.parseInt(idIncidenciaStr);
+                Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
+                request.setAttribute("incidencia", incidencia);
+                requestDispatcher = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
+                requestDispatcher.forward(request, response);
                 break;
 
             case "reporte":
                 String idIncidenciaStr1 = request.getParameter("id");
                 int idIncidencia1 = Integer.parseInt(idIncidenciaStr1);
                 Incidencia incidencia1 = seguridadDao.buscarIncidencia(idIncidencia1);
-                request.setAttribute("indicencia",incidencia1);
+                request.setAttribute("indicencia", incidencia1);
 
                 requestDispatcher = request.getRequestDispatcher("Seguridad/ReporteIncidencia.jsp");
                 requestDispatcher.forward(request, response);
                 break;
 
-            case "verIncidencia":
-                String idIncidenciaStr = request.getParameter("id");
-                int idIncidencia = Integer.parseInt(idIncidenciaStr);
-                Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
-                request.setAttribute("indicencia",incidencia);
-                requestDispatcher = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
-                requestDispatcher.forward(request, response);
-                break;
 
 
         }
 
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");

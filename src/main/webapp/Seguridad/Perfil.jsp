@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 <!doctype html>
 <html lang="en">
   <head>
@@ -82,9 +83,9 @@
 
             <p></p>
             <blockquote class="blockquote mb-0">
-              <h5 style="text-align: center;color:#316F54"><b>CRISTIAN DOMINGUEZ CASTRO</b></h5>
-              <h6 style="text-align: center;">cristian_dc29@outlook.es</h6>
-              <h6 style="text-align: center;">20172238</h6>
+              <h5 style="text-align: center;color:#316F54"><b><%=userlogged.getNombre()%> <%=userlogged.getApellido()%></b></h5>
+              <h6 style="text-align: center;"><%=userlogged.getCorreo()%></h6>
+              <h6 style="text-align: center;"><%=userlogged.getCodigo()%></h6>
             </blockquote>
           </div>
         </div>

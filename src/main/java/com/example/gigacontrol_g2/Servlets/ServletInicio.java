@@ -12,17 +12,17 @@ import java.io.IOException;
 public class ServletInicio extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //String action = request.getParameter("action");
-        String action = request.getParameter("action") == null ? "mostarIndex" : request.getParameter("action");
+        String action = request.getParameter("action");
+        //String action = request.getParameter("action") == null ? "mostarIndex" : request.getParameter("action");
         RequestDispatcher view;
-        /*if (action == null) {
-            view = request.getRequestDispatcher("index2.jsp");
+        if (action == null) {
+            view = request.getRequestDispatcher("index.jsp");
             view.forward(request, response);
-        } else {*/
+        } else {
             switch (action) {
-                case "mostarIndex":
+                /*case "mostarIndex":
                     view = request.getRequestDispatcher("index.jsp");
-                    view.forward(request,response);
+                    view.forward(request,response);*/
                 case "LogIn":
                     BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
 
@@ -60,7 +60,7 @@ public class ServletInicio extends HttpServlet {
             }
         }
 
-
+    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
