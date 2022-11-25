@@ -1,9 +1,6 @@
 package com.example.gigacontrol_g2.daos;
 
-import com.example.gigacontrol_g2.beans.BUsuarios;
-import com.example.gigacontrol_g2.beans.Estado;
-import com.example.gigacontrol_g2.beans.NivelDeUrgencia;
-import com.example.gigacontrol_g2.beans.TipoDeIncidencia;
+import com.example.gigacontrol_g2.beans.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -133,6 +130,37 @@ public class DaoDatosFijos extends BaseDao{
             e.printStackTrace();
         }
         return user;
+    }
+
+    //Metodo PARA OBTENER LOS COMENTARIOS DE USUARIO Y SEGURIDAD POR CADA INCIDENCIA
+
+    public ArrayList<ComentarIncidencia> obtenerComentariosDeIncidencia(int idIncidencia){
+
+        ArrayList<ComentarIncidencia> comentariosDeIncidencia = new ArrayList<>();
+
+        String sql="select * from comentarincidencia where idIncidencia=? ";
+
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setInt(1,idIncidencia); //idUsuario
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    ComentarIncidencia comentarIncidencia = new ComentarIncidencia();
+                    comentarIncidencia.setIdComentario(rs.getInt(1));
+                    comentarIncidencia.setIdUsuario(rs.getInt(2));
+                    comentarIncidencia.setIdIncidencia(idIncidencia);
+                    comentarIncidencia.setComentarioIncidencia(rs.getString(4));
+                    comentarIncidencia.setFechaDeComentario(rs.getTimestamp(5));
+                    comentariosDeIncidencia.add(comentarIncidencia);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return comentariosDeIncidencia;
     }
 
 }

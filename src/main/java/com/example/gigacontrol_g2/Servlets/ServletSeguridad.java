@@ -1,6 +1,7 @@
 package com.example.gigacontrol_g2.Servlets;
 
 import com.example.gigacontrol_g2.beans.BUsuarios;
+import com.example.gigacontrol_g2.beans.ComentarIncidencia;
 import com.example.gigacontrol_g2.beans.Estado;
 import com.example.gigacontrol_g2.beans.Incidencia;
 import com.example.gigacontrol_g2.daos.DaoDatosFijos;
@@ -64,6 +65,8 @@ public class ServletSeguridad extends HttpServlet {
                 request.setAttribute("incidencia", incidencia);
                 ArrayList<Estado> listaEstados = daoDatosFijos.obtenerListaEstados();
                 request.setAttribute("ListaEstados",listaEstados);
+                ArrayList<ComentarIncidencia> listaDeComentarios = daoDatosFijos.obtenerComentariosDeIncidencia(idIncidencia);
+                request.setAttribute("ListaComentarios",listaDeComentarios);
                 requestDispatcher = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
                 requestDispatcher.forward(request, response);
                 break;

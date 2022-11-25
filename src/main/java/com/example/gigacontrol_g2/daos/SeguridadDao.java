@@ -140,8 +140,8 @@ public class SeguridadDao extends BaseDao{
 
     public void guardarComentario(int idUsuario,int idIncidencia, String comentario){
 
-        String sql="insert into comentarincidencia (idUsuario,idIncidencia,ComentarioIncidencia) " +
-                "values (?,?,?)";
+        String sql="insert into comentarincidencia (idUsuario,idIncidencia,ComentarioIncidencia,FechaDeComentario) " +
+                "values (?,?,?,CURRENT_TIMESTAMP) ";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {

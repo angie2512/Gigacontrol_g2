@@ -2,9 +2,14 @@
 <%@ page import="com.example.gigacontrol_g2.beans.Estado" %>
 <%@ page import="java.lang.reflect.Array" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.gigacontrol_g2.beans.ComentarIncidencia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% Incidencia incidencia = (Incidencia) request.getAttribute("incidencia"); %>
-<% ArrayList<Estado> listaEstados = (ArrayList<Estado>) request.getAttribute("ListaEstados"); %>
+<% Incidencia incidencia = (Incidencia) request.getAttribute("incidencia");
+ArrayList<Estado> listaEstados = (ArrayList<Estado>) request.getAttribute("ListaEstados");
+ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>) request.getAttribute("ListaComentarios");
+%>
+<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -67,12 +72,6 @@
                                 <td></td>
                                 <td style="background-color:#DAD9BA"><h6>Nivel de urgencia: <b><%=incidencia.getNivelDeUrgencia().getNombre()%></b></h6> </td>
                                 <td>
-
-                                    <!-- <form id="myform">
-                                        <input id="something" type="text">
-                                    </form>
-                                    <input form="myform" id="something2" type="text">
-                                     <button form="myform" type="submit">Submit that form over there</button> -->
                                     <form id="myform" method="post" action="<%=request.getContextPath()%>/ServletSeguridad?action=actualizarIncidencia">
                                     <div class="btn btn-primary" >
                                             <select class="form-select" id="estado" name="estado" required>
@@ -86,17 +85,6 @@
                                             </select>
                                     </div>
                                     </form>
-                                    <!-- <div class="dropdown" style="padding-left: 7rem;margin-left:10px">
-                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Actualizar Estado
-                                        </a>
-
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">En proceso</a></li>
-                                            <li><a class="dropdown-item" href="#">Atendido</a></li>
-                                            <li><a class="dropdown-item" href="#">Registrado</a></li>
-                                        </ul>
-                                    </div> -->
                                 </td>
                             </tr>
                         </table>
@@ -176,12 +164,9 @@
                             </div>
                             </form>
                         </div>
-                        <!--<button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
-                            Guardar Cambios
-                        </button> -->
                         <br>
 
-                        <table>
+                        <!--<table>
                             <br>
                             <div class="card">
                                 <h5 class="card-header">Comentario Actual del Usuario</h5>
@@ -215,7 +200,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </table>
+                        </table> -->
                     </div>
                 </div>
                 <br>
@@ -225,17 +210,20 @@
         <div class="card" style="width:350px;margin-left:20px">
             <h5 class="card-header">Comentarios de Incidencia</h5>
             <div class="card-body">
-                <ol>
+                <ul>
+                    <% for(ComentarIncidencia comentario : listaComentarios){ %>
                     <li class="card-text">
-                        <p>Se revisaron las camaras de Seguridad</p>
+                        <% if (comentario.getIdUsuario()==incidencia.getUsuario().getIdUsuario()){ %>
+                        <p><%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%> - Usuario PUCP</p>
+                        <% }
+                        else{ %>
+                        <p><%=userlogged.getNombre()%> <%=userlogged.getApellido()%> - Personal de Seguridad</p>
+                        <% } %>
+                        <p><%=comentario.getComentarioIncidencia()%></p>
+                        <p><%=comentario.getFechaDeComentario()%></p>
                     </li>
-                    <li class="card-text">
-                        <p>Se encontro un sospechoso</p>
-                    </li>
-                    <li class="card-text">
-                        <p>Se encontro un modelo similar en biblioteca central</p>
-                    </li>
-                </ol>
+                    <% } %>
+                </ul>
             </div>
         </div>
     </div>
