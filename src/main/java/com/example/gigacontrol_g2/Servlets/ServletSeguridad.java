@@ -29,6 +29,10 @@ public class ServletSeguridad extends HttpServlet {
         SeguridadDao seguridadDao = new SeguridadDao();
         request.setAttribute("userlogged", request.getSession());
 
+        ArrayList<String> opciones = new ArrayList<>();
+        opciones.add("nombre");
+        opciones.add("pais");
+
         switch (action) {
 
             case "listarIncidencia":
@@ -121,13 +125,14 @@ public class ServletSeguridad extends HttpServlet {
                 response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                 break;
 
-            case "buscar":
+           /*case "buscar":
                 String buscar = request.getParameter("keyword");
                 ArrayList<Incidencia> listaFiltrada1 = seguridadDao.buscarPorIncidencia(buscar);
                 request.setAttribute("listaIncidencias", listaFiltrada1);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ServletSeguridad");
                 requestDispatcher.forward(request, response);
                 break;
+                */
 
             case "actualizarFoto":
                 Part part= request.getPart("photoUrl");

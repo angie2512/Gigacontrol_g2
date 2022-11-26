@@ -175,10 +175,66 @@ public class SeguridadDao extends BaseDao{
         }
 
     }
+   /* public ArrayList<Incidencia> busquedaPorIncidencia(String nombre) {
+
+        String sql = "select * from incidencia where NombreDeIncidencia like ?";
+        String sql1 = "select * from incidencia";
 
 
+        ArrayList<Incidencia> listaFiltradaNombre = new ArrayList<>();
 
-//Para el buscador
+
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);){
+            pstmt.setString(1,"%"+nombre+"%");
+
+            try(ResultSet rs = pstmt.executeQuery();){
+                while(rs.next()){
+                    Incidencia incidencia = new Incidencia();
+                    BUsuarios bUsuarios = new BUsuarios();
+                    Estado estado = new Estado();
+                    NivelDeUrgencia nivelDeUrgencia = new NivelDeUrgencia();
+                    TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
+
+                    incidencia.setIdIncidencia(rs.getInt("idIncidencia"));
+                    incidencia.setNombreDeIncidencia((rs.getString("nombreIndicencia")));
+                    incidencia.setDescripcion(rs.getString("descripcion"));
+                    incidencia.setZonaPucp(rs.getString("zonapucp"));
+                    incidencia.setUbicacion(rs.getString("ubicacion"));
+                    incidencia.setFoto(rs.getString("foto"));
+
+                    bUsuarios.setIdUsuario(rs.getInt("idUsuario"));
+                    tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt("idTipoIncidencia"));
+                    nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt("idNivelUrgencia"));
+                    estado.setIdEstado(rs.getInt("idEstado"));
+
+                    incidencia.setUsuario(bUsuarios);
+                    incidencia.setTipoDeIncidencia(tipoDeIncidencia);
+                    incidencia.setNivelDeUrgencia(nivelDeUrgencia);
+                    incidencia.setEstado(estado);
+
+
+                    try (Connection connection2 = this.getConnection();
+                         Statement stmt2 = connection2.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                         ResultSet rs1 = stmt2.executeQuery(sql1);) {
+
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    listaFiltradaNombre.add(incidencia);
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
+        return listaFiltradaNombre;
+    }
+
+*/
+
     public ArrayList<Incidencia> buscarPorIncidencia(String nombreDeIncidencia){
 
         String sql = "select * from incidencia where NombreDeIncidencia like ?";

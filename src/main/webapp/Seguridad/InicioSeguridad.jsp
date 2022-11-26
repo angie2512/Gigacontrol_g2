@@ -79,10 +79,29 @@
         <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; background-color: #8CC67A;" >
           <h4 class="border-bottom pb-2 mb-2" style="background-color:#6FCE92;color:#18542E;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">INCIDENCIAS REPORTADAS</b></center></h4>
           <p></p>
-          <form class="d-flex" method="post" role="search" action="<%=request.getContextPath()%>/ServletSeguridad?action=buscar">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
+
+
+          <div class="row align-items-center">
+            <div class="col-10">
+              <form method="post" action="<%=request.getContextPath()%>/ServletSeguridadBuscarIncidencia?action=buscar">
+
+                <div class="col-auto">
+                  <input type="text" name="searchText" class="form-control" id="floatingInput"
+                         placeholder="Buscar Incidencia" value="<%=searchText!=null?searchText:""%>">
+                  <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                </div>
+              </form>
+              <div class="col-2">
+                <a href="<%=request.getContextPath()%>/ServletSeguridad?action=listarIncidencia"
+                   class="btn btn-secondary">borrar</a>
+              </div>
+            </div>
+          </div>
+          <!--<form class="d-flex" role="search" method="post" action="<%=request.getContextPath()%>/ServletSeguridadBuscarIncidencia?action=buscar">
+            <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar" aria-label="Buscar">
+            <button class="btn btn-outline-primary" type="submit">Buscar</button>
+          </form>--->
+
           <div class="card" style="margin-top:10px">
             <div class="card-body">
               <div class="d-flex position-relative">
