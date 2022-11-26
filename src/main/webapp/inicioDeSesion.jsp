@@ -110,6 +110,7 @@
                             Ingresar
                         </button>
                     </div>
+                    <a href="<%=request.getContextPath()%>/OlvidasteTuContraseña">¿Olvidaste tu Contraseña?</a>
                 </form>
                 <br>
             </div>
