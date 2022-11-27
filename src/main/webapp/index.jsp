@@ -10,7 +10,7 @@
     <title>Bienvenid@ GigaControl</title>
     <style>
         body {
-            background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
+            background: url("resources/Images/fondoProyecto_1.png");
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -78,8 +78,7 @@
         <td>
         <td>
         <td>
-        <td><img src="resources/Images/logopucp.png" alt="Logo" width="40rem;" height="40rem" class="d-inline-block align-text-top"></td>
-        <td><h6 style="color:#1F4375; font-family:Giorgia, serif"><b> GIGACONTROL</b><br style="color:#1F4375"> PUCP</h6></td>
+        <td><img src="resources/Images/Logo_img.png" alt="Logo" width="125rem;" height="65rem" class="d-inline-block align-text-top"></td>
         </td>
         </td>
         </td>
