@@ -38,7 +38,36 @@
     p{
       font-family: Decor;
     }
-
+    .btn-1{
+      display: inline-block;
+      background: #749FFA;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 15px 25px;
+      color:#305767;
+      border-radius: 30px;
+      border: none;
+    }
+    .btn-2{
+      display: inline-block;
+      background: #CEF8A8;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 15px 25px;
+      color:#305767;
+      border-radius: 30px;
+      border: none;
+    }
+    @media(min-width: 768px){
+      .btn-1{
+        padding: 15px 105px;
+        background-color: #E3F3FA;
+      }
+      .btn-2{
+        padding: 15px 105px;
+        background-color: #E3F3FA;
+      }
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -89,9 +118,8 @@
       <p></p>
     </div>-->
     <div class="d-grid gap-2 col-6 mx-auto">
-      <a href="<%=request.getContextPath()%>/ServletInicio?action=Registrousuario" style="color: rgb(141, 15, 15);"><button class="btn btn-light btn-lg" type="button" style="color:#686B6E; font-size:16px">Usuario PUCP</button></a>
-      <br>
-      <a href="<%=request.getContextPath()%>/ServletInicio?action=Registroseguridad" style="color: rgb(141, 15, 15);"><button class="btn btn-light btn-lg" type="button" style="color:#686B6E; font-size: 17px;">Seguridad</button></a>
+      <a href="<%=request.getContextPath()%>/ServletInicio?action=Registrousuario"><button class="btn-1" type="button" >Usuario PUCP</button></a>
+      <a href="<%=request.getContextPath()%>/ServletInicio?action=Registroseguridad"><button class="btn-2" type="button">Seguridad</button></a>
       <br>
     </div>
   </div>

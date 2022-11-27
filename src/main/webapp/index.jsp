@@ -32,6 +32,36 @@
             font-family: Decor;
         }
 
+        .btn-1{
+            display: inline-block;
+            background: #B4B4F7;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 15px 25px;
+            color:#305767;
+            border-radius: 30px;
+            border: none;
+        }
+        .btn-2{
+            display: inline-block;
+            background: #c8f7b4;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 15px 25px;
+            color:#305767;
+            border-radius: 30px;
+            border: none;
+        }
+        @media(min-width: 768px){
+            .btn-1{
+                padding: 15px 105px;
+                background-color: #E3F3FA;
+            }
+            .btn-2{
+                padding: 15px 105px;
+                background-color: #E3F3FA;
+            }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -69,7 +99,7 @@
         <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
             <br>
             <h1 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>BIENVENID@ A GIGACONTROL</b></h1>
-            <h6 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#000000" class="card-subtitle mb-2 text-muted">Servicio de ayuda a incidencias en la comunidad PUCP</h6>
+            <h6 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#FBFCFC" class="card-subtitle mb-2 text-muted">Servicio de ayuda a incidencias en la comunidad PUCP</h6>
             <center>
                 <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png" alt="linea" class="card-img" width="90%" height="10%">
             </center>
@@ -78,8 +108,8 @@
             <h4 style="font-family: 'Times New Roman', Times, serif; color:#78BBFD" class="card-text"><b> SELECCIONE LA OPCIÓN </b></h4>
             <br>
             <div class="d-grid gap-2 col-6 mx-auto">
-                <a href="<%=request.getContextPath()%>/ServletInicio?action=LogIn" style="color: rgb(141, 15, 15);"><button class="btn btn-light btn-lg" type="button" style="color:#686B6E; font-size:16px">Iniciar Sesión</button></a>
-                <a href="<%=request.getContextPath()%>/ServletInicio?action=registro" style="color: rgb(141, 15, 15);"><button class="btn btn-light btn-lg" type="button" style="color:#686B6E; font-size: 17px;">Registrarse</button></a>
+                <a href="<%=request.getContextPath()%>/ServletInicio?action=LogIn"><button class="btn-1" type="button"><b>Iniciar Sesión</b></button></a>
+                <a href="<%=request.getContextPath()%>/ServletInicio?action=registro"><button class="btn-2" type="button"><b>Registrarse</b></button></a>
                 <br>
             </div>
         </div>
