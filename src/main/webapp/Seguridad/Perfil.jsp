@@ -68,16 +68,11 @@
 
     <br><br>
 
-
     <div class="container" style="max-width: 40rem;">
       <div class="abs-center">
         <img src="resources/Images/userSeguridad.png" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
         <br>
 
-        <div class="input-group mb-3" style="max-width: 20rem">
-          <label class="input-group-text" for="inputGroupFile01"><img src="https://img.icons8.com/metro/26/null/camera.png"/></label>
-          <input type="file" class="form-control" id="inputGroupFile01">
-        </div>
         <div class="card"style="background-color:#F2F2F3">
           <div class="card-body" >
             <div class="p-1 mb-8 text-white" style="background-color:#4C9978">

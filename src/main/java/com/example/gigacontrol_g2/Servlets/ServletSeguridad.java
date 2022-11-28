@@ -27,14 +27,9 @@ public class ServletSeguridad extends HttpServlet {
         UsersDao usersDao = new UsersDao();
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         SeguridadDao seguridadDao = new SeguridadDao();
-        request.setAttribute("userlogged", request.getSession());
 
-        ArrayList<String> opciones = new ArrayList<>();
-        opciones.add("nombre");
-        opciones.add("pais");
 
         switch (action) {
-
             case "listarIncidencia":
                 BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
                 if(userSeg != null && userSeg.getRolId()==1 ) {
@@ -49,19 +44,11 @@ public class ServletSeguridad extends HttpServlet {
 
                 break;
 
-
-
             case "perfil":
                 requestDispatcher = request.getRequestDispatcher("Seguridad/Perfil.jsp");
                 requestDispatcher.forward(request, response);
                 break;
 
-
-            case "entregaImagen":
-                HttpSession session = request.getSession();
-                BUsuarios bUsuarios = (BUsuarios) session.getAttribute("clienteLog");
-                seguridadDao.mostrarImagen(bUsuarios.getIdUsuario(), response);
-                break;
             case "verIncidencia":
                 String idIncidenciaStr = request.getParameter("id");
                 int idIncidencia = Integer.parseInt(idIncidenciaStr);
@@ -85,6 +72,14 @@ public class ServletSeguridad extends HttpServlet {
                 requestDispatcher.forward(request, response);
                 break;
 
+            case "entregarImagen":
+                HttpSession session= request.getSession();
+                BUsuarios bUsuarios = (BUsuarios) session.getAttribute("userlogged");
+                seguridadDao.mostrarImagen(bUsuarios.getIdUsuario(), response);
+                break;
+            default:
+                response.sendRedirect(request.getContextPath());
+                break;
 
 
         }
@@ -92,10 +87,15 @@ public class ServletSeguridad extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
+        BUsuarios bUsuarios = (BUsuarios) session.getAttribute("userlogged");
+        String action = request.getParameter("action") == null ? "actualizarIncidencia": request.getParameter("action");
         SeguridadDao seguridadDao = new SeguridadDao();
+
         String idIncidenciaStr = request.getParameter("idIncidencia");
         int idIncidencia = Integer.parseInt(idIncidenciaStr);
+
 
         switch (action){
             /*case "guardarComentario":
@@ -125,22 +125,20 @@ public class ServletSeguridad extends HttpServlet {
                 response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                 break;
 
-           /*case "buscar":
+           case "buscar":
                 String buscar = request.getParameter("keyword");
                 ArrayList<Incidencia> listaFiltrada1 = seguridadDao.buscarPorIncidencia(buscar);
                 request.setAttribute("listaIncidencias", listaFiltrada1);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ServletSeguridad");
                 requestDispatcher.forward(request, response);
                 break;
-                */
 
             case "actualizarFoto":
                 Part part= request.getPart("photoUrl");
-                InputStream foto = part.getInputStream();
-                BUsuarios bUsuarios = new BUsuarios();
+                InputStream fotoPerfil = part.getInputStream();
 
-                seguridadDao.editarFoto(bUsuarios.getIdUsuario(),foto);
-                bUsuarios.setFotoPerfil(foto.toString());
+                seguridadDao.editarFoto(bUsuarios.getIdUsuario(),fotoPerfil);
+                bUsuarios.setFotoPerfil(fotoPerfil.toString());
                 response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                 break;
 

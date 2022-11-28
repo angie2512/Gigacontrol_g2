@@ -81,7 +81,7 @@
           <p></p>
 
 
-          <div class="row align-items-center">
+          <!--div class="row align-items-center">
             <div class="col-10">
               <form method="post" action="<%=request.getContextPath()%>/ServletSeguridadBuscarIncidencia?action=buscar">
 
@@ -96,11 +96,12 @@
                    class="btn btn-secondary">borrar</a>
               </div>
             </div>
-          </div>
-          <!--<form class="d-flex" role="search" method="post" action="<%=request.getContextPath()%>/ServletSeguridadBuscarIncidencia?action=buscar">
+          </div> --->
+
+         <form class="d-flex" role="search" method="post" action="<%=request.getContextPath()%>/ServletSeguridadBuscarIncidencia?action=buscar">
             <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar" aria-label="Buscar">
             <button class="btn btn-outline-primary" type="submit">Buscar</button>
-          </form>--->
+          </form>
 
           <div class="card" style="margin-top:10px">
             <div class="card-body">
@@ -118,13 +119,13 @@
                           <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
                               <a href="<%=request.getContextPath()%>/ServletSeguridad?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver</a>
-                              <a href="<%=request.getContextPath()%>/ServletSeguridad?action=reporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a>
+                              <!--a href="<%=request.getContextPath()%>/ServletSeguridad?action=reporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a> --->
                             </div>
                           </td>
                         </tr>
                         <tr>
                           <td>
-                            <h6 style="color:#585151; font-family:Georgia, serif"><b>NOMBRE Y APELLIDO: <%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%></b> </h6>
+                            <h6 style="color:#585151; font-family:Georgia, serif"><b>Nombre y Apellidos: <%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%></b> </h6>
                           <td>
                         </tr>
                         <tr>
