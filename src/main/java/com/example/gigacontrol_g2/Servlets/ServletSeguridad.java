@@ -1,9 +1,6 @@
 package com.example.gigacontrol_g2.Servlets;
 
-import com.example.gigacontrol_g2.beans.BUsuarios;
-import com.example.gigacontrol_g2.beans.ComentarIncidencia;
-import com.example.gigacontrol_g2.beans.Estado;
-import com.example.gigacontrol_g2.beans.Incidencia;
+import com.example.gigacontrol_g2.beans.*;
 import com.example.gigacontrol_g2.daos.DaoDatosFijos;
 import com.example.gigacontrol_g2.daos.SeguridadDao;
 import com.example.gigacontrol_g2.daos.UsersDao;
@@ -27,8 +24,12 @@ public class ServletSeguridad extends HttpServlet {
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         SeguridadDao seguridadDao = new SeguridadDao();
 
-
+        HttpSession session= request.getSession();
+        BUsuarios usuario=(BUsuarios) session.getAttribute("userlogged");
         switch (action) {
+            case "mostrarFoto":
+                seguridadDao.mostrarImagen(usuario.getIdUsuario(),response);
+                break;
             case "listarIncidencia":
                 BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
                 if(userSeg != null && userSeg.getRolId()==1 ) {
@@ -72,12 +73,18 @@ public class ServletSeguridad extends HttpServlet {
                 break;
 
             case "entregarImagen":
-                HttpSession session= request.getSession();
+                session= request.getSession();
                 BUsuarios bUsuarios = (BUsuarios) session.getAttribute("userlogged");
                 seguridadDao.mostrarImagen(bUsuarios.getIdUsuario(), response);
                 break;
             default:
                 response.sendRedirect(request.getContextPath());
+                break;
+
+            case "agregar":
+                request.setAttribute("ListaIncidencias", seguridadDao.obtenerListaDeIncidencias());
+                requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
+                requestDispatcher.forward(request, response);
                 break;
 
 
@@ -94,25 +101,15 @@ public class ServletSeguridad extends HttpServlet {
 
         String idIncidenciaStr = request.getParameter("idIncidencia");
         int idIncidencia = Integer.parseInt(idIncidenciaStr);
+        Incidencia incidencia;
 
+        RequestDispatcher view;
+        ArrayList<String> opcionesTipoIncidencia = new ArrayList<>();
+        opcionesTipoIncidencia.add("Leve");
+        opcionesTipoIncidencia.add("Moderado");
+        opcionesTipoIncidencia.add("Urgente");
 
         switch (action){
-            /*case "guardarComentario":
-                //String idIncidenciaStr = request.getParameter("idIncidencia");
-                //int idIncidencia = Integer.parseInt(idIncidenciaStr);
-                String resolucion = request.getParameter("resolucionIncidencia");
-                BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
-                seguridadDao.guardarComentario(userSeg.getIdUsuario(),idIncidencia,resolucion);
-
-                response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
-                break;
-
-            case "actualizarEstado":
-                String idEstadoStr = request.getParameter("estado");
-                int idEstado = Integer.parseInt(idEstadoStr);
-                seguridadDao.actualizarEstado(idEstado , idIncidencia);
-                break;
-             */
 
             case "actualizarIncidencia":
                 String resolucion = request.getParameter("resolucionIncidencia");
@@ -125,21 +122,27 @@ public class ServletSeguridad extends HttpServlet {
                 break;
 
            case "buscar":
-                String buscar = request.getParameter("keyword");
-                ArrayList<Incidencia> listaFiltrada1 = seguridadDao.buscarPorIncidencia(buscar);
-                request.setAttribute("listaIncidencias", listaFiltrada1);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/ServletSeguridad");
-                requestDispatcher.forward(request, response);
-                break;
+               String buscar = request.getParameter("buscar");
+               String opcion = request.getParameter("tipo");
 
-            case "actualizarFoto":
+               request.setAttribute("opcionesTipoIncidencia", opcionesTipoIncidencia);
+               ArrayList<TipoDeIncidencia> listaFiltradaTipoIncidencia;
+
+               listaFiltradaTipoIncidencia = seguridadDao.busquedaTipoIncidencia(buscar);
+               request.setAttribute("listaFiltraTipoIncidencia",listaFiltradaTipoIncidencia);
+
+               view = request.getRequestDispatcher("/Seguridad/InicioSeguridad.jsp");
+               view.forward(request,response);
+               break;
+
+            /*case "actualizarFoto":
                 Part part= request.getPart("photoUrl");
                 InputStream fotoPerfil = part.getInputStream();
 
                 seguridadDao.editarFoto(bUsuarios.getIdUsuario(),fotoPerfil);
                 bUsuarios.setFotoPerfil(fotoPerfil.toString());
                 response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
-                break;
+                break;*/
 
         }
 

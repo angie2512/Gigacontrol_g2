@@ -1,10 +1,12 @@
-<%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
+<%@ page import="com.example.gigacontrol_g2.beans.TipoDeIncidencia" %>
+<%@ page import="com.example.gigacontrol_g2.beans.NivelDeUrgencia" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 <!--Con "userlogged" en teoria podemos imprimir el nombre y apellido del usuario seguridad" -->
 <%
-  String searchText = (String) request.getAttribute("searchText");
+  //String searchText = (String) request.getAttribute("searchText");
   ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("listaIncidencias");
 %>
 
@@ -81,27 +83,12 @@
           <p></p>
 
 
-          <!--div class="row align-items-center">
-            <div class="col-10">
-              <form method="post" action="<%=request.getContextPath()%>/ServletSeguridadBuscarIncidencia?action=buscar">
 
-                <div class="col-auto">
-                  <input type="text" name="searchText" class="form-control" id="floatingInput"
-                         placeholder="Buscar Incidencia" value="<%=searchText!=null?searchText:""%>">
-                  <button class="btn btn-outline-primary" type="submit">Buscar</button>
-                </div>
-              </form>
-              <div class="col-2">
-                <a href="<%=request.getContextPath()%>/ServletSeguridad?action=listarIncidencia"
-                   class="btn btn-secondary">borrar</a>
-              </div>
-            </div>
-          </div> --->
-
-         <form class="d-flex" role="search" method="post" action="<%=request.getContextPath()%>/ServletSeguridadBuscarIncidencia?action=buscar">
+         <!--form class="d-flex" role="search" method="post" action="<%=request.getContextPath()%>/ServletSeguridadBuscarIncidencia?action=buscar">
             <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar" aria-label="Buscar">
             <button class="btn btn-outline-primary" type="submit">Buscar</button>
-          </form>
+
+          </form-->
 
           <div class="card" style="margin-top:10px">
             <div class="card-body">

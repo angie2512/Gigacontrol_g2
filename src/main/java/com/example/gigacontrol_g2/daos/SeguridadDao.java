@@ -1,7 +1,9 @@
 package com.example.gigacontrol_g2.daos;
 
+import com.example.gigacontrol_g2.Servlets.NuevaIncidencia;
 import com.example.gigacontrol_g2.beans.*;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -175,65 +177,7 @@ public class SeguridadDao extends BaseDao{
         }
 
     }
-   /* public ArrayList<Incidencia> busquedaPorIncidencia(String nombre) {
 
-        String sql = "select * from incidencia where NombreDeIncidencia like ?";
-        String sql1 = "select * from incidencia";
-
-
-        ArrayList<Incidencia> listaFiltradaNombre = new ArrayList<>();
-
-
-        try(Connection conn = this.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql);){
-            pstmt.setString(1,"%"+nombre+"%");
-
-            try(ResultSet rs = pstmt.executeQuery();){
-                while(rs.next()){
-                    Incidencia incidencia = new Incidencia();
-                    BUsuarios bUsuarios = new BUsuarios();
-                    Estado estado = new Estado();
-                    NivelDeUrgencia nivelDeUrgencia = new NivelDeUrgencia();
-                    TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
-
-                    incidencia.setIdIncidencia(rs.getInt("idIncidencia"));
-                    incidencia.setNombreDeIncidencia((rs.getString("nombreIndicencia")));
-                    incidencia.setDescripcion(rs.getString("descripcion"));
-                    incidencia.setZonaPucp(rs.getString("zonapucp"));
-                    incidencia.setUbicacion(rs.getString("ubicacion"));
-                    incidencia.setFoto(rs.getString("foto"));
-
-                    bUsuarios.setIdUsuario(rs.getInt("idUsuario"));
-                    tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt("idTipoIncidencia"));
-                    nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt("idNivelUrgencia"));
-                    estado.setIdEstado(rs.getInt("idEstado"));
-
-                    incidencia.setUsuario(bUsuarios);
-                    incidencia.setTipoDeIncidencia(tipoDeIncidencia);
-                    incidencia.setNivelDeUrgencia(nivelDeUrgencia);
-                    incidencia.setEstado(estado);
-
-
-                    try (Connection connection2 = this.getConnection();
-                         Statement stmt2 = connection2.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-                         ResultSet rs1 = stmt2.executeQuery(sql1);) {
-
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                    listaFiltradaNombre.add(incidencia);
-                }
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-
-
-        return listaFiltradaNombre;
-    }
-
-*/
 
     public ArrayList<Incidencia> buscarPorIncidencia(String nombreDeIncidencia){
 
@@ -318,4 +262,104 @@ public class SeguridadDao extends BaseDao{
         }
     }
 
+    public ArrayList<TipoDeIncidencia> busquedaTipoIncidencia(String nombre){
+
+        String sql1 = "select * from tipoincidencia where nombre like ?";
+        String sql2 = "select * from tipoincidencia";
+
+        ArrayList<TipoDeIncidencia> listaFiltraTipoIncidencia = new ArrayList<>();
+
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql1);){
+            pstmt.setString(1,"%"+nombre+"%");
+
+            try(ResultSet rs = pstmt.executeQuery();){
+                while(rs.next()){
+                    TipoDeIncidencia tipoDeIncidencia  = new TipoDeIncidencia();
+                    tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt("idTipoIncidencia"));
+                    tipoDeIncidencia.setNombre(rs.getString("nombreIncidencia"));
+
+                    try (Connection connection2 = this.getConnection();
+                         Statement stmt2 = connection2.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                         ResultSet rs1 = stmt2.executeQuery(sql2);) {
+
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    listaFiltraTipoIncidencia.add(tipoDeIncidencia);
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return listaFiltraTipoIncidencia;
+    }
+
+    public ArrayList<NivelDeUrgencia> busquedaNivelUrgencia(String nombre){
+
+        String sql1 = "select * from nivelurgencia where nombre like ?";
+        String sql2 = "select * from nivelurgencia";
+
+        ArrayList<NivelDeUrgencia> listaFiltradaNivelUrgencia = new ArrayList<>();
+
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql1);){
+            pstmt.setString(1,"%"+nombre+"%");
+
+            try(ResultSet rs = pstmt.executeQuery();){
+                while(rs.next()){
+                    NivelDeUrgencia nivelDeUrgencia = new NivelDeUrgencia();
+                    nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt("idNivelUrgencia"));
+                    nivelDeUrgencia.setNombre(rs.getString("nombreNivelUrgencia"));
+
+                    try (Connection connection2 = this.getConnection();
+                         Statement stmt2 = connection2.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                         ResultSet rs1 = stmt2.executeQuery(sql2);) {
+
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    listaFiltradaNivelUrgencia.add(nivelDeUrgencia);
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return listaFiltradaNivelUrgencia;
+    }
+
+    public ArrayList<Estado> busquedaPorEstado(String nombre){
+        String sql = "select * from estado where nombre like ?";
+        String sql1 = "select * from estado";
+
+        ArrayList<Estado> listaFiltradaEstado = new ArrayList<>();
+
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);){
+            pstmt.setString(1,"%"+nombre+"%");
+
+            try(ResultSet rs = pstmt.executeQuery();){
+                while(rs.next()){
+                    Estado estado = new Estado();
+                    estado.setIdEstado(rs.getInt("idEstado"));
+                    estado.setNombre(rs.getString("nombreEstado"));
+
+                    try (Connection connection2 = this.getConnection();
+                         Statement stmt2 = connection2.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                         ResultSet rs1 = stmt2.executeQuery(sql1);) {
+
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    listaFiltradaEstado.add(estado);
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return listaFiltradaEstado;
+    }
 }

@@ -102,6 +102,7 @@ public class DaoDatosFijos extends BaseDao{
                     user.setDni(rs.getString(7));
                     user.setCelular(rs.getString(8));
                     user.setCategoria(rs.getString(9));
+                    user.setFotoPerfil(rs.getString(10));
                     user.setRolId(rs.getInt(11));
                 }
             }

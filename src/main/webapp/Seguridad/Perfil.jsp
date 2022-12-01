@@ -1,6 +1,8 @@
+<%@ page import="com.example.gigacontrol_g2.beans.BUsuarios" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 <!doctype html>
+<%BUsuarios u= (BUsuarios) session.getAttribute("userlogged");%>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -70,7 +72,7 @@
 
     <div class="container" style="max-width: 40rem;">
       <div class="abs-center">
-        <img src="resources/Images/userSeguridad.png" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
+        <img src="<%=u.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
         <br>
 
         <div class="card"style="background-color:#F2F2F3">
@@ -81,9 +83,13 @@
 
             <p></p>
             <blockquote class="blockquote mb-0">
+              <form method="post" action="<%=request.getContextPath()%>/PerfilUsuario?action=actualizarFoto" enctype="multipart/form-data">
               <h5 style="text-align: center;color:#316F54"><b><%=userlogged.getNombre()%> <%=userlogged.getApellido()%></b></h5>
               <h6 style="text-align: center;"><%=userlogged.getCorreo()%></h6>
               <h6 style="text-align: center;"><%=userlogged.getCodigo()%></h6>
+              <input type="file" name="Newphoto">
+                <button type="submit">actualizar</button>
+            </form>
             </blockquote>
           </div>
         </div>

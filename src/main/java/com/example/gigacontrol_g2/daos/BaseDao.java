@@ -14,7 +14,7 @@ public class BaseDao{
         }
         String user = "root";
         String pass = "123456";
-        String url = "jdbc:mysql://localhost:3306/gigacontrol";
+        String url = "jdbc:mysql://localhost:3306/gigacontrol?jdbcCompliantTruncation=false";
         return DriverManager.getConnection(url, user, pass);
     }
 

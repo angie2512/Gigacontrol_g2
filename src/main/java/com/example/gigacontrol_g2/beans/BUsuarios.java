@@ -11,7 +11,7 @@ public class BUsuarios {
     private String celular;
     private String categoria;
     private int rolId;
-    private  String fotoPerfil;
+    private String fotoPerfil;
 
     public String getFotoPerfil() {
         return fotoPerfil;
