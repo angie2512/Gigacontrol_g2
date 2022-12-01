@@ -45,5 +45,6 @@ public class ServletSeguridadBuscarIncidencia extends HttpServlet {
                 requestDispatcher.forward(request, response);
                 break;
         }
+
     }
 }

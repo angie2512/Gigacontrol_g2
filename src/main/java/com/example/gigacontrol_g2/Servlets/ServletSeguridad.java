@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class ServletSeguridad extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String action = request.getParameter("action") == null ? "listarIncidencia" : request.getParameter("action");
         RequestDispatcher requestDispatcher;
 

@@ -124,6 +124,7 @@
                           </td>
                         </tr>
                         <tr>
+
                           <td>
                             <h6 style="color:#585151; font-family:Georgia, serif"><b>Nombre y Apellidos: <%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%></b> </h6>
                           <td>
