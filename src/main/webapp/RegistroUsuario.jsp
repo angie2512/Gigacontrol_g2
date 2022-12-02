@@ -85,9 +85,10 @@
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="mb-3 d-grid gap-2 col-8 mx-auto">
-                <label align="left" for="exampleInputPassword1" class="form-label" style="color:#FFFFFF">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label align= "left" for="exampleInputEmail1" class="form-label" style="color:#FFFFFF">Código PUCP</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
+
             <!-- MODAL -->
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
