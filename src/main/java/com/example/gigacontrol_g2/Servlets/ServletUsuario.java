@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ServletUsuario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
+        String action = request.getParameter("action") == null ? "inicio" : request.getParameter("action");
         RequestDispatcher requestDispatcher;
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         UsersDao usersDao = new UsersDao();
@@ -26,10 +26,6 @@ public class ServletUsuario extends HttpServlet {
 
 
         switch (action) {
-            case "editar":
-                requestDispatcher = request.getRequestDispatcher("Usuario/EditarIncidencia.jsp");
-                requestDispatcher.forward(request, response);
-                break;
 
             case "inicio":
                 request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
@@ -37,6 +33,12 @@ public class ServletUsuario extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
                 requestDispatcher.forward(request, response);
                 break;
+
+            case "editar":
+                requestDispatcher = request.getRequestDispatcher("Usuario/EditarIncidencia.jsp");
+                requestDispatcher.forward(request, response);
+                break;
+
 
             case "listaMisIncidencias":
                 //asignar

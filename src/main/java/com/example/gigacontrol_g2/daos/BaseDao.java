@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class BaseDao{
+public abstract class BaseDao{
 
     public Connection getConnection() throws SQLException {
         try{
@@ -13,7 +13,7 @@ public class BaseDao{
             throw new RuntimeException(e);
         }
         String user = "root";
-        String pass = "123456";
+        String pass = "root";
         String url = "jdbc:mysql://localhost:3306/gigacontrol?jdbcCompliantTruncation=false";
         return DriverManager.getConnection(url, user, pass);
     }
