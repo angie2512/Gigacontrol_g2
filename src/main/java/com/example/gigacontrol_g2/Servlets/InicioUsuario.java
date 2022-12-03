@@ -1,6 +1,7 @@
 package com.example.gigacontrol_g2.Servlets;
 
 
+import com.example.gigacontrol_g2.beans.BUsuarios;
 import com.example.gigacontrol_g2.beans.Incidencia;
 import com.example.gigacontrol_g2.daos.DaoDatosFijos;
 import com.example.gigacontrol_g2.daos.SeguridadDao;
@@ -17,6 +18,8 @@ public class InicioUsuario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
+        HttpSession session= request.getSession();
+        BUsuarios usuario=(BUsuarios) session.getAttribute("userlogged");
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         UsersDao usersDao = new UsersDao();
         SeguridadDao seguridadDao = new SeguridadDao();
@@ -27,13 +30,20 @@ public class InicioUsuario extends HttpServlet {
         //request.setAttribute("ListaNivelesDeUrgencia", daoNivelDeUrgencia.obtenerListaNivelesDeUrgencia());
         request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
         request.setAttribute("ListaNombres", usersDao.getUsersList());
+        request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
+        System.out.println("destacados: "+usersDao.incidenciasDestacadas(usuario.getIdUsuario()).size());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
 
         requestDispatcher.forward(request, response);
 
         switch (action) {
+            case "destacar":
+                String idincidencia = request.getParameter("idi");
+                int incidenciaid = Integer.parseInt(idincidencia);
+                usersDao.destacarEstrella(usuario.getIdUsuario(), incidenciaid);
 
-
+                response.sendRedirect(request.getContextPath()+"/InicioUsuario");
+                break;
         }
     }
 

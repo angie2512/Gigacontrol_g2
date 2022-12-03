@@ -377,6 +377,59 @@ public class UsersDao extends BaseDao{
         return nro_filas_total_busqueda_apellido;
     }
 
+    public void destacarEstrella(int idu, int idi){
+        String sql = "INSERT INTO destacarincidencia VALUES (?,?)";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)){
+
+            pstmt.setInt(1, idu);
+            pstmt.setInt(2, idi);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void eliminarDestacado(int idu, int idi){
+        String sql = "delete from destacarincidencia where (idUsuario=? and idIncidencia=?)";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)){
+
+            pstmt.setInt(1, idu);
+            pstmt.setInt(2, idi);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public ArrayList<Integer> incidenciasDestacadas(int idUsuario) {
+        ArrayList<Integer> listaidincidencias = new ArrayList<>();
+        listaidincidencias.add(0);
+        String sql = "select idIncidencia from destacarincidencia where idUsuario = ?";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setInt(1, idUsuario);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    listaidincidencias.add(rs.getInt(1));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return listaidincidencias;
+    }
+
+
+
+
+
 
 
 }

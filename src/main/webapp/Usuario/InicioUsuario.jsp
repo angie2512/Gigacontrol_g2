@@ -6,6 +6,7 @@
     //ArrayList<TipoDeIncidencia> listaTipoDeIncidencias = (ArrayList <TipoDeIncidencia>) request.getAttribute("ListaTipoDeIncidencias");
     //ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
     ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
+    ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
 %>
 
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
@@ -208,7 +209,15 @@
                                                 <div class="d-flex flex-row-reverse">
                                                     <div class="p-2"><b style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%></b></div>
                                                     <div class="p-2"><b>👤 15</b></div>
-                                                    <div class="p-2"><b style="color:#F0C00D">★ Destacados</b></div>
+                                                    <% if(listaDestacados.contains(incidencia.getIdIncidencia())){ %>
+                                                    <div class="p-2">
+                                                        <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacado&idi=<%=incidencia.getIdIncidencia()%>" style="color:#F0C00D">★ Destacar</a>
+                                                    </div>
+                                                    <% }else{ %>
+                                                    <div class="p-2">
+                                                        <a href="<%=request.getContextPath()%>/ServletUsuario?action=destacar&idi=<%=incidencia.getIdIncidencia()%>" style="color:rgba(93,131,196,0.38)">★ Destacar</a>
+                                                    </div>
+                                                    <%}%>
                                                 </div>
                                             </tr>
                                         </table>

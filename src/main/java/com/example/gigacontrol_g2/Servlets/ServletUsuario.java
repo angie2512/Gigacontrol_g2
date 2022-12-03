@@ -19,6 +19,8 @@ public class ServletUsuario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action") == null ? "inicio" : request.getParameter("action");
+        HttpSession session= request.getSession();
+        BUsuarios usuario=(BUsuarios) session.getAttribute("userlogged");
         RequestDispatcher requestDispatcher;
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         UsersDao usersDao = new UsersDao();
@@ -30,6 +32,7 @@ public class ServletUsuario extends HttpServlet {
             case "inicio":
                 request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
                 request.setAttribute("ListaNombres", usersDao.getUsersList());
+                request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
                 requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
                 requestDispatcher.forward(request, response);
                 break;
@@ -62,6 +65,21 @@ public class ServletUsuario extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("Usuario/VerIncidencia.jsp");
                 requestDispatcher.forward(request, response);
                 break;
+            case "destacar":
+                String idincidencia = request.getParameter("idi");
+                int incidenciaid = Integer.parseInt(idincidencia);
+                usersDao.destacarEstrella(usuario.getIdUsuario(), incidenciaid);
+                response.sendRedirect(request.getContextPath()+"/ServletUsuario");
+                break;
+
+            case "quitardestacado":
+                String idincidencia1 = request.getParameter("idi");
+                int incidenciaid1 = Integer.parseInt(idincidencia1);
+                usersDao.eliminarDestacado(usuario.getIdUsuario(), incidenciaid1);
+                response.sendRedirect(request.getContextPath()+"/ServletUsuario");
+                break;
+
+
         }
 
     }
