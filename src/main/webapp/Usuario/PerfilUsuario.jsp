@@ -10,7 +10,10 @@
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <title>Perfil USUARIO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
     <script src="https://kit.fontawesome.com/46baa8e193.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/usuario.css">
+
 </head>
 
 
@@ -58,10 +61,11 @@
             </a> -->
             <br>
             <center>
-            <div class="input-group mb-3" style="max-width: 20rem">
-                <label class="input-group-text" for="inputGroupFile01"><img src="https://img.icons8.com/metro/26/null/camera.png"/></label>
-                <input type="file" class="form-control" id="inputGroupFile01">
-            </div>
+                <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+                <label for="file-upload" class="custom-file-upload" style="margin-left: 110px; border-radius: 15px; margin-top: -500px">
+                    <i class="fa fa-camera"></i>
+                </label>
+                <input id="file-upload" type="file"/>
             </center>
         </td>
 
