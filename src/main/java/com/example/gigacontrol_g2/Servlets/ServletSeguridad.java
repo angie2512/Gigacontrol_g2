@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 @WebServlet(name = "ServletSeguridad", value = "/ServletSeguridad")
 public class ServletSeguridad extends HttpServlet {
@@ -121,7 +122,6 @@ public class ServletSeguridad extends HttpServlet {
                 int idEstado = Integer.parseInt(idEstadoStr);
                 seguridadDao.actualizarEstado(idEstado , idIncidencia);
                 String correoDestino = incidencia.getUsuario().getCorreo();
-                System.out.println(correoDestino);
                 envioCorreo.correoActualizacionEstadoDeIncidencia(incidencia,correoDestino);
                 response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                 break;

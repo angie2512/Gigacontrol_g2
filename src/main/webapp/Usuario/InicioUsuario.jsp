@@ -171,7 +171,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="card-body d-flex align-items-right"  aria-label="Basic mixed styles example" style="padding-final: 3rem; margin-left: 200px;">
-                                                        <a href="<%=request.getContextPath()%>/ServletUsuario?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver</a>
+                                                        <a href="<%=request.getContextPath()%>/ServletUsuario?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver Más</a>
                                                     </div>
                                                 </td>
                                             </tr>

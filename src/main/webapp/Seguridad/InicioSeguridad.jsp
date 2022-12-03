@@ -92,13 +92,6 @@
           <p></p>
 
 
-
-         <!--form class="d-flex" role="search" method="post" action="<%=request.getContextPath()%>/ServletSeguridadBuscarIncidencia?action=buscar">
-            <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar" aria-label="Buscar">
-            <button class="btn btn-outline-primary" type="submit">Buscar</button>
-
-          </form-->
-
           <div class="card" style="margin-top:10px">
             <div class="card-body">
               <div class="d-flex position-relative">
@@ -114,7 +107,7 @@
                           </td>
                           <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                              <a href="<%=request.getContextPath()%>/ServletSeguridad?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver</a>
+                              <a href="<%=request.getContextPath()%>/ServletSeguridad?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver Más</a>
                               <!--a href="<%=request.getContextPath()%>/ServletSeguridad?action=reporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a> --->
                             </div>
                           </td>
