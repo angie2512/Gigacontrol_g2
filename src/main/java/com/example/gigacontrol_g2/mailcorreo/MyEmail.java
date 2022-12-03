@@ -1,4 +1,4 @@
-package com.example.gigacontrol_g2.mailcorreo;
+/*package com.example.gigacontrol_g2.mailcorreo;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -8,7 +8,7 @@ import javax.mail.internet.MimeMultipart;
 import java.io.File;
 import java.util.Properties;
 
-//NO BORRAR AUN
+NO BORRAR AUN
 
 public class MyEmail {
 
@@ -48,4 +48,4 @@ public class MyEmail {
 
     }
 
-}
+} */

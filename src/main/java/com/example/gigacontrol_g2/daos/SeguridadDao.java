@@ -42,6 +42,7 @@ public class SeguridadDao extends BaseDao{
                         usuario.setApellido(usuar.getApellido());
                         usuario.setCodigo(usuar.getCodigo());
                         usuario.setCategoria(usuar.getCategoria());
+                        usuario.setCorreo(usuar.getCorreo());
                     }
                 }
                 incidencia.setUsuario(usuario);
@@ -105,6 +106,7 @@ public class SeguridadDao extends BaseDao{
                             usuario1.setApellido(usuar.getApellido());
                             usuario1.setCodigo(usuar.getCodigo());
                             usuario1.setCategoria(usuar.getCategoria());
+                            usuario1.setCorreo(usuar.getCorreo());
                         }
                     }
                     incidencia1.setUsuario(usuario1);

@@ -2,6 +2,7 @@ package com.example.gigacontrol_g2.Servlets;
 
 import com.example.gigacontrol_g2.beans.BUsuarios;
 import com.example.gigacontrol_g2.daos.DaoDatosFijos;
+import com.example.gigacontrol_g2.mailcorreo.EnvioCorreo;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -15,6 +16,7 @@ public class ServletInicio extends HttpServlet {
         String action = request.getParameter("action");
         //String action = request.getParameter("action") == null ? "mostarIndex" : request.getParameter("action");
         RequestDispatcher view;
+        EnvioCorreo envioCorreo = new EnvioCorreo();
         if (action == null) {
             view = request.getRequestDispatcher("index.jsp");
             view.forward(request, response);
@@ -25,6 +27,10 @@ public class ServletInicio extends HttpServlet {
 
                     if (user != null && user.getIdUsuario() != 0) {
                         if (user.getRolId() == 1) {
+                            /*int codigoAutenticacion = envioCorreo.generarCodigoDeAutenticacion();
+                            String correoDestino = user.getCorreo();
+                            envioCorreo.enviarCodigoDeAutenticacion(codigoAutenticacion,correoDestino);
+                            response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");*/
                             response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
                         } else if (user.getRolId() == 2) {
                             response.sendRedirect(request.getContextPath() + "/ServletUsuario");
@@ -37,6 +43,12 @@ public class ServletInicio extends HttpServlet {
                         view.forward(request, response);
                     }
                     break;
+
+                case "autenticarSeguridad":
+                    view = request.getRequestDispatcher("AutenticacionSeguridad.jsp");
+                    view.forward(request, response);
+                    break;
+
                 case "logout":
                     HttpSession session = request.getSession();
                     session.invalidate();
@@ -67,9 +79,12 @@ public class ServletInicio extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
-
+        String action = request.getParameter("action");
+        //String action = request.getParameter("action") == null ? "mostarIndex" : request.getParameter("action");
         String codigo = request.getParameter("codigo");
         String contrasena  = request.getParameter("contrasena");
+        EnvioCorreo envioCorreo = new EnvioCorreo();
+
         BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo,contrasena);
         if(usuariolog !=null){
             HttpSession session = request.getSession();
@@ -77,6 +92,11 @@ public class ServletInicio extends HttpServlet {
             if (usuariolog.getRolId()==3){
                 response.sendRedirect("ServletAdmin?action=Inicio");
             }else if (usuariolog.getRolId()==1){
+                //Avance de Doble Autenticacion Seguridad
+                /*int codigoAutenticacion = envioCorreo.generarCodigoDeAutenticacion();
+                String correoDestino = usuariolog.getCorreo();
+                envioCorreo.enviarCodigoDeAutenticacion(codigoAutenticacion,correoDestino);
+                response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");*/
                 response.sendRedirect(request.getContextPath() + "/ServletSeguridad?action=listarIncidencia");
             }
             else {

@@ -65,6 +65,15 @@
                 <a class="nav-link active" href="<%=request.getContextPath()%>/ServletSeguridad?action=perfil" aria-current="page" style="color:#FFFFFF">Perfil</a>
               </li>
             </ul>
+
+            <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
+              <li><a href="#" class="nav-link px-2"><b style="color:white"><%=userlogged.getNombre() + userlogged.getApellido()%></b></a></li>
+              <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
+                  <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+              </div>
+            </ul>
           </div>
           <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
             <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
@@ -83,13 +92,6 @@
           <p></p>
 
 
-
-         <!--form class="d-flex" role="search" method="post" action="<%=request.getContextPath()%>/ServletSeguridadBuscarIncidencia?action=buscar">
-            <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar" aria-label="Buscar">
-            <button class="btn btn-outline-primary" type="submit">Buscar</button>
-
-          </form-->
-
           <div class="card" style="margin-top:10px">
             <div class="card-body">
               <div class="d-flex position-relative">
@@ -105,7 +107,7 @@
                           </td>
                           <td>
                             <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                              <a href="<%=request.getContextPath()%>/ServletSeguridad?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver</a>
+                              <a href="<%=request.getContextPath()%>/ServletSeguridad?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver Más</a>
                               <!--a href="<%=request.getContextPath()%>/ServletSeguridad?action=reporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a> --->
                             </div>
                           </td>

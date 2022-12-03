@@ -4,6 +4,7 @@ import com.example.gigacontrol_g2.beans.*;
 import com.example.gigacontrol_g2.daos.DaoDatosFijos;
 import com.example.gigacontrol_g2.daos.SeguridadDao;
 import com.example.gigacontrol_g2.daos.UsersDao;
+import com.example.gigacontrol_g2.mailcorreo.EnvioCorreo;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 @WebServlet(name = "ServletSeguridad", value = "/ServletSeguridad")
 public class ServletSeguridad extends HttpServlet {
@@ -98,10 +100,11 @@ public class ServletSeguridad extends HttpServlet {
         BUsuarios bUsuarios = (BUsuarios) session.getAttribute("userlogged");
         String action = request.getParameter("action") == null ? "actualizarIncidencia": request.getParameter("action");
         SeguridadDao seguridadDao = new SeguridadDao();
+        EnvioCorreo envioCorreo = new EnvioCorreo();
 
         String idIncidenciaStr = request.getParameter("idIncidencia");
         int idIncidencia = Integer.parseInt(idIncidenciaStr);
-        Incidencia incidencia;
+        Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
 
         RequestDispatcher view;
         ArrayList<String> opcionesTipoIncidencia = new ArrayList<>();
@@ -118,6 +121,8 @@ public class ServletSeguridad extends HttpServlet {
                 String idEstadoStr = request.getParameter("estado");
                 int idEstado = Integer.parseInt(idEstadoStr);
                 seguridadDao.actualizarEstado(idEstado , idIncidencia);
+                String correoDestino = incidencia.getUsuario().getCorreo();
+                envioCorreo.correoActualizacionEstadoDeIncidencia(incidencia,correoDestino);
                 response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                 break;
 
