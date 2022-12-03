@@ -63,7 +63,7 @@
             <center>
                 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
                 <label for="file-upload" class="custom-file-upload" style="margin-left: 110px; border-radius: 15px; margin-top: -500px">
-                    <i class="fa fa-camera"></i>
+                    <i class="fa fa-pencil-square-o"></i>
                 </label>
                 <input id="file-upload" type="file"/>
             </center>
