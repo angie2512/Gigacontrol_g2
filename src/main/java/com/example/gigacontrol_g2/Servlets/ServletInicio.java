@@ -21,20 +21,13 @@ public class ServletInicio extends HttpServlet {
             view = request.getRequestDispatcher("index.jsp");
             view.forward(request, response);
         } else {
+            BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
             switch (action) {
                 case "LogIn":
-                    BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
-
                     if (user != null && user.getIdUsuario() != 0) {
-                        if (user.getRolId() == 1) {
-                            /*int codigoAutenticacion = envioCorreo.generarCodigoDeAutenticacion();
-                            String correoDestino = user.getCorreo();
-                            envioCorreo.enviarCodigoDeAutenticacion(codigoAutenticacion,correoDestino);
-                            response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");*/
-                            response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
-                        } else if (user.getRolId() == 2) {
+                        if (user.getRolId() == 2) {
                             response.sendRedirect(request.getContextPath() + "/ServletUsuario");
-                        } else {
+                        }else if (user.getRolId() == 3){
                             response.sendRedirect(request.getContextPath() + "/ServletAdmin");
                         }
                         //response.sendRedirect(request.getContextPath());
@@ -45,6 +38,11 @@ public class ServletInicio extends HttpServlet {
                     break;
 
                 case "autenticarSeguridad":
+                    int codigoAutenticacion = envioCorreo.generarCodigoDeAutenticacion();
+                    String correoDestino = user.getCorreo();
+                    envioCorreo.enviarCodigoDeAutenticacion(codigoAutenticacion,correoDestino);
+                    String codigoAutenticacionStr= Integer.toString(codigoAutenticacion);
+                    request.setAttribute("Codigo",codigoAutenticacionStr);
                     view = request.getRequestDispatcher("AutenticacionSeguridad.jsp");
                     view.forward(request, response);
                     break;
@@ -79,31 +77,43 @@ public class ServletInicio extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
-        String action = request.getParameter("action");
-        //String action = request.getParameter("action") == null ? "mostarIndex" : request.getParameter("action");
+        //String action = request.getParameter("action");
+        String action = request.getParameter("action") == null ? "IniciarSesion" : request.getParameter("action");
         String codigo = request.getParameter("codigo");
         String contrasena  = request.getParameter("contrasena");
-        EnvioCorreo envioCorreo = new EnvioCorreo();
 
-        BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo,contrasena);
-        if(usuariolog !=null){
-            HttpSession session = request.getSession();
-            session.setAttribute("userlogged",usuariolog);
-            if (usuariolog.getRolId()==3){
-                response.sendRedirect("ServletAdmin?action=Inicio");
-            }else if (usuariolog.getRolId()==1){
-                //Avance de Doble Autenticacion Seguridad
-                /*int codigoAutenticacion = envioCorreo.generarCodigoDeAutenticacion();
-                String correoDestino = usuariolog.getCorreo();
-                envioCorreo.enviarCodigoDeAutenticacion(codigoAutenticacion,correoDestino);
-                response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");*/
-                response.sendRedirect(request.getContextPath() + "/ServletSeguridad?action=listarIncidencia");
-            }
-            else {
-                response.sendRedirect("InicioUsuario");
-            }
-        }else{
-            response.sendRedirect(request.getContextPath() + "ServletInicio?action=LogIn&error");
+
+        switch (action){
+            case "IniciarSesion":
+                BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo,contrasena);
+                if(usuariolog !=null){
+                    HttpSession session = request.getSession();
+                    session.setAttribute("userlogged",usuariolog);
+                    if (usuariolog.getRolId()==3){
+                        response.sendRedirect("ServletAdmin?action=Inicio");
+                    }else if (usuariolog.getRolId()==1){
+                        //Avance de Doble Autenticacion Seguridad
+                        response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");
+                    }
+                    else {
+                        response.sendRedirect("InicioUsuario");
+                    }
+                }else{
+                    response.sendRedirect(request.getContextPath() + "ServletInicio?action=LogIn&error");
+                }
+                break;
+
+            case "autenticacionSeguridad":
+                String codigoAutenticacionIngresado = request.getParameter("codigoAutenticacionIngresado");
+                String codigoAutenticacionOriginal = request.getParameter("codigoAutenticacion");
+                if(codigoAutenticacionIngresado.equals(codigoAutenticacionOriginal)){
+                    response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
+                }else{
+                    HttpSession session = request.getSession();
+                    session.invalidate();
+                    response.sendRedirect("ServletInicio");
+                }
+                break;
         }
     }
 }

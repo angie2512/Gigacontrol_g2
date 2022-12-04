@@ -104,7 +104,6 @@
                     <% if (request.getParameter("error") != null) {%>
                     <div class="text-danger mb-2">Hubo un Error en su Codigo o Contraseña , Vuelva a Ingresar</div>
                     <% } %>
-                    <!-- <a href="< %=request.getContextPath()%>/InicioSeguridad"><button class="d-grid gap-1 col-2 mx-auto btn btn-primary" type="button">Ingresar</button></a> -->
                     <div class="d-grid gap-2 col-3 mx-auto">
                         <button type="submit" class="btn btn-primary">
                             Ingresar

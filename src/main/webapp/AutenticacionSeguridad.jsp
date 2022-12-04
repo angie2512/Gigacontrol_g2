@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% String codigoAutenticacion = (String) request.getAttribute("Codigo"); %>
 
 <!doctype html>
 <html lang="en">
@@ -78,7 +79,7 @@
             <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
                 <p></p>
                 <p></p>
-                <h2 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>AUTENTICACIÓN USUARIO - SEGURIDAD</b></h2>
+                <h2 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>AUTENTICACIÓN DE USUARIO SEGURIDAD</b></h2>
                 <center>
                     <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png"
                          alt="linea" class="card-img" width="90%" height="10%">
@@ -88,10 +89,11 @@
                 <h5 style="font-family: 'Times New Roman', Times, serif; color:#C6D6F5" class="card-text"><b> Ingrese el Código de Autenticación Enviado a su Correo
                      </b></h5>
                 <p></p>
-                <form method="post" class="form-signin" action="<%=request.getContextPath()%>/ServletInicio?action=autenticarSeguridad">
+                <form method="post" class="form-signin" action="<%=request.getContextPath()%>/ServletInicio?action=autenticacionSeguridad">
                     <div class="d-grid gap-2 col-8 mx-auto form-floating mb-3">
-                        <input type="numbers" class="form-control" id="codigoAutenticacion" placeholder="Código de Autenticación" name="codigoAutenticacion">
-                        <label for="codigoAutenticacion">Código de Autenticación</label>
+                        <input type="hidden" name="codigoAutenticacion" value="<%=codigoAutenticacion%>">
+                        <input type="numbers" class="form-control" id="codigoAutenticacionIngresado" placeholder="Código de Autenticación" name="codigoAutenticacionIngresado">
+                        <label for="codigoAutenticacionIngresado">Código de Autenticación</label>
                     </div>
                     <p></p>
                     <p></p>
