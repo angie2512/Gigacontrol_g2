@@ -45,6 +45,9 @@
 </head>
 <body>
 <center>
+    <br>
+    <br>
+    <br>
     <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
         <p></p>
         <p></p>
@@ -59,6 +62,7 @@
             <br>
             <center><button type="button" class="btn btn-primary">Enviar</button></center>
         </form>
+        <a href="<%=request.getContextPath()%>/reestablecerContrasena.jsp">REESTABLECER CONTRA -DEBE DE IR EN CORREO</a>
     </div>
 </center>
 <br>

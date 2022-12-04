@@ -110,7 +110,7 @@
                         </button>
                     </div>
                     <p></p>
-                    <!--Falta--><a href="<%=request.getContextPath()%>/OlvidasteTuContrasena">¿Olvidaste tu Contraseña?</a>
+                    <!--Falta--><a href="<%=request.getContextPath()%>/OlvidasteTuContrasena.jsp">¿Olvidaste tu Contraseña?</a>
                 </form>
                 <br>
             </div>
