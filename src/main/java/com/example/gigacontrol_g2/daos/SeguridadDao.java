@@ -204,7 +204,7 @@ public class SeguridadDao extends BaseDao{
                     incidencia.setDescripcion(rs.getString("Descripcion"));
                     incidencia.setZonaPucp(rs.getString("ZonaPUCP"));
                     incidencia.setUbicacion(rs.getString("Ubicacion"));
-                    incidencia.setFoto(rs.getString("Foto"));
+                    incidencia.setFoto(rs.getBinaryStream("Foto"));
                     bUsuarios.setIdUsuario(rs.getInt("idUsuario"));
                     tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt("idTipoIncidencia"));
                     nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt("idNivelUrgencia"));
