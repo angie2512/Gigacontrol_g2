@@ -69,7 +69,7 @@
 </head>
 
 <body class="p-3 m-0 border-0 bd-example">
-<table>
+<!--<table>
     <tr>
     <tr>
     <tr>
@@ -92,8 +92,8 @@
 <p></p>
 <p></p>
 <p></p>
-<p></p>
-
+<p></p>-->
+<!--
 <center>
         <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
             <br>
@@ -113,7 +113,32 @@
             </div>
         </div>
     </div>
+</center> -->
 <center>
+    <div class="card" style="max-width: 58rem; background-color:#00000090; top: 199.5px;">
+        <div class="card-header" style="background-color:#030312">
+            <img src="resources/Images/Logo_img.png" alt="Logo" width="150rem;" height="75rem" class="rounded float-start">
+            </div>
+        <div class="card-body">
+            <center>
+            <h2 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>BIENVENID@ A GIGACONTROL</b></h2>
+            <h6 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#FBFCFC" class="card-subtitle mb-2 text-muted">Servicio de ayuda a incidencias en la comunidad PUCP</h6>
+            <br>
+            <h5 style="font-family: 'Times New Roman', Times, serif; color:#78BBFD" class="card-text"><b> SELECCIONE LA OPCIÓN </b></h5>
+            <p></p>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a href="<%=request.getContextPath()%>/ServletInicio?action=LogIn"><button class="btn-1" type="button"><b>Iniciar Sesión</b></button></a>
+                <a href="<%=request.getContextPath()%>/ServletInicio?action=registro"><button class="btn-2" type="button"><b>Registrarse</b></button></a>
+                <br>
+            </div>
+            </center>
+        </div>
+    </div>
+</center>
+
+<br><br>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
