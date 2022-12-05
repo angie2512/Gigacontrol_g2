@@ -117,7 +117,7 @@
 <center>
     <div class="card" style="max-width: 58rem; background-color:#00000090; top: 199.5px;">
         <div class="card-header" style="background-color:#030312">
-            <img src="resources/Images/Logo_img.png" alt="Logo" width="150rem;" height="75rem" class="rounded float-start">
+            <img src="resources/Images/logo_blanco.png" alt="Logo" width="140rem;" height="50rem" class="rounded float-start">
             </div>
         <div class="card-body">
             <center>
