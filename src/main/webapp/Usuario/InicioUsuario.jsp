@@ -160,12 +160,16 @@
                     <div class="card" style="margin-top:10px">
                         <div class="card-body">
                             <div class="d-flex position-relative">
-                                <img src="https://elcomercio.pe/resizer/hE0dXgCo-KfAjkgGRXLIlDayLYo=/1200x1200/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/JRZOEF5WCRCCPO32AV7OYXXNCU.jpg" class="flex-shrink-0 me-3" alt="..." width="140" height="140">
                                 <div>
 
                                     <%for(Incidencia incidencia : listaDeIncidencias) { %>
                                     <div class="card-body">
                                         <table>
+                                            <td>
+                                            <div class="card-body d-flex align-items-right"  aria-label="Basic mixed styles example" style="padding-final: 3rem; margin-left: 200px;">
+                                                <a> <%=incidencia.getFoto()%></a>
+                                            </div>
+                                            </td>
                                             <tr>
                                                 <td>
                                                     <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%=incidencia.getNombreDeIncidencia()%></b></h4>
@@ -176,6 +180,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
+
                                             <tr>
                                                 <td>
                                                     <h6 style="color:#585151; font-family:Georgia, serif"><b>NOMBRE Y APELLIDO: <%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%></b> </h6>

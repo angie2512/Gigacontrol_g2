@@ -1,12 +1,15 @@
 package com.example.gigacontrol_g2.beans;
 
+import java.io.InputStream;
+
 public class Incidencia {
     private int idIncidencia;
     private String nombreDeIncidencia;
     private String descripcion;
     private String zonaPucp;
     private String ubicacion;
-    private String foto;
+
+    private InputStream foto;
     private BUsuarios usuario;
     private TipoDeIncidencia tipoDeIncidencia;
     private NivelDeUrgencia nivelDeUrgencia;
@@ -49,17 +52,20 @@ public class Incidencia {
         return ubicacion;
     }
 
+    public InputStream getFoto() {
+        return foto;
+    }
+
+    public void setFoto(InputStream foto) {
+        this.foto = foto;
+    }
+
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
 
-    public String getFoto() {
-        return foto;
-    }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
+
 
     public BUsuarios getUsuario() {
         return usuario;

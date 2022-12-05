@@ -54,6 +54,7 @@ public class UsersDao extends BaseDao{
                 incidencia.setDescripcion(rs.getString(3));
                 incidencia.setZonaPucp(rs.getString(4));
                 incidencia.setUbicacion(rs.getString(5));
+                incidencia.setFoto(rs.getBinaryStream(6));
                 UsersDao userDao = new UsersDao();
                 BUsuarios usuario = new BUsuarios();
                 for (BUsuarios usuar : userDao.getUsersList()){
