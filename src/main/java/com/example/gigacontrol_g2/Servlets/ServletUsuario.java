@@ -23,9 +23,11 @@ public class ServletUsuario extends HttpServlet {
         String action = request.getParameter("action") == null ? "inicio" : request.getParameter("action");
         HttpSession session= request.getSession();
         BUsuarios usuario=(BUsuarios) session.getAttribute("userlogged");
+
         RequestDispatcher requestDispatcher;
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         UsersDao usersDao = new UsersDao();
+        usersDao.obtenerIncidenciasDelUsuario(usuario.getIdUsuario());
         SeguridadDao seguridadDao = new SeguridadDao();
 
         switch (action) {
@@ -50,7 +52,8 @@ public class ServletUsuario extends HttpServlet {
 
             case "listaMisIncidencias":
                 //asignar
-                request.setAttribute("ListaDeIncidencias", usersDao.obtenerListaDeIncidencias());
+                request.setAttribute("ListaDeIncidenciasDelUsuario", usersDao.obtenerIncidenciasDelUsuario(usuario.getIdUsuario()));
+                request.setAttribute("ListaDeIncidenciasDestacadas", usersDao.obtenerIncidenciasDestacadas(usuario.getIdUsuario()));
                 requestDispatcher = request.getRequestDispatcher("Usuario/MisIncidencias.jsp");
                 //enviar
                 requestDispatcher.forward(request, response);
