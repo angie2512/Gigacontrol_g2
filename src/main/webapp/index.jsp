@@ -109,13 +109,13 @@
 </center> -->
 
 <center>
-    <div class="card" style="max-width:50rem;background-color:rgba(255,255,255,0.70); top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); position: absolute">
+    <div class="card" style="max-width:50rem ;background-color:rgba(255,255,255,0.70); top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); position: absolute">
         <div class="card-header">
             <img src="resources/Images/LOGO_azul.png" alt="Logo" width="145rem;" height="48rem" class="rounded float-start img-fluid">
             </div>
         <div class="card-body">
             <center>
-                <h2 style="font-family:'Georgia';color:#4b71bb" class="card-title"><b>BIENVENIDO A GIGACONTROL</b></h2>
+                <h1 style="font-family:'Georgia';color:#4b71bb" class="card-title"><b>BIENVENIDO A GIGACONTROL</b></h1>
                 <h5 style="font-family: 'Mukta Mahee', sans-serif;color:#40936d" class="card-subtitle mb-2">Servicio de ayuda a incidencias en la comunidad PUCP</h5>
                 <br>
                 <h6 style="font-family: 'Georgia'">Elige la opción que desees realizar</h6>
