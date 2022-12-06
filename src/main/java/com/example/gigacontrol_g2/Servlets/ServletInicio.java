@@ -81,13 +81,13 @@ public class ServletInicio extends HttpServlet {
         String action = request.getParameter("action") == null ? "IniciarSesion" : request.getParameter("action");
         String codigo = request.getParameter("codigo");
         String contrasena  = request.getParameter("contrasena");
-
+        RequestDispatcher view;
+        HttpSession session = request.getSession();
 
         switch (action){
             case "IniciarSesion":
                 BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo,contrasena);
                 if(usuariolog !=null){
-                    HttpSession session = request.getSession();
                     session.setAttribute("userlogged",usuariolog);
                     if (usuariolog.getRolId()==3){
                         response.sendRedirect("ServletAdmin?action=Inicio");
@@ -99,21 +99,32 @@ public class ServletInicio extends HttpServlet {
                         response.sendRedirect("InicioUsuario");
                     }
                 }else{
-                    response.sendRedirect(request.getContextPath() + "ServletInicio?action=LogIn&error");
+                    session.setAttribute("error","Hubo un Error en su Código o Contraseña , Vuelva a Ingresar");
+                    view = request.getRequestDispatcher("inicioDeSesion.jsp");
+                    view.forward(request,response);
                 }
                 break;
 
             case "autenticacionSeguridad":
                 String codigoAutenticacionIngresado = request.getParameter("codigoAutenticacionIngresado");
                 String codigoAutenticacionOriginal = request.getParameter("codigoAutenticacion");
-                if(codigoAutenticacionIngresado.equals(codigoAutenticacionOriginal)){
-                    response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
-                }else{
-                    HttpSession session = request.getSession();
-                    session.invalidate();
-                    response.sendRedirect("ServletInicio");
+                int num_intentos=3;
+                    if (codigoAutenticacionIngresado.equals(codigoAutenticacionOriginal)) {
+                        response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
+                    }else {
+                            session.setAttribute("error2", "Codigo Incorrecto, Vuelva a Ingresar \n" +
+                                    "(Tiene 2 Oportunidades Más)");
+                            num_intentos--;
+                            response.sendRedirect(request.getContextPath()+"/ServletInicio?action=autenticarSeguridad");
+                            /* if(num_intentos ==0) {
+                                session.invalidate();
+                                response.sendRedirect("ServletInicio");
+                                break;
+                            }*/
+                        }
+                    break;
+                    }
                 }
-                break;
+
         }
-    }
-}
+

@@ -101,8 +101,9 @@
                     </div>
                     <p></p>
                     <p></p>
-                    <% if (request.getParameter("error") != null) {%>
-                    <div class="text-danger mb-2">Hubo un Error en su Codigo o Contraseña , Vuelva a Ingresar</div>
+                    <% if (session.getAttribute("error") != null) {%>
+                    <div class="text-danger mb-2"><%=session.getAttribute("error")%></div>
+                    <% session.removeAttribute("error"); %>
                     <% } %>
                     <div class="d-grid gap-2 col-3 mx-auto">
                         <button type="submit" class="btn btn-primary">
