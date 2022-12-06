@@ -1,5 +1,6 @@
 <%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     //ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
@@ -7,6 +8,8 @@
     //ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
     ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
     ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
+
+    HashMap<Integer, Integer> numDestacados = (HashMap<Integer, Integer>) request.getAttribute("numDestacados");
 %>
 
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
@@ -66,7 +69,7 @@
                         <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/PerfilUsuario" style="color:#FFFFFF">Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/MisIncidencias" style="color:#FFFFFF">Mis Incidencias</a>
+                        <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/ServletUsuario?action=listaMisIncidencias" style="color:#FFFFFF">Mis Incidencias</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/NuevaIncidencia" style="color:#FFFFFF">Nueva Incidencia</a>
@@ -76,7 +79,7 @@
 
 
                 <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85"><%=userlogged.getNombre() + userlogged.getApellido()%></b></a></li>
+                    <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85"><%=userlogged.getNombre() + " " + userlogged.getApellido()%></b></a></li>
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
                             <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -90,9 +93,6 @@
             </div>
         </div>
     </nav>
-
-
-
 
 <p></p>
 <p></p>
@@ -165,11 +165,6 @@
                                     <%for(Incidencia incidencia : listaDeIncidencias) { %>
                                     <div class="card-body">
                                         <table>
-                                            <td>
-                                            <div class="card-body d-flex align-items-right"  aria-label="Basic mixed styles example" style="padding-final: 3rem; margin-left: 200px;">
-                                                <a> <%=incidencia.getFoto()%></a>
-                                            </div>
-                                            </td>
                                             <tr>
                                                 <td>
                                                     <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%=incidencia.getNombreDeIncidencia()%></b></h4>
@@ -208,13 +203,22 @@
                                                     <p><%=incidencia.getDescripcion()%></p>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" height = "60rem" width="60 rem">
+                                                <td>
+                                            </tr>
                                         </table>
                                         <table>
                                             <tr>
                                                 <div class="d-flex flex-row-reverse">
                                                     <div class="p-2"><b style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%></b></div>
-                                                    <div class="p-2"><b>👤 15</b></div>
-                                                    <% if(listaDestacados.contains(incidencia.getIdIncidencia())){ %>
+                                                    <% if(numDestacados.get(incidencia.getIdIncidencia())!=null){%>
+                                                    <div class="p-2"><b>👤 <%=numDestacados.get(incidencia.getIdIncidencia())%></b></div>
+                                                    <%}else{%>
+                                                    <div class="p-2"><b>👤 0</b></div>
+                                                    <%}%>
+                                                    <%if(listaDestacados.contains(incidencia.getIdIncidencia())){ %>
                                                     <div class="p-2">
                                                         <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacado&idi=<%=incidencia.getIdIncidencia()%>" style="color:#F0C00D">★ Destacar</a>
                                                     </div>

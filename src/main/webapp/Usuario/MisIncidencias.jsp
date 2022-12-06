@@ -1,9 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
+<%@ page import="com.example.gigacontrol_g2.beans.TipoDeIncidencia" %>
+<%@ page import="com.example.gigacontrol_g2.beans.Estado" %>
 <%@ page import="java.util.ArrayList" %>
 <%
-    ArrayList<Incidencia> listaDestacadas = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidenciasDestacadas");
+    ArrayList<Incidencia> IncidenciasUsuario = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidenciasDelUsuario");
+    ArrayList<Incidencia> IncidenciasDestacadas = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidenciasDestacadas");
 %>
+
+<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -42,7 +49,7 @@
 
 
             <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">ROSA A. SALAZAR CASTILLA</b></a></li>
+                <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85"><%=userlogged.getNombre() + userlogged.getApellido()%></b></a></li>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
                         <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -62,26 +69,28 @@
     <div class="card">
         <div class="card-body">
             <div class="p-7 mb-2 bg-primary text-white" style="--bs-bg-opacity: .5;">
-                <h4 style="text-align: center; color: white; font-family:'Times New Roman', Times, serif">MIS INCIDENCIAS DESTACADAS</h4>
+                <h4 style="text-align: center; color: white; font-family:'Times New Roman', Times, serif">MIS INCIDENCIAS</h4>
             </div>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <table>
+                    <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col"><center> Nombre Incidencia </center></th>
-                            <th scope="col"><center> Nombre </center></th>
+                            <th scope="col"><center> Incidencia </center></th>
+                            <th scope="col"><center> Tipo de Incidencia </center></th>
+                            <th scope="col"><center> Estado </center></th>
                             <th scope="col"><center> Opciones </center></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <%for(Incidencia incidencia : listaDestacadas) { %>
+                        <%for(Incidencia incidencia : IncidenciasUsuario) { %>
                         <tr>
-                            <td> <%= incidencia.getNombreDeIncidencia() %></td>
-                            <td> <%= incidencia.getUsuario().getNombre() %> <%=incidencia.getUsuario().getApellido()%> </td>
-                            <td><div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
-                                <a href=<%=request.getContextPath()%>/VerIncidenciaUsuario class="btn btn-primary">Ver</a>
+                            <td> <center> <%= incidencia.getNombreDeIncidencia() %> </center> </td>
+                            <td> <center> <%= incidencia.getTipoDeIncidencia().getNombre() %> </center></td>
+                            <td> <center><%= incidencia.getEstado().getNombre() %> </center></td>
+                            <td> <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <a href=<%=request.getContextPath()%>/VerIncidenciaUsuario class="btn btn-primary">Ver Mas</a>
                             </div></td>
                         </tr>
                         <% } %>
@@ -90,8 +99,46 @@
                 </div>
             </div>
             <br>
-
-
+        </div>
+    </div>
+</div>
+<br>
+<div class="d-flex justify-content-center">
+    <div class="card">
+        <div class="card-body">
+            <div class="p-7 mb-2 bg-primary text-white" style="--bs-bg-opacity: .5;">
+                <h4 style="text-align: center; color: white; font-family:'Times New Roman', Times, serif">MIS INCIDENCIAS DESTACADAS</h4>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col"><center> Incidencia </center></th>
+                            <th scope="col"><center> Usuario </center></th>
+                            <th scope="col"><center> Tipo de Incidencia </center></th>
+                            <th scope="col"><center> Estado </center></th>
+                            <th scope="col"><center> Opciones </center></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <%for(Incidencia incidencia : IncidenciasDestacadas) { %>
+                        <tr>
+                            <td><center> <%= incidencia.getNombreDeIncidencia() %></center></td>
+                            <td><center> <%= incidencia.getUsuario().getNombre() %> <%=incidencia.getUsuario().getApellido()%> </center></td>
+                            <td> <center><%= incidencia.getTipoDeIncidencia().getNombre() %> </center></td>
+                            <td><center> <%= incidencia.getEstado().getNombre() %> </center></td>
+                            <td><div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <a href=<%=request.getContextPath()%>/VerIncidenciaUsuario class="btn btn-primary">Ver Mas</a>
+                            </div></td>
+                        </tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
         </div>
     </div>
 </div>

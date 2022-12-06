@@ -1,9 +1,13 @@
 package com.example.gigacontrol_g2.daos;
 
 import com.example.gigacontrol_g2.beans.*;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DaoDatosFijos extends BaseDao{
     public ArrayList<Estado> obtenerListaEstados(){
@@ -164,4 +168,45 @@ public class DaoDatosFijos extends BaseDao{
         return comentariosDeIncidencia;
     }
 
+    public void listarImg(int id, HttpServletResponse response){
+        String sql = "SELECT i.Foto FROM incidencia i where idIncidencia=?";
+        response.setContentType("image/*");
+        InputStream inputStream=null;
+        OutputStream outputStream;
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstm = conn.prepareStatement(sql);) {
+            pstm.setInt(1, id);
+            try (ResultSet rs = pstm.executeQuery();) {
+                outputStream = response.getOutputStream();
+                if (rs.next()) {
+                    inputStream = rs.getBinaryStream(1);
+                }
+                byte[] imagen = new byte[inputStream.available()];
+                inputStream.read(imagen, 0, inputStream.available());
+                outputStream.write(imagen);
+                inputStream.close();
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public HashMap<Integer, Integer> numDestacadosPorIncidencia(){
+        HashMap<Integer, Integer> destPorInc = new HashMap<Integer, Integer>();
+        destPorInc.put(0,0);
+        String sql="select idIncidencia, count(*) from destacarincidencia group by idIncidencia";
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            try(ResultSet rs = pstmt.executeQuery()){
+                while(rs.next()){
+                    destPorInc.put(rs.getInt(1), rs.getInt(2));
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return destPorInc;
+    }
 }

@@ -73,15 +73,20 @@
         <div class="card"style="background-color:#F2F2F3">
             <div class="card-body" >
                 <div class="p-1 mb-8 text-white" style="background-color:#47AAB4">
-                    <h4 style="text-align: center; color: white; font-family:Giorgia, serif"><b>USUARIO PUCP</b></h4>
+                    <h4 style="text-align: center;"><% if(userlogged.getRolId() == 1) {%>
+                        <td class="text-center"> SEGURIDAD</td>
+                        <%} else if (userlogged.getRolId() == 2){%>
+                        <td class="text-center">USUARIO PUCP</td>
+                        <%} else{ %>
+                        <td class="text-center">ADMINISTRADOR</td>
+                        <%}%></h4>
                 </div>
 
                 <p></p>
                 <blockquote class="blockquote mb-0">
-                    <h5 style="text-align: center;color:#21547D"><b><%=userlogged.getNombre() + userlogged.getApellido()%></b></h5>
-                    <h6 style="text-align: center;">ALUMNO</h6>
-                    <h6 style="text-align: center;"><I>Ciencias e Ingeniería</I></h6>
-                    <h6 style="text-align: center;">20203368</h6>
+                    <h5 style="text-align: center;color:#21547D"><b><%=userlogged.getNombre() + " " + userlogged.getApellido()%></b></h5>
+                    <h6 style="text-align: center;"><%=userlogged.getCategoria()%></h6>
+                    <h6 style="text-align: center;"><%=userlogged.getCodigo()%></h6>
                 </blockquote>
             </div>
         </div>

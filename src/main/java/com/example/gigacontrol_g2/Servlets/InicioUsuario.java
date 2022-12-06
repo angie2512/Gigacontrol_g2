@@ -13,8 +13,9 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "InicioUsuario", value = "/InicioUsuario")
+@WebServlet(name = "InicioUsuario", value = "/InicioUsuario")@MultipartConfig
 public class InicioUsuario extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
@@ -31,6 +32,7 @@ public class InicioUsuario extends HttpServlet {
         request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
         request.setAttribute("ListaNombres", usersDao.getUsersList());
         request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
+        request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
         System.out.println("destacados: "+usersDao.incidenciasDestacadas(usuario.getIdUsuario()).size());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
 
@@ -41,8 +43,12 @@ public class InicioUsuario extends HttpServlet {
                 String idincidencia = request.getParameter("idi");
                 int incidenciaid = Integer.parseInt(idincidencia);
                 usersDao.destacarEstrella(usuario.getIdUsuario(), incidenciaid);
-
                 response.sendRedirect(request.getContextPath()+"/InicioUsuario");
+                break;
+            case "listarimg":
+                String idincidencia2 = request.getParameter("id");
+                int incidenciaid2 = Integer.parseInt(idincidencia2);
+                daoDatosFijos.listarImg(incidenciaid2,response);
                 break;
         }
     }
@@ -62,8 +68,6 @@ public class InicioUsuario extends HttpServlet {
 
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
                 requestDispatcher.forward(request, response);
-
-
                 break;
         }
     }
