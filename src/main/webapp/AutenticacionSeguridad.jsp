@@ -97,8 +97,9 @@
                     </div>
                     <p></p>
                     <p></p>
-                    <% if (request.getParameter("error") != null) {%>
-                    <div class="text-danger mb-2">Codigo Incorrecto , Vuelva a Ingresar</div>
+                    <% if (session.getAttribute("error2") != null) {%>
+                    <div class="text-danger mb-2"><%=session.getAttribute("error2")%></div>
+                    <% session.removeAttribute("error2"); %>
                     <% } %>
                     <div class="d-grid gap-2 col-3 mx-auto">
                         <button type="submit" class="btn btn-primary">
