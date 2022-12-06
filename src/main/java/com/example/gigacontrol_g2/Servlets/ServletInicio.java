@@ -112,17 +112,15 @@ public class ServletInicio extends HttpServlet {
                     if (codigoAutenticacionIngresado.equals(codigoAutenticacionOriginal)) {
                         response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
                     }else {
-                            session.setAttribute("error2", "Codigo Incorrecto, Vuelva a Ingresar \n" +
-                                    "(Tiene 2 Oportunidades Más)");
-                            num_intentos--;
-                            response.sendRedirect(request.getContextPath()+"/ServletInicio?action=autenticarSeguridad");
-                            /* if(num_intentos ==0) {
-                                session.invalidate();
-                                response.sendRedirect("ServletInicio");
-                                break;
-                            }*/
-                        }
-                    break;
+                            /*session.setAttribute("error2", "Codigo Incorrecto, Vuelva a Ingresar \n" +
+                                    "(Tiene 2 Oportunidades Más)"); */
+                            //num_intentos--;
+                            //response.sendRedirect(request.getContextPath()+"/ServletInicio?action=autenticarSeguridad");
+                            session.invalidate();
+                            response.sendRedirect("ServletInicio");
+                            //break;
+                            }
+                        break;
                     }
                 }
 
