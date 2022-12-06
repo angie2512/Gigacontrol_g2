@@ -81,25 +81,72 @@ public class UsersDao extends BaseDao{
         return listaDeIncidencias;
     }
 
-    public ArrayList<Incidencia> obtenerIncidenciasDestacadas(){
+    public ArrayList<Incidencia> obtenerIncidenciasDestacadas(int idUsuario){
         ArrayList<Incidencia> listaDeMisIncidencias = new ArrayList<>();
 
-        String sql = "select i.idIncidencia,i.NombreDeIncidencia, u.idUsuario, u.Nombre, u.Apellido from destacarincidencia inner join incidencia i on destacarincidencia.idIncidencia = i.idIncidencia\n" +
-                "                              inner join usuario u on destacarincidencia.idUsuario = u.idUsuario\n" +
-                "inner join rol r on u.Rol_idRol = r.idRol where destacarincidencia.idUsuario=?";
+        String sql = "select i.NombreDeIncidencia, u.Nombre, u.Apellido, t.nombre, e.nombre from destacarincidencia\n" +
+                "    inner join incidencia i on destacarincidencia.idIncidencia = i.idIncidencia\n" +
+                "    inner join usuario u on destacarincidencia.idUsuario = u.idUsuario\n" +
+                "    inner join estado e on i.idEstado = e.idEstado\n" +
+                "    inner join tipoincidencia t on i.idTipoIncidencia = t.idTipoIncidencia\n" +
+                "    where destacarincidencia.idUsuario=?";
 
         try (Connection conn = this.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql)){
+             stmt.setInt(1,idUsuario);
+             try(ResultSet rs = stmt.executeQuery()) {
 
-            while (rs.next()) {
-                BUsuarios usuario = new BUsuarios();
-                Incidencia incidencia = new Incidencia();
-                incidencia.setIdIncidencia(rs.getInt(1));
-                incidencia.setNombreDeIncidencia(rs.getString(2));
-                usuario.setNombre(rs.getString(3));
-                usuario.setApellido(rs.getString(4));
-                listaDeMisIncidencias.add(incidencia);
+                while (rs.next()) {
+                    BUsuarios usuario = new BUsuarios();
+                    Incidencia incidencia = new Incidencia();
+                    TipoDeIncidencia tipoIncidencia = new TipoDeIncidencia();
+                    Estado estadoIncidencia = new Estado();
+                    //incidencia.setIdIncidencia(rs.getInt(1));
+                    incidencia.setNombreDeIncidencia(rs.getString(1));
+                    incidencia.setUsuario(usuario);
+                    usuario.setNombre(rs.getString(2));
+                    usuario.setApellido(rs.getString(3));
+                    tipoIncidencia.setNombre(rs.getString(4));
+                    incidencia.setTipoDeIncidencia(tipoIncidencia);
+                    estadoIncidencia.setNombre(rs.getString(5));
+                    incidencia.setEstado(estadoIncidencia);
+                    listaDeMisIncidencias.add(incidencia);
+                }
+             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return listaDeMisIncidencias;
+    }
+
+    public ArrayList<Incidencia> obtenerIncidenciasDelUsuario(int idUsuario){
+        ArrayList<Incidencia> listaDeMisIncidencias = new ArrayList<>();
+
+        String sql = "select i.idIncidencia, i.NombreDeIncidencia, t.nombre, e.nombre from incidencia i\n" +
+                "inner join estado e on i.idEstado = e.idEstado\n" +
+                "inner join tipoincidencia t on i.idTipoIncidencia = t.idTipoIncidencia\n" +
+                "inner join usuario u on i.idUsuario = u.idUsuario where u.idUsuario =?";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)){
+             stmt.setInt(1,idUsuario);
+             try(ResultSet rs = stmt.executeQuery()){
+
+                while (rs.next()) {
+                    BUsuarios usuario = new BUsuarios();
+                    Incidencia incidencia = new Incidencia();
+                    TipoDeIncidencia tipoIncidencia = new TipoDeIncidencia();
+                    Estado estadoIncidencia = new Estado();
+                    //  incidencia.setIdIncidencia(rs.getInt(1));
+                    incidencia.setNombreDeIncidencia(rs.getString(2));
+                    incidencia.setTipoDeIncidencia(tipoIncidencia);
+                    tipoIncidencia.setNombre(rs.getString(3));
+                    estadoIncidencia.setNombre(rs.getString(4));
+                    incidencia.setEstado(estadoIncidencia);
+
+                    listaDeMisIncidencias.add(incidencia);
+                }
             }
 
         } catch (SQLException throwables) {
