@@ -34,15 +34,19 @@ public class ServletUsuario extends HttpServlet {
                 request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
                 request.setAttribute("ListaNombres", usersDao.getUsersList());
                 request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
+                request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
                 requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
                 requestDispatcher.forward(request, response);
                 break;
-
+            case "listarimg":
+                String idincidencia2 = request.getParameter("id");
+                int incidenciaid2 = Integer.parseInt(idincidencia2);
+                daoDatosFijos.listarImg(incidenciaid2,response);
+                break;
             case "editar":
                 requestDispatcher = request.getRequestDispatcher("Usuario/EditarIncidencia.jsp");
                 requestDispatcher.forward(request, response);
                 break;
-
 
             case "listaMisIncidencias":
                 //asignar
@@ -61,7 +65,6 @@ public class ServletUsuario extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("Usuario/PerfilUsuario.jsp");
                 requestDispatcher.forward(request, response);
                 break;
-
 
             case "destacar":
                 String idincidencia = request.getParameter("idi");

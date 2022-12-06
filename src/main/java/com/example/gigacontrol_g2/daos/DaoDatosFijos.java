@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DaoDatosFijos extends BaseDao{
     public ArrayList<Estado> obtenerListaEstados(){
@@ -192,4 +193,20 @@ public class DaoDatosFijos extends BaseDao{
         }
     }
 
+    public HashMap<Integer, Integer> numDestacadosPorIncidencia(){
+        HashMap<Integer, Integer> destPorInc = new HashMap<Integer, Integer>();
+        destPorInc.put(0,0);
+        String sql="select idIncidencia, count(*) from destacarincidencia group by idIncidencia";
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            try(ResultSet rs = pstmt.executeQuery()){
+                while(rs.next()){
+                    destPorInc.put(rs.getInt(1), rs.getInt(2));
+                }
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return destPorInc;
+    }
 }

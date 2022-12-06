@@ -32,6 +32,7 @@ public class InicioUsuario extends HttpServlet {
         request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
         request.setAttribute("ListaNombres", usersDao.getUsersList());
         request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
+        request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
         System.out.println("destacados: "+usersDao.incidenciasDestacadas(usuario.getIdUsuario()).size());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
 

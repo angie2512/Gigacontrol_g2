@@ -1,5 +1,6 @@
 <%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     //ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
@@ -7,6 +8,7 @@
     //ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
     ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
     ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
+    HashMap<Integer, Integer> numDestacados = (HashMap<Integer, Integer>) request.getAttribute("numDestacados");
 %>
 
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
@@ -205,7 +207,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <img src="<%=request.getContextPath()%>/InicioUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" height = "60rem" width="60 rem">
+                                                    <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" height = "60rem" width="60 rem">
                                                 <td>
                                             </tr>
                                         </table>
@@ -213,8 +215,12 @@
                                             <tr>
                                                 <div class="d-flex flex-row-reverse">
                                                     <div class="p-2"><b style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%></b></div>
-                                                    <div class="p-2"><b>👤 15</b></div>
-                                                    <% if(listaDestacados.contains(incidencia.getIdIncidencia())){ %>
+                                                    <% if(numDestacados.get(incidencia.getIdIncidencia())!=null){%>
+                                                    <div class="p-2"><b>👤 <%=numDestacados.get(incidencia.getIdIncidencia())%></b></div>
+                                                    <%}else{%>
+                                                    <div class="p-2"><b>👤 0</b></div>
+                                                    <%}%>
+                                                    <%if(listaDestacados.contains(incidencia.getIdIncidencia())){ %>
                                                     <div class="p-2">
                                                         <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacado&idi=<%=incidencia.getIdIncidencia()%>" style="color:#F0C00D">★ Destacar</a>
                                                     </div>
