@@ -6,8 +6,7 @@
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 <!--Con "userlogged" en teoria podemos imprimir el nombre y apellido del usuario seguridad" -->
 <%
-  //String searchText = (String) request.getAttribute("searchText");
-  ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("listaIncidencias");
+  ArrayList<Incidencia> listaFiltrada = (ArrayList<Incidencia>) request.getAttribute("ListaFiltrada");
 %>
 
 <!doctype html>
@@ -46,59 +45,59 @@
 
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-</head>
+  </head>
 
-<body class="p-3 m-0 border-0 bd-example">
-      <nav class="navbar navbar-expand-lg" style="background-color: #4C9978;" aria-label="Eighth navbar example">
-        <div class="container">
-          <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+  <body class="p-3 m-0 border-0 bd-example">
+    <nav class="navbar navbar-expand-lg" style="background-color: #4C9978;" aria-label="Eighth navbar example">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <div class="collapse navbar-collapse" id="navbarsExample07">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" href="<%=request.getContextPath()%>/ServletSeguridad" aria-current="page" style="color:#FFFFFF">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="<%=request.getContextPath()%>/ServletSeguridad?action=perfil" aria-current="page" style="color:#FFFFFF">Perfil</a>
-              </li>
-            </ul>
+        <div class="collapse navbar-collapse" id="navbarsExample07">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="<%=request.getContextPath()%>/ServletSeguridad" aria-current="page" style="color:#FFFFFF">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="<%=request.getContextPath()%>/ServletSeguridad?action=perfil" aria-current="page" style="color:#FFFFFF">Perfil</a>
+            </li>
+          </ul>
 
-            <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
-              <li><a href="#" class="nav-link px-2"><b style="color:white"><%=userlogged.getNombre() + userlogged.getApellido()%></b></a></li>
-              <div class="dropdown text-end">
-                <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                  <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                </a>
-              </div>
-            </ul>
-          </div>
-          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-            <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
-                    style="color:#FFFFFF"><b>Cerrar sesion > </b></u></a>
-          </form>
+          <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
+            <li><a href="#" class="nav-link px-2"><b style="color:white"><%=userlogged.getNombre() + userlogged.getApellido()%></b></a></li>
+            <div class="dropdown text-end">
+              <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
+                <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
+              </a>
+            </div>
+          </ul>
         </div>
-      </nav>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
+                  style="color:#FFFFFF"><b>Cerrar sesion > </b></u></a>
+        </form>
+      </div>
+    </nav>
 
-      <br>
+    <br>
 
-  <center>
-    <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
-      <main class ="bd-main order-1;overflow-auto" style="width: 820px; background-color: #FFFFFF99">
-        <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; background-color: #8CC67A;" >
-          <h4 class="border-bottom pb-2 mb-2" style="background-color:#6FCE92;color:#18542E;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">INCIDENCIAS REPORTADAS</b  ></center></h4>
-          <p></p>
+    <center>
+      <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
+        <main class ="bd-main order-1;overflow-auto" style="width: 820px; background-color: #FFFFFF99">
+          <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; background-color: #8CC67A;" >
+            <h4 class="border-bottom pb-2 mb-2" style="background-color:#6FCE92;color:#18542E;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">INCIDENCIAS REPORTADAS</b  ></center></h4>
+            <p></p>
 
 
-          <div class="card" style="margin-top:10px">
-            <div class="card-body">
-              <div class="d-flex position-relative">
-                <img src="https://elcomercio.pe/resizer/hE0dXgCo-KfAjkgGRXLIlDayLYo=/1200x1200/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/JRZOEF5WCRCCPO32AV7OYXXNCU.jpg" class="flex-shrink-0 me-3" alt="..." width="140" height="140">
-                <div>
+            <div class="card" style="margin-top:10px">
+              <div class="card-body">
+                <div class="d-flex position-relative">
+                  <img src="https://elcomercio.pe/resizer/hE0dXgCo-KfAjkgGRXLIlDayLYo=/1200x1200/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/JRZOEF5WCRCCPO32AV7OYXXNCU.jpg" class="flex-shrink-0 me-3" alt="..." width="140" height="140">
+                  <div>
 
-                      <%for(Incidencia incidencia : listaDeIncidencias) { %>
+                    <%for(Incidencia incidencia : listaFiltrada) { %>
                     <div class="card-body">
                       <table>
                         <tr>
@@ -151,15 +150,15 @@
                         </tr>
                       </table>
                     </div>
-                      <% } %>
+                    <% } %>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </main>
+      </div>
+    </center>
     </div>
-  </center>
-</div>
-</body>
+  </body>
 </html>
