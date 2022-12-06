@@ -27,7 +27,7 @@
     <title>Inicio Usuario</title>
     <style>
         body {
-            background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
+            background: url("https://ambientesdigital.com/wp-content/uploads/2017/07/10-biblioteca-ciencias-ingenieria-arquitectura-pucp-foto-juan-solano-ojasi.jpg");
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -55,7 +55,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg" style="background-color: #458BCA;" aria-label="Eighth navbar example">
+<p></p>
+    <nav class="navbar navbar-expand-lg" style="background-color: #5f6694;" aria-label="Eighth navbar example">
         <div class="container">
             <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +80,7 @@
 
 
                 <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85"><%=userlogged.getNombre() + " " + userlogged.getApellido()%></b></a></li>
+                    <li><a href="#" class="nav-link px-2"><b style="color:#211426"><%=userlogged.getNombre() + " " + userlogged.getApellido()%></b></a></li>
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
                             <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -88,7 +89,7 @@
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u style="color:rgb(35,30,30)"> <b>Cerrar sesión> </b></u></a>
+                    <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u style="color:#FFFFFF"> <b>Cerrar sesión> </b></u></a>
                 </form>
             </div>
         </div>
@@ -123,24 +124,24 @@
 </header>
 --%>
 <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
-    <aside class="bd-sidebar" style="width: 380px; height:400px; background-color: #11559290">
+    <aside class="bd-sidebar" style="width: 380px; height:400px; background-color: rgba(95,102,148,0.93)">
         <div id="region-menu-box">
             <div class="d-flex flex-column flex-shrink-0 p-3">
                 <center>
                     <br>
-                    <h2 style="color:#FFFFFF; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b> BIENVENIDA/O </b> </h2>
+                    <h2 style="color:#d8f79a; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b> BIENVENIDA/O </b> </h2>
                     <hr>
-                    <h6 style="color:#0A321E; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b>PASOS PARA REGISTRAR</b> </h6>
-                    <h6 style="color:#0A321E; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b>UNA INCIDENCIA </b></h6> </center>
+                    <h6 style="color:#b5daf8; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b>PASOS PARA REGISTRAR</b> </h6>
+                    <h6 style="color:#b5daf8; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b>UNA INCIDENCIA </b></h6> </center>
                 <hr>
                 <p></p>
                 <p></p>
                 <center>
-                    <h5 style="color:#FFFFFF; font-family:'Berlin Sans FB', cursive, sans-serif;"><b>➀</b>    Dirígete a Nueva Incidencia</h5>
+                    <h5 style="color:#FFFFFF; font-family:'Georgia'"><b>➀</b>    Dirígete a Nueva Incidencia</h5>
                     <p></p>
-                    <h5 style="color:#FFFFFF; font-family:'Berlin Sans FB', cursive, sans-serif;"><b>➁</b>    Ingresa los datos requeridos</h5>
+                    <h5 style="color:#FFFFFF; font-family:'Georgia'"><b>➁</b>    Ingresa los datos requeridos</h5>
                     <p></p>
-                    <h5 style="color:#FFFFFF; font-family:'Berlin Sans FB', cursive, sans-serif;"><b>➂</b>    Presiona enviar y ¡Listo!</h5>
+                    <h5 style="color:#FFFFFF; font-family:'Georgia'"><b>➂</b>    Presiona enviar y ¡Listo!</h5>
                 </center>
             </div>
         </div>

@@ -18,7 +18,7 @@
   <title>Inicie Sesión</title>
   <style>
     body {
-      background: url("resources/Images/fondoProyecto_1.png");
+      background: url("https://files.pucp.education/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1.jpg");
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
