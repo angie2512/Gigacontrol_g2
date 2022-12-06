@@ -264,7 +264,7 @@ public class SeguridadDao extends BaseDao{
         }
     }
 
-    public ArrayList<TipoDeIncidencia> busquedaTipoIncidencia(String nombre){
+   /*public ArrayList<TipoDeIncidencia> busquedaTipoIncidencia(String nombre){
 
         String sql1 = "select * from tipoincidencia where nombre like ?";
         String sql2 = "select * from tipoincidencia";
@@ -272,7 +272,7 @@ public class SeguridadDao extends BaseDao{
         ArrayList<TipoDeIncidencia> listaFiltraTipoIncidencia = new ArrayList<>();
 
         try(Connection conn = this.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql1);){
+            PreparedStatement pstmt = conn.prepareStatement(sql1)){
             pstmt.setString(1,"%"+nombre+"%");
 
             try(ResultSet rs = pstmt.executeQuery();){
@@ -297,8 +297,10 @@ public class SeguridadDao extends BaseDao{
 
         return listaFiltraTipoIncidencia;
     }
+    */
 
-    public ArrayList<NivelDeUrgencia> busquedaNivelUrgencia(String nombre){
+
+    /* public ArrayList<NivelDeUrgencia> busquedaNivelUrgencia(String nombre){
 
         String sql1 = "select * from nivelurgencia where nombre like ?";
         String sql2 = "select * from nivelurgencia";
@@ -330,11 +332,11 @@ public class SeguridadDao extends BaseDao{
             e.printStackTrace();
         }
         return listaFiltradaNivelUrgencia;
-    }
+    } */
 
-    public ArrayList<Estado> busquedaPorEstado(String nombre){
+    /*public ArrayList<Estado> busquedaPorEstado(String nombre){
         String sql = "select * from estado where nombre like ?";
-        String sql1 = "select * from estado";
+        //String sql1 = "select * from estado";
 
         ArrayList<Estado> listaFiltradaEstado = new ArrayList<>();
 
@@ -363,5 +365,207 @@ public class SeguridadDao extends BaseDao{
         }
 
         return listaFiltradaEstado;
+    }*/
+
+    public ArrayList<Incidencia> busquedaPorEstado(int idEstado){
+        String sql = "select * from incidencia where idEstado = ? ";
+
+        ArrayList<Incidencia> listaFiltradaPorEstado = new ArrayList<>();
+
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, idEstado);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Incidencia incidencia = new Incidencia();
+                    incidencia.setIdIncidencia(rs.getInt(1));
+                    incidencia.setNombreDeIncidencia(rs.getString(2));
+                    incidencia.setDescripcion(rs.getString(3));
+                    incidencia.setZonaPucp(rs.getString(4));
+                    incidencia.setUbicacion(rs.getString(5));
+                    BUsuarios usuario = new BUsuarios();
+                    for (BUsuarios usuar : usersDao.getUsersList()) {
+                        if (usuar.getIdUsuario() == rs.getInt(7)) {
+                            usuario.setIdUsuario(rs.getInt(7));
+                            usuario.setNombre(usuar.getNombre());
+                            usuario.setApellido(usuar.getApellido());
+                            usuario.setCodigo(usuar.getCodigo());
+                            usuario.setCategoria(usuar.getCategoria());
+                            usuario.setCorreo(usuar.getCorreo());
+                        }
+                    }
+                    incidencia.setUsuario(usuario);
+                    TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
+                    for (TipoDeIncidencia tdi : daoDatosFijos.obtenerListaTipoDeIncidencias()) {
+                        if (tdi.getIdTipoDeIncidencia() == rs.getInt(8)) {
+                            tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt(8));
+                            tipoDeIncidencia.setNombre(tdi.getNombre());
+                        }
+                    }
+                    incidencia.setTipoDeIncidencia(tipoDeIncidencia);
+                    NivelDeUrgencia nivelDeUrgencia = new NivelDeUrgencia();
+                    for (NivelDeUrgencia nivelUrgencia : daoDatosFijos.obtenerListaNivelesDeUrgencia()) {
+                        if (nivelUrgencia.getIdNivelDeUrgencia() == rs.getInt(9)) {
+                            nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt(9));
+                            nivelDeUrgencia.setNombre(nivelUrgencia.getNombre());
+                        }
+                    }
+                    incidencia.setNivelDeUrgencia(nivelDeUrgencia);
+                    Estado estado = new Estado();
+                    estado.setIdEstado(idEstado);
+                    for (Estado est : daoDatosFijos.obtenerListaEstados()) {
+                        if (est.getIdEstado() == idEstado) {
+                            estado.setNombre(est.getNombre());
+                        }
+                    }
+                    incidencia.setEstado(estado);
+                    listaFiltradaPorEstado.add(incidencia);
+
+                }
+
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return listaFiltradaPorEstado;
+    }
+
+    public ArrayList<Incidencia> busquedaPorNivelDeUrgencia(int idNivelDeUrgencia){
+        String sql = "select * from incidencia where idNivelUrgencia = ? ";
+
+        ArrayList<Incidencia> listaFiltradaPorNivelDeUrgencia = new ArrayList<>();
+
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, idNivelDeUrgencia);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Incidencia incidencia = new Incidencia();
+                    incidencia.setIdIncidencia(rs.getInt(1));
+                    incidencia.setNombreDeIncidencia(rs.getString(2));
+                    incidencia.setDescripcion(rs.getString(3));
+                    incidencia.setZonaPucp(rs.getString(4));
+                    incidencia.setUbicacion(rs.getString(5));
+                    BUsuarios usuario = new BUsuarios();
+                    for (BUsuarios usuar : usersDao.getUsersList()) {
+                        if (usuar.getIdUsuario() == rs.getInt(7)) {
+                            usuario.setIdUsuario(rs.getInt(7));
+                            usuario.setNombre(usuar.getNombre());
+                            usuario.setApellido(usuar.getApellido());
+                            usuario.setCodigo(usuar.getCodigo());
+                            usuario.setCategoria(usuar.getCategoria());
+                            usuario.setCorreo(usuar.getCorreo());
+                        }
+                    }
+                    incidencia.setUsuario(usuario);
+                    TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
+                    for (TipoDeIncidencia tdi : daoDatosFijos.obtenerListaTipoDeIncidencias()) {
+                        if (tdi.getIdTipoDeIncidencia() == rs.getInt(8)) {
+                            tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt(8));
+                            tipoDeIncidencia.setNombre(tdi.getNombre());
+                        }
+                    }
+                    incidencia.setTipoDeIncidencia(tipoDeIncidencia);
+                    NivelDeUrgencia nivelDeUrgencia = new NivelDeUrgencia();
+                    for (NivelDeUrgencia nivelUrgencia : daoDatosFijos.obtenerListaNivelesDeUrgencia()) {
+                        if (nivelUrgencia.getIdNivelDeUrgencia() == rs.getInt(9)) {
+                            nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt(9));
+                            nivelDeUrgencia.setNombre(nivelUrgencia.getNombre());
+                        }
+                    }
+                    incidencia.setNivelDeUrgencia(nivelDeUrgencia);
+                    Estado estado = new Estado();
+                    for (Estado est: daoDatosFijos.obtenerListaEstados()){
+                        if(est.getIdEstado()==rs.getInt(10)){
+                            estado.setIdEstado(rs.getInt(10));
+                            estado.setNombre(est.getNombre());
+                        }
+                    }
+                    incidencia.setEstado(estado);
+                    listaFiltradaPorNivelDeUrgencia.add(incidencia);
+
+                }
+
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return listaFiltradaPorNivelDeUrgencia;
+    }
+
+    public ArrayList<Incidencia> busquedaPorTipoDeIncidencia(int idTipoDeIncidencia){
+        String sql = "select * from incidencia where idTipoIncidencia = ? ";
+
+        ArrayList<Incidencia> listaFiltradaPorTipoDeIncidencia = new ArrayList<>();
+
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, idTipoDeIncidencia);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Incidencia incidencia = new Incidencia();
+                    incidencia.setIdIncidencia(rs.getInt(1));
+                    incidencia.setNombreDeIncidencia(rs.getString(2));
+                    incidencia.setDescripcion(rs.getString(3));
+                    incidencia.setZonaPucp(rs.getString(4));
+                    incidencia.setUbicacion(rs.getString(5));
+                    BUsuarios usuario = new BUsuarios();
+                    for (BUsuarios usuar : usersDao.getUsersList()) {
+                        if (usuar.getIdUsuario() == rs.getInt(7)) {
+                            usuario.setIdUsuario(rs.getInt(7));
+                            usuario.setNombre(usuar.getNombre());
+                            usuario.setApellido(usuar.getApellido());
+                            usuario.setCodigo(usuar.getCodigo());
+                            usuario.setCategoria(usuar.getCategoria());
+                            usuario.setCorreo(usuar.getCorreo());
+                        }
+                    }
+                    incidencia.setUsuario(usuario);
+                    TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
+                    tipoDeIncidencia.setIdTipoDeIncidencia(idTipoDeIncidencia);
+                    for (TipoDeIncidencia tdi : daoDatosFijos.obtenerListaTipoDeIncidencias()) {
+                        if (tdi.getIdTipoDeIncidencia() == idTipoDeIncidencia) {
+                            tipoDeIncidencia.setNombre(tdi.getNombre());
+                        }
+                    }
+                    incidencia.setTipoDeIncidencia(tipoDeIncidencia);
+
+                    NivelDeUrgencia nivelDeUrgencia = new NivelDeUrgencia();
+                    for (NivelDeUrgencia nivelUrgencia : daoDatosFijos.obtenerListaNivelesDeUrgencia()) {
+                        if (nivelUrgencia.getIdNivelDeUrgencia() == rs.getInt(9)) {
+                            nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt(9));
+                            nivelDeUrgencia.setNombre(nivelUrgencia.getNombre());
+                        }
+                    }
+                    incidencia.setNivelDeUrgencia(nivelDeUrgencia);
+
+                    Estado estado = new Estado();
+                    for (Estado est: daoDatosFijos.obtenerListaEstados()){
+                        if(est.getIdEstado()==rs.getInt(10)){
+                            estado.setIdEstado(rs.getInt(10));
+                            estado.setNombre(est.getNombre());
+                        }
+                    }
+                    incidencia.setEstado(estado);
+                    listaFiltradaPorTipoDeIncidencia.add(incidencia);
+
+                }
+
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return listaFiltradaPorTipoDeIncidencia;
     }
 }
+
+

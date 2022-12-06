@@ -10,7 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @WebServlet(name = "ServletAdmin", urlPatterns = {"/ServletAdmin"})
-public class ServletAdmin extends HttpServlet {
+public class
+ServletAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");

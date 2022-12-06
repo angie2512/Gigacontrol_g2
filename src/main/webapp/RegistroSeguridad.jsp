@@ -69,22 +69,35 @@
         <p></p>
         <p></p>
         <h2 style="font-family: 'KrinkesDecorPERSONAL'; color:#FFFFFF" class="card-title"><b>CREAR CUENTA NUEVA</b></h2>
-        <h6 style="font-family: 'Candara', cursive, sans-serif; color:#e7de71" class="card-subtitle"><b>SEGURIDAD</b></h6>
+        <h6 style="font-family: 'Candara', cursive, sans-serif; color:#e7de71" class="card-subtitle"><b>USUARIO SEGURIDAD</b></h6>
         <center>
             <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png" alt="linea" class="card-img" width="90%" height="10%">
         </center>
         <p></p>
         <p></p>
-        <form>
-              <div class="mb-3 d-grid gap-2 col-8 mx-auto" >
-                    <label align= "left" for="exampleInputEmail1" class="form-label" style="color:#FFFFFF">Correo </label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="seguridad@hotmail.com">
-              </div>
+        <form method="post" class="form-signin" action="<%=request.getContextPath()%>/ServletInicio?action=registroSeguridad">
+            <div class="mb-3 d-grid gap-2 col-8 mx-auto">
+                <label align= "left" for="exampleInputEmail1" class="form-label" style="color:#FFFFFF">Correo PUCP</label>
+                <input type="email" name= "correoPUCPSeg" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3 d-grid gap-2 col-8 mx-auto">
+                <label align= "left" for="exampleInputEmail1" class="form-label" style="color:#FFFFFF">Código PUCP</label>
+                <input type="numbers" name= "codigoPUCPSeg" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <p></p>
+            <p></p>
               <!-- MODAL -->
               <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Enviar
                     </button>
+              </div>
+        </form>
+        <% if (session.getAttribute("errorSeg") != null) {%>
+        <div class="text-danger mb-2"><%=session.getAttribute("errorSeg")%></div>
+        <% session.removeAttribute("errorSeg"); %>
+        <% } else {%>
+
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog" style="color:#00000090">
@@ -98,11 +111,12 @@
                                         <table>
                                             <td>
                                                 <h1 style="font-family: 'Times New Roman', Times, serif; color:#4fe474" class="card-title" align="center"><font size= 7><b>LISTO!</b></font></h1>
-                                                <h4 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#e68750" class="card-subtitle" align="center"><b>Ya falta poco...</b></h4>
+                                                <!--<h4 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#e68750" class="card-subtitle" align="center"><b>Ya falta poco...</b></h4> -->
                                                 <p></p>
-                                                <h6 style="font-family: 'Times New Roman', Times, serif; color:#000000" class="card-subtitle" align="center">Como último paso, ingrese al Link</h6>
-                                                <h6 style="font-family: 'Times New Roman', Times, serif; color:#000000" class="card-subtitle" align="center">enviado a su correo electronico </h6>
-                                                <h6 style="font-family: 'Times New Roman', Times, serifS; color:#000000" class="card-subtitle" align="center">y establezca su nueva contraseña.</h6>
+                                                <h6 style="font-family: 'Times New Roman', Times, serif; color:#000000" class="card-subtitle" align="center">Se envió a su correo: </h6>
+                                                <h6 style="font-family: 'Times New Roman', Times, serif; color:#000000" class="card-subtitle" align="center">Su Código de Usuario y Contraseña Temporal De Acceso a la Aplicación </h6>
+                                                <p></p>
+                                                <h6 style="font-family: 'Times New Roman', Times, serifS; color:#000000" class="card-subtitle" align="center">Inicie sesión y establezca su Nueva Contraseña</h6>
                                             <td>
                                             <td>
                                                 <img src="https://www.seguridad111.com/images/d.png" alt="Logo Paideia" class="img-fluid">
@@ -118,9 +132,9 @@
                             </div>
                         </div>
                     </div>
+                    <% } %>
                 </div>
             <br>
-        </form>
     </div>
 </center>
 <br></br>

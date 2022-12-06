@@ -28,6 +28,7 @@ public class ServletSeguridad extends HttpServlet {
 
         HttpSession session= request.getSession();
         BUsuarios usuario=(BUsuarios) session.getAttribute("userlogged");
+
         switch (action) {
             case "mostrarFoto":
                 seguridadDao.mostrarImagen(usuario.getIdUsuario(),response);
@@ -37,6 +38,7 @@ public class ServletSeguridad extends HttpServlet {
                 if(userSeg != null && userSeg.getRolId()==1 ) {
                     request.setAttribute("listaUsuarios", usersDao.getUsersList());
                     request.setAttribute("listaIncidencias", seguridadDao.obtenerListaDeIncidencias());
+                    request.setCharacterEncoding("UTF-8");
                     requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
                     requestDispatcher.forward(request, response);
                 }else{
@@ -47,11 +49,13 @@ public class ServletSeguridad extends HttpServlet {
                 break;
 
             case "perfil":
+                request.setCharacterEncoding("UTF-8");
                 requestDispatcher = request.getRequestDispatcher("Seguridad/Perfil.jsp");
                 requestDispatcher.forward(request, response);
                 break;
 
             case "verIncidencia":
+                request.setCharacterEncoding("UTF-8");
                 String idIncidenciaStr = request.getParameter("id");
                 int idIncidencia = Integer.parseInt(idIncidenciaStr);
                 Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
@@ -126,7 +130,7 @@ public class ServletSeguridad extends HttpServlet {
                 response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                 break;
 
-           case "buscar":
+           /*case "buscar":
                String buscar = request.getParameter("buscar");
                String opcion = request.getParameter("tipo");
 
@@ -138,7 +142,28 @@ public class ServletSeguridad extends HttpServlet {
 
                view = request.getRequestDispatcher("/Seguridad/InicioSeguridad.jsp");
                view.forward(request,response);
-               break;
+               break; */
+
+            case "buscar":
+                String opcion = request.getParameter("Opcion");
+                String idEnviadaStr = request.getParameter("id");
+                int idEnviada = Integer.parseInt(idEnviadaStr);
+
+                ArrayList<Incidencia> listaFiltrada = null;
+
+                if(opcion.equals("Estado")) {
+                    listaFiltrada = seguridadDao.busquedaPorEstado(idEnviada);
+                }
+                else if (opcion.equals("NivelDeUrgencia")){
+                    listaFiltrada = seguridadDao.busquedaPorNivelDeUrgencia(idEnviada);
+                }else if (opcion.equals("TipoDeIncidencia")){
+                    listaFiltrada = seguridadDao.busquedaPorTipoDeIncidencia(idEnviada);
+                }
+
+                request.setAttribute("ListaFiltrada",listaFiltrada);
+                view = request.getRequestDispatcher("Seguridad/InicioSeguridadFiltrado.jsp");
+                view.forward(request,response);
+                break;
 
             /*case "actualizarFoto":
                 Part part= request.getPart("photoUrl");

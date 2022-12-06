@@ -2,6 +2,7 @@ package com.example.gigacontrol_g2.Servlets;
 
 import com.example.gigacontrol_g2.beans.BUsuarios;
 import com.example.gigacontrol_g2.daos.DaoDatosFijos;
+import com.example.gigacontrol_g2.daos.UsersDao;
 import com.example.gigacontrol_g2.mailcorreo.EnvioCorreo;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -27,7 +28,7 @@ public class ServletInicio extends HttpServlet {
                     if (user != null && user.getIdUsuario() != 0) {
                         if (user.getRolId() == 2) {
                             response.sendRedirect(request.getContextPath() + "/ServletUsuario");
-                        }else if (user.getRolId() == 3){
+                        } else if (user.getRolId() == 3) {
                             response.sendRedirect(request.getContextPath() + "/ServletAdmin");
                         }
                         //response.sendRedirect(request.getContextPath());
@@ -40,9 +41,9 @@ public class ServletInicio extends HttpServlet {
                 case "autenticarSeguridad":
                     int codigoAutenticacion = envioCorreo.generarCodigoDeAutenticacion();
                     String correoDestino = user.getCorreo();
-                    envioCorreo.enviarCodigoDeAutenticacion(codigoAutenticacion,correoDestino);
-                    String codigoAutenticacionStr= Integer.toString(codigoAutenticacion);
-                    request.setAttribute("Codigo",codigoAutenticacionStr);
+                    envioCorreo.enviarCodigoDeAutenticacion(codigoAutenticacion, correoDestino);
+                    String codigoAutenticacionStr = Integer.toString(codigoAutenticacion);
+                    request.setAttribute("Codigo", codigoAutenticacionStr);
                     view = request.getRequestDispatcher("AutenticacionSeguridad.jsp");
                     view.forward(request, response);
                     break;
@@ -73,6 +74,7 @@ public class ServletInicio extends HttpServlet {
         }
 
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -80,49 +82,67 @@ public class ServletInicio extends HttpServlet {
         //String action = request.getParameter("action");
         String action = request.getParameter("action") == null ? "IniciarSesion" : request.getParameter("action");
         String codigo = request.getParameter("codigo");
-        String contrasena  = request.getParameter("contrasena");
+        String contrasena = request.getParameter("contrasena");
         RequestDispatcher view;
         HttpSession session = request.getSession();
+        UsersDao usersDao = new UsersDao();
+        EnvioCorreo envioCorreo = new EnvioCorreo();
 
-        switch (action){
+        switch (action) {
             case "IniciarSesion":
-                BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo,contrasena);
-                if(usuariolog !=null){
-                    session.setAttribute("userlogged",usuariolog);
-                    if (usuariolog.getRolId()==3){
+                BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
+                if (usuariolog != null) {
+                    session.setAttribute("userlogged", usuariolog);
+                    if (usuariolog.getRolId() == 3) {
                         response.sendRedirect("ServletAdmin?action=Inicio");
-                    }else if (usuariolog.getRolId()==1){
+                    } else if (usuariolog.getRolId() == 1) {
                         //Avance de Doble Autenticacion Seguridad
                         response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");
-                    }
-                    else {
+                    } else {
                         response.sendRedirect("InicioUsuario");
                     }
-                }else{
-                    session.setAttribute("error","Hubo un Error en su Código o Contraseña , Vuelva a Ingresar");
+                } else {
+                    session.setAttribute("error", "Hubo un Error en su Código o Contraseña , Vuelva a Ingresar");
                     view = request.getRequestDispatcher("inicioDeSesion.jsp");
-                    view.forward(request,response);
+                    view.forward(request, response);
                 }
                 break;
 
             case "autenticacionSeguridad":
                 String codigoAutenticacionIngresado = request.getParameter("codigoAutenticacionIngresado");
                 String codigoAutenticacionOriginal = request.getParameter("codigoAutenticacion");
-                int num_intentos=3;
-                    if (codigoAutenticacionIngresado.equals(codigoAutenticacionOriginal)) {
-                        response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
-                    }else {
+                //int num_intentos = 3;
+                //while (num_intentos>0) {
+                if (codigoAutenticacionIngresado.equals(codigoAutenticacionOriginal)) {
+                    response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
+                } else {
+                    session.invalidate();
+                    response.sendRedirect("ServletInicio");
                             /*session.setAttribute("error2", "Codigo Incorrecto, Vuelva a Ingresar \n" +
-                                    "(Tiene 2 Oportunidades Más)"); */
-                            //num_intentos--;
-                            //response.sendRedirect(request.getContextPath()+"/ServletInicio?action=autenticarSeguridad");
-                            session.invalidate();
-                            response.sendRedirect("ServletInicio");
-                            //break;
-                            }
-                        break;
+                                    "(Tiene " + num_intentos + " Oportunidades Más)");
+                            session.setAttribute("userlogged",usuariolog);
+
+                            num_intentos--;
+                        }*/
+                    //num_intentos--;
+                    }
+                break;
+
+            case "registroSeguridad":
+                String correoPUCPSeg = request.getParameter("correoPUCPSeg");
+                String codigoPUCPSeg = request.getParameter("codigoPUCPSeg");
+                for (BUsuarios usuar : usersDao.getUsersList()){
+                    if(correoPUCPSeg.equals(usuar.getCorreo()) && codigoPUCPSeg.equals(usuar.getCodigo())){
+                        String contrasenaTemporalSeguridad = envioCorreo.generarContrasenaTemporalSeguridad();
+                        envioCorreo.enviarContrasenaTemporal(contrasenaTemporalSeguridad, correoPUCPSeg);
+                        response.sendRedirect(request.getContextPath()+"/ServletInicio");
                     }
                 }
+                break;
 
         }
+    }
+}
+
+
 

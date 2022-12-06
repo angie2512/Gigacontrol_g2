@@ -89,6 +89,7 @@ public class DaoDatosFijos extends BaseDao{
         BUsuarios user = null;
 
         String sql = "select * from usuario WHERE idUsuario = ?";
+
         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
@@ -117,7 +118,7 @@ public class DaoDatosFijos extends BaseDao{
     }
     public BUsuarios validUserPassword(String codigo, String password){
         BUsuarios user = null;
-        String sql = "SELECT * FROM usuario where Codigo = ? and Contrasenia= sha2(?,256)";
+        String sql = "SELECT * FROM validacionusuarionuevo where Codigo = ? and Contrasenia= sha2(?,256)";
 
         try(Connection conn = this.getConnection();
             PreparedStatement pstm = conn.prepareStatement(sql);)
@@ -126,7 +127,7 @@ public class DaoDatosFijos extends BaseDao{
             pstm.setString(2,password);
             try(ResultSet rs = pstm.executeQuery();) {
                 if(rs.next()){
-                    int userID = rs.getInt(1);
+                    int userID = rs.getInt(3);
                     user = this.buscarPorId(userID);
                 }
             }

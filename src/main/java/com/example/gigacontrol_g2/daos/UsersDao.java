@@ -23,12 +23,12 @@ public class UsersDao extends BaseDao{
                 newUser.setNombre(resultSet.getString(2));
                 newUser.setApellido(resultSet.getString(3));
                 newUser.setCorreo(resultSet.getString(4));
-                newUser.setContrasena(resultSet.getString(5));
-                newUser.setCodigo(resultSet.getString(6));
-                newUser.setDni(resultSet.getString(7));
-                newUser.setCelular(resultSet.getString(8));
-                newUser.setCategoria(resultSet.getString(9));
-                newUser.setRolId(resultSet.getInt(11));
+                //newUser.setContrasena(resultSet.getString(5));
+                newUser.setCodigo(resultSet.getString(5));
+                newUser.setDni(resultSet.getString(6));
+                newUser.setCelular(resultSet.getString(7));
+                newUser.setCategoria(resultSet.getString(8));
+                newUser.setRolId(resultSet.getInt(10));
 
                 usersList.add(newUser);
             }
@@ -219,7 +219,7 @@ public class UsersDao extends BaseDao{
     public BUsuarios buscarPorId(String userID) {
         BUsuarios user = null;
 
-        String sql = "select * from usuario WHERE idUsuario = ?";
+        String sql = "select * from usuario WHERE idUsuario = ? ";
 
         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);) {
@@ -246,6 +246,70 @@ public class UsersDao extends BaseDao{
         }
         return user;
     }
+
+    /*public BUsuarios buscarPorId(String userID) {
+        BUsuarios user = null;
+
+        String sql = "select * from usuario WHERE idUsuario = ?";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            System.out.println("entro a buscar");
+
+            pstmt.setString(1, userID);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    user = new BUsuarios();
+                    user.setIdUsuario(rs.getInt(1));
+                    user.setNombre(rs.getString(2));
+                    user.setApellido(rs.getString(3));
+                    user.setCorreo(rs.getString(4));
+                    user.setCodigo(rs.getString(6));
+                    user.setDni(rs.getString(7));
+                    user.setCelular(rs.getString(8));
+                    user.setCategoria(rs.getString(9));
+                    user.setRolId(rs.getInt(11));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return user;
+    }*/
+
+    /*public BUsuarios generarUsuarioSeg(String correoPUCPSeg , String codigoPUCPSeg ) {
+
+        BUsuarios usuarSeg = null;
+
+        String sql = "select * from usuario WHERE Correo = ? and Codigo = ? ";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, correoPUCPSeg);
+            pstmt.setString(2, codigoPUCPSeg);
+
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    usuarSeg = new BUsuarios();
+                    usuarSeg.setIdUsuario(rs.getInt(1));
+                    usuarSeg.setNombre(rs.getString(2));
+                    usuarSeg.setApellido(rs.getString(3));
+                    usuarSeg.setCorreo(rs.getString(4));
+                    user.setCodigo(rs.getString(6));
+                    user.setDni(rs.getString(7));
+                    user.setCelular(rs.getString(8));
+                    user.setCategoria(rs.getString(9));
+                    user.setRolId(rs.getInt(11));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return usuarSeg;
+    }*/
     public void actualizar(int userID, String nombre, String apellido, String DNI, String codigo, String correo, String categoria, int rolID) {
 
         String sql = "UPDATE usuario SET Nombre = ?, Apellido = ?, Correo = ?, Codigo = ?, DNI = ?, Categoria = ?, ROl_idRol = ? WHERE idUsuario = ?";
