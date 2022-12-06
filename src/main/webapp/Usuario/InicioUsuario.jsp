@@ -205,7 +205,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" height = "60rem" width="60 rem">
+                                                    <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" style="margin-left: 50px; width: 300px; height: 200px">
                                                 <td>
                                             </tr>
                                         </table>
