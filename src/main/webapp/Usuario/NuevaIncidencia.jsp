@@ -8,38 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
     <title>Nueva Incidencia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <style>
         body {
-            background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
-            background-position: center center;
-            background-size: cover;
+            background-image: url(resources/Images/background.jpg);
             background-repeat: no-repeat;
+            background-position: center center;
             background-attachment: fixed;
-            margin: 0;
-            height: 100vh;
-            bgcolor: "#800000";
+            background-size: cover;" class="p-3 m-0 border-0 bd-example"
 
         }
-        @font-face {
-            font-family: Decor;
-            src: url(KrinkesDecorPERSONAL.ttf);
-        }
-        @font-face{
-            font-family: Decor;
-            src: url(KrinkesRegularPERSONAL.ttf);
-            font-style: italic;
-        }
-        p{
-            font-family: Decor;
-        }
-
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body class ="p-3 m-0 border-0 bd-example">
+<body>
 <nav class="navbar navbar-expand-lg" style="background-color: #458BCA;" aria-label="Eighth navbar example">
     <div class="container">
         <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
