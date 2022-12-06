@@ -165,11 +165,6 @@
                                     <%for(Incidencia incidencia : listaDeIncidencias) { %>
                                     <div class="card-body">
                                         <table>
-                                            <td>
-                                            <div class="card-body d-flex align-items-right"  aria-label="Basic mixed styles example" style="padding-final: 3rem; margin-left: 200px;">
-                                                <a> <%=incidencia.getFoto()%></a>
-                                            </div>
-                                            </td>
                                             <tr>
                                                 <td>
                                                     <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%=incidencia.getNombreDeIncidencia()%></b></h4>
@@ -207,6 +202,11 @@
                                                 <td>
                                                     <p><%=incidencia.getDescripcion()%></p>
                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="<%=request.getContextPath()%>/InicioUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" height = "60rem" width="60 rem">
+                                                <td>
                                             </tr>
                                         </table>
                                         <table>

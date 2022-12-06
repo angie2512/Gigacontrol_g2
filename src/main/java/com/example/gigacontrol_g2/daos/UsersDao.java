@@ -1,6 +1,7 @@
 package com.example.gigacontrol_g2.daos;
 
 import com.example.gigacontrol_g2.beans.*;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -426,6 +427,10 @@ public class UsersDao extends BaseDao{
 
         return listaidincidencias;
     }
+
+
+
+
 
 
 

@@ -1,7 +1,10 @@
 package com.example.gigacontrol_g2.daos;
 
 import com.example.gigacontrol_g2.beans.*;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -162,6 +165,31 @@ public class DaoDatosFijos extends BaseDao{
             throw new RuntimeException(e);
         }
         return comentariosDeIncidencia;
+    }
+
+    public void listarImg(int id, HttpServletResponse response){
+        String sql = "SELECT i.Foto FROM incidencia i where idIncidencia=?";
+        response.setContentType("image/*");
+        InputStream inputStream=null;
+        OutputStream outputStream;
+        try(Connection conn = this.getConnection();
+            PreparedStatement pstm = conn.prepareStatement(sql);) {
+            pstm.setInt(1, id);
+            try (ResultSet rs = pstm.executeQuery();) {
+                outputStream = response.getOutputStream();
+                if (rs.next()) {
+                    inputStream = rs.getBinaryStream(1);
+                }
+                byte[] imagen = new byte[inputStream.available()];
+                inputStream.read(imagen, 0, inputStream.available());
+                outputStream.write(imagen);
+                inputStream.close();
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

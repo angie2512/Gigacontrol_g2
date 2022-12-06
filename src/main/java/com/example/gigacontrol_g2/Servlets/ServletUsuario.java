@@ -1,6 +1,8 @@
 package com.example.gigacontrol_g2.Servlets;
 
 import com.example.gigacontrol_g2.beans.BUsuarios;
+import com.example.gigacontrol_g2.beans.ComentarIncidencia;
+import com.example.gigacontrol_g2.beans.Estado;
 import com.example.gigacontrol_g2.beans.Incidencia;
 import com.example.gigacontrol_g2.daos.DaoDatosFijos;
 import com.example.gigacontrol_g2.daos.SeguridadDao;
@@ -25,7 +27,6 @@ public class ServletUsuario extends HttpServlet {
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         UsersDao usersDao = new UsersDao();
         SeguridadDao seguridadDao = new SeguridadDao();
-
 
         switch (action) {
 
@@ -61,10 +62,7 @@ public class ServletUsuario extends HttpServlet {
                 requestDispatcher.forward(request, response);
                 break;
 
-            case "verIncidencia":
-                requestDispatcher = request.getRequestDispatcher("Usuario/VerIncidencia.jsp");
-                requestDispatcher.forward(request, response);
-                break;
+
             case "destacar":
                 String idincidencia = request.getParameter("idi");
                 int incidenciaid = Integer.parseInt(idincidencia);
@@ -77,6 +75,19 @@ public class ServletUsuario extends HttpServlet {
                 int incidenciaid1 = Integer.parseInt(idincidencia1);
                 usersDao.eliminarDestacado(usuario.getIdUsuario(), incidenciaid1);
                 response.sendRedirect(request.getContextPath()+"/ServletUsuario");
+                break;
+
+            case "verIncidencia":
+                String idIncidenciaStr = request.getParameter("id");
+                int idIncidencia = Integer.parseInt(idIncidenciaStr);
+                Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
+                request.setAttribute("incidencia", incidencia);
+                ArrayList<Estado> listaEstados = daoDatosFijos.obtenerListaEstados();
+                request.setAttribute("ListaEstados",listaEstados);
+                ArrayList<ComentarIncidencia> listaDeComentarios = daoDatosFijos.obtenerComentariosDeIncidencia(idIncidencia);
+                request.setAttribute("ListaComentarios",listaDeComentarios);
+                requestDispatcher = request.getRequestDispatcher("Usuario/VerIncidencia.jsp");
+                requestDispatcher.forward(request, response);
                 break;
 
 
