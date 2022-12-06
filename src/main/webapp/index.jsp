@@ -109,7 +109,7 @@
 </center> -->
 
 <center>
-    <div class="card" style="max-width:50rem ;background-color:rgba(255,255,255,0.70); top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); position: absolute">
+    <div class="card mb-3" style="max-width:50rem ;background-color:rgba(255,255,255,0.70); top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); position: absolute">
         <div class="card-header">
             <img src="resources/Images/LOGO_azul.png" alt="Logo" width="145rem;" height="48rem" class="rounded float-start img-fluid">
             </div>

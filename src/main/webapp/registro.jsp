@@ -13,6 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <title>Inicie Sesión</title>
   <style>
@@ -75,7 +76,7 @@
 </head>
 
 <body class="p-3 m-0 border-0 bd-example">
-<table>
+<!--<table>
   <tr>
   <tr>
   <tr>
@@ -99,34 +100,33 @@
 <p></p>
 <p></p>
 <p></p>
-<p></p>
+<p></p> -->
 <center>
-  <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
-    <br>
-    <h1 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>CREAR CUENTA NUEVA</b></h1>
-    <center>
-      <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png" alt="linea" class="card-img" width="90%" height="10%">
-    </center>
-    <p></p>
-    <p></p>
-    <h4 style="font-family: 'Times New Roman', Times, serif; color:#78BBFD" class="card-text"><b> Elige una OPCIÓN </b></h4>
-    <p></p>
-    <!--<div class="d-grid gap-2 col-8 mx-auto mb-2">
-      <a href="<%=request.getContextPath()%>/ServletInicio?action=Registrousuario" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" class="btn btn-secondary" style="color:#686B6E;width: 18rem; font-size: 15px"><b>Usuario PUCP</b></button></a>
-      <p></p>
-      <a href="<%=request.getContextPath()%>/ServletInicio?action=Registroseguridad" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" style="color:#686B6E; width: 18rem; font-size: 15px"><b>Seguridad</b></button></a>
-      <p></p>
-    </div>-->
-    <div class="d-grid gap-2 col-6 mx-auto">
-      <a href="<%=request.getContextPath()%>/ServletInicio?action=Registrousuario"><button class="btn-1" type="button" >Usuario PUCP</button></a>
-      <a href="<%=request.getContextPath()%>/ServletInicio?action=Registroseguridad"><button class="btn-2" type="button">Seguridad</button></a>
+  <div class="card mb-3" style="max-width: 58rem; background-color:rgba(255,255,255,0.70); top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); position: absolute">
+    <div class="card-header">
+      <img src="resources/Images/LOGO_azul.png" alt="Logo" width="145rem;" height="48rem" class="rounded float-start img-fluid">
+    </div>
+    <div class="card-body">
+      <h1 style="font-family: 'KrinkesDecorPERSONAL'; color:#488ca2" class="card-title"><b>CREAR CUENTA NUEVA</b></h1>
       <br>
+      <h6 style="font-family: 'Georgia'">Elige la opción que desees realizar</h6>
+      <p></p>
+      <!--<div class="d-grid gap-2 col-8 mx-auto mb-2">
+        <a href="<%=request.getContextPath()%>/ServletInicio?action=Registrousuario" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" class="btn btn-secondary" style="color:#686B6E;width: 18rem; font-size: 15px"><b>Usuario PUCP</b></button></a>
+        <p></p>
+        <a href="<%=request.getContextPath()%>/ServletInicio?action=Registroseguridad" style="color: rgb(141, 15, 15);"><button class="btn btn-light" type="button" style="color:#686B6E; width: 18rem; font-size: 15px"><b>Seguridad</b></button></a>
+        <p></p>
+      </div>-->
+      <div class="d-grid gap-2 mx-auto">
+        <a href="<%=request.getContextPath()%>/ServletInicio?action=Registrousuario"><button class="btn-1" type="button" >Usuario PUCP</button></a>
+        <a href="<%=request.getContextPath()%>/ServletInicio?action=Registroseguridad"><button class="btn-2" type="button">Seguridad</button></a>
+        <br>
+      </div>
     </div>
   </div>
-  </div>
 </center>
-<br></br>
-<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+<br>
+<!--<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 </body>
