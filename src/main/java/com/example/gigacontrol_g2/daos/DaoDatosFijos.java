@@ -103,12 +103,13 @@ public class DaoDatosFijos extends BaseDao{
                     user.setNombre(rs.getString(2));
                     user.setApellido(rs.getString(3));
                     user.setCorreo(rs.getString(4));
-                    user.setCodigo(rs.getString(6));
-                    user.setDni(rs.getString(7));
-                    user.setCelular(rs.getString(8));
-                    user.setCategoria(rs.getString(9));
-                    user.setFotoPerfil(rs.getString(10));
-                    user.setRolId(rs.getInt(11));
+                    user.setCodigo(rs.getString(5));
+                    user.setDni(rs.getString(6));
+                    user.setCelular(rs.getString(7));
+                    user.setCategoria(rs.getString(8));
+                    user.setFotoPerfil(rs.getString(9));
+                    user.setRolId(rs.getInt(10));
+
                 }
             }
         } catch (SQLException e) {
@@ -118,7 +119,7 @@ public class DaoDatosFijos extends BaseDao{
     }
     public BUsuarios validUserPassword(String codigo, String password){
         BUsuarios user = null;
-        String sql = "SELECT * FROM validacionusuarionuevo where Codigo = ? and Contrasenia= sha2(?,256)";
+        String sql = "SELECT * FROM validacionusuarionuevo where (Codigo = ? and Contrasenia= sha2(?,256))";
 
         try(Connection conn = this.getConnection();
             PreparedStatement pstm = conn.prepareStatement(sql);)

@@ -21,6 +21,7 @@ public class ServletSeguridadBuscarIncidencia extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
         SeguridadDao seguridadDao = new SeguridadDao();
 

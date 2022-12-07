@@ -93,13 +93,14 @@ public class ServletInicio extends HttpServlet {
                 BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
                 if (usuariolog != null) {
                     session.setAttribute("userlogged", usuariolog);
+                    System.out.println("rol: "+ usuariolog.getRolId());
                     if (usuariolog.getRolId() == 3) {
-                        response.sendRedirect("ServletAdmin?action=Inicio");
+                        response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Inicio");
                     } else if (usuariolog.getRolId() == 1) {
                         //Avance de Doble Autenticacion Seguridad
                         response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");
                     } else {
-                        response.sendRedirect("InicioUsuario");
+                        response.sendRedirect(request.getContextPath() + "/InicioUsuario");
                     }
                 } else {
                     session.setAttribute("error", "Hubo un Error en su Código o Contraseña , Vuelva a Ingresar");

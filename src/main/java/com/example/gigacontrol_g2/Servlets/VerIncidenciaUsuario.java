@@ -10,6 +10,7 @@ import java.io.IOException;
 public class VerIncidenciaUsuario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/VerIncidencia.jsp");
         requestDispatcher.forward(request, response);
 
