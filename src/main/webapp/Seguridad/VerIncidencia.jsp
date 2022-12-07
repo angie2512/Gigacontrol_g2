@@ -74,11 +74,7 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
 
             <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
                 <li><a href="#" class="nav-link px-2"><b style="color:white"><%=userlogged.getNombre() + userlogged.getApellido()%></b></a></li>
-                <div class="dropdown text-end">
-                    <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                        <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                    </a>
-                </div>
+
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -136,15 +132,37 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                                     <b style="color:#B1120D; padding-left: 2rem;"><%=incidencia.getUsuario().getCodigo()%></b>
                                     <b style="color:#C0C4C7; padding-left: 2rem;"><%=incidencia.getUsuario().getCategoria()%></b></p>
                                 </td>
-                                <td>
-                                    <b style="color:#B1120D; padding-left: 4.2rem;">Comentario de Incidencia:</b>
-                                </td>
+
                             </tr>
 
                         </table>
                         <br>
+
                         <div style="display:flex ; justify-items: auto">
                             <div>
+
+                                <div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <b style="color:#B1120D;">Comentario de Incidencia:</b>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <b style="color:#B1120D;">Zona PUCP:</b>
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h6><%=incidencia.getDescripcion()%></h6>
+                                        </div>
+                                        <div class="col-6">
+                                            <h6><%=incidencia.getZonaPucp()%></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
                                 <table style="display:flex ; justify-items: center">
                                     <tr>
                                         <td style="padding-left: 0rem; color:#2C3166"><p class="card-text"><b>Tipo de Incidencia: </b> <%=incidencia.getTipoDeIncidencia().getNombre()%>
@@ -154,22 +172,7 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
 
                                 </table>
                                 <br>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <h6><%=incidencia.getDescripcion()%></h6>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <br>
-                                <table>
-                                    <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPucp()%></h6></td></tr>
-                                </table>
-                                <br>
-
-
                                 <div>
-
                                     <div class="row">
                                         <div class="col-6"><p style="padding-left: 2rem;color:#274362"><b> Foto de Incidencia </b></p>
                                         </div>
@@ -197,7 +200,7 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                             <div style="margin-left:40px">
                                 <input form="myform" type="hidden" name="idIncidencia" value="<%=incidencia.getIdIncidencia()%>">
                                 <div class="form-floating">
-                                    <input form="myform" style="height:500px;width:260px" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="resolucionIncidencia" >
+                                    <input form="myform" style="height:424px;width:260px" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="resolucionIncidencia" >
                                     <label for="floatingTextarea2">Redacte su Comentario Aquí...</label>
                                 </div>
                                 <button form="myform" ype="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
