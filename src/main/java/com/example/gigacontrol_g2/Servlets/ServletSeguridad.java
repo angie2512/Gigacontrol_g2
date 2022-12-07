@@ -155,13 +155,15 @@ public class ServletSeguridad extends HttpServlet {
 
         switch (action){
 
-            /*case "buscarEstado":
+            /*case "buscar":
+                String opcion  = request.getParameter("opcion");
+                int idSleccioando = request.getParameter("id");
 
-                String buscar = request.getParameter("buscar");
-                String estado = request.getParameter("tipo");
-                request.setAttribute("estados", estados);
-                ArrayList<Estado> listaFiltraEstado = new ArrayList<>();
-
+                if ( opcion .equals("estadoo")){
+                    listailtrado = seguridadDao.busquedaPorEstado()
+                }else if (opcion.equales("tipodeindiencia")){
+                    listafiltrado = seguridadDao.obtenerListaDeIncidencias()
+                }else if (opcion.equals())
                 if(estado.equals("nombre")){
                     listaFiltraEstado = seguridadDao.busquedaPorEstado(buscar);
                 }
@@ -169,7 +171,7 @@ public class ServletSeguridad extends HttpServlet {
                 view = request.getRequestDispatcher("/Seguridad/InicioSeguridad.jsp");
                 view.forward(request,response);
                 break;
-*/
+           */
             case "actualizarIncidencia":
                 String resolucion = request.getParameter("resolucionIncidencia");
                 BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
@@ -177,7 +179,7 @@ public class ServletSeguridad extends HttpServlet {
                 String idEstadoStr = request.getParameter("estado");
                 int idEstado = Integer.parseInt(idEstadoStr);
                 seguridadDao.actualizarEstado(idEstado , idIncidencia);
-                response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
+                //response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                 break;
         }
     }

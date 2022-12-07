@@ -23,13 +23,13 @@ public class UsersDao extends BaseDao{
                 newUser.setNombre(resultSet.getString(2));
                 newUser.setApellido(resultSet.getString(3));
                 newUser.setCorreo(resultSet.getString(4));
-                //newUser.setContrasena(resultSet.getString(5));
                 newUser.setCodigo(resultSet.getString(5));
                 newUser.setDni(resultSet.getString(6));
                 newUser.setCelular(resultSet.getString(7));
                 newUser.setCategoria(resultSet.getString(8));
+                //newUser.setFotoPerfil(resultSet.getString(9));
                 newUser.setRolId(resultSet.getInt(10));
-
+                newUser.setEstadoDeUsuario(resultSet.getString(11));
                 usersList.add(newUser);
             }
 
@@ -38,6 +38,61 @@ public class UsersDao extends BaseDao{
         }
         return usersList;
     }
+
+    public void crearCredencialesUsuario(String codigoPUCPSeg,String contrasenaTemporalSeguridad,int idUsuarioNuevo){
+
+        String sql = "insert into validacionusuarionuevo values (sha2(?,256),?,?)";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+
+            pstmt.setString(1,contrasenaTemporalSeguridad);
+            pstmt.setString(2,codigoPUCPSeg);
+            pstmt.setInt(3,idUsuarioNuevo);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
+    public void actualizarContrasenaSeguridad(int idUsuario,String contrasena1){
+
+        String sql = "update validacionusuarionuevo set Contrasenia= sha2(?,256) where usuario_idUsuario= ?";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1,contrasena1);
+            pstmt.setInt(2,idUsuario);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void actualizarEstadoDeUsuario(int idUsuario,String estadoUsuario){
+        String sql = "update usuario set estado = ? where idUsuario= ?";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1,estadoUsuario);
+            pstmt.setInt(2,idUsuario);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
     public ArrayList<Incidencia> obtenerListaDeIncidencias(){
         ArrayList<Incidencia> listaDeIncidencias= new ArrayList<>();
 
@@ -222,7 +277,7 @@ public class UsersDao extends BaseDao{
         String sql = "select * from usuario WHERE idUsuario = ? ";
 
         try (Connection conn = this.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             System.out.println("entro a buscar");
 
             pstmt.setString(1, userID);
@@ -234,11 +289,13 @@ public class UsersDao extends BaseDao{
                     user.setNombre(rs.getString(2));
                     user.setApellido(rs.getString(3));
                     user.setCorreo(rs.getString(4));
-                    user.setCodigo(rs.getString(6));
-                    user.setDni(rs.getString(7));
-                    user.setCelular(rs.getString(8));
-                    user.setCategoria(rs.getString(9));
-                    user.setRolId(rs.getInt(11));
+                    user.setCodigo(rs.getString(5));
+                    user.setDni(rs.getString(6));
+                    user.setCelular(rs.getString(7));
+                    user.setCategoria(rs.getString(8));
+                    //user.setFotoPerfil(rs.getString(9));
+                    user.setRolId(rs.getInt(10));
+                    user.setEstadoDeUsuario(rs.getString(11));
                 }
             }
         } catch (SQLException e) {
@@ -247,36 +304,6 @@ public class UsersDao extends BaseDao{
         return user;
     }
 
-    /*public BUsuarios buscarPorId(String userID) {
-        BUsuarios user = null;
-
-        String sql = "select * from usuario WHERE idUsuario = ?";
-
-        try (Connection conn = this.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);) {
-            System.out.println("entro a buscar");
-
-            pstmt.setString(1, userID);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    user = new BUsuarios();
-                    user.setIdUsuario(rs.getInt(1));
-                    user.setNombre(rs.getString(2));
-                    user.setApellido(rs.getString(3));
-                    user.setCorreo(rs.getString(4));
-                    user.setCodigo(rs.getString(6));
-                    user.setDni(rs.getString(7));
-                    user.setCelular(rs.getString(8));
-                    user.setCategoria(rs.getString(9));
-                    user.setRolId(rs.getInt(11));
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return user;
-    }*/
 
     /*public BUsuarios generarUsuarioSeg(String correoPUCPSeg , String codigoPUCPSeg ) {
 

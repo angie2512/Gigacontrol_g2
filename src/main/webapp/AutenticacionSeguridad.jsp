@@ -12,10 +12,10 @@
               integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
               crossorigin="anonymous">
 
-        <title>Iniciar Sesión</title>
+        <title>Autenticación Seguridad</title>
         <style>
             body {
-                background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
+                background: url("resources/Images/fondoOscuro.png");
                 background-position: center center;
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -24,25 +24,27 @@
                 height: 100vh;
                 bgcolor: "#800000";
             }
-
-            @font-face {
-                font-family: Decor;
-                src: url(KrinkesDecorPERSONAL.ttf);
-            }
-
-            @font-face {
-                font-family: Decor;
-                src: url(KrinkesRegularPERSONAL.ttf);
-                font-style: italic;
-            }
-
             p {
                 font-family: Decor;
             }
-
+            .btn-1{
+                display: inline-block;
+                background: #00000010;
+                text-decoration: none;
+                font-size: 18px;
+                padding: 10px 25px;
+                color:#FFFFFF;
+                border-radius: 5px;
+                border-color: #FFFFFF;
+            }
+            @media(min-width: 768px){
+                .btn-1{
+                    padding: 10px 35px;
+                    background-color: #00000010;
+                }
+            }
         </style>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-
 
     </head>
 

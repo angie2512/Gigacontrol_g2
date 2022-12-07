@@ -14,7 +14,7 @@
 
     <style>
       body {
-        background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
+        background: url("https://ambientesdigital.com/wp-content/uploads/2017/07/10-biblioteca-ciencias-ingenieria-arquitectura-pucp-foto-juan-solano-ojasi.jpg");
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -22,24 +22,28 @@
         margin: 0;
         height: 100vh;
         bgcolor: "#800000";
-
       }
-      @font-face {
-        font-family: Decor;
-        src: url( KrinkesDecorPERSONAL.ttf);
-      }
-      @font-face{
-        font-family: Decor;
-        src: url(KrinkesRegularPERSONAL.ttf);
-        font-style: italic;
-      }
-      p{
+      p {
         font-family: Decor;
       }
-
+      .btn-1{
+        display: inline-block;
+        background: #00000010;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 10px 25px;
+        color:#FFFFFF;
+        border-radius: 5px;
+        border-color: #FFFFFF;
+      }
+      @media(min-width: 768px){
+        .btn-1{
+          padding: 10px 35px;
+          background-color: #00000010;
+        }
+      }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-
 
   </head>
   <body class="p-3 m-0 border-0 bd-example">

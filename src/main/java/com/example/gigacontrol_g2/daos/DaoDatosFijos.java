@@ -85,13 +85,13 @@ public class DaoDatosFijos extends BaseDao{
         }
         return listaNivelesDeUrgencia;
     }
-    public BUsuarios buscarPorId(int userID) {
+    public BUsuarios AsignarDatosDelUserLog(int userID) {
         BUsuarios user = null;
 
         String sql = "select * from usuario WHERE idUsuario = ?";
 
         try (Connection conn = this.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
 
             pstmt.setInt(1, userID);
@@ -107,9 +107,9 @@ public class DaoDatosFijos extends BaseDao{
                     user.setDni(rs.getString(6));
                     user.setCelular(rs.getString(7));
                     user.setCategoria(rs.getString(8));
-                    user.setFotoPerfil(rs.getString(9));
+                    //user.setFotoPerfil(rs.getString(9));
                     user.setRolId(rs.getInt(10));
-
+                    user.setEstadoDeUsuario(rs.getString(11));
                 }
             }
         } catch (SQLException e) {
@@ -129,7 +129,7 @@ public class DaoDatosFijos extends BaseDao{
             try(ResultSet rs = pstm.executeQuery();) {
                 if(rs.next()){
                     int userID = rs.getInt(3);
-                    user = this.buscarPorId(userID);
+                    user = this.AsignarDatosDelUserLog(userID);
                 }
             }
 

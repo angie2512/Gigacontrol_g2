@@ -66,7 +66,7 @@
                 <p></p>
 
 
-                <form method="post" class="form-signin" action="<%=request.getContextPath()%>/ServletInicio">
+                <form method="post" class="form-signin" action="< %=request.getContextPath()%>/ServletInicio">
                     <div class="d-grid gap-2 col-8 mx-auto form-floating mb-3" class="form_group">
                         <input type="numbers" class="form-control" id="codigo" placeholder="Código" name="codigo">
                         <label for="codigo">Código de Usuario</label>
@@ -78,17 +78,17 @@
                     </div>
                     <p></p>
                     <p></p>
-                    <% if (session.getAttribute("error") != null) {%>
-                    <div class="text-danger mb-2"><%=session.getAttribute("error")%></div>
-                    <% session.removeAttribute("error"); %>
-                    <% } %>
+                    < % if (session.getAttribute("error") != null) {%>
+                    <div class="text-danger mb-2">< %=session.getAttribute("error")%></div>
+                    < % session.removeAttribute("error"); %>
+                    < % } %>
                     <div class="d-grid gap-2 col-3 mx-auto">
                         <button type="submit" class="btn btn-primary">
                             Ingresar
                         </button>
                     </div>
                     <p></p>
-                    <a href="<%=request.getContextPath()%>/OlvidasteTuContrasena.jsp">¿Olvidaste tu Contraseña?</a>
+                    <a href="< %=request.getContextPath()%>/OlvidasteTuContrasena.jsp">¿Olvidaste tu Contraseña?</a>
                 </form>
                 <br>
             </div>

@@ -30,13 +30,21 @@ public class ServletInicio extends HttpServlet {
                             response.sendRedirect(request.getContextPath() + "/ServletUsuario");
                         } else if (user.getRolId() == 3) {
                             response.sendRedirect(request.getContextPath() + "/ServletAdmin");
-                        }
+                        } /*else if (user.getRolId()==1){
+                            response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
+                        }*/
                         //response.sendRedirect(request.getContextPath());
                     } else {
                         view = request.getRequestDispatcher("inicioDeSesion.jsp");
                         view.forward(request, response);
                     }
                     break;
+
+                case "establecerNuevaContraSeguridad":
+                    view = request.getRequestDispatcher("EstablecerNuevaContraSeguridad.jsp");
+                    view.forward(request, response);
+                    break;
+
 
                 case "autenticarSeguridad":
                     int codigoAutenticacion = envioCorreo.generarCodigoDeAutenticacion();
@@ -96,10 +104,12 @@ public class ServletInicio extends HttpServlet {
                     System.out.println("rol: "+ usuariolog.getRolId());
                     if (usuariolog.getRolId() == 3) {
                         response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Inicio");
-                    } else if (usuariolog.getRolId() == 1) {
-                        //Avance de Doble Autenticacion Seguridad
+                    } else if (usuariolog.getRolId() == 1 && usuariolog.getEstadoDeUsuario().equals("4")){
+                        response.sendRedirect(request.getContextPath() + "/ServletInicio?action=establecerNuevaContraSeguridad");
+                        //Avance de Doble Ausdsatenticacion Seguridad
+                    } else if (usuariolog.getRolId() == 1 && usuariolog.getEstadoDeUsuario().equals("1")){
                         response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");
-                    } else {
+                    }else if (usuariolog.getRolId() ==2) {
                         response.sendRedirect(request.getContextPath() + "/ServletUsuario");
                     }
                 } else {
@@ -134,13 +144,32 @@ public class ServletInicio extends HttpServlet {
                 String codigoPUCPSeg = request.getParameter("codigoPUCPSeg");
                 for (BUsuarios usuar : usersDao.getUsersList()){
                     if(correoPUCPSeg.equals(usuar.getCorreo()) && codigoPUCPSeg.equals(usuar.getCodigo())){
+                        int idUsuario = usuar.getIdUsuario();
                         String contrasenaTemporalSeguridad = envioCorreo.generarContrasenaTemporalSeguridad();
                         envioCorreo.enviarContrasenaTemporal(contrasenaTemporalSeguridad, correoPUCPSeg);
-                        response.sendRedirect(request.getContextPath()+"/ServletInicio");
+                        usersDao.crearCredencialesUsuario(codigoPUCPSeg,contrasenaTemporalSeguridad,idUsuario);
+                        //response.sendRedirect(request.getContextPath()+"/ServletInicio");
                     }
                 }
+                //session.setAttribute("errorSeg","No Se Encontró alguno de los Campos , Ingrese Correctamente");
+                //response.sendRedirect(request.getContextPath()+"/ServletInicio?action=establecerNuevaContraseñaSeguridad");
                 break;
 
+                case "establecernuevacontraseg":
+                    String contrasena1= request.getParameter("contrasena1");
+                    String contrasena2= request.getParameter("contrasena2");
+                    String idUsuarioStr = request.getParameter("idUsuarioLog");
+                    int idUsuario = Integer.parseInt( idUsuarioStr);
+                    if(contrasena1.equals(contrasena2)){
+                        usersDao.actualizarContrasenaSeguridad(idUsuario,contrasena1);
+                        String estadoUsuario = "1";
+                        usersDao.actualizarEstadoDeUsuario(idUsuario,estadoUsuario);
+                        response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
+                    }else {
+                        //session.setAttribute("errorSeg2","No Se Encontró alguno de los Campos , Ingrese Correctamente");
+                        //response.sendRedirect(request.getContextPath()+"/ServletInicio?action=establecerNuevaContraseñaSeguridad");
+                    }
+                    break;
         }
     }
 }
