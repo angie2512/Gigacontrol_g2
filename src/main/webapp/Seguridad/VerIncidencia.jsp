@@ -23,10 +23,10 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
     <script>
         let map;
         let marker;
-        function iniciarMap(){
-            const coord = {lat:-34.5956145 ,lng: -58.4431949};
+        function initMap(){
+            const coord = {lat:-12.0680766 ,lng: -77.0794255};
             map = new google.maps.Map(document.getElementById('map'),{
-                zoom: 15,
+                zoom: 17,
                 center: coord
             });
             marker = new google.maps.Marker({
@@ -35,19 +35,20 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
             });
             marker.setPosition(coord);
         }
+        window.initMap = initMap;
     </script>
     <style type="text/css">
         #map{
             height: 100%;
         }
         html,
-        body{
+        #map-container{
             height: 100%;
             margin: 0;
             padding: 0;
         }
     </style>
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYO577C0s-mTgU94RJbr7HZ6sTL41Uobg&callback=initMap&v=weekly"></script>
 </head>
 <body style="background-image: url(resources/Images/background.jpg);
                background-repeat: no-repeat;
@@ -165,34 +166,32 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                                     <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPucp()%></h6></td></tr>
                                 </table>
                                 <br>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <p style="padding-left: 2rem;color:#274362"><b> Foto de Incidencia </b></p>
-                                        </td>
 
-                                        <td>
-                                            <p style="padding-left: 4rem;color:#274362"><b> Ubicación:</b></p>
-                                        </td>
-                                        <!--td>
-                                            <button type="button" class="btn btn-warning" style="margin-left:5px;margin-bottom:10px">Haga Click Aquí</button>
-                                        </td---->
-                                    </tr>
-                                </table>
 
-                                <table>
-                                    <tr>
-                                        <td>
+                                <div>
+
+                                    <div class="row">
+                                        <div class="col-6"><p style="padding-left: 2rem;color:#274362"><b> Foto de Incidencia </b></p>
+                                        </div>
+
+                                        <div class="col-6"><p style="padding-left: 4rem;color:#274362"><b> Ubicación:</b></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
                                             <img src="https://files.pucp.education/puntoedu/wp-content/uploads/2021/02/23074448/espacios-de-estudio-005-5000x3333.jpg" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="200rem" style="padding-left: 2rem;">
+                                        </div>
 
-                                        </td>
+                                        <div class="col-6">
+                                            <div id="map-container">
+                                                <div id="map"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                        <td>
-                                            <script src="main.js"></script>
-                                            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8MR2AwANdnDX8mqt4Ih5eybD7bdHeYOc&libraries=visualization&callback=initMap"></script>
-                                        </td>
-                                    </tr>
-                                </table>
+
                             </div>
                             <!-- <form method="post" action="< %=request.getContextPath()%>/ServletSeguridad?action=guardarComentario"> -->
                             <div style="margin-left:40px">
@@ -308,6 +307,11 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
 <br><br><br><br><br>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $( document ).ready(function() {
+        initMap();
+    });
+</script>
 </body>
 </html>
