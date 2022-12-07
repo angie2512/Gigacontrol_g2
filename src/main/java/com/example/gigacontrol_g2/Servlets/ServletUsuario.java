@@ -105,15 +105,17 @@ public class ServletUsuario extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
         UsersDao usersDao = new UsersDao();
-
+        HttpSession session= request.getSession();
+        BUsuarios usuario=(BUsuarios) session.getAttribute("userlogged");
+        DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         switch (action) {
             case "buscar":
                 String searchText = request.getParameter("searchText");
 
                 ArrayList<Incidencia> lista = usersDao.BuscarIncidencia(searchText);
-                request.setAttribute("lista", lista);
-                request.setAttribute("searchText", searchText);
-
+                request.setAttribute("ListaDeIncidencias", lista);
+                request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
+                request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
                 requestDispatcher.forward(request, response);
                 break;

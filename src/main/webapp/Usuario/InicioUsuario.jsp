@@ -152,7 +152,7 @@
                 <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; height:3500px; background-color: #051D57;" >
                     <h4 class="border-bottom pb-2 mb-2" style="background-color:#051D57;color:#FFFFFF;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">TODAS LAS INCIDENCIAS </b></center></h4>
                     <p></p>
-                    <form class="d-flex" role="search" method="post" action="<%=request.getContextPath()%>/InicioUsuario?action=buscar">
+                    <form class="d-flex" role="search" method="post" action="<%=request.getContextPath()%>/ServletUsuario?action=buscar">
                         <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar" aria-label="Buscar">
                         <button class="btn btn-outline-primary" type="submit">Buscar</button>
                     </form>

@@ -100,7 +100,7 @@ public class ServletInicio extends HttpServlet {
                         //Avance de Doble Autenticacion Seguridad
                         response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");
                     } else {
-                        response.sendRedirect(request.getContextPath() + "/InicioUsuario");
+                        response.sendRedirect(request.getContextPath() + "/ServletUsuario");
                     }
                 } else {
                     session.setAttribute("error", "Hubo un Error en su Código o Contraseña , Vuelva a Ingresar");
