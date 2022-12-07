@@ -155,7 +155,7 @@ public class ServletSeguridad extends HttpServlet {
 
         switch (action){
 
-            case "buscarEstado":
+            /*case "buscarEstado":
 
                 String buscar = request.getParameter("buscar");
                 String estado = request.getParameter("tipo");
@@ -169,7 +169,7 @@ public class ServletSeguridad extends HttpServlet {
                 view = request.getRequestDispatcher("/Seguridad/InicioSeguridad.jsp");
                 view.forward(request,response);
                 break;
-
+*/
             case "actualizarIncidencia":
                 String resolucion = request.getParameter("resolucionIncidencia");
                 BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
