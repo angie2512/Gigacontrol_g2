@@ -70,7 +70,7 @@
               <li><a href="#" class="nav-link px-2"><b style="color:white"><%=userlogged.getNombre() + userlogged.getApellido()%></b></a></li>
               <div class="dropdown text-end">
                 <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                  <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                  <!--img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle"--->
                 </a>
               </div>
             </ul>
@@ -98,7 +98,42 @@
                 <img src="https://elcomercio.pe/resizer/hE0dXgCo-KfAjkgGRXLIlDayLYo=/1200x1200/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/JRZOEF5WCRCCPO32AV7OYXXNCU.jpg" class="flex-shrink-0 me-3" alt="..." width="140" height="140">
                 <div>
 
-                      <%for(Incidencia incidencia : listaDeIncidencias) { %>
+
+                  <form action="/search" method="get" id="views-exposed-form-dkan-datasets-panel-pane-1" accept-charset="UTF-8" role="form"><div><div class="views-exposed-form">
+                    <div class="views-exposed-widgets clearfix">
+                      <div id="edit-query-wrapper" class="views-exposed-widget views-widget-filter-search_api_views_fulltext">
+                        <div class="views-widget">
+                          <div class="form-item form-type-textfield form-item-query form-group">
+                            <label for="edit-query">Search </label>
+                            <input placeholder="Buscar" class="form-control form-text" type="text" id="edit-query" name="query" value="" size="60" maxlength="128">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="views-exposed-widget views-widget-sort-by">
+                        <div class="form-item form-type-select form-item-sort-by form-group">
+                          <label for="edit-sort-by">Ordenar por </label>
+                          <select class="form-control form-select" id="edit-sort-by" name="sort_by"><option value="changed" selected="selected">Fecha cambiada</option><option value="title">Título</option></select>
+                        </div>
+                      </div>
+                      <div class="views-exposed-widget views-widget-sort-order">
+                        <div class="form-item form-type-select form-item-sort-order form-group">
+                          <label for="edit-sort-order">Pedido </label>
+                          <select class="form-control form-select" id="edit-sort-order" name="sort_order"><option value="ASC">Ascendente</option><option value="DESC" selected="selected">Descendente</option></select>
+                        </div>
+                      </div>
+                      <div class="views-exposed-widget views-submit-button">
+                        <input type="submit" id="edit-submit-dkan-datasets" name="" value="Consultar" class="form-submit btn btn-default btn-primary">    </div>
+                      <div class="views-exposed-widget views-reset-button">
+                        <input type="submit" id="edit-reset" name="op" value="Reiniciar" class="form-submit btn btn-default">      </div>
+                    </div>
+                  </div>
+                  </div>
+                  </form>
+
+
+                      <%
+                        for(Incidencia incidencia : listaDeIncidencias) {
+                      %>
                     <div class="card-body">
                       <table>
                         <tr>

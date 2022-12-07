@@ -37,7 +37,7 @@ public class ServletSeguridadBuscarIncidencia extends HttpServlet {
 
                 for(Incidencia in: lista){
                     System.out.println("Nombre de Incidencia: "+in.getNombreDeIncidencia());
-                    System.out.println("Usuario: "+in.getUsuario().getNombre());
+                    System.out.println("Usuario: "+in.getUsuario().getApellido());
                 }
                 request.setAttribute("searchText", searchText);
 
@@ -45,6 +45,5 @@ public class ServletSeguridadBuscarIncidencia extends HttpServlet {
                 requestDispatcher.forward(request, response);
                 break;
         }
-
     }
 }
