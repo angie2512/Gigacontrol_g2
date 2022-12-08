@@ -98,10 +98,7 @@
           <p></p>
 
           <!--Se colocará el div que contenga botón para descargar pdf--->
-          <div id="invoice">
-            <p>Descargar PDF filtrado</p>
-          </div>
-          <button>Descargar</button>
+          <button>Descargar PDF</button>
 
 
           <div class="card" style="margin-top:10px">
@@ -113,30 +110,14 @@
 
                   <form action="/search" method="get" id="views-exposed-form-dkan-datasets-panel-pane-1" accept-charset="UTF-8" role="form"><div><div class="views-exposed-form">
                     <div class="views-exposed-widgets clearfix">
-                      <div id="edit-query-wrapper" class="views-exposed-widget views-widget-filter-search_api_views_fulltext">
-                        <div class="views-widget">
-                          <div class="form-item form-type-textfield form-item-query form-group">
-                            <label for="edit-query">Search </label>
-                            <input placeholder="Buscar" class="form-control form-text" type="text" id="edit-query" name="query" value="" size="60" maxlength="128">
-                          </div>
-                        </div>
-                      </div>
+
                       <div class="views-exposed-widget views-widget-sort-by">
                         <div class="form-item form-type-select form-item-sort-by form-group">
-                          <label for="edit-sort-by">Ordenar por </label>
-                          <select class="form-control form-select" id="edit-sort-by" name="sort_by"><option value="changed" selected="selected">Fecha cambiada</option><option value="title">Título</option></select>
+                          <label for="edit-sort-by">Nivel de Urgencia </label>
+                          <select class="form-control form-select" id="edit-sort-by" name="sort_by"><option value="changed" selected="selected">Leve</option><option value="title">Moderado</option><option value="title">Critico</option></select>
                         </div>
                       </div>
-                      <div class="views-exposed-widget views-widget-sort-order">
-                        <div class="form-item form-type-select form-item-sort-order form-group">
-                          <label for="edit-sort-order">Pedido </label>
-                          <select class="form-control form-select" id="edit-sort-order" name="sort_order"><option value="ASC">Ascendente</option><option value="DESC" selected="selected">Descendente</option></select>
-                        </div>
-                      </div>
-                      <div class="views-exposed-widget views-submit-button">
-                        <input type="submit" id="edit-submit-dkan-datasets" name="" value="Consultar" class="form-submit btn btn-default btn-primary">    </div>
-                      <div class="views-exposed-widget views-reset-button">
-                        <input type="submit" id="edit-reset" name="op" value="Reiniciar" class="form-submit btn btn-default">      </div>
+
                     </div>
                   </div>
                   </div>
