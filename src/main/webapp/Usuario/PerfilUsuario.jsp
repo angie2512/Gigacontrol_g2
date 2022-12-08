@@ -64,8 +64,6 @@
             min-height: 200px;
             background-color: white;
             padding: 10px;
-            border-radius: 4px;
-            border-radius: 50%;
         }
 
         .preview-container > img {
@@ -163,7 +161,7 @@
 
                 <div class="main-container">
                     <div class="preview-container">
-                        <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" id="preview">
+                        <img src="https://static01.nyt.com/images/2021/08/05/sports/05soccer-messi-ESP-1/05soccer-messi-mediumSquareAt3X.jpg" id="preview">
                     </div>
                     <div class="input-container">
                         📸
