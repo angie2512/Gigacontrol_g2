@@ -1,7 +1,9 @@
+<%@ page import="com.example.gigacontrol_g2.beans.BUsuarios" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 
 <!doctype html>
+<%BUsuarios u= (BUsuarios) session.getAttribute("userlogged");%>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -96,14 +98,6 @@
                     <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/MisIncidencias" style="color:#FFFFFF">Mis Incidencias</a>
                 </li>
             </ul>
-            <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2"><b style="color:#211426"><%=userlogged.getNombre() + " " + userlogged.getApellido()%></b></a></li>
-                <div class="dropdown text-end">
-                    <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                        <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                    </a>
-                </div>
-            </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                 <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
                         style="color:#000000"><b>Cerrar sesion > </b></u></a>
@@ -135,41 +129,11 @@
                 <!-- <input id="file-upload" type="file"/> -->
                <!-- <button>SELECCIONA ARCHIVO</button>
                 <input type="file" name="" id="file-upload" hidden multiple>  -->
+                <div class="abs-center">
+                    <img src="<%=u.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
+                    <br>
 
-                <script>
 
-                    function mostrarImagen(event){
-                        var imagenSource = event.target.result;
-                        var previewImage = document.getElementById('preview');
-
-                        previewImage.src = imagenSource;
-                    }
-
-                    function procesarArchivo(event){
-                        var imagen = event.target.files[0];
-
-                        var lector = new FileReader();
-
-                        lector.addEventListener('load', mostrarImagen, false);
-
-                        lector.readAsDataURL(imagen);
-                    }
-
-                    document.getElementById('archivo')
-                        .addEventListener('change', procesarArchivo, false)
-                </script>
-
-                <div class="main-container">
-                    <div class="preview-container">
-                        <img src="https://static01.nyt.com/images/2021/08/05/sports/05soccer-messi-ESP-1/05soccer-messi-mediumSquareAt3X.jpg" id="preview">
-                    </div>
-                    <div class="input-container">
-                        📸
-                        <input type="file" id="archivo" name="archivo" />
-                    </div>
-                </div>
-            </center>
-        </td>
 
         <br>
         <div class="card"style="background-color:#F2F2F3">
