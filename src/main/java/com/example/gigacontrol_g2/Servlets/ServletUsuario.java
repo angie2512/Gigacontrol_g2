@@ -1,9 +1,6 @@
 package com.example.gigacontrol_g2.Servlets;
 
-import com.example.gigacontrol_g2.beans.BUsuarios;
-import com.example.gigacontrol_g2.beans.ComentarIncidencia;
-import com.example.gigacontrol_g2.beans.Estado;
-import com.example.gigacontrol_g2.beans.Incidencia;
+import com.example.gigacontrol_g2.beans.*;
 import com.example.gigacontrol_g2.daos.DaoDatosFijos;
 import com.example.gigacontrol_g2.daos.SeguridadDao;
 import com.example.gigacontrol_g2.daos.UsersDao;
@@ -121,6 +118,35 @@ public class ServletUsuario extends HttpServlet {
                 request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
                 requestDispatcher.forward(request, response);
+                break;
+            case "registroIncidencia":
+                String nombre_ = request.getParameter("nombre");
+                String descripcion_ = request.getParameter("descripcion");
+                String zonaPucp_ = request.getParameter("zonaPucp");
+                String ubicacion_ = request.getParameter("ubicacion");
+                TipoDeIncidencia ti = new TipoDeIncidencia();
+                ti.setIdTipoDeIncidencia(Integer.parseInt(request.getParameter("tipoIncidenciaID")));
+                NivelDeUrgencia nu = new NivelDeUrgencia();
+                nu.setIdNivelDeUrgencia(Integer.parseInt(request.getParameter("nivelUrgenciaID")));
+                Estado estado = new Estado();
+                estado.setIdEstado(1);
+
+                try {
+                    Incidencia newIncidencia = new Incidencia();
+                    newIncidencia.setNombreDeIncidencia(nombre_);
+                    newIncidencia.setDescripcion(descripcion_);
+                    newIncidencia.setZonaPucp(zonaPucp_);
+                    newIncidencia.setUbicacion(ubicacion_);
+                    newIncidencia.setTipoDeIncidencia(ti);
+                    newIncidencia.setNivelDeUrgencia(nu);
+                    newIncidencia.setEstado(estado);
+                    usersDao.nuevaIncidencia(newIncidencia, usuario.getIdUsuario());
+
+                    response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=inicio");
+
+                } catch (NumberFormatException e) {
+                    response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=nuevaIncidencia");
+                }
                 break;
 
         }
