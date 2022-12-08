@@ -12,7 +12,16 @@ public class BUsuarios {
     private String categoria;
     private int rolId;
     private String fotoPerfil;
-    private String estadoDeUsuario;
+    private char estado;
+
+
+    public char getEstado() {
+        return estado;
+    }
+
+    public void setEstado(char estado) {
+        this.estado = estado;
+    }
 
     public String getFotoPerfil() {
         return fotoPerfil;
@@ -100,13 +109,5 @@ public class BUsuarios {
 
     public void setRolId(int rolId) {
         this.rolId = rolId;
-    }
-
-    public String getEstadoDeUsuario() {
-        return estadoDeUsuario;
-    }
-
-    public void setEstadoDeUsuario(String estadoDeUsuario) {
-        this.estadoDeUsuario = estadoDeUsuario;
     }
 }
