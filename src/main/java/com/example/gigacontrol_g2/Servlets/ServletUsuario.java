@@ -122,6 +122,7 @@ public class ServletUsuario extends HttpServlet {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
                 requestDispatcher.forward(request, response);
                 break;
+
         }
     }
 }

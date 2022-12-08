@@ -128,7 +128,7 @@
                         <div class="row align-item-md-strech">
                             <div class="col-md-6">
                                 <h3>Foto Incidencia</h3>
-                                <img src="https://files.pucp.education/puntoedu/wp-content/uploads/2021/02/23074448/espacios-de-estudio-005-5000x3333.jpg" alt="userphoto" height="200rem" width="200rem" class="rounded float-start img-fluid">
+                                <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="215rem" style="padding-left: 2rem;">
                             </div>
                             <div class="col-md-6">
                                 <h3>Ubicación</h3>
