@@ -95,8 +95,11 @@ public class ServletUsuario extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("Usuario/VerIncidencia.jsp");
                 requestDispatcher.forward(request, response);
                 break;
-
-
+            case "mostrarFotoPerfil":
+                String idUsuario = request.getParameter("idu");
+                int idUsuario1 = Integer.parseInt(idUsuario);
+                daoDatosFijos.mostrarImagenUsuario(idUsuario1,response);
+                break;
         }
 
     }

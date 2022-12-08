@@ -3,10 +3,13 @@
 <%@ page import="java.lang.reflect.Array" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.gigacontrol_g2.beans.ComentarIncidencia" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Incidencia incidencia = (Incidencia) request.getAttribute("incidencia");
     ArrayList<Estado> listaEstados = (ArrayList<Estado>) request.getAttribute("ListaEstados");
     ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>) request.getAttribute("ListaComentarios");
+    ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
+    HashMap<Integer, Integer> numDestacados = (HashMap<Integer, Integer>) request.getAttribute("numDestacados");
 %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 
@@ -171,6 +174,37 @@
 <!-- TERMINAAAA -->
 
 <br>
+<div class="d-flex justify-content-center">
+    <!--<button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
+        Guardar cambios
+    </button> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Se guardaron los Cambios</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+                        <h3 style="color:#399934">Cambios correctamente guardados</h3>
+                        <img src="resources/Images/check-png.webp" class="rounded mx-auto d-block " alt="userphoto" height="37rem" width="50rem">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletSeguridad" role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">SALIR</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<br><br><br><br><br>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
