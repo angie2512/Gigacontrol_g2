@@ -151,8 +151,8 @@ public class UsersDao extends BaseDao{
 
         try (Connection conn = this.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
-             stmt.setInt(1,idUsuario);
-             try(ResultSet rs = stmt.executeQuery()) {
+            stmt.setInt(1,idUsuario);
+            try(ResultSet rs = stmt.executeQuery()) {
 
                 while (rs.next()) {
                     BUsuarios usuario = new BUsuarios();
@@ -170,7 +170,7 @@ public class UsersDao extends BaseDao{
                     incidencia.setEstado(estadoIncidencia);
                     listaDeMisIncidencias.add(incidencia);
                 }
-             }
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -188,8 +188,8 @@ public class UsersDao extends BaseDao{
 
         try (Connection conn = this.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
-             stmt.setInt(1,idUsuario);
-             try(ResultSet rs = stmt.executeQuery()){
+            stmt.setInt(1,idUsuario);
+            try(ResultSet rs = stmt.executeQuery()){
 
                 while (rs.next()) {
                     BUsuarios usuario = new BUsuarios();
@@ -311,18 +311,12 @@ public class UsersDao extends BaseDao{
 
 
     /*public BUsuarios generarUsuarioSeg(String correoPUCPSeg , String codigoPUCPSeg ) {
-
         BUsuarios usuarSeg = null;
-
         String sql = "select * from usuario WHERE Correo = ? and Codigo = ? ";
-
         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
             pstmt.setString(1, correoPUCPSeg);
             pstmt.setString(2, codigoPUCPSeg);
-
-
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     usuarSeg = new BUsuarios();
@@ -571,19 +565,31 @@ public class UsersDao extends BaseDao{
         return listaidincidencias;
     }
 
+    //NUEVA INCIDENCIA
 
+    public void nuevaIncidencia(Incidencia nIncidencia, int idUsuario) {
 
+        String sql = "INSERT INTO incidencia (NombreDeIncidencia, Descripcion, ZonaPUCP, " +
+                "Ubicacion,idUsuario, idTipoIncidencia, idNivelUrgencia,idEstado) VALUES (?,?,?,?,?,?,?,?)";
 
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
+            pstmt.setString(1, nIncidencia.getNombreDeIncidencia());
+            pstmt.setString(2, nIncidencia.getDescripcion());
+            pstmt.setString(3, nIncidencia.getZonaPucp());
+            pstmt.setString(4, nIncidencia.getUbicacion());
+            pstmt.setInt(5, idUsuario);
+            pstmt.setInt(6, nIncidencia.getTipoDeIncidencia().getIdTipoDeIncidencia());
+            pstmt.setInt(7, nIncidencia.getNivelDeUrgencia().getIdNivelDeUrgencia());
+            pstmt.setInt(8, nIncidencia.getEstado().getIdEstado());
 
+            pstmt.executeUpdate();
 
-
-
-
-
-
-
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 }
-
