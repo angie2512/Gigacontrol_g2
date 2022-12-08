@@ -117,7 +117,6 @@
                           <select class="form-control form-select" id="edit-sort-by" name="sort_by"><option value="changed" selected="selected">Leve</option><option value="title">Moderado</option><option value="title">Critico</option></select>
                         </div>
                       </div>
-
                     </div>
                   </div>
                   </div>
