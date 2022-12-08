@@ -138,6 +138,7 @@
                     </a>
                 </div>
             </ul>
+
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                 <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
                         style="color:#000000"><b>Cerrar sesion > </b></u></a>
