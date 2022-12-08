@@ -183,7 +183,7 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
 
                                     <div class="row">
                                         <div class="col-6">
-                                            <img src="https://files.pucp.education/puntoedu/wp-content/uploads/2021/02/23074448/espacios-de-estudio-005-5000x3333.jpg" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="200rem" style="padding-left: 2rem;">
+                                            <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="215rem" style="padding-left: 2rem;">
                                         </div>
 
                                         <div class="col-6">

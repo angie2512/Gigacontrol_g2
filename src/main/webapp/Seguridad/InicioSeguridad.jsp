@@ -100,9 +100,9 @@
 
           <div class="card" style="margin-top:10px">
             <div class="card-body">
-              <div class="d-flex position-relative">
+              <!--<div class="d-flex position-relative">
                 <img src="https://elcomercio.pe/resizer/hE0dXgCo-KfAjkgGRXLIlDayLYo=/1200x1200/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/JRZOEF5WCRCCPO32AV7OYXXNCU.jpg" class="flex-shrink-0 me-3" alt="..." width="140" height="140">
-                <div>
+                <div> -->
 
 
                   <form action="/search" method="get" id="views-exposed-form-dkan-datasets-panel-pane-1" accept-charset="UTF-8" role="form"><div><div class="views-exposed-form">
@@ -140,7 +140,10 @@
                       <%
                         for(Incidencia incidencia : listaDeIncidencias) {
                       %>
-                    <div class="card-body">
+                  <div class="card-body" style="display:flex">
+                    <div class="d-flex position-relative">
+                      <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" class="flex-shrink-0 me-3" alt="..." width="140" height="140">
+                    </div>
                       <table>
                         <tr>
                           <td>
@@ -181,16 +184,25 @@
                             <p><%=incidencia.getDescripcion()%></p>
                           </td>
                         </tr>
-                      </table>
-                      <table>
                         <tr>
+                          <td>
                           <div class="d-flex flex-row-reverse">
                             <div class="p-2"><b style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%></b></div>
                             <div class="p-2"><b>👤 15</b></div>
                             <div class="p-2"><b style="color:#F0C00D">★ Destacados</b></div>
                           </div>
+                          </td>
                         </tr>
                       </table>
+                      <!--<table>
+                        <tr>
+                          <div class="d-flex flex-row-reverse">
+                            <div class="p-2"><b style="color:#DCBA38 ">Estado:< %=incidencia.getEstado().getNombre()%></b></div>
+                            <div class="p-2"><b>👤 15</b></div>
+                            <div class="p-2"><b style="color:#F0C00D">★ Destacados</b></div>
+                          </div>
+                        </tr>
+                      </table>-->
                     </div>
                       <% } %>
                 </div>

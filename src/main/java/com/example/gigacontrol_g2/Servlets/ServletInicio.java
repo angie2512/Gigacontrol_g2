@@ -95,10 +95,12 @@ public class ServletInicio extends HttpServlet {
         HttpSession session = request.getSession();
         UsersDao usersDao = new UsersDao();
         EnvioCorreo envioCorreo = new EnvioCorreo();
+        BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
+        //int num_intentos = 3;
 
         switch (action) {
             case "IniciarSesion":
-                BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
+                //BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
                 if (usuariolog != null) {
                     session.setAttribute("userlogged", usuariolog);
                     System.out.println("rol: "+ usuariolog.getRolId());
@@ -120,26 +122,39 @@ public class ServletInicio extends HttpServlet {
                 break;
 
             case "autenticacionSeguridad":
+                //session.setAttribute("userlogged", usuariolog);
+                //System.out.println(usuariolog.getCodigo());
                 String codigoAutenticacionIngresado = request.getParameter("codigoAutenticacionIngresado");
                 String codigoAutenticacionOriginal = request.getParameter("codigoAutenticacion");
-                //int num_intentos = 3;
                 //while (num_intentos>0) {
-                if (codigoAutenticacionIngresado.equals(codigoAutenticacionOriginal)) {
-                    response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
-                } else {
-                    session.invalidate();
-                    response.sendRedirect("ServletInicio");
-                            /*session.setAttribute("error2", "Codigo Incorrecto, Vuelva a Ingresar \n" +
-                                    "(Tiene " + num_intentos + " Oportunidades Más)");
-                            session.setAttribute("userlogged",usuariolog);
+                    if (codigoAutenticacionIngresado.equals(codigoAutenticacionOriginal)) {
+                        response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
+                    } else {
+                        session.invalidate();
+                        response.sendRedirect("ServletInicio");
+                        /*if(num_intentos>=2) {
+                            session.setAttribute("error2", "Codigo Incorrecto, Vuelva a Ingresar \n" +
+                                    "(Tiene " +num_intentos+ " Oportunidades Más)");
+                        }else if (num_intentos==1){
+                            session.setAttribute("error2", "Codigo Incorrecto, Vuelva a Ingresar \n" +
+                                    "(Tiene " +num_intentos+ " Oportunidad Más)");
+                        }
 
-                            num_intentos--;
-                        }*/
-                    //num_intentos--;
+                        if(num_intentos>0) {
+                            view = request.getRequestDispatcher("AutenticacionSeguridad.jsp");
+                            view.forward(request, response);
+                        }
+                        num_intentos--;
+
+                         */
+                        /*session.setAttribute("error2", "Codigo Incorrecto, Vuelva a Ingresar");
+                        view = request.getRequestDispatcher("AutenticacionSeguridad.jsp");
+                        view.forward(request, response); */
                     }
                 break;
 
             case "registroSeguridad":
+                session.setAttribute("userlogged", usuariolog);
                 String correoPUCPSeg = request.getParameter("correoPUCPSeg");
                 String codigoPUCPSeg = request.getParameter("codigoPUCPSeg");
                 for (BUsuarios usuar : usersDao.getUsersList()){
@@ -156,6 +171,7 @@ public class ServletInicio extends HttpServlet {
                 break;
 
                 case "establecernuevacontraseg":
+                    session.setAttribute("userlogged", usuariolog);
                     String contrasena1= request.getParameter("contrasena1");
                     String contrasena2= request.getParameter("contrasena2");
                     String idUsuarioStr = request.getParameter("idUsuarioLog");
