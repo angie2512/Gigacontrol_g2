@@ -31,9 +31,9 @@ public class ServletInicio extends HttpServlet {
                             response.sendRedirect(request.getContextPath() + "/ServletUsuario");
                         } else if (user.getRolId() == 3) {
                             response.sendRedirect(request.getContextPath() + "/ServletAdmin");
-                        } /*else if (user.getRolId()==1){
+                        } else if (user.getRolId()==1){
                             response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
-                        }*/
+                        }
                         //response.sendRedirect(request.getContextPath());
                     } else {
                         view = request.getRequestDispatcher("inicioDeSesion.jsp");
@@ -108,14 +108,15 @@ public class ServletInicio extends HttpServlet {
                 if (usuariolog != null) {
                     session.setAttribute("userlogged", usuariolog);
                     System.out.println("rol: "+ usuariolog.getRolId());
-                    if (usuariolog.getRolId() == 3) {
-                        response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Inicio");
-                    } else if (usuariolog.getEstado() == 4){
+                    //Para primer inicio de sesion y cambio de contraseña ( seguridad y usuario pucp).
+                    if(usuariolog.getEstado() == 4){
                         response.sendRedirect(request.getContextPath() + "/ServletInicio?action=establecerNuevaContraSeguridad");
+                    } else if (usuariolog.getRolId() == 3 && usuariolog.getEstado() == 1) {
+                        response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Inicio");
                         //Avance de Doble Ausdsatenticacion Seguridad
                     } else if (usuariolog.getRolId() == 1 && usuariolog.getEstado() == 1){
                         response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");
-                    }else if (usuariolog.getRolId() ==2) {
+                    }else if (usuariolog.getRolId() ==2 && usuariolog.getEstado() == 1) {
                         response.sendRedirect(request.getContextPath() + "/ServletUsuario");
                     }
                 } else {
