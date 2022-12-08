@@ -29,11 +29,12 @@ public class ServletSeguridad extends HttpServlet {
 
         ArrayList<BUsuarios> lista = usersDao.getUsersList();
 
-        String valor_total_filas_str = usersDao.contar();
+        String valor_total_filas_str = daoDatosFijos.contarIncidencias();
         int valor_total_filas_int = Integer.parseInt(valor_total_filas_str);
         float valor_total_filas = Float.parseFloat(valor_total_filas_str);
 
-        float maxPag = (float) (valor_total_filas / 9);
+
+        float maxPag = (float) (valor_total_filas / 3);
         int maxPag2 = (int) Math.ceil(maxPag);
 
         switch (action) {
@@ -42,10 +43,42 @@ public class ServletSeguridad extends HttpServlet {
                 break;
 
             case "listarIncidencia":
+
                 request.setCharacterEncoding("UTF-8");
                 BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
                 if(userSeg != null && userSeg.getRolId()==1 ) {
-                    request.setAttribute("listaUsuarios", usersDao.getUsersList());
+                    int valor_pagina = 1;
+                    /*request.setAttribute("listaUsuarios", usersDao.getUsersList());*/
+
+                    //paginacion
+
+                    if(request.getParameter("pg") != null){
+                        valor_pagina = Integer.parseInt(request.getParameter("pg"));
+                    }
+
+                    int regMin = (valor_pagina-1)*3;
+
+                    if(valor_pagina != maxPag2){
+                        int regMax = valor_pagina * 3;
+
+                        request.setAttribute("maxPag2", maxPag2);
+                        request.setAttribute("regMin", regMin);
+                        request.setAttribute("regMax", regMax);
+                        request.setAttribute("valor_pagina", valor_pagina);
+                    }else{
+                        int regMax = valor_total_filas_int;
+
+                        request.setAttribute("maxPag2", maxPag2);
+                        request.setAttribute("regMin", regMin);
+                        request.setAttribute("regMax", regMax);
+                        request.setAttribute("valor_pagina", valor_pagina);
+                    }
+
+
+                    //cierre paginacion
+
+
+
                     request.setAttribute("listaIncidencias", seguridadDao.obtenerListaDeIncidencias());
                     requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
                     requestDispatcher.forward(request, response);

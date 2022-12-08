@@ -315,4 +315,28 @@ public class DaoDatosFijos extends BaseDao {
 
 
 
+
+    public String contarIncidencias() {
+
+        String nro_filas_total = null;
+        String sql = "select count(*) from incidencia";
+        try (Connection connection = this.getConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql);) {
+
+            if(rs.next()){
+                nro_filas_total = rs.getString(1);
+            }
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return nro_filas_total;
+    }
+
+
+
 }

@@ -211,46 +211,46 @@
 
                 %>
 
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
 
-                        <%if (valor_pagina != 1) {%>
-                        <li class="page-item">
-                            <a class="page-link" href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios&pg=<%=valor_pagina-1%>"
-                               aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <%}%>
-                        <%
+                                    <%if (valor_pagina != 1) {%>
+                                    <li class="page-item">
+                                        <a class="page-link" href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios&pg=<%=valor_pagina-1%>"
+                                           aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <%}%>
+                                    <%
 
-                            for (int i = 0; i < maxPag2; i++) {
-                                if (i + 1 == valor_pagina) {
-                        %>
+                                        for (int i = 0; i < maxPag2; i++) {
+                                            if (i + 1 == valor_pagina) {
+                                    %>
 
-                        <li class="page-item active" aria-current="page">
-                            <span class="page-link"><%=i + 1%></span>
-                        </li>
-
-
-                        <% }
-                        else {%>
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link"><%=i + 1%></span>
+                                    </li>
 
 
-
-                        <li class="page-item">
-                            <a class="page-link" href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios&pg=<%=i+1%>">
-                                <span aria-hidden="true"><%=i+1%></span>
-                            </a>
-                        </li>
+                                    <% }
+                                    else {%>
 
 
-                        <%
-                            }
-                        %>
+
+                                    <li class="page-item">
+                                        <a class="page-link" href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios&pg=<%=i+1%>">
+                                            <span aria-hidden="true"><%=i+1%></span>
+                                        </a>
+                                    </li>
 
 
-                        <%
+                                    <%
+                                        }
+                                    %>
+
+
+                                    <%
                                 }
                             }
                         %>
