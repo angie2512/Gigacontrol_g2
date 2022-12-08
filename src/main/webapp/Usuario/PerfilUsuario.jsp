@@ -10,7 +10,7 @@
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <title>Perfil USUARIO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
+    <link href="styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/46baa8e193.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/usuario.css">
     <style>
@@ -23,6 +23,54 @@
             margin: 0;
             height: 100vh;
             bgcolor: "#800000";
+        }
+        .main-container {
+            width: 100%;
+            min-height: 400px;
+            margin-top: 10%;
+            text-align: center;
+        }
+
+        .input-container {
+            text-align: center;
+            margin: 20px auto;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+            color: white;
+            cursor: pointer;
+            border: 2px dashed white;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .input-container [type=file] {
+            cursor: inherit;
+            display: block;
+            font-size: 999px;
+            filter: alpha(opacity=0);
+            min-height: 100%;
+            min-width: 100%;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            text-align: right;
+            top: 0;
+        }
+
+        .preview-container {
+            margin: 0 auto;
+            width: 200px;
+            min-height: 200px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 4px;
+            border-radius: 50%;
+        }
+
+        .preview-container > img {
+            margin: 0;
+            width: 100%;
         }
     </style>
 
@@ -70,22 +118,60 @@
 
 <div class="container" style="max-width: 40rem;">
     <div class="abs-center">
+        <!--
         <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" class="rounded mx-auto d-block " alt="userphoto" height="200rem" max-width="210rem" style="margin-top: 10px; margin-bottom:-35px">
-        <td class="text-center">
+        <td class="text-center"> -->
            <!-- <a type="button" class="btn btn-danger", style="background-color: #ffffff;border-color: #ffffff;border-radius: 60px 60px 60px 60px;margin-left: 270px; margin-bottom:25px" for="inputGroupFile01">
              <img src="https://img.icons8.com/metro/26/null/camera.png"/>
             </a> -->
-            <br>
+
             <center>
+                <!--
                 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
-                <label for="file-upload" class="custom-file-upload" style="margin-left: 110px; border-radius: 15px; margin-top: -500px">
-                    <i class="fa fa-pencil-square-o"></i>
-                </label>
-                <input id="file-upload" type="file"/>
+                <label for="file-upload" class="custom-file-upload" style="margin-left: 5px; border-radius: 15px; margin-top: -500px"> -->
+                    <!--<input id="file-upload" type="file"/>
+                    <i class="fa fa-pencil-square-o"></i>-->
+                   <!-- <button type="file" name="" id="file-upload" >SELECCIONA ARCHIVO</button>
+                    <input type="file" name="" id="file-upload">
+                </label> -->
+                <!-- <input id="file-upload" type="file"/> -->
+               <!-- <button>SELECCIONA ARCHIVO</button>
+                <input type="file" name="" id="file-upload" hidden multiple>  -->
+
+                <script>
+
+                    function mostrarImagen(event){
+                        var imagenSource = event.target.result;
+                        var previewImage = document.getElementById('preview');
+
+                        previewImage.src = imagenSource;
+                    }
+
+                    function procesarArchivo(event){
+                        var imagen = event.target.files[0];
+
+                        var lector = new FileReader();
+
+                        lector.addEventListener('load', mostrarImagen, false);
+
+                        lector.readAsDataURL(imagen);
+                    }
+
+                    document.getElementById('archivo')
+                        .addEventListener('change', procesarArchivo, false)
+                </script>
+
+                <div class="main-container">
+                    <div class="preview-container">
+                        <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" id="preview">
+                    </div>
+                    <div class="input-container">
+                        📸
+                        <input type="file" id="archivo" name="archivo" />
+                    </div>
+                </div>
             </center>
         </td>
-
-        <br>
         <div class="card"style="background-color:#F2F2F3">
             <div class="card-body" >
                 <div class="p-1 mb-8 text-white" style="background-color:#7ebd83">
@@ -113,7 +199,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <br>
+<!-- AUN NO COLOCAR ATRÁS
 <a class="btn btn-primary" href=<%=request.getContextPath()%>/InicioUsuario role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+-->
 <br><br>
 </body>
 </html>
