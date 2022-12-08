@@ -1,6 +1,7 @@
 <%@ page import="com.example.gigacontrol_g2.beans.Incidencia" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="com.example.gigacontrol_g2.beans.BUsuarios" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     //ArrayList<Estado> listaEstados = (ArrayList <Estado>) request.getAttribute("ListaEstados");
@@ -8,7 +9,7 @@
     //ArrayList <NivelDeUrgencia> listaNivelesDeUrgencia =(ArrayList < NivelDeUrgencia>) request.getAttribute("ListaNivelesDeUrgencia");
     ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidencias");
     ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
-
+    BUsuarios u= (BUsuarios) session.getAttribute("userlogged");
     HashMap<Integer, Integer> numDestacados = (HashMap<Integer, Integer>) request.getAttribute("numDestacados");
 %>
 
@@ -72,8 +73,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body>
-<p></p>
+<body class="p-3 m-0 border-0 bd-example">
  <!--   <nav class="navbar navbar-expand-lg" style="background-color: #5f6694; min-width: 53rem" aria-label="Eighth navbar example">
         <div class="container">
             <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
@@ -136,21 +136,17 @@
                 <li><a href="#" class="nav-link px-2"><b style="color:#211426"><%=userlogged.getNombre() + " " + userlogged.getApellido()%></b></a></li>
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                        <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="<%=u.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletUsuario?action=mostrarFotoPerfil")%>" class="rounded mx-auto d-block " alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                 </div>
-            </ul>
+              </ul>
+            </div>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                 <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
                         style="color:#000000"><b>Cerrar sesion > </b></u></a>
             </form>
         </div>
-    </div>
-</nav>
-
-
-<p></p>
-<p></p>
+    </nav>
 
 
 
@@ -285,19 +281,21 @@
                                     <div>
 
                                         <%for(Incidencia incidencia : listaDeIncidencias) { %>
-                                        <div class="card-body">
+                                        <div class="card-body" style="display:flex">
+                                            <div class="d-flex position-relative" style="top: 50px;right: 15px;">
+                                                <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" class="flex-shrink-0 me-3" alt="..." width="140" height="140">
+                                            </div>
                                             <table>
                                                 <tr>
                                                     <td>
                                                         <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%=incidencia.getNombreDeIncidencia()%></b></h4>
                                                     </td>
                                                     <td>
-                                                        <div class="card-body d-flex align-items-right"  aria-label="Basic mixed styles example" style="padding-final: 3rem; margin-left: 200px;">
+                                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
                                                             <a href="<%=request.getContextPath()%>/ServletUsuario?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver Más</a>
                                                         </div>
                                                     </td>
                                                 </tr>
-
                                                 <tr>
                                                     <td>
                                                         <h6 style="color:#585151; font-family:Georgia, serif"><b>NOMBRE Y APELLIDO: <%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%></b> </h6>
@@ -325,14 +323,8 @@
                                                         <p><%=incidencia.getDescripcion()%></p>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" style="margin-left: 50px; width: 300px; height: 200px">
-                                                    <td>
-                                                </tr>
-                                            </table>
-                                            <table>
-                                                <tr>
+                                            <td>
+                                                 <td>
                                                     <div class="d-flex flex-row-reverse">
                                                         <div class="p-2"><b style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%></b></div>
                                                         <% if(numDestacados.get(incidencia.getIdIncidencia())!=null){%>
@@ -350,6 +342,7 @@
                                                         </div>
                                                         <%}%>
                                                     </div>
+                                                   </td>
                                                 </tr>
                                             </table>
                                             <hr class="border border-black border-2 opacity-60">

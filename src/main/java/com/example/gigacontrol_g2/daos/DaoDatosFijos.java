@@ -195,6 +195,31 @@ public class DaoDatosFijos extends BaseDao {
             e.printStackTrace();
         }
     }
+    public void mostrarImagenUsuario(int id, HttpServletResponse response){
+        String sql= "select u.FotoPerfil from usuario u where idUsuario=?";
+        response.setContentType("image/*");
+        InputStream inputStream=null;
+        OutputStream outputStream;
+        try(Connection conn= this.getConnection();
+            PreparedStatement pstmt= conn.prepareStatement(sql);){
+            pstmt.setInt(1, id);
+
+            try(ResultSet rs= pstmt.executeQuery();){
+                outputStream= response.getOutputStream();
+                if(rs.next()){
+                    inputStream= rs.getBinaryStream(1);
+                }
+                byte[] datosImagen= new byte[inputStream.available()];
+                inputStream.read(datosImagen,0,inputStream.available());
+                outputStream.write(datosImagen);
+                inputStream.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public HashMap<Integer, Integer> numDestacadosPorIncidencia() {
         HashMap<Integer, Integer> destPorInc = new HashMap<Integer, Integer>();

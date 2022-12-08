@@ -3,6 +3,9 @@ package com.example.gigacontrol_g2.daos;
 import com.example.gigacontrol_g2.beans.*;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -303,6 +306,8 @@ public class UsersDao extends BaseDao{
         }
         return user;
     }
+
+
 
 
     /*public BUsuarios generarUsuarioSeg(String correoPUCPSeg , String codigoPUCPSeg ) {

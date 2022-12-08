@@ -3,10 +3,13 @@
 <%@ page import="java.lang.reflect.Array" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.gigacontrol_g2.beans.ComentarIncidencia" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Incidencia incidencia = (Incidencia) request.getAttribute("incidencia");
     ArrayList<Estado> listaEstados = (ArrayList<Estado>) request.getAttribute("ListaEstados");
     ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>) request.getAttribute("ListaComentarios");
+    ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
+    HashMap<Integer, Integer> numDestacados = (HashMap<Integer, Integer>) request.getAttribute("numDestacados");
 %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 
@@ -76,160 +79,100 @@
         </div>
     </div>
 </nav>
+
+
 <br><br>
-<div style="display:flex; justify-content:space-around">
-    <div style="display:flex; justify-content:space-around">
-        <div class="card">
-            <div class="card-body">
-                <div class="card" style="width:850px">
-                    <div class="card-body">
-                        <table style="display: flex; justify-items:auto">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <h2 class="card-text"><b style="color:#2C3166"><%=incidencia.getNombreDeIncidencia()%></b></h2>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <br>
-                        <table style="display:flex; justify-items: center">
-                            <tr>
-                                <td><h6 class="card-text" style="color:#B1120D;padding-right: 5rem;margin-right:40px"><b>ESTADO: <%=incidencia.getEstado().getNombre()%></b></h6>
-                                </td>
-                                <td></td>
-                            </tr>
-                        </table>
-                        <br>
-                        <table style="display:flex ; justify-items: center">
-                            <tr style="justify-items: center">
-                                <td><img src="resources/Images/userSeguridad.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td>
-                                <td style="padding-left: 2rem; color:#2C3166"><p class="card-text"><b><%=incidencia.getUsuario().getApellido()%>, <%=incidencia.getUsuario().getNombre()%> </b>
-                                    <b style="color:#B1120D; padding-left: 2rem;"><%=incidencia.getUsuario().getCodigo()%></b>
-                                    <b style="color:#C0C4C7; padding-left: 2rem;"><%=incidencia.getUsuario().getCategoria()%></b></p>
-                                </td>
-                            </tr>
 
-                        </table>
-                        <br>
-                        <div style="display:flex ; justify-items: auto">
-                            <div>
-                                <table style="display:flex ; justify-items: center">
-                                    <tr>
-                                        <td style="padding-left: 0rem; color:#2C3166"><p class="card-text"><b>Tipo de Incidencia: </b> <%=incidencia.getTipoDeIncidencia().getNombre()%>
-                                            <b style="color:#F0C00D; padding-left: 8rem;">★ Destacados</b>
-                                            <b style="padding-left: 3rem;">👤 15 </b></p></td>
-                                    </tr>
+<!-- AQUIIIIIIIIII -->
 
-                                </table>
-                                <br>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <h6><%=incidencia.getDescripcion()%></h6>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <br>
-                                <table>
-                                    <tr><td><h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPucp()%></h6></td></tr>
-                                </table>
-                                <br>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <p style="padding-left: 2rem;color:#274362"><b> Foto de Incidencia </b></p>
-                                        </td>
-                                        <td>
-                                            <p style="padding-left: 4rem;color:#274362"><b> Ubicación:</b></p>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-warning" style="margin-left:5px;margin-bottom:10px">Haga Click Aquí</button>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <img src="https://files.pucp.education/puntoedu/wp-content/uploads/2021/02/23074448/espacios-de-estudio-005-5000x3333.jpg" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="200rem" style="padding-left: 2rem;">
+<main class="container">
+    <div class="row g-5">
 
-                                        </td>
-                                        <td>
-                                            <img src="https://img.freepik.com/vector-premium/mapa-punto-ubicacion-destino_34645-957.jpg?w=2000" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="200rem"style="padding-left: 2rem;">
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <!-- <form method="post" action="< %=request.getContextPath()%>/ServletSeguridad?action=guardarComentario"> -->
-                            </form>
+        <div class="col-md-8">
+
+            <div class="p-4 p-md-5 mb-4" style="background-color: #f7eeff">
+                <div class="px-0">
+                    <h1 class="display-4 fst-italic" style="color:#2C3166"><b><%=incidencia.getNombreDeIncidencia()%></b></h1>
+                    <p style="color: #af0f14"><b>ESTADO: <%=incidencia.getEstado().getNombre()%></b></p>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <!-- IMAGEN -->
+                            <img src="resources/Images/userSeguridad.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem">
                         </div>
-                        <br>
+                        <div class="col-lg-3">
+                            <p style="color: #2C3166"><%=incidencia.getUsuario().getApellido()%>, <%=incidencia.getUsuario().getNombre()%></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p style="color: #B1120D"><%=incidencia.getUsuario().getCodigo()%></p>
+                        </div>
+                        <div class="col-lg-3">
+                            <p style="color: #6a727e"><%=incidencia.getUsuario().getCategoria()%></p>
+                        </div>
+                    </div>
 
-                        <!--<table>
-                            <br>
-                            <div class="card">
-                                <h5 class="card-header">Comentario Actual del Usuario</h5>
-                                <div class="card-body">
-                                    <p class="card-text">Ok conforme</p>
-                                </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <p><b style="color:#2C3166">Tipo de Incidencia: </b> <%=incidencia.getTipoDeIncidencia().getNombre()%></p>
+                        </div>
+                        <div class="col-lg-4">
+                            <p style="color: #F0C00D">★Destacados</p>
+                        </div>
+                        <div class="col-lg-4">
+                            <p style="color: #B1120D">👤 15</p>
+                        </div>
+                    </div>
+                    <h6 style="color:#0a7437"> <b>Comentarios: </b></h6>
+                    <h6><%=incidencia.getDescripcion()%></h6>
+                    <h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPucp()%></h6>
+                    <div class="container py-4">
+                        <div class="row align-item-md-strech">
+                            <div class="col-md-6">
+                                <h3>Foto Incidencia</h3>
+                                <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="215rem" style="padding-left: 2rem;">
                             </div>
-                            <br>
-
-                            <div class="accordion" id="accordionExample" height="200rem" width="200rem">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Comentarios Anteriores
-                                        </button>
-                                    </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <ol>
-                                                <li>
-                                                    <p>No estoy de acuerdo</p>
-                                                </li>
-                                                <li>
-                                                    <p>Aun no estoy de acuerdo</p>
-                                                </li>
-                                                <li>
-                                                    <p>Tampoco estoy de acuerdo</p>
-                                                </li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-md-6">
+                                <h3>Ubicación</h3>
+                                <img src="https://img.freepik.com/vector-premium/mapa-punto-ubicacion-destino_34645-957.jpg?w=2000" class="rounded float-start img-fluid " alt="userphoto" height="200rem" width="200rem">
+                                <center><button class="btn btn-outline-danger" type="button">Ubicación</button></center>
                             </div>
-                        </table> -->
+                        </div>
                     </div>
                 </div>
-                <br>
+            </div>
 
-            </div>
         </div>
-        <div class="card" style="width:350px;margin-left:20px">
-            <h5 class="card-header">Comentarios de Incidencia</h5>
-            <div class="card-body">
-                <ul>
-                    <% for(ComentarIncidencia comentario : listaComentarios){ %>
-                    <li class="card-text" >
-                        <% if (comentario.getIdUsuario()==incidencia.getUsuario().getIdUsuario()){ %>
-                        <h5 style="color:"><%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%></h5>
-                        <h6>"Usuario PUCP"</h6>
-                        <% }
-                        else{ %>
-                        <h5><%=userlogged.getNombre()%> <%=userlogged.getApellido()%></h5>
-                        <h6>"Personal de Seguridad"</h6>
+
+        <div class="col-md-4">
+            <div class="card" style="margin-left:20px">
+                <h5 class="card-header">Comentarios de Incidencia</h5>
+                <div class="card-body">
+                    <ul>
+                        <% for(ComentarIncidencia comentario : listaComentarios){ %>
+                        <li class="card-text" >
+                            <% if (comentario.getIdUsuario()==incidencia.getUsuario().getIdUsuario()){ %>
+                            <h5 style="color:#000000"><%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%></h5>
+                            <h6>"Usuario PUCP"</h6>
+                            <% }
+                            else{ %>
+                            <h5><%=userlogged.getNombre()%> <%=userlogged.getApellido()%></h5>
+                            <h6>"Personal de Seguridad"</h6>
+                            <% } %>
+                            <p><%=comentario.getComentarioIncidencia()%></p>
+                            <h6>Fecha de Comentario:</h6>
+                            <p><%=comentario.getFechaDeComentario()%></p>
+                        </li>
                         <% } %>
-                        <p><%=comentario.getComentarioIncidencia()%></p>
-                        <h6>Fecha de Comentario:</h6>
-                        <p><%=comentario.getFechaDeComentario()%></p>
-                    </li>
-                    <% } %>
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
+
     </div>
-</div>
+</main>
+
+
+<!-- TERMINAAAA -->
+
 <br>
 <div class="d-flex justify-content-center">
     <!--<button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
