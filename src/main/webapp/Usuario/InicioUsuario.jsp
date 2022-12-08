@@ -275,7 +275,7 @@
                         </form>
 
 
-                        <div class="card" style="margin-top:5px">
+                        <div class="card">
                             <div class="card-body">
                                 <div class="d-flex position-relative">
                                     <div>
@@ -291,7 +291,10 @@
                                                         <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%=incidencia.getNombreDeIncidencia()%></b></h4>
                                                     </td>
                                                     <td>
-                                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
+                                                        <!--<div class="btn-group" role="group" aria-label="Basic mixed styles example" style="padding-left: 3rem;">
+                                                            <a href="<%=request.getContextPath()%>/ServletUsuario?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver Más</a>
+                                                        </div>-->
+                                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                             <a href="<%=request.getContextPath()%>/ServletUsuario?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver Más</a>
                                                         </div>
                                                     </td>
@@ -326,12 +329,12 @@
                                             <td>
                                                  <td>
                                                     <div class="d-flex flex-row-reverse">
-                                                        <div class="p-2"><b style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%></b></div>
                                                         <% if(numDestacados.get(incidencia.getIdIncidencia())!=null){%>
+                                                        <div class="p-2"><b style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%></b></div>
                                                         <div class="p-2"><b>👤 <%=numDestacados.get(incidencia.getIdIncidencia())%></b></div>
                                                         <%}else{%>
                                                         <div class="p-2"><b>👤 0</b></div>
-                                                        <%}%>
+                                                          <%}%>
                                                         <%if(listaDestacados.contains(incidencia.getIdIncidencia())){ %>
                                                         <div class="p-2">
                                                             <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacado&idi=<%=incidencia.getIdIncidencia()%>" style="color:#F0C00D">★ Destacar</a>
