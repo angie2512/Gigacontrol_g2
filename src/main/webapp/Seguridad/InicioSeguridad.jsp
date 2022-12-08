@@ -97,6 +97,12 @@
           <h4 class="border-bottom pb-2 mb-2" style="background-color:#6FCE92;color:#18542E;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">INCIDENCIAS REPORTADAS</b  ></center></h4>
           <p></p>
 
+          <!--Se colocará el div que contenga botón para descargar pdf--->
+          <div id="invoice">
+            <p>Descargar PDF filtrado</p>
+          </div>
+          <button>Descargar</button>
+
 
           <div class="card" style="margin-top:10px">
             <div class="card-body">
