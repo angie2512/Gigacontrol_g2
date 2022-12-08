@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>--%>
+<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 
 
 <!doctype html>
@@ -109,15 +109,29 @@
 
                     <!--Falta obtener el error-->
 
-                        <% if (session.getAttribute("error") != null) {%>
-                    <div class="text-danger mb-2"><%=session.getAttribute("error")%>
+                        <% if (session.getAttribute("err") != null) {%>
+                    <div class="text-danger mb-2"><%=session.getAttribute("err")%>
                     </div>
-                        <% session.removeAttribute("error"); %>
+                        <% session.removeAttribute("err"); %>
+                        <% } %>
+
+                        <% if (session.getAttribute("msg") != null) {%>
+                    <div class="alert alert-success"><%=session.getAttribute("msg")%>
+                    </div>
+                        <% session.removeAttribute("msg"); %>
                         <% } %>
 
 
+                    <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button"
+                       style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                        Enviar
+                    </button>
 
-                    <!-- MODAL -->
+
+
+                    <%--<!-- MODAL -->
                     <div class="d-flex justify-content-center">
                         <% if (session.getAttribute("user_register") == null) {%>
                         <button type="modal" class="btn btn-primary" data-bs-toggle="modal"
@@ -183,7 +197,7 @@
                     <% session.removeAttribute("user_register"); %>
                     <% } %>
 
-                    <br>
+                    <br>--%>
 
             </div>
             </form>
@@ -193,8 +207,8 @@
             </div>
         </center>
         <br>
-        <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button"
-           style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+        <%--<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button"
+           style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>--%>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
                 crossorigin="anonymous"></script>

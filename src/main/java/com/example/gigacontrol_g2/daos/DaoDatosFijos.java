@@ -1,11 +1,11 @@
 package com.example.gigacontrol_g2.daos;
 
 import com.example.gigacontrol_g2.beans.*;
-import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
-import sun.font.CodePointIterator;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,13 +104,13 @@ public class DaoDatosFijos extends BaseDao {
                     user.setNombre(rs.getString(2));
                     user.setApellido(rs.getString(3));
                     user.setCorreo(rs.getString(4));
-                    user.setCodigo(rs.getString(6));
-                    user.setDni(rs.getString(7));
-                    user.setCelular(rs.getString(8));
-                    user.setCategoria(rs.getString(9));
-                    user.setFotoPerfil(rs.getString(10));
-                    user.setRolId(rs.getInt(11));
-                    user.setEstado((char) rs.getInt(12));
+                    user.setCodigo(rs.getString(5));
+                    user.setDni(rs.getString(6));
+                    user.setCelular(rs.getString(7));
+                    user.setCategoria(rs.getString(8));
+                    user.setFotoPerfil(rs.getString(9));
+                    user.setRolId(rs.getInt(10));
+                    user.setEstado((char) rs.getInt(11));
                 }
             }
         } catch (SQLException e) {
@@ -236,13 +236,19 @@ public class DaoDatosFijos extends BaseDao {
     }
 
 
-    public void changeStateRegisterUser(int idUsuario) {
+    public void changeStateRegisterUser(int idUsuario, int num_estado) {
+        System.out.println(idUsuario);
+        System.out.println(num_estado);
 
-        String sql = "update usuario set estado = 1 where idUsuario = ?";
+        String sql = "update usuario set estado = ? where idUsuario = ?";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setInt(1, idUsuario);
+            pstmt.setInt(1, num_estado);
+            pstmt.setInt(2, idUsuario);
+            pstmt.executeUpdate();
+
+
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -250,15 +256,16 @@ public class DaoDatosFijos extends BaseDao {
     }
 
 
-    public void registerUserValidation(int idUsuario, String codigo){
+    public void registerUserValidation(String codigo,String Contrasenia,int idusuario){
 
-        String sql = "update validacionusuarionuevo set usuario_idUsuario = ?, Codigo = ?, Contrasenia = sha2(?,256)";
+        String sql = "insert into validacionusuarionuevo values (sha2(?,256),?,?)";
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setInt(1, idUsuario);
+            pstmt.setString(1, Contrasenia);
             pstmt.setString(2, codigo);
-            pstmt.setString(3, codigo);
+            pstmt.setInt(3, idusuario);
+            pstmt.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -274,6 +281,7 @@ public class DaoDatosFijos extends BaseDao {
 
             pstmt.setString(1, newpassword);
             pstmt.setString(2, oldpassword);
+            pstmt.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

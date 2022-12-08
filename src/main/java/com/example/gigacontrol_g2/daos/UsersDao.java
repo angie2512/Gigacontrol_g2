@@ -29,7 +29,7 @@ public class UsersDao extends BaseDao{
                 newUser.setCategoria(resultSet.getString(8));
                 //newUser.setFotoPerfil(resultSet.getString(9));
                 newUser.setRolId(resultSet.getInt(10));
-                newUser.setEstadoDeUsuario(resultSet.getString(11));
+                newUser.setEstado((char) resultSet.getInt(11));
                 usersList.add(newUser);
             }
 
@@ -39,7 +39,7 @@ public class UsersDao extends BaseDao{
         return usersList;
     }
 
-    public void crearCredencialesUsuario(String codigoPUCPSeg,String contrasenaTemporalSeguridad,int idUsuarioNuevo){
+    public void crearCredencialesUsuario(String codigoPUCP,String contrasenaTemporalSeguridad,int idUsuarioNuevo){
 
         String sql = "insert into validacionusuarionuevo values (sha2(?,256),?,?)";
 
@@ -48,7 +48,7 @@ public class UsersDao extends BaseDao{
 
 
             pstmt.setString(1,contrasenaTemporalSeguridad);
-            pstmt.setString(2,codigoPUCPSeg);
+            pstmt.setString(2,codigoPUCP);
             pstmt.setInt(3,idUsuarioNuevo);
 
             pstmt.executeUpdate();
@@ -295,7 +295,7 @@ public class UsersDao extends BaseDao{
                     user.setCategoria(rs.getString(8));
                     //user.setFotoPerfil(rs.getString(9));
                     user.setRolId(rs.getInt(10));
-                    user.setEstadoDeUsuario(rs.getString(11));
+                    user.setEstado((char) rs.getInt(11));
                 }
             }
         } catch (SQLException e) {

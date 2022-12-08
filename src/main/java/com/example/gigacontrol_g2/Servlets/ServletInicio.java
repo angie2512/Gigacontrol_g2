@@ -9,6 +9,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "ServletInicio", urlPatterns = {"","/ServletInicio"})
 public class ServletInicio extends HttpServlet {
@@ -96,6 +97,9 @@ public class ServletInicio extends HttpServlet {
         UsersDao usersDao = new UsersDao();
         EnvioCorreo envioCorreo = new EnvioCorreo();
         BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
+
+
+
         //int num_intentos = 3;
 
         switch (action) {
@@ -106,10 +110,10 @@ public class ServletInicio extends HttpServlet {
                     System.out.println("rol: "+ usuariolog.getRolId());
                     if (usuariolog.getRolId() == 3) {
                         response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Inicio");
-                    } else if (usuariolog.getRolId() == 1 && usuariolog.getEstadoDeUsuario().equals("4")){
+                    } else if (usuariolog.getEstado() == 4){
                         response.sendRedirect(request.getContextPath() + "/ServletInicio?action=establecerNuevaContraSeguridad");
                         //Avance de Doble Ausdsatenticacion Seguridad
-                    } else if (usuariolog.getRolId() == 1 && usuariolog.getEstadoDeUsuario().equals("1")){
+                    } else if (usuariolog.getRolId() == 1 && usuariolog.getEstado() == 1){
                         response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");
                     }else if (usuariolog.getRolId() ==2) {
                         response.sendRedirect(request.getContextPath() + "/ServletUsuario");
@@ -186,6 +190,50 @@ public class ServletInicio extends HttpServlet {
                         //response.sendRedirect(request.getContextPath()+"/ServletInicio?action=establecerNuevaContraseñaSeguridad");
                     }
                     break;
+
+
+                case "ValidacionRegistroUsuario":
+
+                    /*session.setAttribute("userlogged", usuariolog);*/
+
+                    String correouser = request.getParameter("correo");
+                    String codigouser = request.getParameter("codigo2");
+
+                    BUsuarios usuariovalidado = daoDatosFijos.validarCorreoContraseniaUsuario(codigouser,correouser);
+
+                    /*System.out.println(usuariovalidado.getIdUsuario());  vale 6*/
+
+
+                    if( usuariovalidado != null){
+                        try{
+                            //actualizar el estado en la master
+                            daoDatosFijos.changeStateRegisterUser(usuariovalidado.getIdUsuario(),4);
+                            // registrar en validacionusuarionuevo
+
+                            System.out.println("verificar");
+
+                            String contrasenaTemporal = envioCorreo.generarContrasenaTemporalSeguridad();
+                            envioCorreo.enviarContrasenaTemporal(contrasenaTemporal, correouser);
+                            daoDatosFijos.registerUserValidation(codigouser,contrasenaTemporal,usuariovalidado.getIdUsuario());
+
+
+                            session.setAttribute("msg","Usuario registrado exitosamente. Revise su correo para cambiar su contraseña");
+                            response.sendRedirect(request.getContextPath() + "/ServletInicio");
+
+                        } catch (IOException e) {
+                            session.setAttribute("err","Error al registrar el usuario o datos incorrectos");
+                            response.sendRedirect(request.getContextPath() + "/ServletInicio?action=Registrousuario");
+                        }
+
+                    }else{
+                        session.setAttribute("err","Error al registrar el usuario o datos incorrectos");
+                        response.sendRedirect(request.getContextPath() + "/ServletInicio?action=Registrousuario");
+                    }
+
+                    /*session.setAttribute("user_register", usuariovalidado);*/
+
+                    break;
+
         }
     }
 }

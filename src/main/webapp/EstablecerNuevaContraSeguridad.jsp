@@ -56,7 +56,7 @@
         <br>
         <img src="resources/Images/logo_vertical.png" alt="Logo" width="155rem;" height="178rem" class="rounded mx-auto d-block">
         <br>
-        <h2 style="font-family: 'Times New Roman', Times, serif; color:#E2FAFF" class="card-title"><b>ESTABLECER NUEVA CONTRASEÑA SEGURIDAD</b></h2>
+        <h2 style="font-family: 'Times New Roman', Times, serif; color:#E2FAFF" class="card-title"><b>ESTABLECER NUEVA CONTRASEÑA</b></h2>
         <br>
         <h6 style="font-family: 'Times New Roman', Times, serif; color:#C6D6F5" class="card-text"><b> Ingrese
           Su Nueva Contraseña </b></h6>
