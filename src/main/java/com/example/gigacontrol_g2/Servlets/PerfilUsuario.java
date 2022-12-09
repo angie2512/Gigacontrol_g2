@@ -45,6 +45,7 @@ public class PerfilUsuario extends HttpServlet {
                 usuario.setFotoPerfil(foto.toString());
                 response.sendRedirect(request.getContextPath()+"/ServletSeguridad?action=perfil");
                 break;
+
         }
     }
 }

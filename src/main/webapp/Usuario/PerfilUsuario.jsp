@@ -15,6 +15,7 @@
     <link href="styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/46baa8e193.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/usuario.css">
+    <script src="https://kit.fontawesome.com/46baa8e193.js" crossorigin="anonymous"></script>
     <style>
         body {
             background: url("https://ambientesdigital.com/wp-content/uploads/2017/07/10-biblioteca-ciencias-ingenieria-arquitectura-pucp-foto-juan-solano-ojasi.jpg");
@@ -71,6 +72,24 @@
         .preview-container > img {
             margin: 0;
             width: 100%;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: white;
+        }
+
+        .bottom{
+            border-left: 1px;
+            margin-left: 110px;
+            background-color: white;
+            border-radius: 20px;
         }
     </style>
 
@@ -130,15 +149,43 @@
                <!-- <button>SELECCIONA ARCHIVO</button>
                 <input type="file" name="" id="file-upload" hidden multiple>  -->
                 <div class="abs-center">
-                    <img src="<%=u.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
-                    <br>
+                    <img id="image" src="<%=u.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
 
+                    <br>
+                    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+                        <label for="file-upload" class="custom-file-upload btn btn-danger" title="Subir Foto" style="background-color: #5f6694; border-color: #5f6694">
+                            <i class="fa fa-camera"></i>
+                        </label>
+                        <input id="file-upload" type="file" name="Newphoto"/>
+
+                        <td class="text-center" action="<%=request.getContextPath()%>/PerfilUsuario?action=actualizarFoto" enctype="multipart/form-data">
+                            <a type="submit" class="btn btn-danger" title="Guardar Foto", style="background-color: #5f6694; border-color: #5f6694">
+                                <i class="fa-solid fa-check"></i>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-danger" onclick="changeImage()" title="Borrar Foto" style="background-color: #5f6694; border-color: #5f6694">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <script>
+
+                                    var image = document.querySelector('#image');
+
+                                    function changeImage() {
+                                        image.src = 'resources/Images/userSeguridad.png';
+                                    }
+                                </script>
+
+                        </td>
+
+                </br>
 
 
         <br>
         <div class="card"style="background-color:#F2F2F3">
             <div class="card-body" >
-                <div class="p-1 mb-8 text-white" style="background-color:#7ebd83">
+                <div class="p-1 mb-8 text-white" style="background-color:#5f6694">
                     <h4 style="text-align: center;"><% if(userlogged.getRolId() == 1) {%>
                         <td class="text-center"> SEGURIDAD</td>
                         <%} else if (userlogged.getRolId() == 2){%>
@@ -155,7 +202,7 @@
                     <h6 style="text-align: center;"><%=userlogged.getCodigo()%></h6>
                 </blockquote>
             </div>
-        </div>
+        </div></br>
     </div>
 </div>
 

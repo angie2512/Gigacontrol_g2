@@ -238,6 +238,7 @@ public class SeguridadDao extends BaseDao{
         }
     }
 
+
     public void mostrarImagen(int id, HttpServletResponse response){
         String sql= "select u.FotoPerfil from usuario u where idUsuario=?";
         response.setContentType("image/*");

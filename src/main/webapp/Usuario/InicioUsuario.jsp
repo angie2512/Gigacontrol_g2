@@ -137,7 +137,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page"
-                               href="<%=request.getContextPath()%>/PerfilUsuario" style="color:#FFFFFF">Perfil</a>
+                               href="<%=request.getContextPath()%>/ServletUsuario?action=perfil" style="color:#FFFFFF">Perfil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page"
