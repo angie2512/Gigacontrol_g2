@@ -73,7 +73,7 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
             </ul>
 
             <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2"><b style="color:white"><%=userlogged.getNombre() + userlogged.getApellido()%></b></a></li>
+                <li><a href="#" class="nav-link px-2"><b style="color:white"><%=userlogged.getNombre()%> <%=userlogged.getApellido()%></b></a></li>
 
             </ul>
 
@@ -112,12 +112,14 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                                     <div class="btn btn-primary" >
                                             <select class="form-select" id="estado" name="estado" required>
                                                 <option value="<%=incidencia.getEstado().getIdEstado()%>" selected>Actualizar Estado</option>
-                                                <%
+                                                <!--< %
                                                     for (Estado est : listaEstados) {
-                                                %>
-                                                <option value="<%=est.getIdEstado()%>"><%=est.getNombre()%>
+                                                %>-->
+                                                <option value="<%=listaEstados.get(2).getIdEstado()%>"><%=listaEstados.get(2).getNombre()%>
                                                 </option>
-                                                <%}%>
+                                                <option value="<%=listaEstados.get(3).getIdEstado()%>"><%=listaEstados.get(3).getNombre()%>
+                                                </option>
+                                                <!-- < % }%> -->
                                             </select>
                                     </div>
                                     </form>
