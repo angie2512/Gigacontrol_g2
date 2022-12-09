@@ -108,7 +108,7 @@
                                 <option value="2">Moderado</option>
                                 <option value="3">Crítico</option>
                             </select>
-                            <label class="col-form-label" for="nivelUrgencia">Nivel de Urgencia</label>
+                            <label class="input-group-text" for="nivelUrgencia">Nivel de Urgencia</label>
                         </div>
 
 
