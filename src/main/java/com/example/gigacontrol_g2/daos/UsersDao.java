@@ -492,6 +492,34 @@ public class UsersDao extends BaseDao{
     }
 
 
+    public String ContarIncidenciasDestacadas(int idUsuario){
+        String nro_filas_total_2 = null;
+
+        String sql = "select i.NombreDeIncidencia, u.Nombre, u.Apellido, t.nombre, e.nombre, count(*) from destacarincidencia\n" +
+                "    inner join incidencia i on destacarincidencia.idIncidencia = i.idIncidencia\n" +
+                "    inner join usuario u on destacarincidencia.idUsuario = u.idUsuario\n" +
+                "    inner join estado e on i.idEstado = e.idEstado\n" +
+                "    inner join tipoincidencia t on i.idTipoIncidencia = t.idTipoIncidencia\n" +
+                "    where destacarincidencia.idUsuario=?";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1,idUsuario);
+            try(ResultSet rs = stmt.executeQuery()) {
+
+                if(rs.next()){
+                    nro_filas_total_2 = rs.getString(6);
+                }
+
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return nro_filas_total_2;
+    }
+
+
 
     public String contarxApellido(String apellido) {
 

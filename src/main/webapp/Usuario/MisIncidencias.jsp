@@ -13,6 +13,16 @@
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 
 
+<%
+    int maxPag4 = (int) request.getAttribute("maxPag4");
+    int regMin2 = (int) request.getAttribute("regMin2");
+    int regMax2 = (int) request.getAttribute("regMax2");
+    int valor_pagina2 = (int) request.getAttribute("valor_pagina2");
+%>
+
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -47,7 +57,7 @@
         <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/InicioUsuario" style="color:#FFFFFF">Inicio</a>
+                    <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/ServletUsuario" style="color:#FFFFFF">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/PerfilUsuario" style="color:#FFFFFF">Perfil</a>
@@ -95,11 +105,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <%for(Incidencia incidencia : IncidenciasUsuario) { %>
+                        <%for(Incidencia incidencia2 : IncidenciasUsuario) { %>
                         <tr>
-                            <td> <center> <%= incidencia.getNombreDeIncidencia() %> </center> </td>
-                            <td> <center> <%= incidencia.getTipoDeIncidencia().getNombre() %> </center></td>
-                            <td> <center><%= incidencia.getEstado().getNombre() %> </center></td>
+                            <td> <center> <%= incidencia2.getNombreDeIncidencia() %> </center> </td>
+                            <td> <center> <%= incidencia2.getTipoDeIncidencia().getNombre() %> </center></td>
+                            <td> <center><%= incidencia2.getEstado().getNombre() %> </center></td>
                             <td> <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                 <a href=<%=request.getContextPath()%>/VerIncidenciaUsuario class="btn btn-primary">Ver Mas</a>
                             </div></td>
@@ -134,7 +144,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <%for(Incidencia incidencia : IncidenciasDestacadas) { %>
+
+                        <%
+                            for (int i = regMin2; i < regMax2; i++) {
+                                Incidencia incidencia = IncidenciasDestacadas.get(i); %>
+
                         <tr>
                             <td><center> <%= incidencia.getNombreDeIncidencia() %></center></td>
                             <td><center> <%= incidencia.getUsuario().getNombre() %> <%=incidencia.getUsuario().getApellido()%> </center></td>
@@ -147,6 +161,74 @@
                         <% } %>
                         </tbody>
                     </table>
+
+                    <%
+                        if (maxPag4 >= 1) {
+
+                    %>
+
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+
+                            <%if (valor_pagina2 != 1) {%>
+                            <li class="page-item">
+                                <a class="page-link" href="<%=request.getContextPath()%>/ServletUsuario?action=listaMisIncidencias&pg1=<%=valor_pagina2-1%>"
+                                   aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <%}%>
+                            <%
+
+                                for (int i = 0; i < maxPag4; i++) {
+                                    if (i + 1 == valor_pagina2) {
+                            %>
+
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link"><%=i + 1%></span>
+                            </li>
+
+
+                            <% }
+                            else {%>
+
+
+
+                            <li class="page-item">
+                                <a class="page-link" href="<%=request.getContextPath()%>/ServletUsuario?action=listaMisIncidencias&pg1=<%=i+1%>">
+                                    <span aria-hidden="true"><%=i+1%></span>
+                                </a>
+                            </li>
+
+
+                            <%
+                                }
+                            %>
+
+
+                            <%
+                                    }
+                                }
+                            %>
+
+
+                            <%if (valor_pagina2 != maxPag4) { %>
+
+                            <li class="page-item">
+                                <a class="page-link" href="<%=request.getContextPath()%>/ServletUsuario?action=listaMisIncidencias&pg1=<%=valor_pagina2+1%>"
+                                   aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+
+                            <%
+                                }
+                            %>
+
+
+
+                        </ul>
+                    </nav>
                 </div>
             </div>
             <br>
