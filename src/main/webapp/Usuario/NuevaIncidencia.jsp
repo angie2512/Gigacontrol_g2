@@ -63,149 +63,64 @@
     </div>
 </nav>
 <br>
-<%--
-<header class="p-3 mb-3 border-bottom" style="background-color: #FFFFFF">
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-            </a>
-
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2"><b style="color:#1A3B85">ROSA A. SALAZAR CASTILLA</b></a></li>
-                <div class="dropdown text-end">
-                    <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                        <img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle">
-                    </a>
-                </div>
-            </ul>
-
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <a class="dropdown-item" href=<%=request.getContextPath()%>/Index><u style="color:#1A3B85"> <b>Cerrar sesión > </b></u></a>
-            </form>
-
-        </div>
-    </div>
-</header>
---%>
 <br>
 <div class="d-flex justify-content-center">
     <div class="col-8">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" style="max-width: 35rem">
                 <center> <h5 class="card-title">INGRESE NUEVA INCIDENCIA</h5></center>
                 <form action="<%=request.getContextPath()%>/ServletUsuario?action=registroIncidencia" method="post">
                     <div class=" table-responsive">
-                        <table class="table table-borderless">
-                            <thead>
-                            <tr>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="col-auto">
-                                        <label for="inputName" class="col-form-label">Nombre:</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-auto">
-                                        <input type="text" id="inputName" class="form-control"
-                                               aria-describedby="passwordHelpInline" name="nombre">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="row g-3 align-items-center">
-                                        <div class="col-auto">
-                                            <label for="inputDescripcion" class="col-form-label">Descripción:</label>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-auto">
-                                        <input type="text" id="inputDescripcion" class="form-control"
-                                               aria-describedby="passwordHelpInline" name="descripcion" >
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="col-auto">
-                                        <label for="inputZonaPucp" class="col-form-label">Zona Pucp:</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-auto">
-                                        <input type="text" id="inputZonaPucp" class="form-control"
-                                               aria-describedby="passwordHelpInline" name="zonaPucp">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-auto">
-                                        <label for="inputUbica" class="col-form-label">Ubicacion:</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-auto">
-                                        <input type="text" id="inputUbica" class="form-control"
-                                               aria-describedby="passwordHelpInline" name="ubicacion">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="col-auto">
-                                        <label for="tipoIncidencia" class="col-form-label">Tipo de Incidencia:</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group mb-3">
-                                        <select class="form-select" id="tipoIncidencia" name="tipoIncidenciaID">
-                                            <option selected>Seleccionar...</option>
-                                            <option value="1">Robo</option>
-                                            <option value="2">Objeto perdido</option>
-                                            <option value="3">Infraestructura en mal estado</option>
-                                            <option value="4">Ambulancia PUCP</option>
-                                            <option value="5">Accidente</option>
-                                            <option value="6">Otros...</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-auto">
-                                        <label for="nivelUrgencia" class="col-form-label">Nivel de Urgencia:</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group mb-3">
-                                        <select class="form-select" id="nivelUrgencia" name="nivelUrgenciaID">
-                                            <option selected>Seleccionar...</option>
-                                            <option value="1">Leve</option>
-                                            <option value="2">Moderado</option>
-                                            <option value="3">Crítico</option>
-                                        </select>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="col-auto">
-                                        <label for="imagen" class="col-form-label">Insertar Foto:</label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group mb-3" style="max-width: 20rem">
-                                        <label class="input-group-text" for="imagen"><img src="https://img.icons8.com/metro/26/null/camera.png"/></label>
-                                        <input type="file" class="form-control" id="imagen">
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Nombre:</span>
+                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                            <span class="input-group-text" id="basic-addon1">:Descripción</span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Zona PUCP:</span>
+                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                            <span class="input-group-text" id="basic-addon1">:Ubicación</span>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Tipo de incidencia</label>
+                            <select class="form-select" id="inputGroupSelect01">
+                                <option selected>Seleccionar...</option>
+                                <option value="1">Robo</option>
+                                <option value="2">Objeto perdido</option>
+                                <option value="3">Infraestructura en mal estado</option>
+                                <option value="4">Ambulancia PUCP</option>
+                                <option value="5">Accidente</option>
+                                <option value="6">Otros...</option>
+                            </select>
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="inputGroupSelect02">
+                                <option selected>Seleccionar...</option>
+                                <option value="1">Leve</option>
+                                <option value="2">Moderado</option>
+                                <option value="3">Crítico</option>
+                            </select>
+                            <label class="input-group-text" for="inputGroupSelect02">Nivel de Urgencia</label>
+                        </div>
+
+
+                        <div class="col-auto">
+                            <label for="imagen" class="col-form-label">Insertar Foto:</label>
+                        </div>
+                            <div class="input-group mb-3" style="max-width: 20rem">
+                                <label class="input-group-text" for="imagen"><img src="https://img.icons8.com/metro/26/null/camera.png"/></label>
+                                <input type="file" class="form-control" id="imagen">
+                            </div>
+
+
                         <div class="d-flex justify-content-center">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">Enviar

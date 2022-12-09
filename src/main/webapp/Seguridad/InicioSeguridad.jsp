@@ -12,7 +12,7 @@
 
 <!--Con "userlogged" en teoria podemos imprimir el nombre y apellido del usuario seguridad" -->
 <%
-    //String searchText = (String) request.getAttribute("searchText");
+    String searchText = (String) request.getAttribute("searchText");
     ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("listaIncidencias");
 %>
 
@@ -28,6 +28,16 @@
 
 <html lang="en">
     <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <script>
+            function generatePDF(){
+                const element = document.getElementById("invoice");
+                html2pdf()
+                    .from(element)
+                    .save();
+            }
+        </script>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -129,10 +139,9 @@
 
                         <!--Se colocará el div que contenga botón para descargar pdf--->
                         <div id="invoice">
-                            <p>Descargar PDF filtrado</p>
+                            <p>Genera tu documento en PDF de las incidencias filtradas</p>
                         </div>
-                        <button>Descargar</button>
-
+                        <button onclick="generatePDF()">Descargar PDF</button>
 
                         <div class="card" style="margin-top:10px">
                             <div class="card-body">
@@ -146,46 +155,36 @@
                                     <div>
                                         <div class="views-exposed-form">
                                             <div class="views-exposed-widgets clearfix">
-                                                <div id="edit-query-wrapper"
-                                                     class="views-exposed-widget views-widget-filter-search_api_views_fulltext">
-                                                    <div class="views-widget">
-                                                        <div class="form-item form-type-textfield form-item-query form-group">
-                                                            <label for="edit-query">Search </label>
-                                                            <input placeholder="Buscar" class="form-control form-text"
-                                                                   type="text" id="edit-query" name="query" value=""
-                                                                   size="60" maxlength="128">
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div class="views-exposed-widget views-widget-sort-by">
                                                     <div class="form-item form-type-select form-item-sort-by form-group">
-                                                        <label for="edit-sort-by">Ordenar por </label>
+                                                        <label for="edit-sort-by">Estado</label>
                                                         <select class="form-control form-select" id="edit-sort-by"
                                                                 name="sort_by">
-                                                            <option value="changed" selected="selected">Fecha cambiada
-                                                            </option>
-                                                            <option value="title">Título</option>
+                                                            <option value="changed" selected="selected">En Proceso</option>
+                                                            <option value="title">Registrado</option>
+                                                            <option value="title">Atendido</option>
+                                                            <option value="title">Resuelto</option>
+
                                                         </select>
                                                     </div>
                                                 </div>
+
                                                 <div class="views-exposed-widget views-widget-sort-order">
                                                     <div class="form-item form-type-select form-item-sort-order form-group">
-                                                        <label for="edit-sort-order">Pedido </label>
+                                                        <label for="edit-sort-order">Nivel de Urgencia </label>
                                                         <select class="form-control form-select" id="edit-sort-order"
                                                                 name="sort_order">
-                                                            <option value="ASC">Ascendente</option>
-                                                            <option value="DESC" selected="selected">Descendente
-                                                            </option>
+                                                            <option value="ASC">Leve</option>
+                                                            <option value="DESC" selected="selected">Moderado</option>
+                                                            <option value="DESC" selected="selected">Critico</option>
                                                         </select>
                                                     </div>
                                                 </div>
+
                                                 <div class="views-exposed-widget views-submit-button">
-                                                    <input type="submit" id="edit-submit-dkan-datasets" name=""
-                                                           value="Consultar"
-                                                           class="form-submit btn btn-default btn-primary"></div>
-                                                <div class="views-exposed-widget views-reset-button">
-                                                    <input type="submit" id="edit-reset" name="op" value="Reiniciar"
-                                                           class="form-submit btn btn-default"></div>
+                                                    <input type="submit" id="edit-submit-dkan-datasets" name="" value="Consultar" class="form-submit btn btn-default btn-primary">
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
