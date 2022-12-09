@@ -146,7 +146,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page"
-                               href="<%=request.getContextPath()%>/NuevaIncidencia" style="color:#FFFFFF">Nueva
+                               href="<%=request.getContextPath()%>/ServletUsuario?action=NUEVAIncidencia" style="color:#FFFFFF">Nueva
                                 Incidencia</a>
                         </li>
                     </ul>
@@ -173,54 +173,6 @@
 
         <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
 
-            <!--
-            <aside class="bd-sidebar" style="max-width: 30px; max-height:30rem; background-color: rgba(95,102,148,0.93)">
-                <div id="region-menu-box">
-                    <div class="d-flex flex-column flex-shrink-0 p-3">
-                        <center>
-                            <br>
-                            <h2 style="color:#d8f79a; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b> BIENVENIDA/O </b> </h2>
-                            <hr>
-                            <h6 style="color:#b5daf8; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b>PASOS PARA REGISTRAR</b> </h6>
-                            <h6 style="color:#b5daf8; font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;"><b>UNA INCIDENCIA </b></h6> </center>
-                        <hr>
-                        <p></p>
-                        <p></p>
-                        <center>
-                            <h5 style="color:#FFFFFF; font-family:'Georgia'"><b>➀</b>    Dirígete a Nueva Incidencia</h5>
-                            <p></p>
-                            <h5 style="color:#FFFFFF; font-family:'Georgia'"><b>➁</b>    Ingresa los datos requeridos</h5>
-                            <p></p>
-                            <h5 style="color:#FFFFFF; font-family:'Georgia'"><b>➂</b>    Presiona enviar y ¡Listo!</h5>
-                        </center>
-                    </div>
-                </div>
-            </aside> -->
-
-            <!-- prueba
-
-            <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="max-width: 320px; height: 550px" >
-                <h1>BIENVENIDO</h1>
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li>
-                        <p>Pasos para registar</p>
-                    </li>
-                    <li>
-                        <p>una incidencia</p>
-                    </li>
-                    <li>
-                        <h5>➀ Dirígete a Nueva Incidencia</h5>
-                    </li>
-                    <li>
-                        <h5>➁ Ingresa los datos requeridos</h5>
-                    </li>
-                    <li>
-                        <h5>➂ Presiona enviar y ¡Listo!</h5>
-                    </li>
-                </ul>
-                <hr>
-            </div> -->
 
             <!-- otra prueba de inicio -->
             <main class="container">
@@ -460,104 +412,6 @@
                 </div>
             </main>
 
-
-            <!--
-    <center>
-        <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
-            <main class ="bd-main order-1;overflow-auto" style="width: 820px; height:1650px; background-color: #FFFFFF99">
-                <div class="my-3 p-3 bg-body rounded shadow-sm position-relative" style="width: 820px; height:3500px; background-color: #051D57;" >
-                    <h4 class="border-bottom pb-2 mb-2" style="background-color:#051D57;color:#FFFFFF;"><center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">TODAS LAS INCIDENCIAS </b></center></h4>
-                    <p></p>
-                    <form class="d-flex" role="search" method="post" action="<%=request.getContextPath()%>/ServletUsuario?action=buscar">
-                        <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar" aria-label="Buscar">
-                        <button class="btn btn-outline-primary" type="submit">Buscar</button>
-                    </form>
-
-
-                    <div class="card" style="margin-top:10px">
-                        <div class="card-body">
-                            <div class="d-flex position-relative">
-                                <div>
-
-                                    <%for(Incidencia incidencia : listaDeIncidencias) { %>
-                                    <div class="card-body">
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <h4><b style="color:#10274D; font-family:'Trebuchet MS', Helvetica, sans-serifzzz;"><%=incidencia.getNombreDeIncidencia()%></b></h4>
-                                                </td>
-                                                <td>
-                                                    <div class="card-body d-flex align-items-right"  aria-label="Basic mixed styles example" style="padding-final: 3rem; margin-left: 200px;">
-                                                        <a href="<%=request.getContextPath()%>/ServletUsuario?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-danger">Ver Más</a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    <h6 style="color:#585151; font-family:Georgia, serif"><b>NOMBRE Y APELLIDO: <%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%></b> </h6>
-                                                <td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p style="color:#D62525"><b>Código: <%=incidencia.getUsuario().getCodigo()%></b></p>
-                                                </td>
-                                                <td>
-                                                    <p class="text-end"><b>Tipo de Incidencia:</b> <%=incidencia.getTipoDeIncidencia().getNombre()%></p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <p><b>Descripción:</b></p>
-                                                </td>
-                                                <td>
-                                                    <p class="text-end"><b>Nivel de Urgencia:</b> <%=incidencia.getNivelDeUrgencia().getNombre()%></p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-
-                                                <td>
-                                                    <p><%=incidencia.getDescripcion()%></p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" style="margin-left: 50px; width: 300px; height: 200px">
-                                                <td>
-                                            </tr>
-                                        </table>
-                                        <table>
-                                            <tr>
-                                                <div class="d-flex flex-row-reverse">
-                                                    <div class="p-2"><b style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%></b></div>
-                                                    <% if(numDestacados.get(incidencia.getIdIncidencia())!=null){%>
-                                                    <div class="p-2"><b>👤 <%=numDestacados.get(incidencia.getIdIncidencia())%></b></div>
-                                                    <%}else{%>
-                                                    <div class="p-2"><b>👤 0</b></div>
-                                                    <%}%>
-                                                    <%if(listaDestacados.contains(incidencia.getIdIncidencia())){ %>
-                                                    <div class="p-2">
-                                                        <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacado&idi=<%=incidencia.getIdIncidencia()%>" style="color:#F0C00D">★ Destacar</a>
-                                                    </div>
-                                                    <% }else{ %>
-                                                    <div class="p-2">
-                                                        <a href="<%=request.getContextPath()%>/ServletUsuario?action=destacar&idi=<%=incidencia.getIdIncidencia()%>" style="color:rgba(93,131,196,0.38)">★ Destacar</a>
-                                                    </div>
-                                                    <%}%>
-                                                </div>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <% } %>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </center>
-    -->
         </div>
     </body>
 </html>

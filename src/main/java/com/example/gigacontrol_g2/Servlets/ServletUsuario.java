@@ -38,53 +38,53 @@ public class ServletUsuario extends HttpServlet {
 
         switch (action) {
 
-            case "inicio":
+                    case "inicio":
 
-                request.setCharacterEncoding("UTF-8");
-                BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
-                if (userSeg != null && userSeg.getRolId() == 2) {
-                    int valor_pagina = 1;
-                    /*request.setAttribute("listaUsuarios", usersDao.getUsersList());*/
+                        request.setCharacterEncoding("UTF-8");
+                        BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
+                        if (userSeg != null && userSeg.getRolId() == 2) {
+                            int valor_pagina = 1;
+                            /*request.setAttribute("listaUsuarios", usersDao.getUsersList());*/
 
-                    //paginacion
+                            //paginacion
 
-                    if (request.getParameter("pg") != null) {
-                        valor_pagina = Integer.parseInt(request.getParameter("pg"));
-                    }
+                            if (request.getParameter("pg") != null) {
+                                valor_pagina = Integer.parseInt(request.getParameter("pg"));
+                            }
 
-                    int regMin = (valor_pagina - 1) * 3;
+                            int regMin = (valor_pagina - 1) * 3;
 
-                    if (valor_pagina != maxPag2) {
-                        int regMax = valor_pagina * 3;
+                            if (valor_pagina != maxPag2) {
+                                int regMax = valor_pagina * 3;
 
-                        request.setAttribute("maxPag2", maxPag2);
-                        request.setAttribute("regMin", regMin);
-                        request.setAttribute("regMax", regMax);
-                        request.setAttribute("valor_pagina", valor_pagina);
-                    } else {
-                        int regMax = valor_total_filas_int;
+                                request.setAttribute("maxPag2", maxPag2);
+                                request.setAttribute("regMin", regMin);
+                                request.setAttribute("regMax", regMax);
+                                request.setAttribute("valor_pagina", valor_pagina);
+                            } else {
+                                int regMax = valor_total_filas_int;
 
-                        request.setAttribute("maxPag2", maxPag2);
-                        request.setAttribute("regMin", regMin);
-                        request.setAttribute("regMax", regMax);
-                        request.setAttribute("valor_pagina", valor_pagina);
-                    }
-
-
-                    request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
+                                request.setAttribute("maxPag2", maxPag2);
+                                request.setAttribute("regMin", regMin);
+                                request.setAttribute("regMax", regMax);
+                                request.setAttribute("valor_pagina", valor_pagina);
+                            }
 
 
-                    request.setAttribute("ListaNombres", usersDao.getUsersList());
-                    request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
-                    request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
-                    requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
-                    requestDispatcher.forward(request, response);
-                }else {
+                            request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
 
-                        requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
-                        requestDispatcher.forward(request, response);
-                }
-                    break;
+
+                            request.setAttribute("ListaNombres", usersDao.getUsersList());
+                            request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
+                            request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
+                            requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
+                            requestDispatcher.forward(request, response);
+                        }else {
+
+                                requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
+                                requestDispatcher.forward(request, response);
+                        }
+                        break;
                     case "listarimg":
                         String idincidencia2 = request.getParameter("id");
                         int incidenciaid2 = Integer.parseInt(idincidencia2);
