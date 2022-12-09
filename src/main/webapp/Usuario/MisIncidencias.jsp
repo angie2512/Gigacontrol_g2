@@ -43,6 +43,50 @@
             height: 100vh;
             bgcolor: "#800000";
         }
+        header{
+            background: #8caeea;
+            color: white;
+            border:1px solid #8caeea;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        td,th{
+            padding: 5px 10px;
+            border: 0px solid grey;
+        }
+        main{
+            padding: 1em 2em;
+        }
+        @media(max-width: 30em){
+            table{
+                width: 100%;
+            }
+            table tr{
+                display: flex;
+                flex-direction: column;
+                border: 0px solid grey;
+                padding: 1em;
+                margin-bottom: 1em;
+            }
+            table td[data-titulo]{
+                display: flex;
+            }
+
+            table td, table th{
+                border: none;
+            }
+
+            table td[data-titulo]::before{
+                content: attr( data-titulo );
+                width: 90px;
+                color: silver;
+                font-weight: bold;
+            }
+            table thead{
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -127,20 +171,20 @@
 <div class="d-flex justify-content-center">
     <div class="card">
         <div class="card-body">
-            <div class="p-7 mb-2 bg-primary text-white" style="--bs-bg-opacity: .5;">
-                <h4 style="text-align: center; color: white; font-family:'Times New Roman', Times, serif">MIS INCIDENCIAS DESTACADAS</h4>
-            </div>
+            <header>
+                <h3  style="font-family: 'Georgia'"><center>MIS INCIDENCIAS DESTACADAS</center></h3>
+            </header>
             <br>
             <div class="card">
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table>
                         <thead>
                         <tr>
-                            <th scope="col"><center> Incidencia </center></th>
-                            <th scope="col"><center> Usuario </center></th>
-                            <th scope="col"><center> Tipo de Incidencia </center></th>
-                            <th scope="col"><center> Estado </center></th>
-                            <th scope="col"><center> Opciones </center></th>
+                            <th>Incidencia</th>
+                            <th>Usuario</th>
+                            <th>Tipo de Incidencia</th>
+                            <th>Estado</th>
+                            <th>Opciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -150,12 +194,12 @@
                                 Incidencia incidencia = IncidenciasDestacadas.get(i); %>
 
                         <tr>
-                            <td><center> <%= incidencia.getNombreDeIncidencia() %></center></td>
-                            <td><center> <%= incidencia.getUsuario().getNombre() %> <%=incidencia.getUsuario().getApellido()%> </center></td>
-                            <td> <center><%= incidencia.getTipoDeIncidencia().getNombre() %> </center></td>
-                            <td><center> <%= incidencia.getEstado().getNombre() %> </center></td>
+                            <td data-titulo="Incidencia"><%= incidencia.getNombreDeIncidencia() %></td>
+                            <td data-titulo="Usuario"><%= incidencia.getUsuario().getNombre() %> <%=incidencia.getUsuario().getApellido()%></td>
+                            <td data-titulo="Tipo Incidencia"><%= incidencia.getTipoDeIncidencia().getNombre() %> </td>
+                            <td data-titulo="Estado"><%= incidencia.getEstado().getNombre() %></td>
                             <td><div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                <a href=<%=request.getContextPath()%>/VerIncidenciaUsuario class="btn btn-primary">Ver Mas</a>
+                                <a href=<%=request.getContextPath()%>/VerIncidenciaUsuario class="btn btn-danger">Ver Mas</a>
                             </div></td>
                         </tr>
                         <% } %>
