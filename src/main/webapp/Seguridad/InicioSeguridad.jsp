@@ -28,16 +28,6 @@
 
 <html lang="en">
     <head>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-        <script>
-            function generatePDF(){
-                const element = document.getElementById("invoice");
-                html2pdf()
-                    .from(element)
-                    .save();
-            }
-        </script>
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -127,6 +117,7 @@
         <br>
 
         <center>
+
             <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
                 <main class="bd-main order-1;overflow-auto" style="width: 820px; background-color: #FFFFFF99">
                     <div class="my-3 p-3 bg-body rounded shadow-sm position-relative"
@@ -136,12 +127,6 @@
                                 REPORTADAS</b></center>
                         </h4>
                         <p></p>
-
-                        <!--Se colocará el div que contenga botón para descargar pdf--->
-                        <div id="invoice">
-                            <p>Genera tu documento en PDF de las incidencias filtradas</p>
-                        </div>
-                        <button onclick="generatePDF()">Descargar PDF</button>
 
                         <div class="card" style="margin-top:10px">
                             <div class="card-body">
@@ -189,6 +174,92 @@
                                         </div>
                                     </div>
                                 </form>
+
+                                <!--Se colocará el div que contenga botón para descargar pdf--->
+                                <div id="invoice">
+                                    <p>DOCUMENTO DE INCIDENCIAS</p>
+                                </div>
+                                <button onclick="generatePDF()">Descargar PDF</button>
+
+
+                                <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+                                <script>
+                                    function generatePDF(){
+                                        var pdfObject = jsPDFInvoiceTemplate.default(props);
+
+                                        console.log("Object created: ", pdfObject);
+                                    }
+
+                                    var props = {
+                                        outputType: jsPDFInvoiceTemplate.OutputType.Save,
+                                        returnJsPDFDocObject: true,
+                                        fileName: "Invoice 2021",
+                                        orientationLandscape: false,
+                                        compress: true,
+
+                                        stamp: {
+                                            inAllPages: true, //by default = false, just in the last page
+                                            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
+                                            type: 'JPG', //optional, when src= data:uri (nodejs case)
+                                            width: 20, //aspect ratio = width/height
+                                            height: 20,
+                                            margin: {
+                                                top: 0, //negative or positive num, from the current position
+                                                left: 0 //negative or positive num, from the current position
+                                            }
+                                        },
+                                        business: {
+                                            name: "GIGACONTROL",
+                                            address: "Atención para toda la comunidad PUCP",
+                                        },
+                                        contact: {
+                                            name: "Lista de incidencias:",
+                                        },
+                                        invoice: {
+                                            label: "Número de Incidencias: ",
+                                            num: 5,
+                                            headerBorder: false,
+                                            tableBodyBorder: false,
+
+                                            header: [
+                                                {
+                                                    title: "Código",
+                                                    style: {
+                                                        width: 20
+                                                    }
+                                                },
+                                                {
+                                                    title: "Nombre",
+                                                    style: {
+                                                        width: 30
+                                                    }
+                                                },
+                                                {
+                                                    title: "Descripción",
+                                                    style: {
+                                                        width: 50
+                                                    }
+                                                },
+                                                { title: "Tipo de incidencia"},
+                                                { title: "Estado"},
+                                                { title: "Nivel de Urgencia"},
+
+                                            ],
+
+
+                                            invDescLabel: "GIGACONTROL ASSITANT",
+                                            invDesc: "Todos los datos de las incidencias serán de suma importancias a la hora de llevar a cabo la resolución de estas, por favor tenga en consideración cada una de ellas.",
+                                        },
+                                        footer: {
+                                            text: "The invoice is created on a computer and is valid without the signature and stamp.",
+                                        },
+                                        pageEnable: true,
+                                        pageLabel: "Page ",
+                                    };
+
+
+                                </script>
+
 
 
                                 <%
@@ -348,13 +419,8 @@
                                             }
                                         %>
 
-
-
                                     </ul>
                                 </nav>
-
-
-
 
                             </div>
                         </div>
