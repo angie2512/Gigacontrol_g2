@@ -152,13 +152,11 @@
                                                 <div class="views-exposed-widget views-widget-sort-by">
                                                     <div class="form-item form-type-select form-item-sort-by form-group">
                                                         <label for="edit-sort-by">Estado</label>
-                                                        <select class="form-control form-select" id="edit-sort-by"
-                                                                name="estado">
+                                                        <select class="form-control form-select" id="edit-sort-by" name="estado">
                                                             <option value="1" selected="selected">Todos</option>
                                                             <option value="Registrado">Registrado</option>
                                                             <option value="Atendido">Atendido</option>
                                                             <option value="Resuelto">Resuelto</option>
-
                                                         </select>
                                                     </div>
                                                 </div>
@@ -175,9 +173,11 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <br>
 
                                                 <div class="views-exposed-widget views-submit-button">
                                                     <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Filtrar</button>
+                                                    <button onclick="generatePDF()">Descargar PDF</button>
                                                 </div>
 
                                             </div>
@@ -187,7 +187,7 @@
 
                                 <!--Se colocará el div que contenga botón para descargar pdf--->
 
-                                <button onclick="generatePDF()">Descargar PDF</button>
+
 
 
                                 <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
@@ -302,50 +302,53 @@
                                         </thead>
 
                                         <tr>
-
                                             <td>
                                                 <h6 style="color:#585151; font-family:Georgia, serif"><b>Nombre y
                                                     Apellidos: <%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%>
                                                 </b></h6>
                                             <td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p style="color:#D62525">
-                                                    <b>Código: <%=incidencia.getUsuario().getCodigo()%>
-                                                    </b></p>
-                                            </td>
-                                            <td>
-                                                <p class="text-end"><b>Tipo de
-                                                    Incidencia:</b> <%=incidencia.getTipoDeIncidencia().getNombre()%>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-sm-9">
-                                                <p><b>Descripción:</b></p>
-                                            </td>
-                                            <td class="col-sm-3">
-                                                <p class="text-end"><b>Nivel de
-                                                    Urgencia:</b> <%=incidencia.getNivelDeUrgencia().getNombre()%>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
 
                                             <td>
-                                                <p><%=incidencia.getDescripcion()%>
+                                                <p style="color:#9d1616">
+                                                    <b>Código: <%=incidencia.getUsuario().getCodigo()%></b>
                                                 </p>
                                             </td>
                                         </tr>
+
+
+                                        <tr>
+                                            <td class="col-sm-9">
+                                                <p><b>Descripción:</b> <%=incidencia.getDescripcion()%></p>
+                                            </td>
+                                            <td>
+                                                <p class="text-end"><b>Tipo de Incidencia:</b> <%=incidencia.getTipoDeIncidencia().getNombre()%>
+                                                </p>
+                                            </td>
+                                        </tr>
+
+
                                         <tr>
                                             <td>
+                                                <div class="p-2">
+                                                    <b style="color:#276706 ">Estado: <%=incidencia.getEstado().getNombre()%></b>
+                                                </div>
+                                            </td>
+
+                                            <td class="col-sm-3">
+                                                <p class="text-end"><b>Nivel de Urgencia:</b> <%=incidencia.getNivelDeUrgencia().getNombre()%>
+                                                </p>
+                                            </td>
+                                        </tr>
+
+                                            <td>
                                                 <div class="d-flex flex-row-reverse">
-                                                    <div class="p-2"><b
-                                                            style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%>
-                                                    </b></div>
-                                                    <div class="p-2"><b>👤 15</b></div>
-                                                    <div class="p-2"><b style="color:#F0C00D">★ Destacados</b></div>
+
+                                                    <div class="p-2">
+                                                        <b>👤 15</b>
+                                                    </div>
+                                                    <div class="p-2">
+                                                        <b style="color:#b9940a">★ Destacados</b>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -361,7 +364,7 @@
                                     </table>-->
                                 </div>
                                 <% }}else{ %>
-                                    <p>No se encontraron incidencias</p>
+                                    <h3>No se encontraron incidencias</h3>
                                 <%}%>
 
 
