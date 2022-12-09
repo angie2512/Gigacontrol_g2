@@ -27,79 +27,129 @@ public class ServletUsuario extends HttpServlet {
         usersDao.obtenerIncidenciasDelUsuario(usuario.getIdUsuario());
         SeguridadDao seguridadDao = new SeguridadDao();
 
+
+        String valor_total_filas_str = daoDatosFijos.contarIncidencias();
+        int valor_total_filas_int = Integer.parseInt(valor_total_filas_str);
+        float valor_total_filas = Float.parseFloat(valor_total_filas_str);
+
+
+        float maxPag = (float) (valor_total_filas / 3);
+        int maxPag2 = (int) Math.ceil(maxPag);
+
         switch (action) {
 
             case "inicio":
-                request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
-                request.setAttribute("ListaNombres", usersDao.getUsersList());
-                request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
-                request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
-                requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
-                requestDispatcher.forward(request, response);
-                break;
-            case "listarimg":
-                String idincidencia2 = request.getParameter("id");
-                int incidenciaid2 = Integer.parseInt(idincidencia2);
-                daoDatosFijos.listarImg(incidenciaid2,response);
-                break;
-            case "editar":
-                requestDispatcher = request.getRequestDispatcher("Usuario/EditarIncidencia.jsp");
-                requestDispatcher.forward(request, response);
-                break;
 
-            case "listaMisIncidencias":
-                //asignar
-                request.setAttribute("ListaDeIncidenciasDelUsuario", usersDao.obtenerIncidenciasDelUsuario(usuario.getIdUsuario()));
-                request.setAttribute("ListaDeIncidenciasDestacadas", usersDao.obtenerIncidenciasDestacadas(usuario.getIdUsuario()));
-                requestDispatcher = request.getRequestDispatcher("Usuario/MisIncidencias.jsp");
-                //enviar
-                requestDispatcher.forward(request, response);
-                break;
+                request.setCharacterEncoding("UTF-8");
+                BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
+                if (userSeg != null && userSeg.getRolId() == 2) {
+                    int valor_pagina = 1;
+                    /*request.setAttribute("listaUsuarios", usersDao.getUsersList());*/
 
-            case "nuevaIncidencia":
-                requestDispatcher = request.getRequestDispatcher("Usuario/NuevaIncidencia.jsp");
-                requestDispatcher.forward(request, response);
-                break;
+                    //paginacion
 
-            case "perfil":
-                requestDispatcher = request.getRequestDispatcher("Usuario/PerfilUsuario.jsp");
-                requestDispatcher.forward(request, response);
-                break;
+                    if (request.getParameter("pg") != null) {
+                        valor_pagina = Integer.parseInt(request.getParameter("pg"));
+                    }
 
-            case "destacar":
-                String idincidencia = request.getParameter("idi");
-                int incidenciaid = Integer.parseInt(idincidencia);
-                usersDao.destacarEstrella(usuario.getIdUsuario(), incidenciaid);
-                response.sendRedirect(request.getContextPath()+"/ServletUsuario");
-                break;
+                    int regMin = (valor_pagina - 1) * 3;
 
-            case "quitardestacado":
-                String idincidencia1 = request.getParameter("idi");
-                int incidenciaid1 = Integer.parseInt(idincidencia1);
-                usersDao.eliminarDestacado(usuario.getIdUsuario(), incidenciaid1);
-                response.sendRedirect(request.getContextPath()+"/ServletUsuario");
-                break;
+                    if (valor_pagina != maxPag2) {
+                        int regMax = valor_pagina * 3;
 
-            case "verIncidencia":
-                String idIncidenciaStr = request.getParameter("id");
-                int idIncidencia = Integer.parseInt(idIncidenciaStr);
-                Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
-                request.setAttribute("incidencia", incidencia);
-                ArrayList<Estado> listaEstados = daoDatosFijos.obtenerListaEstados();
-                request.setAttribute("ListaEstados",listaEstados);
-                ArrayList<ComentarIncidencia> listaDeComentarios = daoDatosFijos.obtenerComentariosDeIncidencia(idIncidencia);
-                request.setAttribute("ListaComentarios",listaDeComentarios);
-                requestDispatcher = request.getRequestDispatcher("Usuario/VerIncidencia.jsp");
-                requestDispatcher.forward(request, response);
-                break;
-            case "mostrarFotoPerfil":
-                String idUsuario = request.getParameter("idu");
-                int idUsuario1 = Integer.parseInt(idUsuario);
-                daoDatosFijos.mostrarImagenUsuario(idUsuario1,response);
-                break;
+                        request.setAttribute("maxPag2", maxPag2);
+                        request.setAttribute("regMin", regMin);
+                        request.setAttribute("regMax", regMax);
+                        request.setAttribute("valor_pagina", valor_pagina);
+                    } else {
+                        int regMax = valor_total_filas_int;
+
+                        request.setAttribute("maxPag2", maxPag2);
+                        request.setAttribute("regMin", regMin);
+                        request.setAttribute("regMax", regMax);
+                        request.setAttribute("valor_pagina", valor_pagina);
+                    }
+
+
+                    request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
+
+
+                    request.setAttribute("ListaNombres", usersDao.getUsersList());
+                    request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
+                    request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
+                    requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
+                    requestDispatcher.forward(request, response);
+                }else {
+
+                        requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
+                        requestDispatcher.forward(request, response);
+                }
+                    break;
+                    case "listarimg":
+                        String idincidencia2 = request.getParameter("id");
+                        int incidenciaid2 = Integer.parseInt(idincidencia2);
+                        daoDatosFijos.listarImg(incidenciaid2, response);
+                        break;
+                    case "editar":
+                        requestDispatcher = request.getRequestDispatcher("Usuario/EditarIncidencia.jsp");
+                        requestDispatcher.forward(request, response);
+                        break;
+
+                    case "listaMisIncidencias":
+
+                        //asignar
+                        request.setAttribute("ListaDeIncidenciasDelUsuario", usersDao.obtenerIncidenciasDelUsuario(usuario.getIdUsuario()));
+                        request.setAttribute("ListaDeIncidenciasDestacadas", usersDao.obtenerIncidenciasDestacadas(usuario.getIdUsuario()));
+                        requestDispatcher = request.getRequestDispatcher("Usuario/MisIncidencias.jsp");
+                        //enviar
+                        requestDispatcher.forward(request, response);
+                        break;
+
+                    case "nuevaIncidencia":
+                        requestDispatcher = request.getRequestDispatcher("Usuario/NuevaIncidencia.jsp");
+                        requestDispatcher.forward(request, response);
+                        break;
+
+                    case "perfil":
+                        requestDispatcher = request.getRequestDispatcher("Usuario/PerfilUsuario.jsp");
+                        requestDispatcher.forward(request, response);
+                        break;
+
+                    case "destacar":
+                        String idincidencia = request.getParameter("idi");
+                        int incidenciaid = Integer.parseInt(idincidencia);
+                        usersDao.destacarEstrella(usuario.getIdUsuario(), incidenciaid);
+                        response.sendRedirect(request.getContextPath() + "/ServletUsuario");
+                        break;
+
+                    case "quitardestacado":
+                        String idincidencia1 = request.getParameter("idi");
+                        int incidenciaid1 = Integer.parseInt(idincidencia1);
+                        usersDao.eliminarDestacado(usuario.getIdUsuario(), incidenciaid1);
+                        response.sendRedirect(request.getContextPath() + "/ServletUsuario");
+                        break;
+
+                    case "verIncidencia":
+                        String idIncidenciaStr = request.getParameter("id");
+                        int idIncidencia = Integer.parseInt(idIncidenciaStr);
+                        Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
+                        request.setAttribute("incidencia", incidencia);
+                        ArrayList<Estado> listaEstados = daoDatosFijos.obtenerListaEstados();
+                        request.setAttribute("ListaEstados", listaEstados);
+                        ArrayList<ComentarIncidencia> listaDeComentarios = daoDatosFijos.obtenerComentariosDeIncidencia(idIncidencia);
+                        request.setAttribute("ListaComentarios", listaDeComentarios);
+                        requestDispatcher = request.getRequestDispatcher("Usuario/VerIncidencia.jsp");
+                        requestDispatcher.forward(request, response);
+                        break;
+                    case "mostrarFotoPerfil":
+                        String idUsuario = request.getParameter("idu");
+                        int idUsuario1 = Integer.parseInt(idUsuario);
+                        daoDatosFijos.mostrarImagenUsuario(idUsuario1, response);
+                        break;
+                }
         }
 
-    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

@@ -98,6 +98,10 @@ public class ServletInicio extends HttpServlet {
         EnvioCorreo envioCorreo = new EnvioCorreo();
         BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
 
+        System.out.println(usuariolog.getNombre());
+
+
+
 
 
         //int num_intentos = 3;
