@@ -17,7 +17,7 @@
               crossorigin="anonymous">
         <style>
             body {
-                background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
+                background: url("https://images.adsttc.com/media/images/531f/2bd5/c07a/802c/2700/03ff/large_jpg/CAMARA_2.jpg?1394551725");
                 background-position: center center;
                 background-size: cover;
                 background-repeat: no-repeat;
