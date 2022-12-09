@@ -130,6 +130,7 @@ public class DaoDatosFijos extends BaseDao {
             try (ResultSet rs = pstm.executeQuery();) {
                 if (rs.next()) {
                     int userID = rs.getInt(3);
+                    System.out.println("ID"+userID);
                     user = this.buscarPorId(userID);
                 }
             }

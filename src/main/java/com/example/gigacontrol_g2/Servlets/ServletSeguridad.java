@@ -73,10 +73,7 @@ public class ServletSeguridad extends HttpServlet {
                         request.setAttribute("valor_pagina", valor_pagina);
                     }
 
-
                     //cierre paginacion
-
-
 
                     request.setAttribute("listaIncidencias", seguridadDao.obtenerListaDeIncidencias());
                     requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
@@ -177,26 +174,71 @@ public class ServletSeguridad extends HttpServlet {
         String action = request.getParameter("action") == null ? "actualizarIncidencia": request.getParameter("action");
         SeguridadDao seguridadDao = new SeguridadDao();
 
-        String idIncidenciaStr = request.getParameter("idIncidencia");
+        String idIncidenciaStr = request.getParameter("idIncidencia") == null?"0":request.getParameter("idIncidencia");
         int idIncidencia = Integer.parseInt(idIncidenciaStr);
         Incidencia incidencia;
         RequestDispatcher view;
-
+        DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         ArrayList<String> estados = new ArrayList<>();
         estados.add("nombre");
 
         switch (action){
 
+            case "buscarIncidencia":
+                String searchText = request.getParameter("searchText")==null?"":request.getParameter("searchText");
+                String estado = request.getParameter("estado")==null?"":request.getParameter("estado");
+                String nivelurg = request.getParameter("nivelurg")==null?"":request.getParameter("nivelurg");
+                ArrayList<Incidencia> lista = seguridadDao.BuscarIncidencia(searchText, estado, nivelurg);
+
+                Incidencia inc  = new Incidencia();
+                inc.setIdIncidencia(0);
+                int valor_total_filas_int = lista.size();
+                if(valor_total_filas_int==0){
+                    lista.add(inc);
+                }
+                float valor_total_filas = (float) valor_total_filas_int;
+
+                float maxPag = (float) (valor_total_filas / 3);
+                int maxPag2 = (int) Math.ceil(maxPag);
+
+                int valor_pagina = 1;
+                //paginacion
+
+                int regMin = (valor_pagina-1)*3;
+
+                if(valor_pagina != maxPag2){
+                    int regMax = valor_pagina * 3;
+
+                    request.setAttribute("maxPag2", maxPag2);
+                    request.setAttribute("regMin", regMin);
+                    request.setAttribute("regMax", regMax);
+                    request.setAttribute("valor_pagina", valor_pagina);
+                }else{
+                    int regMax = valor_total_filas_int;
+
+                    request.setAttribute("maxPag2", maxPag2);
+                    request.setAttribute("regMin", regMin);
+                    request.setAttribute("regMax", regMax);
+                    request.setAttribute("valor_pagina", valor_pagina);
+                }
+
+                //cierre paginacion
+                request.setAttribute("listaIncidencias", lista);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
+                requestDispatcher.forward(request, response);
+                break;
+
+
             /*case "buscar":
                 String opcion  = request.getParameter("opcion");
                 int idSleccioando = request.getParameter("id");
 
-                if ( opcion .equals("estadoo")){
+                if ( opcion .equals("En Proceso")){
                     listailtrado = seguridadDao.busquedaPorEstado()
-                }else if (opcion.equales("tipodeindiencia")){
+                }else if (opcion.equales("Registrado")){
                     listafiltrado = seguridadDao.obtenerListaDeIncidencias()
-                }else if (opcion.equals())
-                if(estado.equals("nombre")){
+                }else if (opcion.equals("Atendido))
+                if(estado.equals("Resuelto")){
                     listaFiltraEstado = seguridadDao.busquedaPorEstado(buscar);
                 }
                 request.setAttribute("listaEstados",listaFiltraEstado);

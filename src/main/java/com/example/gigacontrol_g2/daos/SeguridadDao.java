@@ -499,55 +499,77 @@ public class SeguridadDao extends BaseDao{
 
         return listaFiltradaPorNivelDeUrgencia;
     }
+    public ArrayList<Incidencia> BuscarIncidencia(String incidenciaFiltr, String estadoInc, String nivelurg){
+        DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
+        SeguridadDao seguridadDao = new SeguridadDao();
+        String sql ="";
 
-    public ArrayList<Incidencia> busquedaPorTipoDeIncidencia(int idTipoDeIncidencia){
-        String sql = "select * from incidencia where idTipoIncidencia = ? ";
+        if (incidenciaFiltr.equals("")){
+            if(estadoInc.equals("1") && nivelurg.equals("1")){
+                sql ="select * from incidencia";
+            }else if(estadoInc.equals("1") && !(nivelurg.equals("1"))){
+                sql = "select * from incidencia i inner join nivelurgencia n on i.idNivelUrgencia = n.idNivelUrgencia where n.nombre='"+ nivelurg +"'";
+            }else if(!estadoInc.equals("1") && nivelurg.equals("1")){
+                sql = "select * from incidencia i inner join estado e on i.idEstado = e.idEstado where e.nombre = '"+ estadoInc +"'";
+            }else{
+                sql = "select * from incidencia i inner join nivelurgencia n on i.idNivelUrgencia = n.idNivelUrgencia\n" +
+                        "                           inner join estado e on i.idEstado = e.idEstado\n" +
+                        "         where (n.nombre='" + nivelurg +"' && e.nombre='" +estadoInc+"')";
+            }
+        }else{
+            if(estadoInc.equals("1") && nivelurg.equals("1")){
+                sql ="select * from incidencia where NombreDeIncidencia like '%"+ incidenciaFiltr+"%'";
+            }else if(estadoInc.equals("1") && !(nivelurg.equals("1"))){
+                sql = "select * from incidencia i inner join nivelurgencia n on i.idNivelUrgencia = n.idNivelUrgencia where (n.nombre='"+ nivelurg + "' and i.NombreDeIncidencia like '%"+ incidenciaFiltr+"%')";
+            }else if(!estadoInc.equals("1") && nivelurg.equals("1")){
+                sql = "select * from incidencia i inner join estado e on i.idEstado = e.idEstado where (e.nombre = '"+ estadoInc +"' and i.NombreDeIncidencia like '%"+ incidenciaFiltr+"%')";
+            }else{
+                sql = "select * from incidencia i inner join nivelurgencia n on i.idNivelUrgencia = n.idNivelUrgencia\n" +
+                        "                           inner join estado e on i.idEstado = e.idEstado\n" +
+                        "         where (n.nombre='" + nivelurg +"' && e.nombre='" +estadoInc+"' and i.NombreDeIncidencia like '%"+ incidenciaFiltr+"%')";
+            }
+        }
 
-        ArrayList<Incidencia> listaFiltradaPorTipoDeIncidencia = new ArrayList<>();
+        ArrayList<Incidencia> listaFiltrada = new ArrayList<>();
 
         try(Connection conn = this.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setInt(1, idTipoDeIncidencia);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
+            PreparedStatement pstmt = conn.prepareStatement(sql);){
+            try(ResultSet rs = pstmt.executeQuery();){
+                while(rs.next()){
                     Incidencia incidencia = new Incidencia();
                     incidencia.setIdIncidencia(rs.getInt(1));
                     incidencia.setNombreDeIncidencia(rs.getString(2));
                     incidencia.setDescripcion(rs.getString(3));
                     incidencia.setZonaPucp(rs.getString(4));
                     incidencia.setUbicacion(rs.getString(5));
+                    UsersDao userDao = new UsersDao();
                     BUsuarios usuario = new BUsuarios();
-                    for (BUsuarios usuar : usersDao.getUsersList()) {
-                        if (usuar.getIdUsuario() == rs.getInt(7)) {
+                    for (BUsuarios usuar : userDao.getUsersList()){
+                        if(usuar.getIdUsuario()==rs.getInt(7)){
                             usuario.setIdUsuario(rs.getInt(7));
                             usuario.setNombre(usuar.getNombre());
                             usuario.setApellido(usuar.getApellido());
                             usuario.setCodigo(usuar.getCodigo());
                             usuario.setCategoria(usuar.getCategoria());
-                            usuario.setCorreo(usuar.getCorreo());
                         }
                     }
                     incidencia.setUsuario(usuario);
                     TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
-                    tipoDeIncidencia.setIdTipoDeIncidencia(idTipoDeIncidencia);
-                    for (TipoDeIncidencia tdi : daoDatosFijos.obtenerListaTipoDeIncidencias()) {
-                        if (tdi.getIdTipoDeIncidencia() == idTipoDeIncidencia) {
+                    for (TipoDeIncidencia tdi : daoDatosFijos.obtenerListaTipoDeIncidencias()){
+                        if(tdi.getIdTipoDeIncidencia()==rs.getInt(8)){
+                            tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt(8));
                             tipoDeIncidencia.setNombre(tdi.getNombre());
                         }
                     }
                     incidencia.setTipoDeIncidencia(tipoDeIncidencia);
-
                     NivelDeUrgencia nivelDeUrgencia = new NivelDeUrgencia();
-                    for (NivelDeUrgencia nivelUrgencia : daoDatosFijos.obtenerListaNivelesDeUrgencia()) {
-                        if (nivelUrgencia.getIdNivelDeUrgencia() == rs.getInt(9)) {
+                    for (NivelDeUrgencia nivelUrgencia : daoDatosFijos.obtenerListaNivelesDeUrgencia()){
+                        if(nivelUrgencia.getIdNivelDeUrgencia()==rs.getInt(9)){
                             nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt(9));
                             nivelDeUrgencia.setNombre(nivelUrgencia.getNombre());
                         }
                     }
                     incidencia.setNivelDeUrgencia(nivelDeUrgencia);
-
                     Estado estado = new Estado();
                     for (Estado est: daoDatosFijos.obtenerListaEstados()){
                         if(est.getIdEstado()==rs.getInt(10)){
@@ -556,16 +578,12 @@ public class SeguridadDao extends BaseDao{
                         }
                     }
                     incidencia.setEstado(estado);
-                    listaFiltradaPorTipoDeIncidencia.add(incidencia);
-
-                }
-
-            }
-        }catch (SQLException e) {
-            throw new RuntimeException(e);
+                    listaFiltrada.add(incidencia);
+                }}
+        }catch (SQLException e){
+            e.printStackTrace();
         }
-
-        return listaFiltradaPorTipoDeIncidencia;
+        return listaFiltrada;
     }
 }
 

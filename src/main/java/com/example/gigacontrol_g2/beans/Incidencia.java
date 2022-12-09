@@ -8,7 +8,6 @@ public class Incidencia {
     private String descripcion;
     private String zonaPucp;
     private String ubicacion;
-
     private InputStream foto;
     private BUsuarios usuario;
     private TipoDeIncidencia tipoDeIncidencia;
