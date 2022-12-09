@@ -90,17 +90,21 @@
             </div>
             <p></p>
             <p></p>
+            <% if (session.getAttribute("errorSeg") != null) {%>
+            <div class="text-danger mb-2"><%=session.getAttribute("errorSeg")%></div>
+            <% session.removeAttribute("errorSeg"); %>
+            <% } %>
               <!-- MODAL -->
               <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
                         Enviar
                     </button>
               </div>
         </form>
-        <% if (session.getAttribute("errorSeg") != null) {%>
-        <div class="text-danger mb-2"><%=session.getAttribute("errorSeg")%></div>
-        <% session.removeAttribute("errorSeg"); %>
-        <% } else { %>
+        <!--< % if (session.getAttribute("errorSeg") != null) {%>
+        <div class="text-danger mb-2">< %=session.getAttribute("errorSeg")%></div>
+        < % session.removeAttribute("errorSeg"); %> -->
+        <%if (session.getAttribute("errorSeg") == null) { %>
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">

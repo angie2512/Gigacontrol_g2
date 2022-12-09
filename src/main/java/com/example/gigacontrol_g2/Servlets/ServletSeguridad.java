@@ -45,8 +45,7 @@ public class ServletSeguridad extends HttpServlet {
             case "listarIncidencia":
 
                 request.setCharacterEncoding("UTF-8");
-                BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
-                if(userSeg != null && userSeg.getRolId()==1 ) {
+                if(usuario != null && usuario.getRolId()==1 ) {
                     int valor_pagina = 1;
                     /*request.setAttribute("listaUsuarios", usersDao.getUsersList());*/
 
@@ -174,7 +173,7 @@ public class ServletSeguridad extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
-        BUsuarios bUsuarios = (BUsuarios) session.getAttribute("userlogged");
+        //BUsuarios bUsuarios = (BUsuarios) session.getAttribute("userlogged");
         String action = request.getParameter("action") == null ? "actualizarIncidencia": request.getParameter("action");
         SeguridadDao seguridadDao = new SeguridadDao();
 
@@ -212,7 +211,7 @@ public class ServletSeguridad extends HttpServlet {
                 String idEstadoStr = request.getParameter("estado");
                 int idEstado = Integer.parseInt(idEstadoStr);
                 seguridadDao.actualizarEstado(idEstado , idIncidencia);
-                //response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
+                response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                 break;
         }
     }

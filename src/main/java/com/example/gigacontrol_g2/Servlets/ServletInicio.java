@@ -98,10 +98,6 @@ public class ServletInicio extends HttpServlet {
         EnvioCorreo envioCorreo = new EnvioCorreo();
         BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
 
-        System.out.println(usuariolog.getNombre());
-
-
-
 
 
         //int num_intentos = 3;
@@ -163,7 +159,6 @@ public class ServletInicio extends HttpServlet {
                 break;
 
             case "registroSeguridad":
-                session.setAttribute("userlogged", usuariolog);
                 String correoPUCPSeg = request.getParameter("correoPUCPSeg");
                 String codigoPUCPSeg = request.getParameter("codigoPUCPSeg");
                 for (BUsuarios usuar : usersDao.getUsersList()){
@@ -172,11 +167,14 @@ public class ServletInicio extends HttpServlet {
                         String contrasenaTemporalSeguridad = envioCorreo.generarContrasenaTemporalSeguridad();
                         envioCorreo.enviarContrasenaTemporal(contrasenaTemporalSeguridad, correoPUCPSeg);
                         usersDao.crearCredencialesUsuario(codigoPUCPSeg,contrasenaTemporalSeguridad,idUsuario);
+                        String estadoUsuarioSeg = "4";
+                        usersDao.actualizarEstadoDeUsuario(idUsuario,estadoUsuarioSeg);
                         //response.sendRedirect(request.getContextPath()+"/ServletInicio");
                     }
                 }
-                //session.setAttribute("errorSeg","No Se Encontró alguno de los Campos , Ingrese Correctamente");
-                //response.sendRedirect(request.getContextPath()+"/ServletInicio?action=establecerNuevaContraseñaSeguridad");
+                session.setAttribute("errorSeg","No Se Encontró alguno de los Campos , Vuelva a Ingresar Correctamente");
+                view = request.getRequestDispatcher("RegistroSeguridad.jsp");
+                view.forward(request, response);
                 break;
 
                 case "establecernuevacontraseg":

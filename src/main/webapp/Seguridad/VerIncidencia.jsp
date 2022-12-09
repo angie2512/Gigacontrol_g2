@@ -298,7 +298,7 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex justify-content-center">
-                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletSeguridad" role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">SALIR</a>
+                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletSeguridad?action=listarIncidencia" role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">SALIR</a>
                     </div>
                 </div>
             </div>
