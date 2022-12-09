@@ -28,6 +28,16 @@
 
 <html lang="en">
     <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <script>
+            function generatePDF(){
+                const element = document.getElementById("invoice");
+                html2pdf()
+                    .from(element)
+                    .save();
+            }
+        </script>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -128,10 +138,10 @@
                         <p></p>
 
                         <!--Se colocará el div que contenga botón para descargar pdf--->
-                        <div class="views-exposed-widget views-submit-button">
-                            <button>Descargar PDF</button>
+                        <div id="invoice">
+                            <p>Genera tu documento en PDF de las incidencias filtradas</p>
                         </div>
-
+                        <button onclick="generatePDF()">Descargar PDF</button>
 
                         <div class="card" style="margin-top:10px">
                             <div class="card-body">
