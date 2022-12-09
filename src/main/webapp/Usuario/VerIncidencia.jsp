@@ -4,12 +4,14 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.gigacontrol_g2.beans.ComentarIncidencia" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="com.example.gigacontrol_g2.beans.BUsuarios" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% Incidencia incidencia = (Incidencia) request.getAttribute("incidencia");
     ArrayList<Estado> listaEstados = (ArrayList<Estado>) request.getAttribute("ListaEstados");
     ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>) request.getAttribute("ListaComentarios");
     ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
     HashMap<Integer, Integer> numDestacados = (HashMap<Integer, Integer>) request.getAttribute("numDestacados");
+    BUsuarios u = new BUsuarios();
 %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 
