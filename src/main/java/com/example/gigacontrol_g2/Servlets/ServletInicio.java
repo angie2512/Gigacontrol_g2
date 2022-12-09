@@ -90,20 +90,21 @@ public class ServletInicio extends HttpServlet {
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         //String action = request.getParameter("action");
         String action = request.getParameter("action") == null ? "IniciarSesion" : request.getParameter("action");
-        String codigo = request.getParameter("codigo");
-        String contrasena = request.getParameter("contrasena");
+
         RequestDispatcher view;
         HttpSession session = request.getSession();
         UsersDao usersDao = new UsersDao();
         EnvioCorreo envioCorreo = new EnvioCorreo();
-        BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
-
 
 
         //int num_intentos = 3;
 
         switch (action) {
             case "IniciarSesion":
+                String codigo = request.getParameter("codigo");
+                String contrasena = request.getParameter("contrasena");
+                BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
+
                 //BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
                 if (usuariolog != null) {
                     session.setAttribute("userlogged", usuariolog);
@@ -135,6 +136,7 @@ public class ServletInicio extends HttpServlet {
                     if (codigoAutenticacionIngresado.equals(codigoAutenticacionOriginal)) {
                         response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
                     } else {
+                        System.out.println("error en el código");
                         session.invalidate();
                         response.sendRedirect("ServletInicio");
                         /*if(num_intentos>=2) {
@@ -159,6 +161,7 @@ public class ServletInicio extends HttpServlet {
                 break;
 
             case "registroSeguridad":
+             //   session.setAttribute("userlogged", usuariolog);
                 String correoPUCPSeg = request.getParameter("correoPUCPSeg");
                 String codigoPUCPSeg = request.getParameter("codigoPUCPSeg");
                 for (BUsuarios usuar : usersDao.getUsersList()){
@@ -178,7 +181,7 @@ public class ServletInicio extends HttpServlet {
                 break;
 
                 case "establecernuevacontraseg":
-                    session.setAttribute("userlogged", usuariolog);
+                //    session.setAttribute("userlogged", usuariolog);
                     String contrasena1= request.getParameter("contrasena1");
                     String contrasena2= request.getParameter("contrasena2");
                     String idUsuarioStr = request.getParameter("idUsuarioLog");

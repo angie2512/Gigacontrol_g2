@@ -134,21 +134,30 @@
                                   <img src="https://elcomercio.pe/resizer/hE0dXgCo-KfAjkgGRXLIlDayLYo=/1200x1200/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/JRZOEF5WCRCCPO32AV7OYXXNCU.jpg" class="flex-shrink-0 me-3" alt="..." width="140" height="140">
                                   <div> -->
 
+                          <!--      <form class="d-flex" role="search" method="post"
+                                      action="<%=request.getContextPath()%>/ServletSeguridad?action=buscarIncidencia">
+                                    <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar"
+                                           aria-label="Buscar">
+                                    <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                                </form> -->
 
-                                <form action="/search" method="get" id="views-exposed-form-dkan-datasets-panel-pane-1"
-                                      accept-charset="UTF-8" role="form">
+                                <form method="post" id="views-exposed-form-dkan-datasets-panel-pane-1"
+                                      accept-charset="UTF-8" role="form"
+                                      action="<%=request.getContextPath()%>/ServletSeguridad?action=buscarIncidencia">
                                     <div>
+                                        <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar"
+                                               aria-label="Buscar">
                                         <div class="views-exposed-form">
                                             <div class="views-exposed-widgets clearfix">
                                                 <div class="views-exposed-widget views-widget-sort-by">
                                                     <div class="form-item form-type-select form-item-sort-by form-group">
                                                         <label for="edit-sort-by">Estado</label>
                                                         <select class="form-control form-select" id="edit-sort-by"
-                                                                name="sort_by">
-                                                            <option value="changed" selected="selected">En Proceso</option>
-                                                            <option value="title">Registrado</option>
-                                                            <option value="title">Atendido</option>
-                                                            <option value="title">Resuelto</option>
+                                                                name="estado">
+                                                            <option value="1" selected="selected">Todos</option>
+                                                            <option value="Registrado">Registrado</option>
+                                                            <option value="Atendido">Atendido</option>
+                                                            <option value="Resuelto">Resuelto</option>
 
                                                         </select>
                                                     </div>
@@ -158,16 +167,17 @@
                                                     <div class="form-item form-type-select form-item-sort-order form-group">
                                                         <label for="edit-sort-order">Nivel de Urgencia </label>
                                                         <select class="form-control form-select" id="edit-sort-order"
-                                                                name="sort_order">
-                                                            <option value="ASC">Leve</option>
-                                                            <option value="DESC" selected="selected">Moderado</option>
-                                                            <option value="DESC" selected="selected">Critico</option>
+                                                                name="nivelurg">
+                                                            <option value="1" selected>Todos</option>
+                                                            <option value="Leve">Leve</option>
+                                                            <option value="Moderado">Moderado</option>
+                                                            <option value="Critico">Critico</option>
                                                         </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="views-exposed-widget views-submit-button">
-                                                    <input type="submit" id="edit-submit-dkan-datasets" name="" value="Consultar" class="form-submit btn btn-default btn-primary">
+                                                    <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Filtrar</button>
                                                 </div>
 
                                             </div>
@@ -176,9 +186,7 @@
                                 </form>
 
                                 <!--Se colocará el div que contenga botón para descargar pdf--->
-                                <div id="invoice">
-                                    <p>DOCUMENTO DE INCIDENCIAS</p>
-                                </div>
+
                                 <button onclick="generatePDF()">Descargar PDF</button>
 
 
@@ -261,8 +269,7 @@
                                 </script>
 
 
-
-                                <%
+                                <%  if(!(listaDeIncidencias.size()==1 && listaDeIncidencias.get(0).getIdIncidencia()==0)){
                                     for (int i = regMin; i < regMax; i++) {
                                         Incidencia incidencia = listaDeIncidencias.get(i); %>
 
@@ -353,7 +360,9 @@
                                       </tr>
                                     </table>-->
                                 </div>
-                                <% } %>
+                                <% }}else{ %>
+                                    <p>No se encontraron incidencias</p>
+                                <%}%>
 
 
                                 <%
