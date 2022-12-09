@@ -58,6 +58,7 @@
         main{
             padding: 1em 2em;
         }
+
         @media(max-width: 30em){
             table{
                 width: 100%;
@@ -137,9 +138,9 @@
                 <h4 style="text-align: center; color: white; font-family:'Times New Roman', Times, serif">MIS INCIDENCIAS</h4>
             </div>
             <br>
-            <div class="card">
-                <div class="card-body">
-                    <table class="table table-striped">
+
+                <div class="card-body" style="height: 150px; overflow: auto">
+                    <table>
                         <thead>
                         <tr>
                             <th scope="col"><center> Incidencia </center></th>
@@ -148,6 +149,7 @@
                             <th scope="col"><center> Opciones </center></th>
                         </tr>
                         </thead>
+
                         <tbody>
                         <%for(Incidencia incidencia2 : IncidenciasUsuario) { %>
                         <tr>
