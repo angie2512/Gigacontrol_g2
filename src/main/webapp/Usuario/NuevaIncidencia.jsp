@@ -73,20 +73,21 @@
                     <div class=" table-responsive">
 
                         <div class="input-group mb-3">
-                            <span for="inputName" class="input-group-text" id="basic-addon1">Nombre:</span>
+                            <span for="inputName" class="input-group-text" id="basic-addon1">Nombre</span>
                             <input type="text" id="inputName" class="form-control" placeholder="Nombre" name="nombre" aria-describedby="passwordHelpInline">
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripción" name="description" aria-describedby="passwordHelpInline">
-                            <span for="inputDescripcion" class="input-group-text" id="basic-addon1">:Descripción</span>
+                            <span for="inputDescripcion" class="input-group-text" id="basic-addon1">Descripción</span>
+                            <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripción" name="descripcion" aria-describedby="passwordHelpInline">
+
                         </div>
                         <div class="input-group mb-3">
-                            <span for="inputZonaPucp" class="input-group-text" id="basic-addon1">Zona PUCP:</span>
+                            <span for="inputZonaPucp" class="input-group-text" id="basic-addon1">Zona PUCP</span>
                             <input type="text" id="inputZonaPucp" class="form-control" placeholder="zonaPucp" name="zonaPucp" aria-describedby="passwordHelpInline">
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" id="inputUbica" class="form-control" placeholder="Ubicacion" name="Ubicacion" aria-describedby="passwordHelpInline">
-                            <span for="inputUbica" class="input-group-text" id="basic-addon1">:Ubicación</span>
+                            <span for="inputUbica" class="input-group-text" id="basic-addon1">Ubicación</span>
+                            <input type="text" id="inputUbica" class="form-control" placeholder="Ubicacion" name="ubicacion" aria-describedby="passwordHelpInline">
                         </div>
 
                         <div class="input-group mb-3">
@@ -102,18 +103,18 @@
                             </select>
                         </div>
                         <div class="input-group mb-3">
+                            <label class="input-group-text" for="nivelUrgencia">Nivel de Urgencia</label>
                             <select class="form-select" id="nivelUrgencia" name="nivelUrgenciaID">
                                 <option selected>Seleccionar...</option>
                                 <option value="1">Leve</option>
                                 <option value="2">Moderado</option>
                                 <option value="3">Crítico</option>
                             </select>
-                            <label class="input-group-text" for="nivelUrgencia">Nivel de Urgencia</label>
                         </div>
 
 
                         <div class="col-auto">
-                            <label for="imagen" class="col-form-label">Insertar Foto:</label>
+                            <label for="imagen" class="col-form-label">Insertar Foto</label>
                         </div>
                             <div class="input-group mb-3" style="max-width: 20rem">
                                 <label class="input-group-text" for="imagen"><img src="https://img.icons8.com/metro/26/null/camera.png"/></label>
