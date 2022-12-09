@@ -12,6 +12,7 @@
     ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
     HashMap<Integer, Integer> numDestacados = (HashMap<Integer, Integer>) request.getAttribute("numDestacados");
     BUsuarios u = (BUsuarios) session.getAttribute("userlogged");
+
 %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 
@@ -121,11 +122,28 @@
                         <div class="col-lg-4">
                             <p><b style="color:#2C3166">Tipo de Incidencia: </b> <%=incidencia.getTipoDeIncidencia().getNombre()%></p>
                         </div>
-                        <div class="col-lg-4">
-                            <p style="color: #F0C00D">★Destacados</p>
-                        </div>
-                        <div class="col-lg-4">
-                            <p style="color: #B1120D">👤 15</p>
+                        <div class="d-flex flex-row-reverse">
+                            <% if (numDestacados.get(incidencia.getIdIncidencia()) != null) {%>
+                            <div class="p-2"><b
+                                    style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%>
+                            </b></div>
+                            <div class="p-2">
+                                <b>👤 <%=numDestacados.get(incidencia.getIdIncidencia())%>
+                                </b></div>
+                            <%} else {%>
+                            <div class="p-2"><b>👤 0</b></div>
+                            <%}%>
+                            <%if (listaDestacados.contains(incidencia.getIdIncidencia())) { %>
+                            <div class="p-2">
+                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacado&idi=<%=incidencia.getIdIncidencia()%>"
+                                   style="color:#F0C00D">★ Destacar</a>
+                            </div>
+                            <% } else { %>
+                            <div class="p-2">
+                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=destacar&idi=<%=incidencia.getIdIncidencia()%>"
+                                   style="color:rgba(93,131,196,0.38)">★ Destacar</a>
+                            </div>
+                            <%}%>
                         </div>
                     </div>
                     <h6 style="color:#0a7437"> <b>Comentarios: </b></h6>

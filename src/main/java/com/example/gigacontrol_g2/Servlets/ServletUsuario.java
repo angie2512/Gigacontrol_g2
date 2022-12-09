@@ -190,6 +190,8 @@ public class ServletUsuario extends HttpServlet {
                         request.setAttribute("ListaEstados", listaEstados);
                         ArrayList<ComentarIncidencia> listaDeComentarios = daoDatosFijos.obtenerComentariosDeIncidencia(idIncidencia);
                         request.setAttribute("ListaComentarios", listaDeComentarios);
+                        request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
+                        request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
                         requestDispatcher = request.getRequestDispatcher("Usuario/VerIncidencia.jsp");
                         requestDispatcher.forward(request, response);
                         break;
