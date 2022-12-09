@@ -144,7 +144,7 @@ public class UsersDao extends BaseDao{
 
         String sql = "select i.NombreDeIncidencia, u.Nombre, u.Apellido, t.nombre, e.nombre from destacarincidencia\n" +
                 "    inner join incidencia i on destacarincidencia.idIncidencia = i.idIncidencia\n" +
-                "    inner join usuario u on destacarincidencia.idUsuario = u.idUsuario\n" +
+                "    inner join usuario u on i.idUsuario = u.idUsuario\n" +
                 "    inner join estado e on i.idEstado = e.idEstado\n" +
                 "    inner join tipoincidencia t on i.idTipoIncidencia = t.idTipoIncidencia\n" +
                 "    where destacarincidencia.idUsuario=?";
