@@ -38,8 +38,8 @@
             }
 
         </style>
-    </head>
-    <body>
+</head>
+<body>
     <p></p>
 
         <!-- nav -->
@@ -73,36 +73,42 @@
             </div>
         </nav>
 
-<br>
+<br><br>
 
-
-        <div class="container" style="max-width: 500px;">
+    <div class="container" style="max-width: 40rem;">
             <div class="abs-center">
-                <br>
-                <br>
-                <img src="resources/Images/usu.png" class="rounded mx-auto d-block " alt="userphoto" height="200rem"
-                     width="200rem">
-                <br>
-                <div class="card mb-3" style="max-width:38rem ;background-color:#F2F2F3">
-                    <div class="card-body">
-                        <div class="p-1 mb-8 text-white" style="background-color:#ce9411">
-                            <h4 style="text-align: center; color: white; font-family:Giorgia, serif">
-                                <b><%=userlogged.getCategoria()%>
-                                </b></h4>
-                        </div>
+                <center>
+                    <div class="abs-center">
+                        <img id="image" src="https://i0.wp.com/www.diarlu.com/wp-content/uploads/2019/09/cara-hombre-sonriendo.jpg?resize=500%2C500&ssl=1" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="200rem">
+                        <br>
+                        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
 
-                        <p></p>
-                        <blockquote class="blockquote mb-0">
-                            <h5 style="text-align: center;color:#21547D"><%=userlogged.getNombre() + " " + userlogged.getApellido()%>
-                            </h5>
-                            <h6 style="text-align: center;"><%=userlogged.getCategoria()%>
-                            </h6>
-                            <h6 style="text-align: center;"><%=userlogged.getCodigo()%>
-                            </h6>
-                        </blockquote>
+                        <br>
+                        <br>
+                        <div class="card" style="max-width: 30rem;background-color:#F2F2F3">
+                            <div class="card-body">
+                                <div class="p-1 mb-8 text-white" style="background-color:#efd199">
+                                    <h4 style="text-align: center; color: #9b5e2e; font-family:Giorgia, serif">
+                                        <b><%=userlogged.getCategoria()%>
+                                        </b></h4>
+                                </div>
+
+                                <p></p>
+                                <blockquote class="blockquote mb-0">
+                                    <h5 style="text-align: center;color:#21547D"><%=userlogged.getNombre() + " " + userlogged.getApellido()%>
+                                    </h5>
+                                    <h6 style="text-align: center;"><%=userlogged.getCategoria()%>
+                                    </h6>
+                                    <h6 style="text-align: center;"><%=userlogged.getCodigo()%>
+                                    </h6>
+                                </blockquote>
+                            </div>
+                        </div>
+                        <br>
                     </div>
-                </div>
+                </center>
             </div>
+
         </div>
 
         <br><br>

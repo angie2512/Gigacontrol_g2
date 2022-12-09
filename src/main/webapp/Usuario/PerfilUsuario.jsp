@@ -148,7 +148,7 @@
                 <!-- <input id="file-upload" type="file"/> -->
                <!-- <button>SELECCIONA ARCHIVO</button>
                 <input type="file" name="" id="file-upload" hidden multiple>  -->
-                <div class="abs-center">
+    <div class="abs-center">
                     <img id="image" src="<%=u.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
 
                     <br>
@@ -183,7 +183,7 @@
 
 
         <br>
-        <div class="card"style="background-color:#F2F2F3">
+        <div class="card" style="background-color:#F2F2F3">
             <div class="card-body" >
                 <div class="p-1 mb-8 text-white" style="background-color:#5f6694">
                     <h4 style="text-align: center;"><% if(userlogged.getRolId() == 1) {%>
@@ -201,10 +201,13 @@
                     <h6 style="text-align: center;"><%=userlogged.getCategoria()%></h6>
                     <h6 style="text-align: center;"><%=userlogged.getCodigo()%></h6>
                 </blockquote>
+
             </div>
-        </div></br>
+        </div>
+        </br>
     </div>
-</div>
+   </center>
+ </div>
 
 <br><br>
 
