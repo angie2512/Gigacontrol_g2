@@ -45,7 +45,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
-<body class="p-3 m-0 border-0 bd-example">
+<body>
 <nav class="navbar navbar-expand-lg" style="background-color: #131950;" aria-label="Eighth navbar example">
   <div class="container">
     <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>

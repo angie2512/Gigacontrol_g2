@@ -48,7 +48,7 @@
 
 
     </head>
-    <body class="p-3 m-0 border-0 bd-example">
+    <body>
         <%--        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="<%=request.getContextPath()%>/ServletAdmin?action=Inicio" class="nav-link px-2"><b
                             style="color:#1A3B85"><%=userlogged.getNombre().toUpperCase() + " " + userlogged.getApellido().toUpperCase()%>
