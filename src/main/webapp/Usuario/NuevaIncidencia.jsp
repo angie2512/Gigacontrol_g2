@@ -20,7 +20,6 @@
             background-position: center center;
             background-attachment: fixed;
             background-size: cover;" class="p-3 m-0 border-0 bd-example"
-
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
