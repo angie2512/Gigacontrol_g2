@@ -103,9 +103,8 @@ public class ServletInicio extends HttpServlet {
             case "IniciarSesion":
                 String codigo = request.getParameter("codigo");
                 String contrasena = request.getParameter("contrasena");
-                BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
 
-                //BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
+                BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
                 if (usuariolog != null) {
                     session.setAttribute("userlogged", usuariolog);
                     System.out.println("rol: "+ usuariolog.getRolId());
@@ -136,9 +135,9 @@ public class ServletInicio extends HttpServlet {
                     if (codigoAutenticacionIngresado.equals(codigoAutenticacionOriginal)) {
                         response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
                     } else {
-                        System.out.println("error en el código");
-                        session.invalidate();
-                        response.sendRedirect("ServletInicio");
+                        //s.out.println("error en el código");
+                        //session.invalidate();
+                        //response.sendRedirect("ServletInicio");
                         /*if(num_intentos>=2) {
                             session.setAttribute("error2", "Codigo Incorrecto, Vuelva a Ingresar \n" +
                                     "(Tiene " +num_intentos+ " Oportunidades Más)");
@@ -154,9 +153,11 @@ public class ServletInicio extends HttpServlet {
                         num_intentos--;
 
                          */
-                        /*session.setAttribute("error2", "Codigo Incorrecto, Vuelva a Ingresar");
+                        //session.setAttribute("userlogged", usuariolog);
+                        session.setAttribute("error2", "Codigo Incorrecto, Vuelva a Ingresar");
+                        request.setAttribute("Codigo", codigoAutenticacionOriginal);
                         view = request.getRequestDispatcher("AutenticacionSeguridad.jsp");
-                        view.forward(request, response); */
+                        view.forward(request, response);
                     }
                 break;
 
@@ -172,7 +173,11 @@ public class ServletInicio extends HttpServlet {
                         usersDao.crearCredencialesUsuario(codigoPUCPSeg,contrasenaTemporalSeguridad,idUsuario);
                         String estadoUsuarioSeg = "4";
                         usersDao.actualizarEstadoDeUsuario(idUsuario,estadoUsuarioSeg);
-                        //response.sendRedirect(request.getContextPath()+"/ServletInicio");
+                        session.setAttribute("msgSeg","LISTO! Ya falta poco...\n" +
+                                                            "Se envió a su correo: \n" +
+                                                            "Su  Contraseña Temporal De Acceso a la Aplicación\n" +
+                                                            "Inicie sesión y establezca su Nueva Contraseña");
+                        response.sendRedirect(request.getContextPath() + "/ServletInicio");
                     }
                 }
                 session.setAttribute("errorSeg","No Se Encontró alguno de los Campos , Vuelva a Ingresar Correctamente");
@@ -181,7 +186,8 @@ public class ServletInicio extends HttpServlet {
                 break;
 
                 case "establecernuevacontraseg":
-                //    session.setAttribute("userlogged", usuariolog);
+
+                    //session.setAttribute("userlogged", usuariolog);
                     String contrasena1= request.getParameter("contrasena1");
                     String contrasena2= request.getParameter("contrasena2");
                     String idUsuarioStr = request.getParameter("idUsuarioLog");
@@ -192,8 +198,9 @@ public class ServletInicio extends HttpServlet {
                         usersDao.actualizarEstadoDeUsuario(idUsuario,estadoUsuario);
                         response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                     }else {
-                        //session.setAttribute("errorSeg2","No Se Encontró alguno de los Campos , Ingrese Correctamente");
-                        //response.sendRedirect(request.getContextPath()+"/ServletInicio?action=establecerNuevaContraseñaSeguridad");
+                        session.setAttribute("errorSeg2","No Se Encontró alguno de los Campos , Ingrese Correctamente");
+                        view = request.getRequestDispatcher("EstablecerNuevaContraSeguridad.jsp");
+                        view.forward(request, response);
                     }
                     break;
 

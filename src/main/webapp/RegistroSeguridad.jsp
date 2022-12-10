@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -94,7 +96,14 @@
             <div class="text-danger mb-2"><%=session.getAttribute("errorSeg")%></div>
             <% session.removeAttribute("errorSeg"); %>
             <% } %>
-              <!-- MODAL -->
+
+            <% if (session.getAttribute("msgSeg") != null) {%>
+            <div class="alert alert-success"><%=session.getAttribute("msgSeg")%>
+            </div>
+            <% session.removeAttribute("msgSeg"); %>
+            <% } %>
+
+            <!-- MODAL -->
               <div class="d-flex justify-content-center">
                   <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
                         Enviar
@@ -104,10 +113,10 @@
         <!--< % if (session.getAttribute("errorSeg") != null) {%>
         <div class="text-danger mb-2">< %=session.getAttribute("errorSeg")%></div>
         < % session.removeAttribute("errorSeg"); %> -->
-        <%if (session.getAttribute("errorSeg") == null) { %>
+        <!-- %if (session.getAttribute("errorSeg") == null) { %> -->
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+                    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog" style="color:#00000090">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -119,7 +128,7 @@
                                         <table>
                                             <td>
                                                 <h1 style="font-family: 'Times New Roman', Times, serif; color:#4fe474" class="card-title" align="center"><font size= 7><b>LISTO!</b></font></h1>
-                                                <!--<h4 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#e68750" class="card-subtitle" align="center"><b>Ya falta poco...</b></h4> -->
+                                                <h4 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#e68750" class="card-subtitle" align="center"><b>Ya falta poco...</b></h4>
                                                 <p></p>
                                                 <h6 style="font-family: 'Times New Roman', Times, serif; color:#000000" class="card-subtitle" align="center">Se envió a su correo: </h6>
                                                 <h6 style="font-family: 'Times New Roman', Times, serif; color:#000000" class="card-subtitle" align="center">Su Código de Usuario y Contraseña Temporal De Acceso a la Aplicación </h6>
@@ -134,13 +143,12 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="d-flex justify-content-center">
-                                        <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio" role="button" style="margin-left: 0.5rem; background-color: rgb(62, 181, 228); border: none;">OK</a>
+                                        <a class="btn btn-primary" href="< %=request.getContextPath()%>/ServletInicio" role="button" style="margin-left: 0.5rem; background-color: rgb(62, 181, 228); border: none;">OK</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <% } %>
+                    </div> -->
                 </div>
             <br>
     </div>

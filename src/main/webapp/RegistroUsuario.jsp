@@ -109,7 +109,7 @@
 
                     <!--Falta obtener el error-->
 
-                        <% if (session.getAttribute("err") != null) {%>
+                        <% if (session.getAttribute("err") != null) { %>
                     <div class="text-danger mb-2"><%=session.getAttribute("err")%>
                     </div>
                         <% session.removeAttribute("err"); %>

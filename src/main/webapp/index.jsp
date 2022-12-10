@@ -146,6 +146,12 @@
                         </div>
                         <% session.removeAttribute("msg"); %>
                         <% } %>
+
+                        <% if (session.getAttribute("msgSeg") != null) {%>
+                        <div class="alert alert-success"><%=session.getAttribute("msgSeg")%>
+                        </div>
+                        <% session.removeAttribute("msgSeg"); %>
+                        <% } %>
                     </center>
                 </div>
             </div>

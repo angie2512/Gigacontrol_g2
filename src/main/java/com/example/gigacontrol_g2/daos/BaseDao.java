@@ -13,8 +13,13 @@ public abstract class BaseDao{
             throw new RuntimeException(e);
         }
         String user = "root";
-        String pass = "root";
-        String url = "jdbc:mysql://localhost:3306/gigacontrol";
+        //contraseña de la instancia de la BD de google cloud
+        //String pass = "gigacontrol2022";
+        String pass="root";
+        String database = "gigacontrol";
+        //IP : de la BD
+        //String url = "jdbc:mysql://34.28.132.192:3306/" + database;
+        String url = "jdbc:mysql://localhost:3306/" + database;
         return DriverManager.getConnection(url, user, pass);
     }
 
