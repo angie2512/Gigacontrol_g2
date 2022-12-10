@@ -79,7 +79,7 @@
             <div class="abs-center">
                 <center>
                     <div class="abs-center">
-                        <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=userlogged.getIdUsuario()%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
+                        <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=userlogged.getIdUsuario()%>" class="rounded img-fluid" alt="userphoto" height="200rem" width="210rem">
                         <br>
                         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
                         <br>

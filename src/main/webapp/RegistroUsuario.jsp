@@ -49,7 +49,7 @@
     </head>
 
     <body class="p-3 m-0 border-0 bd-example">
-        <table>
+       <!-- <table>
             <tr>
             <tr>
             <tr>
@@ -127,7 +127,7 @@
                     <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
                         Enviar
-                    </button>
+                    </button> -->
 
 
 
@@ -199,14 +199,69 @@
 
                     <br>--%>
 
-            </div>
+         <!--   </div>
             </form>
             <p></p>
 
             </div>
             </div>
-        </center>
+        </center> -->
         <br>
+        <!-- SOLO ES PRUEBAAA-->
+        <center>
+            <div class="card mb-3" style="max-width:50rem ;background-color:rgba(255,255,255,0.70); top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); position: absolute">
+                <div class="card-header">
+                    <img src="resources/Images/LOGO_azul.png" alt="Logo" width="145rem;" height="48rem"
+                         class="rounded float-start img-fluid">
+                </div>
+                <div class="card-body">
+                    <center>
+                        <h1 style="font-family:'Georgia';color:#4b71bb" class="card-title"><b>Usuario PUCP</b></h1>
+                        <h5 style="font-family: 'Mukta Mahee', sans-serif;color:#40936d" class="card-subtitle mb-2">Crear cuenta nueva</h5>
+                        <h6 >Ingrese sus Datos</h6>
+                        <div class="d-grid gap-2 mx-auto">
+                            <form method="post" class="form-signin"
+                                  action="<%=request.getContextPath()%>/ServletInicio?action=ValidacionRegistroUsuario">
+                                <div class="mb-3 d-grid gap-2 col-8 mx-auto">
+                                    <label align="left" for="correo" class="form-label" style="color:#FFFFFF">Correo PUCP</label>
+                                    <input type="correo" class="form-control" id="correo" name="correo">
+                                </div>
+                                <div class="mb-3 d-grid gap-2 col-8 mx-auto">
+                                    <label align="left" for="codigo2" class="form-label" style="color:#FFFFFF">Código PUCP</label>
+                                    <input type="codigo2" class="form-control" id="codigo2"
+                                           name="codigo2">
+                                </div>
+
+                                <!--Falta obtener el error-->
+
+                                    <% if (session.getAttribute("err") != null) { %>
+                                <div class="text-danger mb-2"><%=session.getAttribute("err")%>
+                                </div>
+                                    <% session.removeAttribute("err"); %>
+                                    <% } %>
+
+                                    <% if (session.getAttribute("msg") != null) {%>
+                                <div class="alert alert-success"><%=session.getAttribute("msg")%>
+                                </div>
+                                    <% session.removeAttribute("msg"); %>
+                                    <% } %>
+
+
+                                <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button"
+                                   style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                    Enviar
+                                </button>
+                            </form>
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </center>
+
+
+
         <%--<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button"
            style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>--%>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
