@@ -146,7 +146,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page"
-                               href="<%=request.getContextPath()%>/ServletUsuario?action=NUEVAIncidencia" style="color:#FFFFFF">Nueva
+                               href="<%=request.getContextPath()%>/ServletUsuario?action=nuevaIncidencia" style="color:#FFFFFF">Nueva
                                 Incidencia</a>
                         </li>
                     </ul>
