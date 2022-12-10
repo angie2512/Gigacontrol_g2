@@ -67,7 +67,7 @@
 <div class="d-flex justify-content-center">
     <div class="col-8">
         <div class="card">
-            <div class="card-body" style="max-width: 35rem">
+            <div class="card-body">
                 <center> <h5 class="card-title">INGRESE NUEVA INCIDENCIA</h5></center>
                 <form action="<%=request.getContextPath()%>/ServletUsuario?action=registroIncidencia" method="post">
                     <div class=" table-responsive">

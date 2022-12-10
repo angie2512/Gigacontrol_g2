@@ -99,11 +99,19 @@ public class ServletUsuario extends HttpServlet {
                         requestDispatcher.forward(request, response);
                 }
                     break;
+
                     case "listarimg":
                         String idincidencia2 = request.getParameter("id");
                         int incidenciaid2 = Integer.parseInt(idincidencia2);
                         daoDatosFijos.listarImg(incidenciaid2, response);
                         break;
+
+                    case "listarimgPerfil":
+                        String idusuarioimg = request.getParameter("idp");
+                        int usuarioidimg = Integer.parseInt(idusuarioimg);
+                        daoDatosFijos.listarImgPerfil(usuarioidimg, response);
+                        break;
+
                     case "editar":
                         requestDispatcher = request.getRequestDispatcher("Usuario/EditarIncidencia.jsp");
                         requestDispatcher.forward(request, response);

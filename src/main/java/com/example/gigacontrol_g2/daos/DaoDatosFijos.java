@@ -200,6 +200,31 @@ public class DaoDatosFijos extends BaseDao {
             e.printStackTrace();
         }
     }
+
+    public void listarImgPerfil(int id, HttpServletResponse response) {
+        String sql = "SELECT u.FotoPerfil FROM usuario u where idUsuario=?";
+        response.setContentType("image/*");
+        InputStream inputStream = null;
+        OutputStream outputStream;
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstm = conn.prepareStatement(sql);) {
+            pstm.setInt(1, id);
+            try (ResultSet rs = pstm.executeQuery();) {
+                outputStream = response.getOutputStream();
+                if (rs.next()) {
+                    inputStream = rs.getBinaryStream(1);
+                }
+                byte[] imagen = new byte[inputStream.available()];
+                inputStream.read(imagen, 0, inputStream.available());
+                outputStream.write(imagen);
+                inputStream.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public void mostrarImagenUsuario(int id, HttpServletResponse response){
         String sql= "select u.FotoPerfil from usuario u where idUsuario=?";
         response.setContentType("image/*");

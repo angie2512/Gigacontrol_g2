@@ -12,6 +12,7 @@
     ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
     HashMap<Integer, Integer> numDestacados = (HashMap<Integer, Integer>) request.getAttribute("numDestacados");
     BUsuarios u = (BUsuarios) session.getAttribute("userlogged");
+    BUsuarios usuario = (BUsuarios) session.getAttribute("usuario");
 
 %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
@@ -25,7 +26,33 @@
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <title>Ver Incidencia</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <style>
+    <script>
+        let map;
+        let marker;
+        function initMap(){
+            const coord = {lat:-12.0680766 ,lng: -77.0794255};
+            map = new google.maps.Map(document.getElementById('map'),{
+                zoom: 17,
+                center: coord
+            });
+            marker = new google.maps.Marker({
+                position: coord,
+                map: map
+            });
+            marker.setPosition(coord);
+        }
+        window.initMap = initMap;
+    </script>
+    <style type="text/css">
+        #map{
+            height: 100%;
+        }
+        html,
+        #map-container{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
         body {
             background: url("https://ambientesdigital.com/wp-content/uploads/2017/07/10-biblioteca-ciencias-ingenieria-arquitectura-pucp-foto-juan-solano-ojasi.jpg");
             background-position: center center;
@@ -37,6 +64,7 @@
             bgcolor: "#800000";
         }
     </style>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYO577C0s-mTgU94RJbr7HZ6sTL41Uobg&callback=initMap&v=weekly"></script>
 </head>
 <body>
 <p></p>
@@ -105,7 +133,8 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <!-- IMAGEN -->
-                            <img src="resources/Images/userSeguridad.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem">
+
+                            <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimgPerfil&id=<%=u.getIdUsuario()%>" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem">
                         </div>
                         <div class="col-lg-3">
                             <p style="color: #2C3166"><%=incidencia.getUsuario().getApellido()%>, <%=incidencia.getUsuario().getNombre()%></p>
@@ -155,10 +184,10 @@
                                 <h3>Foto Incidencia</h3>
                                 <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="215rem" style="padding-left: 2rem;">
                             </div>
-                            <div class="col-md-6">
-                                <h3>Ubicación</h3>
-                                <img src="https://img.freepik.com/vector-premium/mapa-punto-ubicacion-destino_34645-957.jpg?w=2000" class="rounded float-start img-fluid " alt="userphoto" height="200rem" width="200rem">
-                                <center><button class="btn btn-outline-danger" type="button">Ubicación</button></center>
+                            <div class="col-6">
+                                <div id="map-container">
+                                    <div id="map"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -232,5 +261,11 @@
 <br><br>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $( document ).ready(function() {
+        initMap();
+    });
+</script>
 </body>
 </html>
