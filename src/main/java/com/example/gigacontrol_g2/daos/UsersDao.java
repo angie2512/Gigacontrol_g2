@@ -161,10 +161,9 @@ public class UsersDao extends BaseDao{
                     Estado estadoIncidencia = new Estado();
                     //incidencia.setIdIncidencia(rs.getInt(1));
                     incidencia.setNombreDeIncidencia(rs.getString(1));
-
+                    incidencia.setUsuario(usuario);
                     usuario.setNombre(rs.getString(2));
                     usuario.setApellido(rs.getString(3));
-                    incidencia.setUsuario(usuario);
                     tipoIncidencia.setNombre(rs.getString(4));
                     incidencia.setTipoDeIncidencia(tipoIncidencia);
                     estadoIncidencia.setNombre(rs.getString(5));
@@ -619,10 +618,31 @@ public class UsersDao extends BaseDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
+    //EDITAR INCIDENCIA
+    public void actualizarIncidencia(int userID, String nombre, String descripcion, String zonaPucp, String ubicacion, int ti, int nu, int estado) {
+
+        String sql = "UPDATE incidencia SET NombreDeIncidencia = ?, Descripcion = ?, ZonaPucp = ?, Ubicacion = ?, idTipoIncidencia = ?, idNivelUrgencia = ?, idEstado = ?  WHERE idUsuario = ?";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            System.out.println(nombre);
+            pstmt.setString(1, nombre);
+            pstmt.setString(2, descripcion);
+            pstmt.setString(3, zonaPucp);
+            pstmt.setString(4, ubicacion);
+            pstmt.setInt(5, ti );
+            pstmt.setInt(6,nu );
+            pstmt.setInt(7, estado);
+            pstmt.setInt(8,userID);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 
