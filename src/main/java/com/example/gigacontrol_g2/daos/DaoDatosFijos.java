@@ -156,13 +156,16 @@ public class DaoDatosFijos extends BaseDao {
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
+                    BUsuarios bUsuarios = new BUsuarios();
                     ComentarIncidencia comentarIncidencia = new ComentarIncidencia();
                     comentarIncidencia.setIdComentario(rs.getInt(1));
-                    comentarIncidencia.setIdUsuario(rs.getInt(2));
+                    bUsuarios.setIdUsuario(rs.getInt("idUsuario"));
                     comentarIncidencia.setIdIncidencia(idIncidencia);
                     comentarIncidencia.setComentarioIncidencia(rs.getString(4));
                     comentarIncidencia.setFechaDeComentario(rs.getTimestamp(5));
                     comentariosDeIncidencia.add(comentarIncidencia);
+
+                    comentarIncidencia.setUsuario(bUsuarios);
                 }
             }
 

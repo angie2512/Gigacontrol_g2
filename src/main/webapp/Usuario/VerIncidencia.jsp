@@ -174,12 +174,12 @@
                     <ul>
                         <% for(ComentarIncidencia comentario : listaComentarios){ %>
                         <li class="card-text" >
-                            <% if (comentario.getIdUsuario()==incidencia.getUsuario().getIdUsuario()){ %>
+                            <% if (comentario.getUsuario().getIdUsuario()==incidencia.getUsuario().getIdUsuario()){ %>
                             <h5 style="color:#000000"><%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%></h5>
                             <h6>"Usuario PUCP"</h6>
                             <% }
                             else{ %>
-                            <h5><%=userlogged.getNombre()%> <%=userlogged.getApellido()%></h5>
+                            <h5><%=comentario.getUsuario().getNombre()%> <%=comentario.getUsuario().getApellido()%></h5>
                             <h6>"Personal de Seguridad"</h6>
                             <% } %>
                             <p><%=comentario.getComentarioIncidencia()%></p>

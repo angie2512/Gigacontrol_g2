@@ -5,7 +5,17 @@ import java.sql.Timestamp;
 
 public class ComentarIncidencia {
     private int idComentario;
-    private int idUsuario;
+
+    private BUsuarios usuario;
+
+    public BUsuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(BUsuarios usuario) {
+        this.usuario = usuario;
+    }
+
     private int idIncidencia;
     private String ComentarioIncidencia;
     private java.sql.Timestamp fechaDeComentario;
@@ -18,13 +28,7 @@ public class ComentarIncidencia {
         this.idComentario = idComentario;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
 
     public int getIdIncidencia() {
         return idIncidencia;

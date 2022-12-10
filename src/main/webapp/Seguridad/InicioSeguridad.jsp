@@ -3,6 +3,7 @@
 <%@ page import="com.example.gigacontrol_g2.beans.TipoDeIncidencia" %>
 <%@ page import="com.example.gigacontrol_g2.beans.NivelDeUrgencia" %>
 <%@ page import="com.example.gigacontrol_g2.beans.BUsuarios" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session"
              class="com.example.gigacontrol_g2.beans.BUsuarios"/>
@@ -14,6 +15,8 @@
 <%
     String searchText = (String) request.getAttribute("searchText");
     ArrayList<Incidencia> listaDeIncidencias = (ArrayList<Incidencia>) request.getAttribute("listaIncidencias");
+    ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
+    HashMap<Integer, Integer> numDestacados = (HashMap<Integer, Integer>) request.getAttribute("numDestacados");
 %>
 
 

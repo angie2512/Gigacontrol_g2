@@ -260,7 +260,7 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                 <ul>
                     <% for(ComentarIncidencia comentario : listaComentarios){ %>
                     <li class="card-text" >
-                        <% if (comentario.getIdUsuario()==incidencia.getUsuario().getIdUsuario()){ %>
+                        <% if (comentario.getUsuario().getIdUsuario()==incidencia.getUsuario().getIdUsuario()){ %>
                         <h5><%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%></h5>
                         <h6>"Usuario PUCP"</h6>
                         <% }
