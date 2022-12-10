@@ -7,7 +7,11 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 @WebServlet(name = "ServletAdmin", urlPatterns = {"/ServletAdmin"})
@@ -50,12 +54,9 @@ ServletAdmin extends HttpServlet {
 
                 request.setAttribute("lista", lista);
 
-
                 if (request.getParameter("pg") != null) {
                     valor_pagina = Integer.parseInt(request.getParameter("pg"));
                 }
-
-
                 int regMin = (valor_pagina - 1) * 9;
 
                 if (valor_pagina != maxPag2){
@@ -70,6 +71,11 @@ ServletAdmin extends HttpServlet {
                     request.setAttribute("regMin", regMin);
                     request.setAttribute("regMax", regMax);
                     request.setAttribute("valor_pagina", valor_pagina);
+                }
+                for(BUsuarios p : lista){
+                    if(p.getApellido().equalsIgnoreCase("maradona")){
+                        System.out.println("foto? " + p.getFotoPerfil() );
+                    }
                 }
                 requestDispatcher = request.getRequestDispatcher("Admi/listaUsuarios.jsp");
                 requestDispatcher.forward(request, response);
@@ -141,7 +147,7 @@ ServletAdmin extends HttpServlet {
                 String celular = request.getParameter("celular");
                 String categoria_c = request.getParameter("categoria");
                 String rolstr_C = request.getParameter("rolID");
-                System.out.println("nombre recv= " + nombre_c);
+
                 try {
                     int rolID = Integer.parseInt(rolstr_C);
                     BUsuarios newuser = new BUsuarios();
@@ -162,13 +168,34 @@ ServletAdmin extends HttpServlet {
 
 
             case "buscar":
-                String searchText = request.getParameter("searchText");
+                ArrayList<BUsuarios> lista = null;
+                String tipo = request.getParameter("tipoBusqueda");
+                String parameter = request.getParameter("parameter");
 
-                ArrayList<BUsuarios> lista = usersDao.buscarPorApellido(searchText);
+                String nro_filas_total_busqueda_apellido_str="0";
+
+                if(tipo==null){
+                    tipo="apellido";
+                }
+
+                if(tipo.equalsIgnoreCase("apellido")){
+                    lista = daoAdmin.buscarPorApellido(parameter);
+                    nro_filas_total_busqueda_apellido_str = daoAdmin.contarApellido(parameter);
+                }
+                else if (tipo.equalsIgnoreCase("nombre")){
+                    lista = daoAdmin.buscarPorNombre(parameter);
+                    nro_filas_total_busqueda_apellido_str = daoAdmin.contarNombre(parameter);
+                }
+                else if (tipo.equalsIgnoreCase("codigo")){
+                    lista = daoAdmin.buscarPorCodigo(parameter);
+                    nro_filas_total_busqueda_apellido_str = daoAdmin.contarCodigo(parameter);
+                }
 
                 int valor_pagina = 1;
 
-                String nro_filas_total_busqueda_apellido_str = usersDao.contarxApellido(searchText);
+               // String nro_filas_total_busqueda_apellido_str = usersDao.contarxApellido(parameter);
+
+
                 int nro_filas_total_busqueda_apellido_int = Integer.parseInt(nro_filas_total_busqueda_apellido_str);
                 float valor_total_filas = Float.parseFloat(nro_filas_total_busqueda_apellido_str);
 
@@ -199,7 +226,7 @@ ServletAdmin extends HttpServlet {
 
 
                 request.setAttribute("lista", lista);
-                request.setAttribute("searchText", searchText);
+                request.setAttribute("parameter", parameter);
 
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Admi/listaUsuarios.jsp");
                 requestDispatcher.forward(request, response);

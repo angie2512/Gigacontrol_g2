@@ -4,7 +4,7 @@
 
 
 <%
-    String searchText = (String) request.getAttribute("searchText");
+    String searchText = (String) request.getAttribute("parameter");
 %>
 
 <%
@@ -98,23 +98,27 @@
                     <div class="row align-items-center">
                         <div class="col-10">
                             <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=buscar">
-                                <div class="col-auto">
-                                    <label for="floatingInput" class="col-form-label">Buscar:</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input type="text" name="searchText" class="form-control" id="floatingInput"
-                                           placeholder="Buscar Usuario" value="<%=searchText!=null?searchText:""%>">
+                                <div class="input-group mb-3 col-9">
+                                    <select class="form-select" aria-label="Default select example" name="tipoBusqueda" id="tipoBusqueda" placeholder="TIPO">
+                                        <option selected disabled>Seleccionar Criterio de busqueda</option>
+                                        <option value="Nombre">Nombre</option>
+                                        <option value="Apellido">Apellido</option>
+                                        <option value="Codigo">Codigo</option>
+                                    </select>
+                                    <input type="text" class="form-control" aria-label="Text input with dropdown button"
+                                           value="<%=searchText!=null?searchText:""%>" id="parameter" name="parameter" placeholder="Buscar Usuario">
+                                    <a href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios"
+                                           class="btn btn-secondary">borrar</a>
                                 </div>
                             </form>
-                            <div class="col-2">
-                                <a href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios"
-                                   class="btn btn-secondary">borrar</a>
-                            </div>
+
                         </div>
                     </div>
 
                     <div class="table-responsive">
                         <table class="table">
+                            <%System.out.println("lista? " + lista.size());%>
+                            <%if(lista.size()!=0){%>
                             <thead>
                                 <tr>
                                     <th scope="col"></th>
@@ -129,14 +133,18 @@
                                 <%
                                     for (int i = regMin; i < regMax; i++) {
                                         BUsuarios usuario = lista.get(i); %>
-                                <%if(usuario.getEstado()!=2){%>
+                                <%if(usuario.getEstado()!=2 && usuario!=null){%>
                                 <tr>
                                     <th><%=i+1%>
                                     </th>
 
                                     <td>
+                                        <%if(usuario.getFotoPerfil()!=null){%>
                                         <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=usuario.getIdUsuario()%>" height="60rem" width="60rem">
-
+                                        <%}
+                                        else{%>
+                                        <img src="resources/Images/usu.png" height="60rem" width="60rem">
+                                        <%}%>
                                     </td>
                                     <td class="card-text"><%=usuario.getApellido().toUpperCase() + ", " + usuario.getNombre()%>
                                     </td>
@@ -149,21 +157,27 @@
                                             class="btn btn-primary">Editar</a></td>
 
                                 </tr>
-                                <%}%>
                                 <%
                                     }
                                 %>
+                                <%
+                                    }
+                                %>
+                            <%}
+                            else{%>
+                                <div class="d-flex justify-content-center">
+                                    <h1>Usuarios no encontrados</h1>
+                                </div>
+                                <%}%>
                             </tbody>
                         </table>
 
                     </div>
 
-
                 </div>
 
-
                 <%
-                    if (maxPag2 >= 1) {
+                    if (maxPag2 >= 1 && lista.size()!=0) {
 
                 %>
 
@@ -212,7 +226,7 @@
                         %>
 
 
-                        <%if (valor_pagina != maxPag2) { %>
+                        <%if (valor_pagina != maxPag2 && lista.size()!=0) { %>
 
                         <li class="page-item">
                             <a class="page-link" href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios&pg=<%=valor_pagina+1%>"

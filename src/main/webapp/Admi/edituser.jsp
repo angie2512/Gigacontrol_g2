@@ -86,11 +86,18 @@
 
         <tr>
           <td>
+
+            <%if(user.getFotoPerfil()!=null){%>
             <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=user.getIdUsuario()%>" class="rounded mx-auto d-block "  height="200rem" width="200rem">
+            <%}
+            else{%>
+            <img src="resources/Images/usu.png" class="rounded mx-auto d-block "  height="200rem" width="200rem">
+            <%}%>
+
             <br>
             <div class="d-flex justify-content-center">
               <a type="button" class="btn btn-danger"
-                 onclick="return confirm('¿Estas seguro(a) que deseas borrar?')"
+                 onclick="return confirm('¿Estas seguro(a) que deseas borrar este usuario?')"
                  href="<%=request.getContextPath()%>/ServletAdmin?action=borrar&id=<%=user.getIdUsuario()%>">Eliminar
               </a>
             </div>
@@ -150,11 +157,36 @@
               </ul>
               <br>
               <ul class="list-group list-group-flush">
-                <input type="text" class="form-control"  id="categoria" name="categoria"  value="<%=user.getCategoria()%>">
+                <select class="form-select" id="categoria" name="categoria">
+                  <option selected><%=user.getCategoria()%></option>
+                  <option value="1">Alumno</option>
+                  <option value="2">Profesor</option>
+                  <option value="3">Jefe de páctica</option>
+                  <option value="4">Seguridad</option>
+                </select>
+                <!--<input type="text" class="form-control"  id="categoria" name="categoria"  value="<%=user.getCategoria()%>">-->
               </ul>
               <br>
               <ul class="list-group list-group-flush">
-                <input type="text" class="form-control"  id="rolID" name="rolID" value="<%=user.getRolId()%>">
+                <select class="form-select" id="rolID" name="rolID">
+                    <%String i;
+                      if(user.getRolId()==1){
+                        i="Seguridad";
+                      }
+                      else if(user.getRolId()==2){
+                        i="Usuario Pucp";
+                      }
+                      else{
+                        i="Administrador";
+                      }%>
+                  <option selected>
+                    <%=i%>
+                  </option>
+                  <option value="1">seguridad</option>
+                  <option value="2">usuario pucp</option>
+                  <option value="3">administrador</option>
+                </select>
+                <!--<input type="text" class="form-control"  id="rolID" name="rolID" value="<%=user.getRolId()%>">-->
               </ul>
               <ul>
                 <button type="submit" class="btn btn-primary">Actualizar</button>

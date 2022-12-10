@@ -2,6 +2,7 @@ package com.example.gigacontrol_g2.daos;
 
 import com.example.gigacontrol_g2.beans.BUsuarios;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -11,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DaoAdmin extends BaseDao {
     public void viewImage(int id, HttpServletResponse response) {
@@ -52,21 +54,10 @@ public class DaoAdmin extends BaseDao {
             throw new RuntimeException(e);
         }
     }
-    public void guardar(BUsuarios user) throws IOException {
+    public void guardar(BUsuarios user){
 
         String sql = "INSERT INTO usuario (Nombre,Apellido,Correo,Codigo,DNI,Celular,Categoria,Rol_idRol,estado) VALUES (?,?,?,?,?,?,?,?,?)";
 
-/*
-       // String directorio = new File (".").getAbsolutePath() + "\\src\\main\\main\\resources\\Images\\usu.png";
-        String directorio = new File ("src/main/main/resources/Images/usu.png").getPath();
-        InputStream is = null;
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        is = loader.getResourceAsStream(directorio);
-
-
-        File imagen = new File(directorio);
-        FileInputStream   fis = new FileInputStream(imagen);
-*/
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -91,8 +82,6 @@ public class DaoAdmin extends BaseDao {
                     pstmt.setString(7,"Seguridad");
                     break;
             }
-            //pstmt.setBinaryStream(8, fis, (int) imagen.length());
-            //pstmt.setBlob(8,is);
             pstmt.setInt(8,user.getRolId());
             pstmt.setString(9,"3");
 
@@ -102,4 +91,148 @@ public class DaoAdmin extends BaseDao {
             throw new RuntimeException(e);
         }
     }
+
+    public ArrayList<BUsuarios> buscarPorApellido(String apellido) {
+
+        ArrayList<BUsuarios> lista = new ArrayList<>();
+        String sql = "select * from usuario where lower(apellido) = ?";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, apellido);
+
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                while (resultSet.next()) {
+
+                    BUsuarios newUser = new BUsuarios();
+                    newUser.setIdUsuario(resultSet.getInt(1));
+                    newUser.setNombre(resultSet.getString(2));
+                    newUser.setApellido(resultSet.getString(3));
+                    newUser.setCorreo(resultSet.getString(4));
+                    newUser.setCodigo(resultSet.getString(5));
+                    newUser.setDni(resultSet.getString(6));
+                    newUser.setCelular(resultSet.getString(7));
+                    newUser.setCategoria(resultSet.getString(8));
+                    newUser.setFotoPerfil(resultSet.getString(9));
+                    newUser.setRolId(resultSet.getInt(10));
+                    newUser.setEstado((char) resultSet.getInt(11));
+                    lista.add(newUser);
+
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lista;
+    }
+
+    public ArrayList<BUsuarios> buscarPorNombre(String nombre) {
+        ArrayList<BUsuarios> lista = new ArrayList<>();
+        String sql = "select * from usuario where lower(Nombre) = ?";
+        try (Connection connection = this.getConnection();  PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, nombre);
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                while (resultSet.next()) {
+                    BUsuarios newUser = new BUsuarios();
+                    newUser.setIdUsuario(resultSet.getInt(1));
+                    newUser.setNombre(resultSet.getString(2));
+                    newUser.setApellido(resultSet.getString(3));
+                    newUser.setCorreo(resultSet.getString(4));
+                    newUser.setCodigo(resultSet.getString(5));
+                    newUser.setDni(resultSet.getString(6));
+                    newUser.setCelular(resultSet.getString(7));
+                    newUser.setCategoria(resultSet.getString(8));
+                    newUser.setFotoPerfil(resultSet.getString(9));
+                    newUser.setRolId(resultSet.getInt(10));
+                    newUser.setEstado((char) resultSet.getInt(11));
+                    lista.add(newUser);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lista;
+    }
+
+    public ArrayList<BUsuarios> buscarPorCodigo(String codigo) {
+
+        ArrayList<BUsuarios> lista = new ArrayList<>();
+        String sql = "select * from usuario where lower(Codigo) = ?";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, codigo);
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                while (resultSet.next()) {
+                    BUsuarios newUser = new BUsuarios();
+                    newUser.setIdUsuario(resultSet.getInt(1));
+                    newUser.setNombre(resultSet.getString(2));
+                    newUser.setApellido(resultSet.getString(3));
+                    newUser.setCorreo(resultSet.getString(4));
+                    newUser.setCodigo(resultSet.getString(5));
+                    newUser.setDni(resultSet.getString(6));
+                    newUser.setCelular(resultSet.getString(7));
+                    newUser.setCategoria(resultSet.getString(8));
+                    newUser.setFotoPerfil(resultSet.getString(9));
+                    newUser.setRolId(resultSet.getInt(10));
+                    newUser.setEstado((char) resultSet.getInt(11));
+                    lista.add(newUser);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lista;
+    }
+
+
+    public String contarApellido(String apellido) {
+        String nro_filas_total_busqueda_apellido = null;
+        String sql = "select count(*) as conteo from usuario where lower(apellido) = ?";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, apellido);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    nro_filas_total_busqueda_apellido = rs.getString("conteo");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return nro_filas_total_busqueda_apellido;
+    }
+    public String contarNombre(String nombre) {
+        String nro_filas_total_busqueda_apellido = null;
+        String sql = "select count(*) as conteo from usuario where lower(Nombre) = ?";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, nombre);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    nro_filas_total_busqueda_apellido = rs.getString("conteo");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return nro_filas_total_busqueda_apellido;
+    }
+    public String contarCodigo(String codigo) {
+        String nro_filas_total_busqueda_apellido = null;
+        String sql = "select count(*) as conteo from usuario where lower(Codigo) = ?";
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, codigo);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    nro_filas_total_busqueda_apellido = rs.getString("conteo");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return nro_filas_total_busqueda_apellido;
+    }
+
 }
