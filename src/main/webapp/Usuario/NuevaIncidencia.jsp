@@ -67,31 +67,31 @@
 <div class="d-flex justify-content-center">
     <div class="col-8">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" >
                 <center> <h5 class="card-title">INGRESE NUEVA INCIDENCIA</h5></center>
                 <form action="<%=request.getContextPath()%>/ServletUsuario?action=registroIncidencia" method="post">
                     <div class=" table-responsive">
 
-                        <div class="input-group mb-3">
-                            <span for="inputName" class="input-group-text" id="basic-addon1">Nombre</span>
-                            <input type="text" id="inputName" class="form-control" placeholder="Nombre" name="nombre" aria-describedby="passwordHelpInline">
+                        <div class="input-group mb-3" >
+                            <span for="inputName" class="col-lg-2 input-group-text" id="basic-addon1" style="text-align: center"> Nombre</span>
+                            <input type="text" id="inputName" class="form-control" placeholder="Nombre de la incidencia" name="nombre" aria-describedby="passwordHelpInline">
                         </div>
                         <div class="input-group mb-3">
-                            <span for="inputDescripcion" class="input-group-text" id="basic-addon1">Descripción</span>
-                            <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripción" name="descripcion" aria-describedby="passwordHelpInline">
+                            <span for="inputDescripcion" class="col-lg-2 input-group-text" id="basic-addon1"><center> Descripción</center></span>
+                            <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripción de la incidencia" name="descripcion" aria-describedby="passwordHelpInline">
 
                         </div>
                         <div class="input-group mb-3">
-                            <span for="inputZonaPucp" class="input-group-text" id="basic-addon1">Zona PUCP</span>
-                            <input type="text" id="inputZonaPucp" class="form-control" placeholder="zonaPucp" name="zonaPucp" aria-describedby="passwordHelpInline">
+                            <span for="inputZonaPucp" class=" col-lg-2 input-group-text" id="basic-addon1"> Zona PUCP </span>
+                            <input type="text" id="inputZonaPucp" class="form-control" placeholder="Zona de la incidencia" name="zonaPucp" aria-describedby="passwordHelpInline">
                         </div>
                         <div class="input-group mb-3">
-                            <span for="inputUbica" class="input-group-text" id="basic-addon1">Ubicación</span>
-                            <input type="text" id="inputUbica" class="form-control" placeholder="Ubicacion" name="ubicacion" aria-describedby="passwordHelpInline">
+                            <span for="inputUbica" class="col-lg-2 input-group-text" id="basic-addon1"><center> Ubicación</center></span>
+                            <input type="text" id="inputUbica" class="form-control" placeholder="Ubicacion de la incidencia" name="ubicacion" aria-describedby="passwordHelpInline">
                         </div>
 
                         <div class="input-group mb-3">
-                            <label for="tipoIncidencia" class="input-group-text" >Tipo de incidencia</label>
+                            <label for="tipoIncidencia" class="col-lg-2 input-group-text" ><center> Tipo de incidencia</center></label>
                             <select class="form-select" id="tipoIncidencia" name="tipoIncidenciaID">
                                 <option selected>Seleccionar...</option>
                                 <option value="1">Robo</option>
@@ -103,7 +103,7 @@
                             </select>
                         </div>
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="nivelUrgencia">Nivel de Urgencia</label>
+                            <label class="col-lg-2 input-group-text" for="nivelUrgencia"><center> Nivel de Urgencia</center></label>
                             <select class="form-select" id="nivelUrgencia" name="nivelUrgenciaID">
                                 <option selected>Seleccionar...</option>
                                 <option value="1">Leve</option>
@@ -113,13 +113,13 @@
                         </div>
 
 
-                        <div class="col-auto">
-                            <label for="imagen" class="col-form-label">Insertar Foto</label>
+                        <div class="input-group mb-3" style="max-width: 60rem">
+                            <span for="imagen" class="col-lg-2 input-group-text"><center>Insertar Foto</center></span>
+                            <label class="input-group-text" for="imagen"><img src="https://img.icons8.com/metro/26/null/camera.png"/></label>
+                            <input type="file" class="form-control" id="imagen">
                         </div>
-                            <div class="input-group mb-3" style="max-width: 20rem">
-                                <label class="input-group-text" for="imagen"><img src="https://img.icons8.com/metro/26/null/camera.png"/></label>
-                                <input type="file" class="form-control" id="imagen">
-                            </div>
+
+
 
 
                         <div class="d-flex justify-content-center">
@@ -160,31 +160,6 @@
         </div>
     </div>
 </div>
-<!-- Modal
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Registro Completo</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="d-flex justify-content-center">
-                                                <h3 style="color:#399934">Nueva Incidencia Registrada</h3>
-                                                <img src="resources/Images/check-png.webp" class="rounded mx-auto d-block " alt="userphoto" height="37rem" width="50rem">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <div class="d-flex justify-content-center">
-                                                <a class="btn btn-primary" href="<%=request.getContextPath()%>/InicioUsuario" role="button" style="margin-left: 0.5rem; background-color: grey; border: none;">Listo</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
--->
 
 </body>
 
