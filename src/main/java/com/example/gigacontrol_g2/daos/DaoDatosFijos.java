@@ -164,9 +164,10 @@ public class DaoDatosFijos extends BaseDao {
                     comentarIncidencia.setComentarioIncidencia(rs.getString(4));
                     comentarIncidencia.setFechaDeComentario(rs.getTimestamp(5));
                     comentariosDeIncidencia.add(comentarIncidencia);
-
                     comentarIncidencia.setUsuario(bUsuarios);
+
                 }
+
             }
 
         } catch (SQLException e) {
