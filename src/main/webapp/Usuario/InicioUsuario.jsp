@@ -299,25 +299,25 @@
                                                     <td>
                                                     <td>
                                                         <div class="d-flex flex-row-reverse">
-                                                            <% if (numDestacados.get(incidencia.getIdIncidencia()) != null) {%>
                                                             <div class="p-2"><b
-                                                                    style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%>
+                                                                    style="color:#5f6694 ">Estado:<%=incidencia.getEstado().getNombre()%>
                                                             </b></div>
-                                                            <div class="p-2">
+                                                            <% if (numDestacados.get(incidencia.getIdIncidencia()) != null) {%>
+                                                            <div class="p-1">
                                                                 <b>👤 <%=numDestacados.get(incidencia.getIdIncidencia())%>
                                                                 </b></div>
                                                             <%} else {%>
-                                                            <div class="p-2"><b>👤 0</b></div>
+                                                            <div class="p-2"><b>👤0</b></div>
                                                             <%}%>
                                                             <%if (listaDestacados.contains(incidencia.getIdIncidencia())) { %>
                                                             <div class="p-2">
                                                                 <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacado&idi=<%=incidencia.getIdIncidencia()%>"
-                                                                   style="color:#F0C00D">★ Destacar</a>
+                                                                   style="color:#F0C00D">★Destacar</a>
                                                             </div>
                                                             <% } else { %>
                                                             <div class="p-2">
                                                                 <a href="<%=request.getContextPath()%>/ServletUsuario?action=destacar&idi=<%=incidencia.getIdIncidencia()%>"
-                                                                   style="color:rgba(93,131,196,0.38)">★ Destacar</a>
+                                                                   style="color:rgba(93,131,196,0.38)">★Destacar</a>
                                                             </div>
                                                             <%}%>
                                                         </div>

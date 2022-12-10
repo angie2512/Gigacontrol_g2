@@ -170,7 +170,7 @@
                             <% } else { %>
                             <div class="p-2">
                                 <a href="<%=request.getContextPath()%>/ServletUsuario?action=destacar&idi=<%=incidencia.getIdIncidencia()%>"
-                                   style="color:rgba(93,131,196,0.38)">★ Destacar</a>
+                                   style="color:rgba(93,131,196,0.38)">★Destacar</a>
                             </div>
                             <%}%>
                         </div>
