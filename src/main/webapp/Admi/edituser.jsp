@@ -85,7 +85,8 @@
       <table>
 
         <tr>
-          <td><img src="https://i.pinimg.com/236x/9a/d5/13/9ad5135b8df800a80f61a92a5afe158f.jpg" class="rounded mx-auto d-block "  height="200rem" width="200rem">
+          <td>
+            <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=user.getIdUsuario()%>" class="rounded mx-auto d-block "  height="200rem" width="200rem">
             <br>
             <div class="d-flex justify-content-center">
               <a type="button" class="btn btn-danger"

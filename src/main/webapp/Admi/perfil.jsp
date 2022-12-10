@@ -206,7 +206,7 @@
 
         <div class="row mb-2">
             <div class="col-md-6">
-                    <img src="http://www.eventosfilm.com/wp-content/uploads/2018/02/foto-visa-5x5-para-los-Estados-Unidos-300x300.gif" class="img-fluid rounded float-end" alt="FotoPerfil" style="width: 16rem">
+                    <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=userlogged.getIdUsuario()%>" class="img-fluid rounded float-end" alt="FotoPerfil" style="width: 16rem">
             </div>
             <div class="col-md-6" style="border:none">
                 <div class="md-250 position-relative">

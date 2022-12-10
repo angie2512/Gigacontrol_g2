@@ -289,77 +289,77 @@
                                             <tr>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <label for="inputName" class="col-form-label">Nombres:</label>
+                                                        <label for="nombre" class="col-form-label">Nombres:</label>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <input type="text" id="inputName" class="form-control"
-                                                               aria-describedby="passwordHelpInline">
+                                                        <input type="text" id="nombre" class="form-control nav-bar-cell1-rev"
+                                                               aria-describedby="passwordHelpInline" name="nombre">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="row g-3 align-items-center">
                                                         <div class="col-auto">
-                                                            <label for="inputLastName"
+                                                            <label for="apellido"
                                                                    class="col-form-label">Apellidos:</label>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <input type="text" id="inputLastName" class="form-control"
-                                                               aria-describedby="passwordHelpInline">
+                                                        <input type="text" id="apellido" class="form-control"
+                                                               aria-describedby="passwordHelpInline" name="apellido">
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <label for="inputDNI" class="col-form-label">DNI:</label>
+                                                        <label for="dni" class="col-form-label">DNI:</label>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <input type="text" id="inputDNI" class="form-control"
-                                                               aria-describedby="passwordHelpInline">
+                                                        <input type="text" id="dni" class="form-control"
+                                                               aria-describedby="passwordHelpInline" name="dni">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <label for="inputCel" class="col-form-label">Celular:</label>
+                                                        <label for="celular" class="col-form-label">Celular:</label>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <input type="text" id="inputCel" class="form-control"
-                                                               aria-describedby="passwordHelpInline">
+                                                        <input type="text" id="celular" class="form-control"
+                                                               aria-describedby="passwordHelpInline" name="celular">
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <label for="inputCodigoPUCP" class="col-form-label">Código
+                                                        <label for="codigo" class="col-form-label">Código
                                                             PUCP:</label>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <input type="text" id="inputCodigoPUCP" class="form-control"
-                                                               aria-describedby="passwordHelpInline">
+                                                        <input type="text" id="codigo" class="form-control"
+                                                               aria-describedby="passwordHelpInline" name="codigo">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <label for="inputCorreoPUCP" class="col-form-label">Correo
+                                                        <label for="correo" class="col-form-label">Correo
                                                             PUCP:</label>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <input type="text" id="inputCorreoPUCP" class="form-control"
-                                                               aria-describedby="passwordHelpInline">
+                                                        <input type="text" id="correo" class="form-control"
+                                                               aria-describedby="passwordHelpInline" name="correo">
                                                     </div>
                                                 </td>
                                             </tr>

@@ -79,10 +79,9 @@
             <div class="abs-center">
                 <center>
                     <div class="abs-center">
-                        <img id="image" src="https://i0.wp.com/www.diarlu.com/wp-content/uploads/2019/09/cara-hombre-sonriendo.jpg?resize=500%2C500&ssl=1" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="200rem">
+                        <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=userlogged.getIdUsuario()%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
                         <br>
                         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
-
                         <br>
                         <br>
                         <div class="card" style="max-width: 30rem;background-color:#F2F2F3">

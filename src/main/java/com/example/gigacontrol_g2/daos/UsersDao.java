@@ -17,9 +17,6 @@ public class UsersDao extends BaseDao{
         try (Connection conn = this.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet resultSet = stmt.executeQuery(sql)) {
-
-
-
             while (resultSet.next()) {
                 BUsuarios newUser = new BUsuarios();
                 newUser.setIdUsuario(resultSet.getInt(1));
@@ -30,7 +27,7 @@ public class UsersDao extends BaseDao{
                 newUser.setDni(resultSet.getString(6));
                 newUser.setCelular(resultSet.getString(7));
                 newUser.setCategoria(resultSet.getString(8));
-                //newUser.setFotoPerfil(resultSet.getString(9));
+                newUser.setFotoPerfil(resultSet.getString(9));
                 newUser.setRolId(resultSet.getInt(10));
                 newUser.setEstado((char) resultSet.getInt(11));
                 usersList.add(newUser);
@@ -297,7 +294,7 @@ public class UsersDao extends BaseDao{
                     user.setDni(rs.getString(6));
                     user.setCelular(rs.getString(7));
                     user.setCategoria(rs.getString(8));
-                    //user.setFotoPerfil(rs.getString(9));
+                    user.setFotoPerfil(rs.getString(9));
                     user.setRolId(rs.getInt(10));
                     user.setEstado((char) rs.getInt(11));
                 }
@@ -390,21 +387,6 @@ public class UsersDao extends BaseDao{
             pstmt.setInt(8,user.getRolId());
             pstmt.setString(9,user.getContrasena());
 
-            pstmt.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void borrar(String userID) {
-
-        String sql = "DELETE FROM usuario WHERE idUsuario = ?";
-
-        try (Connection connection = this.getConnection();
-             PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
-            pstmt.setString(1, userID);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {

@@ -129,11 +129,15 @@
                                 <%
                                     for (int i = regMin; i < regMax; i++) {
                                         BUsuarios usuario = lista.get(i); %>
+                                <%if(usuario.getEstado()!=2){%>
                                 <tr>
                                     <th><%=i+1%>
                                     </th>
-                                    <td><img src="resources/Images/usu.png" class="rounded mx-auto d-block "
-                                             alt="userphoto" height="60rem" width="60rem"></td>
+
+                                    <td>
+                                        <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=usuario.getIdUsuario()%>" height="60rem" width="60rem">
+
+                                    </td>
                                     <td class="card-text"><%=usuario.getApellido().toUpperCase() + ", " + usuario.getNombre()%>
                                     </td>
                                     <th style="color:#B1120D;"><%=usuario.getCodigo()%>
@@ -143,7 +147,9 @@
                                     <td style="padding-left: 2rem;"><a
                                             href="<%=request.getContextPath()%>/ServletAdmin?action=Editar&id=<%=usuario.getIdUsuario()%>"
                                             class="btn btn-primary">Editar</a></td>
+
                                 </tr>
+                                <%}%>
                                 <%
                                     }
                                 %>

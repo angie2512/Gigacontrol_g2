@@ -18,8 +18,8 @@ public abstract class BaseDao{
         String pass="root";
         String database = "gigacontrol";
         //IP : de la BD
-        //String url = "jdbc:mysql://34.28.132.192:3306/" + database;
-        String url = "jdbc:mysql://localhost:3306/" + database;
+        String url = "jdbc:mysql://127.0.0.1:3306/" + database;
+        //String url = "jdbc:mysql://localhost:3306/" + database;
         return DriverManager.getConnection(url, user, pass);
     }
 

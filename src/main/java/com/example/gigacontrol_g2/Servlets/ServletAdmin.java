@@ -1,6 +1,7 @@
 package com.example.gigacontrol_g2.Servlets;
 
 import com.example.gigacontrol_g2.beans.BUsuarios;
+import com.example.gigacontrol_g2.daos.DaoAdmin;
 import com.example.gigacontrol_g2.daos.UsersDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -16,7 +17,7 @@ ServletAdmin extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         RequestDispatcher requestDispatcher;
-
+        DaoAdmin daoAdmin = new DaoAdmin();
         UsersDao usersDao = new UsersDao();
         ArrayList<BUsuarios> lista = usersDao.getUsersList();
 
@@ -26,10 +27,9 @@ ServletAdmin extends HttpServlet {
 
         float maxPag = (float) (valor_total_filas / 9);
         int maxPag2 = (int) Math.ceil(maxPag);
-
+        BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
         switch (action) {
             case "Inicio":
-                BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
                 if(user != null /*&& user.getIdUsuario()!=1 && user.getIdUsuario()!=2 */){
                     requestDispatcher = request.getRequestDispatcher("Admi/AdminInicio.jsp");
                     requestDispatcher.forward(request, response);
@@ -71,9 +71,6 @@ ServletAdmin extends HttpServlet {
                     request.setAttribute("regMax", regMax);
                     request.setAttribute("valor_pagina", valor_pagina);
                 }
-
-
-
                 requestDispatcher = request.getRequestDispatcher("Admi/listaUsuarios.jsp");
                 requestDispatcher.forward(request, response);
                 break;
@@ -95,9 +92,14 @@ ServletAdmin extends HttpServlet {
                 break;
             case "borrar":
                 String userID_b = request.getParameter("id");
-                usersDao.borrar(userID_b);
-
+                daoAdmin.borrar(userID_b);
                 response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
+                break;
+            case "mostrafoto":
+
+                String idStr = request.getParameter("id");
+                int id = Integer.parseInt(idStr);
+                daoAdmin.viewImage(id,response);
                 break;
         }
     }
@@ -106,12 +108,8 @@ ServletAdmin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
-
+        DaoAdmin daoAdmin = new DaoAdmin();
         UsersDao usersDao = new UsersDao();
-
-
-
-
 
 
         switch (action) {
@@ -137,12 +135,13 @@ ServletAdmin extends HttpServlet {
             case "guardar":
                 String nombre_c = request.getParameter("nombre");
                 String apellido_c = request.getParameter("apellido");
-                String dni_c = request.getParameter("dni");
-                String codigo_c = request.getParameter("codigo");
                 String correo_c = request.getParameter("correo");
-                String categoria_c = request.getParameter("categoria");
+                String codigo_c = request.getParameter("codigo");
+                String dni_c = request.getParameter("dni");
                 String celular = request.getParameter("celular");
+                String categoria_c = request.getParameter("categoria");
                 String rolstr_C = request.getParameter("rolID");
+                System.out.println("nombre recv= " + nombre_c);
                 try {
                     int rolID = Integer.parseInt(rolstr_C);
                     BUsuarios newuser = new BUsuarios();
@@ -154,10 +153,8 @@ ServletAdmin extends HttpServlet {
                     newuser.setCategoria(categoria_c);
                     newuser.setRolId(rolID);
                     newuser.setCelular(celular);
-                    newuser.setContrasena("123456");
-                    usersDao.guardar(newuser);
+                    daoAdmin.guardar(newuser);
                     response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
-
                 } catch (NumberFormatException e) {
                     response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=guardar");
                 }
