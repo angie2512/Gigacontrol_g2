@@ -20,8 +20,14 @@ public class SeguridadDao extends BaseDao{
         ArrayList<Incidencia> listaDeIncidencias= new ArrayList<>();
         //DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
 
-        String sql = "select * from incidencia";
-        UsersDao userDao = new UsersDao();
+        //String sql = "select * from incidencia";
+        String sql = "select i.* , u.Nombre, u.Apellido, u.Correo, u.Codigo , u.Categoria ,t.nombre, n.nombre,e.nombre from incidencia i " +
+        "left join usuario u on i.idUsuario = u.idUsuario " +
+        "left join tipoincidencia t on i.idTipoIncidencia = t.idTipoIncidencia "+
+        "left join nivelurgencia n on i.idNivelUrgencia = n.idNivelUrgencia "+
+        "left join estado e on i.idEstado = e.idEstado ";
+
+        //UsersDao userDao = new UsersDao();
 
         try (Connection conn = this.getConnection();
              Statement stmt = conn.createStatement();
@@ -35,6 +41,27 @@ public class SeguridadDao extends BaseDao{
                 incidencia.setZonaPucp(rs.getString(4));
                 incidencia.setUbicacion(rs.getString(5));
                 BUsuarios usuario = new BUsuarios();
+                usuario.setIdUsuario(rs.getInt(7));
+                usuario.setNombre(rs.getString(11));
+                usuario.setApellido(rs.getString(12));
+                usuario.setCorreo(rs.getString(13));
+                usuario.setCodigo(rs.getString(14));
+                usuario.setCategoria(rs.getString(15));
+                incidencia.setUsuario(usuario);
+                TipoDeIncidencia tipoDeIncidencia = new TipoDeIncidencia();
+                tipoDeIncidencia.setIdTipoDeIncidencia(rs.getInt(8));
+                tipoDeIncidencia.setNombre(rs.getString(16));
+                incidencia.setTipoDeIncidencia(tipoDeIncidencia);
+                NivelDeUrgencia nivelDeUrgencia = new NivelDeUrgencia();
+                nivelDeUrgencia.setIdNivelDeUrgencia(rs.getInt(9));
+                nivelDeUrgencia.setNombre(rs.getString(17));
+                incidencia.setNivelDeUrgencia(nivelDeUrgencia);
+                Estado estado = new Estado();
+                estado.setIdEstado(rs.getInt(10));
+                estado.setNombre(rs.getString(18));
+                incidencia.setEstado(estado);
+                listaDeIncidencias.add(incidencia);
+                /*
                 for (BUsuarios usuar : usersDao.getUsersList()){
                     if(usuar.getIdUsuario()==rs.getInt(7)){
                         usuario.setIdUsuario(rs.getInt(7));
@@ -70,7 +97,8 @@ public class SeguridadDao extends BaseDao{
                     }
                 }
                 incidencia.setEstado(estado);
-                listaDeIncidencias.add(incidencia);
+
+                 */
             }
 
 
@@ -84,7 +112,13 @@ public class SeguridadDao extends BaseDao{
     public Incidencia buscarIncidencia(int idIncidencia) {
         Incidencia incidencia1 = new Incidencia();
 
-        String sql = "select * from incidencia where idIncidencia = ?";
+        //String sql = "select * from incidencia where idIncidencia = ?";
+        String sql= "select i.* , u.Nombre, u.Apellido, u.Correo, u.Codigo , u.Categoria ,t.nombre, n.nombre,e.nombre from incidencia i " +
+                "left join usuario u on i.idUsuario = u.idUsuario " +
+                "left join tipoincidencia t on i.idTipoIncidencia = t.idTipoIncidencia "+
+                "left join nivelurgencia n on i.idNivelUrgencia = n.idNivelUrgencia "+
+                "left join estado e on i.idEstado = e.idEstado " +
+                "where idIncidencia = ? ";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -99,6 +133,27 @@ public class SeguridadDao extends BaseDao{
                     incidencia1.setZonaPucp(rs.getString(4));
                     incidencia1.setUbicacion(rs.getString(5));
                     BUsuarios usuario1 = new BUsuarios();
+                    usuario1.setIdUsuario(rs.getInt(7));
+                    usuario1.setNombre(rs.getString(11));
+                    usuario1.setApellido(rs.getString(12));
+                    usuario1.setCorreo(rs.getString(13));
+                    usuario1.setCodigo(rs.getString(14));
+                    usuario1.setCategoria(rs.getString(15));
+                    incidencia1.setUsuario(usuario1);
+                    TipoDeIncidencia tipoDeIncidencia1 = new TipoDeIncidencia();
+                    tipoDeIncidencia1.setIdTipoDeIncidencia(rs.getInt(8));
+                    tipoDeIncidencia1.setNombre(rs.getString(16));
+                    incidencia1.setTipoDeIncidencia(tipoDeIncidencia1);
+                    NivelDeUrgencia nivelDeUrgencia1 = new NivelDeUrgencia();
+                    nivelDeUrgencia1.setIdNivelDeUrgencia(rs.getInt(9));
+                    nivelDeUrgencia1.setNombre(rs.getString(17));
+                    incidencia1.setNivelDeUrgencia(nivelDeUrgencia1);
+                    Estado estado1 = new Estado();
+                    estado1.setIdEstado(rs.getInt(10));
+                    estado1.setNombre(rs.getString(18));
+                    incidencia1.setEstado(estado1);
+
+                    /*
                     for (BUsuarios usuar : usersDao.getUsersList()){
                         if(usuar.getIdUsuario()==rs.getInt(7)){
                             usuario1.setIdUsuario(rs.getInt(7));
@@ -134,6 +189,8 @@ public class SeguridadDao extends BaseDao{
                         }
                     }
                     incidencia1.setEstado(estado1);
+
+                     */
                 }
             }
         } catch (SQLException e) {
