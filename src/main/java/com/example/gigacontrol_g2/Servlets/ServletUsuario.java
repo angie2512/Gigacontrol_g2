@@ -99,15 +99,31 @@ public class ServletUsuario extends HttpServlet {
                         requestDispatcher.forward(request, response);
                 }
                     break;
+
                     case "listarimg":
                         String idincidencia2 = request.getParameter("id");
                         int incidenciaid2 = Integer.parseInt(idincidencia2);
                         daoDatosFijos.listarImg(incidenciaid2, response);
                         break;
-                    case "editar":
+
+                    case "listarimgPerfil":
+                        String idusuarioimg = request.getParameter("idp");
+                        int usuarioidimg = Integer.parseInt(idusuarioimg);
+                        daoDatosFijos.listarImgPerfil(usuarioidimg, response);
+                        break;
+
+                case "editar":
+                    String idinci = request.getParameter("id");
+                    Incidencia inciden = new Incidencia();
+                    inciden.getIdIncidencia();
+                    if (idinci != null) { //abro el form para editar
+                        request.setAttribute("user", idinci);
                         requestDispatcher = request.getRequestDispatcher("Usuario/EditarIncidencia.jsp");
                         requestDispatcher.forward(request, response);
-                        break;
+                    } else { //id no encontrado
+                        response.sendRedirect(request.getContextPath() + "/ServletUsuario");
+                    }
+                    break;
 
                     case "listaMisIncidencias":
 
@@ -252,6 +268,37 @@ public class ServletUsuario extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=nuevaIncidencia");
                 }
                 break;
+
+            case "editarIncidencia":
+
+                String userIDstr = request.getParameter("userID");
+                String nombre = request.getParameter("nombre");
+                String descripcion = request.getParameter("descripcion");
+                String zonaPucp = request.getParameter("zonaPucp");
+                String ubicacion = request.getParameter("ubicacion");
+                String tistr = request.getParameter("tipoIncidenciaID");
+                String nustr = request.getParameter("nivelUrgenciaID");
+                String estadostr = request.getParameter("estado");
+                //TipoDeIncidencia ti = new TipoDeIncidencia();
+                //ti.setIdTipoDeIncidencia(Integer.parseInt(request.getParameter("tipoIncidenciaID")));
+                //NivelDeUrgencia nu = new NivelDeUrgencia();
+                //nu.setIdNivelDeUrgencia(Integer.parseInt(request.getParameter("nivelUrgenciaID")));
+                //Estado estado = new Estado();
+                // estado.setIdEstado(1);
+
+                try {
+
+                    int userID = Integer.parseInt(userIDstr);
+                    int tiID = Integer.parseInt(tistr);
+                    int nuID = Integer.parseInt(nustr);
+                    int estadoID = Integer.parseInt(estadostr);
+                    usersDao.actualizarIncidencia(userID, nombre, descripcion, zonaPucp, ubicacion, tiID, nuID, estadoID);
+                    response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=listaMisIncidencias");
+                } catch (NumberFormatException e) {
+                    response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=Editar&id=" + userIDstr);
+                }
+                break;
+
 
         }
     }

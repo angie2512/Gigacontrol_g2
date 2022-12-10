@@ -211,8 +211,8 @@
             <div class="col-md-6" style="border:none">
                 <div class="md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
-                        <h1 class="mb-0" style="color:#2a60c5"><%=userlogged.getNombre()%></h1>
-                        <h2 class="mb-0" style="color:#29b082"><%=userlogged.getApellido()%></h2>
+                        <h1 class="mb-0"><b style="color:#f8f8f8"><%=userlogged.getNombre()%></b></h1>
+                        <h2 class="mb-0"><b style="color:#e1f1eb"><%=userlogged.getApellido()%></b></h2>
                     </div>
                 </div>
             </div>
@@ -225,21 +225,21 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" style="background-color: #FFFFFF"><b>Correo:</b></label>
                     <div class="col-sm-10">
-                        <li class="list-group-item" style="background-color: rgba(162,218,226,0.24); color:#FFFFFF"><%=userlogged.getCorreo()%>
+                        <li class="list-group-item" style="background-color: rgba(162,218,226,0.44); color:#FFFFFF"><%=userlogged.getCorreo()%>
                         </li>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" style="background-color: #FFFFFF"><b>DNI:</b></label>
                     <div class="col-sm-10">
-                        <li class="list-group-item" style="background-color: rgba(162,218,226,0.24); color:#FFFFFF"><%=userlogged.getDni()%>
+                        <li class="list-group-item" style="background-color: rgba(162,218,226,0.44); color:#FFFFFF"><%=userlogged.getDni()%>
                         </li>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" style="background-color: #FFFFFF"><b>Celular:</b></label>
                     <div class="col-sm-10">
-                        <li class="list-group-item" style="background-color: rgba(162,218,226,0.24); color:#FFFFFF"><%=userlogged.getCelular()%>
+                        <li class="list-group-item" style="background-color: rgba(162,218,226,0.44); color:#FFFFFF"><%=userlogged.getCelular()%>
                         </li>
                     </div>
                 </div>
