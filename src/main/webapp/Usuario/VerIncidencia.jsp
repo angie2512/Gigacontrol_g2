@@ -146,7 +146,7 @@
                             <%}%>
                         </div>
                     </div>
-                    <h6 style="color:#0a7437"> <b>Comentarios: </b></h6>
+                    <h6 style="color:#0a7437"> <b> Descripción: </b></h6>
                     <h6><%=incidencia.getDescripcion()%></h6>
                     <h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPucp()%></h6>
                     <div class="container py-4">
@@ -170,7 +170,7 @@
         <div class="col-md-4">
             <div class="card" style="margin-left:20px">
                 <h5 class="card-header">Comentarios de Incidencia</h5>
-                <div class="card-body">
+                <div class="card-body" style="height: 500px; overflow: auto">
                     <ul>
                         <% for(ComentarIncidencia comentario : listaComentarios){ %>
                         <li class="card-text" >
