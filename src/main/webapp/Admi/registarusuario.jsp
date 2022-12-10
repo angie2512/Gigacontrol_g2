@@ -77,13 +77,13 @@
     </div>
 </nav>
 
-<br>
-
+<br><br>
+<!--
         <div class="d-inline p-3" style="font-size: 1.5rem;background-color:#347199;"><b
                 style="color:#FFFFFF; font-family:'Palatino Linotype','Book Antiqua',Palatino, serif"> REGISTRO</b>
         </div>
         <br><br><br>
-
+-->
 
         <!--<div class="d-flex justify-content-center">
             <div class="col-3">
@@ -272,7 +272,8 @@
                 <div class="col-8">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">INGRESE SUS DATOS</h5>
+                            <h5 class="card-title" style="font-family: Georgia">REGISTRO</h5>
+                            <h5>Ingrese sus datos</h5>
                             <form action="<%=request.getContextPath()%>/ServletAdmin?action=guardar" method="post">
                                 <div class=" table-responsive">
 
