@@ -120,18 +120,15 @@ public class ServletInicio extends HttpServlet {
             case "IniciarSesion":
                 String codigo = request.getParameter("codigo");
                 String contrasena = request.getParameter("contrasena");
+                System.out.println("contraseña: " + contrasena);
                 if (codigo.equals("") || contrasena.equals("")) {
                     request.getSession().setAttribute("error", "El usuario o password no pueden ser vacíos");
                     response.sendRedirect(request.getContextPath() + "/ServletInicio?action=LogIn");
                 }else {
                     BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
-                    System.out.println("es nulo?: " + usuariolog==null);
                     if (usuariolog != null) {
-                        session.setAttribute("userlogged", usuariolog);
-                        //Para primer inicio de sesion y cambio de contraseña ( seguridad y usuario pucp).
-                        System.out.println("usuario con estado 2 " + (usuariolog.getEstado()==2));
-                        if(usuariolog.getEstado()!=2){
-                            System.out.println("entra a dif de 2 ");
+                        if(usuariolog.getEstado()!=5){
+                            session.setAttribute("userlogged", usuariolog);
                             if(usuariolog.getEstado() == 4){
                                 response.sendRedirect(request.getContextPath() + "/ServletInicio?action=establecerNuevaContraSeguridad");
                             } else if (usuariolog.getRolId() == 3 && usuariolog.getEstado() == 1) {
@@ -148,8 +145,7 @@ public class ServletInicio extends HttpServlet {
                             usuariolog=null;
                             contrasena="";
                             codigo="";
-                            System.out.println("es nulo?: " + (usuariolog==null));
-                            request.getSession().setAttribute("msjbaja", "El usuario ha sido dado de baja");
+                            request.getSession().setAttribute("msjbaja", "El usuario ha sido bloqueado");
                             response.sendRedirect(request.getContextPath() + "/ServletInicio?action=LogIn");
                         }
                     } else {
