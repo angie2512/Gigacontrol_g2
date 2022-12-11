@@ -224,13 +224,20 @@
                                 <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar"
                                        aria-label="Buscar">
                                 <button class="btn btn-outline-primary" type="submit">Buscar</button>
+
+                                <a href="<%=request.getContextPath()%>/ServletUsuario"
+                                   class="btn btn-outline-primary" placeholder="Limpiar" style="margin-left: 10px" aria-label="Limpiar">Limpiar</a>
                             </form>
+
 
 
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex position-relative">
-                                        <%  if(!(listaDeIncidencias.size()==1 && listaDeIncidencias.get(0).getIdIncidencia()==0)){%>
+                                        <%  if(!(listaDeIncidencias.size()==1 && listaDeIncidencias.get(0).getIdIncidencia()==0)){
+                                              listaDeIncidencias.remove(0);
+                                              regMax-=1;
+                                        %>
                                         <div>
 
                                             <%
