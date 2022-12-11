@@ -50,7 +50,7 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
     </style>
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYO577C0s-mTgU94RJbr7HZ6sTL41Uobg&callback=initMap&v=weekly"></script>
 </head>
-<body style="background: url(https://ambientesdigital.com/wp-content/uploads/2017/07/10-biblioteca-ciencias-ingenieria-arquitectura-pucp-foto-juan-solano-ojasi.jpg);
+<body style="background: url("resources/Images/FONDOclaro.png");
                background-repeat: no-repeat;
                background-position: center center;
                background-attachment: fixed;
