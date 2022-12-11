@@ -230,6 +230,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex position-relative">
+                                        <%  if(!(listaDeIncidencias.size()==1 && listaDeIncidencias.get(0).getIdIncidencia()==0)){%>
                                         <div>
 
                                             <%
@@ -325,7 +326,7 @@
                                                 </table>
                                                 <hr class="border border-black border-2 opacity-60">
                                             </div>
-                                            <% } %>
+                                            <%}%>
 
 
                                             <%
@@ -398,7 +399,9 @@
 
 
                                         </div>
-
+                                        <% }else{ %>
+                                        <h1>No hay resultados</h1>
+                                        <% } %>
                                     </div>
 
                                 </div>

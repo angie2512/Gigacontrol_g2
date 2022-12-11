@@ -170,13 +170,12 @@
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                             <script>
-
                                     var image = document.querySelector('#image');
 
                                     function changeImage() {
                                         image.src = 'resources/Images/userSeguridad.png';
                                     }
-                                </script>
+                            </script>
 
                         </td>
 

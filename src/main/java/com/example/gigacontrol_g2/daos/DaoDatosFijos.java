@@ -147,7 +147,7 @@ public class DaoDatosFijos extends BaseDao {
 
         ArrayList<ComentarIncidencia> comentariosDeIncidencia = new ArrayList<>();
 
-        String sql = "select * from comentarincidencia where idIncidencia=? ";
+        String sql = "select comentarincidencia.*, u.Nombre, u.Apellido from comentarincidencia inner join usuario u on comentarincidencia.idUsuario = u.idUsuario where idIncidencia=?";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -160,6 +160,8 @@ public class DaoDatosFijos extends BaseDao {
                     ComentarIncidencia comentarIncidencia = new ComentarIncidencia();
                     comentarIncidencia.setIdComentario(rs.getInt(1));
                     bUsuarios.setIdUsuario(rs.getInt("idUsuario"));
+                    bUsuarios.setNombre(rs.getString("Nombre"));
+                    bUsuarios.setApellido(rs.getString("Apellido"));
                     comentarIncidencia.setIdIncidencia(idIncidencia);
                     comentarIncidencia.setComentarioIncidencia(rs.getString(4));
                     comentarIncidencia.setFechaDeComentario(rs.getTimestamp(5));

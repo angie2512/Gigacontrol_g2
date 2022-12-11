@@ -63,6 +63,8 @@
             bgcolor: "#800000";
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYO577C0s-mTgU94RJbr7HZ6sTL41Uobg&callback=initMap&v=weekly"></script>
 </head>
 <body>
@@ -77,6 +79,9 @@
 
         <div class="collapse navbar-collapse" id="navbarsExample07">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/ServletUsuario" style="color:#FFFFFF">Inicio</a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/PerfilUsuario" style="color:#FFFFFF">Perfil</a>
@@ -164,12 +169,12 @@
                             <%}%>
                             <%if (listaDestacados.contains(incidencia.getIdIncidencia())) { %>
                             <div class="p-2">
-                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacado&idi=<%=incidencia.getIdIncidencia()%>"
+                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacadoIncVer&idi=<%=incidencia.getIdIncidencia()%>"
                                    style="color:#F0C00D">★ Destacar</a>
                             </div>
                             <% } else { %>
                             <div class="p-2">
-                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=destacar&idi=<%=incidencia.getIdIncidencia()%>"
+                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=destacarIncVer&idi=<%=incidencia.getIdIncidencia()%>"
                                    style="color:rgba(93,131,196,0.38)">★Destacar</a>
                             </div>
                             <%}%>
@@ -227,7 +232,7 @@
 
         <div class="col-md-4">
             <div class="card" style="margin-left:20px">
-                <h5 class="card-header">Comentarios de Incidencia</h5>
+                <h5 class="card-header">Comentarios Incidencia</h5>
                 <div class="card-body" style="height: 500px; overflow: auto">
                     <ul>
                         <% for(ComentarIncidencia comentario : listaComentarios){ %>
@@ -296,5 +301,6 @@
         initMap();
     });
 </script>
+
 </body>
 </html>

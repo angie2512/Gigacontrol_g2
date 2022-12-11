@@ -15,6 +15,13 @@ public class Incidencia {
 
     private Estado estado;
 
+    public Incidencia(int idIncidencia) {
+        this.idIncidencia = idIncidencia;
+    }
+    public Incidencia(){
+
+    }
+
     public int getIdIncidencia() {
         return idIncidencia;
     }
