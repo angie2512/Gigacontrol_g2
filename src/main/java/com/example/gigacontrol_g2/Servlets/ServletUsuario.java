@@ -67,10 +67,16 @@ public class ServletUsuario extends HttpServlet {
 
         ////lista_numero_pagina
 
+        /*ArrayList<Integer> list2 = new ArrayList<>();
+        for(int i=1;i<maxPag4+1;i++){
+            list2.get(i-1);
+        }*/
         ArrayList<Integer> list2 = new ArrayList<>();
         for(int i=1;i<maxPag4+1;i++){
-            list2.add(i);
+            list2.add(i-1);
+
         }
+
 
 
 
@@ -85,14 +91,34 @@ public class ServletUsuario extends HttpServlet {
                     //paginacion
 
                     String s = request.getParameter("pg");
+                    System.out.println("\n");
+                    System.out.println(s);
                     boolean isNumeric = (s != null && s.matches("[0-9]+"));
 
 
 
-                    if(request.getParameter("pg") != "") {
-                        if (isNumeric == true){
-                            if (request.getParameter("pg") != null && list2.contains(Integer.parseInt(request.getParameter("pg")))) {
-                                valor_pagina = Integer.parseInt(request.getParameter("pg"));
+                    if(request.getParameter("pg") != null) {
+                        System.out.println("pasa filtro de vacio");
+                        if (request.getParameter("pg") != ""){
+                            System.out.println("pasa filtro de que es numero");
+                            if (isNumeric == true){
+                                System.out.println("pasa filtro de que no es null");
+                                /*if(list2.contains(Integer.parseInt(request.getParameter("pg")))){*/
+                                    valor_pagina = Integer.parseInt(request.getParameter("pg"));
+
+                                /*}*/
+
+
+
+
+                                /*boolean valor_lista = list2.contains(Integer.parseInt(request.getParameter("pg")));
+                                System.out.println(valor_lista);
+                                if(valor_lista ==true){
+                                    System.out.println("pasa filtro de que esta en la lista2");
+                                    System.out.println("pg");*/
+                                    /*valor_pagina = Integer.parseInt(request.getParameter("pg"));*/
+
+
                             } else {
                                 valor_pagina = 1;
                             }
