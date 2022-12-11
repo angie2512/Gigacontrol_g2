@@ -30,8 +30,8 @@
 
 
   </head>
-  <body class="p-3 m-0 border-0 bd-example">
-
+  <body>
+  <br>
     <nav class="navbar navbar-expand-lg" style="background-color: #434644;" aria-label="Eighth navbar example">
 
       <div class="collapse navbar-collapse" id="navbarsExample07">

@@ -74,7 +74,8 @@
 
     </head>
 
-    <body class="p-3 m-0 border-0 bd-example">
+    <body>
+    <br>
         <nav class="navbar navbar-expand-lg" style="background-color: #4C9978;" aria-label="Eighth navbar example">
             <div class="container">
                 <a class="navbar-brand" href="#"><img src="resources/Images/logo_blanco.png" alt="Logo" width="100" height="40" class="d-inline-block align-text-top img-fluid"></a>
@@ -122,7 +123,7 @@
         <center>
 
             <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
-                <main class="bd-main order-1;overflow-auto" style="width: 820px; background-color: #FFFFFF99">
+                <main class="bd-main order-1;overflow-auto" style="width: 820px; background-color: rgba(255,255,255,0)">
                     <div class="my-3 p-3 bg-body rounded shadow-sm position-relative"
                          style="width: 820px; background-color: #8CC67A;">
                         <h4 class="border-bottom pb-2 mb-2" style="background-color:#6FCE92;color:#18542E;">
@@ -143,7 +144,7 @@
                                            aria-label="Buscar">
                                     <button class="btn btn-outline-primary" type="submit">Buscar</button>
                                 </form> -->
-
+                            <!--
                                 <form method="post" id="views-exposed-form-dkan-datasets-panel-pane-1"
                                       accept-charset="UTF-8" role="form"
                                       action="<%=request.getContextPath()%>/ServletSeguridad?action=buscarIncidencia">
@@ -176,22 +177,59 @@
                                                             <option value="Critico">Critico</option>
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div>-->
                                                 <!--<p><textarea name="comentario" rows="5" cols="50">Escribe aquí tu comentario: </textarea></p> -->
                                                 <!--<input name="comentario" class="textarea" rows="5" cols="50">Escribe aquí tu comentario:</input>
                                                 <br> -->
 
-                                                <div class="views-exposed-widget views-submit-button">
+                                                <!--<div class="views-exposed-widget views-submit-button">
                                                     <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Buscar</button>
                                                 </div>
 
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </form> -->
+                            <!-- OTRO BUSCDOR -->
 
+                              <form class="row gx-3 gy-2 align-items-center" method="post" id="views-exposed-form-dkan-datasets-panel-pane-1"
+                                      accept-charset="UTF-8" role="form"
+                                      action="<%=request.getContextPath()%>/ServletSeguridad?action=buscarIncidencia">
+                                    <div class="col-sm-6">
+                                        <label for="edit-sort-by" class="card-text" style="color:#875826; font-size: x-small"><b>Buscar incidencia</b></label>
+                                        <input class="form-control me-2" type="search" name="searchText" placeholder="Ingrese el Nombre o Palabra Clave de Incidencia"
+                                               aria-label="Buscar">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label for="edit-sort-by" class="card-text" style="color:#875826;font-size: x-small"><b>Estado Incidencia</b></label>
+                                        <select class="form-control form-select" id="edit-sort-by" name="estado">
+                                            <option value="1" selected="selected">Todos</option>
+                                            <option value="Registrado">Registrado</option>
+                                            <option value="Atendido">Atendido</option>
+                                            <option value="Resuelto">Resuelto</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label for="edit-sort-by" class="card-text" style="color:#875826; font-size: x-small"><b>Nivel Urgencia</b></label>
+                                        <select class="form-control form-select" id="edit-sort-order" name="nivelurg">
+                                            <option value="1" selected>Todos</option>
+                                            <option value="Leve">Leve</option>
+                                            <option value="Moderado">Moderado</option>
+                                            <option value="Critico">Critico</option>
+                                        </select>
+                                    </div>
+                                    <center>
+                                    <div class="col-auto">
+                                        <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Buscar</button>
+                                        <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargar" class="btn btn-primary">Descargar PDF</a>
+                                    </div>
+                                    </center>
+                                </form>
                                 <br>
-                                <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargar" class="btn btn-primary">Descargar PDF</a>
+                            <!-- HASTA AQUI -->
+
+                                <!-- <br>
+                                <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargar" class="btn btn-primary">Descargar PDF</a> -->
 
 
                                 <%  if(!(listaDeIncidencias.size()==1 && listaDeIncidencias.get(0).getIdIncidencia()==0)){
