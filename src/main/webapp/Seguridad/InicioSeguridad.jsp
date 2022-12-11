@@ -183,7 +183,6 @@
 
                                                 <div class="views-exposed-widget views-submit-button">
                                                     <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Buscar</button>
-                                                    <button onclick="generatePDF()">Descargar PDF</button>
                                                 </div>
 
                                             </div>
@@ -191,88 +190,8 @@
                                     </div>
                                 </form>
 
-                                <!--Se colocará el div que contenga botón para descargar pdf--->
-
-
-
-
-                                <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
-                                <script>
-                                    function generatePDF(){
-                                        var pdfObject = jsPDFInvoiceTemplate.default(props);
-
-                                        console.log("Object created: ", pdfObject);
-                                    }
-
-                                    var props = {
-                                        outputType: jsPDFInvoiceTemplate.OutputType.Save,
-                                        returnJsPDFDocObject: true,
-                                        fileName: "Invoice 2021",
-                                        orientationLandscape: false,
-                                        compress: true,
-
-                                        stamp: {
-                                            inAllPages: true, //by default = false, just in the last page
-                                            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
-                                            type: 'JPG', //optional, when src= data:uri (nodejs case)
-                                            width: 20, //aspect ratio = width/height
-                                            height: 20,
-                                            margin: {
-                                                top: 0, //negative or positive num, from the current position
-                                                left: 0 //negative or positive num, from the current position
-                                            }
-                                        },
-                                        business: {
-                                            name: "GIGACONTROL",
-                                            address: "Atención para toda la comunidad PUCP",
-                                        },
-                                        contact: {
-                                            name: "Lista de incidencias:",
-                                        },
-                                        invoice: {
-                                            label: "Número de Incidencias: ",
-                                            num: 5,
-                                            headerBorder: false,
-                                            tableBodyBorder: false,
-
-                                            header: [
-                                                {
-                                                    title: "Código",
-                                                    style: {
-                                                        width: 20
-                                                    }
-                                                },
-                                                {
-                                                    title: "Nombre",
-                                                    style: {
-                                                        width: 30
-                                                    }
-                                                },
-                                                {
-                                                    title: "Descripción",
-                                                    style: {
-                                                        width: 50
-                                                    }
-                                                },
-                                                { title: "Tipo de incidencia"},
-                                                { title: "Estado"},
-                                                { title: "Nivel de Urgencia"},
-
-                                            ],
-
-
-                                            invDescLabel: "GIGACONTROL ASSITANT",
-                                            invDesc: "Todos los datos de las incidencias serán de suma importancias a la hora de llevar a cabo la resolución de estas, por favor tenga en consideración cada una de ellas.",
-                                        },
-                                        footer: {
-                                            text: "The invoice is created on a computer and is valid without the signature and stamp.",
-                                        },
-                                        pageEnable: true,
-                                        pageLabel: "Page ",
-                                    };
-
-
-                                </script>
+                                <br>
+                                <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargar" class="btn btn-primary">Descargar PDF</a>
 
 
                                 <%  if(!(listaDeIncidencias.size()==1 && listaDeIncidencias.get(0).getIdIncidencia()==0)){
@@ -300,7 +219,7 @@
                                                          style="padding-left: 3rem;">
                                                         <a href="<%=request.getContextPath()%>/ServletSeguridad?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>"
                                                            class="btn btn-danger">Ver Más</a>
-                                                        <!--a href="< %=request.getContextPath()%>/ServletSeguridad?action=reporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a> --->
+                                                        <a href="< %=request.getContextPath()%>/ServletSeguridad?action=reporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a>
                                                     </div>--%>
                                                 </td>
                                             </tr>

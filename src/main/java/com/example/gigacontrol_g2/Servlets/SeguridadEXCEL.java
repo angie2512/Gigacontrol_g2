@@ -1,5 +1,4 @@
 package com.example.gigacontrol_g2.Servlets;
-
 import com.example.gigacontrol_g2.beans.Incidencia;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,13 +10,12 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.apache.poi.ss.util.CellUtil.FONT;
 import static org.apache.poi.ss.util.CellUtil.createCell;
-
+//ExcelExportUtils name class
 public class SeguridadEXCEL {
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
