@@ -88,35 +88,30 @@ public class DaoDatosFijos extends BaseDao {
     }
 
     public BUsuarios buscarPorId(int userID) {
-        BUsuarios user = null;
-
         String sql = "select * from usuario WHERE idUsuario = ?";
+        BUsuarios newUser = new BUsuarios();
         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);) {
-
-
             pstmt.setInt(1, userID);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    user = new BUsuarios();
-                    user.setIdUsuario(rs.getInt(1));
-                    user.setNombre(rs.getString(2));
-                    user.setApellido(rs.getString(3));
-                    user.setCorreo(rs.getString(4));
-                    user.setCodigo(rs.getString(5));
-                    user.setDni(rs.getString(6));
-                    user.setCelular(rs.getString(7));
-                    user.setCategoria(rs.getString(8));
-                    user.setFotoPerfil(rs.getString(9));
-                    user.setRolId(rs.getInt(10));
-                    user.setEstado((char) rs.getInt(11));
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                if (resultSet.next()) {
+                    newUser.setIdUsuario(resultSet.getInt(1));
+                    newUser.setNombre(resultSet.getString(2));
+                    newUser.setApellido(resultSet.getString(3));
+                    newUser.setCorreo(resultSet.getString(4));
+                    newUser.setCodigo(resultSet.getString(5));
+                    newUser.setDni(resultSet.getString(6));
+                    newUser.setCelular(resultSet.getString(7));
+                    newUser.setCategoria(resultSet.getString(8));
+                    newUser.setFotoPerfil(resultSet.getString(9));
+                    newUser.setRolId(resultSet.getInt(10));
+                    newUser.setEstado((char) resultSet.getInt(11));
                 }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return user;
+        return newUser;
     }
 
     public BUsuarios validUserPassword(String codigo, String password) {
@@ -130,7 +125,6 @@ public class DaoDatosFijos extends BaseDao {
             try (ResultSet rs = pstm.executeQuery();) {
                 if (rs.next()) {
                     int userID = rs.getInt(3);
-                    System.out.println("ID"+userID);
                     user = this.buscarPorId(userID);
                 }
             }

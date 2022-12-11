@@ -101,6 +101,11 @@ ServletAdmin extends HttpServlet {
                 daoAdmin.borrar(userID_b);
                 response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
                 break;
+            case "reactivar":
+                String userID_react = request.getParameter("id");
+                daoAdmin.reactivar(userID_react);
+                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
+                break;
             case "mostrafoto":
 
                 String idStr = request.getParameter("id");

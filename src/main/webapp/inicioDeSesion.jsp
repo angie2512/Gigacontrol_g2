@@ -120,10 +120,17 @@
                     </div>
                     <br>
                     <p></p>
+
+
                     <% if (session.getAttribute("error") != null) {%>
                     <div class="text-danger mb-2"><%=session.getAttribute("error")%></div>
                     <% session.removeAttribute("error"); %>
                     <% } %>
+                    <% if (session.getAttribute("msjbaja") != null) {%>
+                    <div class="text-danger mb-2"><%=session.getAttribute("msjbaja")%></div>
+                    <% session.removeAttribute("msjbaja"); %>
+                    <% } %>
+
                     <br>
                     <div class="d-grid gap-2 col-8 mx-auto">
                         <button type="submit" class="btn-1" style="font-family: 'Georgia'">

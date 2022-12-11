@@ -34,7 +34,6 @@ public class ServletInicio extends HttpServlet {
         list.add("OlvidoContrasena");
 
         if(list.contains(action)) {
-
             if (action == null) {
                 view = request.getRequestDispatcher("index.jsp");
                 view.forward(request, response);
@@ -43,8 +42,8 @@ public class ServletInicio extends HttpServlet {
                 switch (action) {
 
                     case "LogIn":
-
-                    if (user != null && user.getIdUsuario() > 0) {
+                        System.out.println("entraaa");
+                    if (user != null && user.getIdUsuario() > 0 && user.getEstado()!=2) {
                         if (user.getRolId() == 2) {
                             response.sendRedirect(request.getContextPath() + "/ServletUsuario");
                         } else if (user.getRolId() == 3) {
@@ -121,36 +120,43 @@ public class ServletInicio extends HttpServlet {
             case "IniciarSesion":
                 String codigo = request.getParameter("codigo");
                 String contrasena = request.getParameter("contrasena");
-
-                if (codigo == null || contrasena == null) {
-                    request.setAttribute("error", "El usuario o password no pueden ser vacíos");
-                    view = request.getRequestDispatcher("login/loginForm.jsp");
-                    view.forward(request, response);
+                if (codigo.equals("") || contrasena.equals("")) {
+                    request.getSession().setAttribute("error", "El usuario o password no pueden ser vacíos");
+                    response.sendRedirect(request.getContextPath() + "/ServletInicio?action=LogIn");
                 }else {
                     BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
+                    System.out.println("es nulo?: " + usuariolog==null);
                     if (usuariolog != null) {
                         session.setAttribute("userlogged", usuariolog);
-                        System.out.println("rol: "+ usuariolog.getRolId());
                         //Para primer inicio de sesion y cambio de contraseña ( seguridad y usuario pucp).
-                        if(usuariolog.getEstado() == 4){
-                            response.sendRedirect(request.getContextPath() + "/ServletInicio?action=establecerNuevaContraSeguridad");
-                        } else if (usuariolog.getRolId() == 3 && usuariolog.getEstado() == 1) {
-                            response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Inicio");
-                            //Avance de Doble Ausdsatenticacion Seguridad
-                        } else if (usuariolog.getRolId() == 1 && usuariolog.getEstado() == 1){
-                            response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");
-                        }else if (usuariolog.getRolId() ==2 && usuariolog.getEstado() == 1) {
-                            response.sendRedirect(request.getContextPath() + "/ServletUsuario");
+                        System.out.println("usuario con estado 2 " + (usuariolog.getEstado()==2));
+                        if(usuariolog.getEstado()!=2){
+                            System.out.println("entra a dif de 2 ");
+                            if(usuariolog.getEstado() == 4){
+                                response.sendRedirect(request.getContextPath() + "/ServletInicio?action=establecerNuevaContraSeguridad");
+                            } else if (usuariolog.getRolId() == 3 && usuariolog.getEstado() == 1) {
+                                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Inicio");
+                                //Avance de Doble Ausdsatenticacion Seguridad
+                            } else if (usuariolog.getRolId() == 1 && usuariolog.getEstado() == 1){
+                                response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");
+                            }else if (usuariolog.getRolId() ==2 && usuariolog.getEstado() == 1) {
+                                response.sendRedirect(request.getContextPath() + "/ServletUsuario");
+                            }
+                        }
+                         else{
+                            System.out.println("entra a inactivo");
+                            usuariolog=null;
+                            contrasena="";
+                            codigo="";
+                            System.out.println("es nulo?: " + (usuariolog==null));
+                            request.getSession().setAttribute("msjbaja", "El usuario ha sido dado de baja");
+                            response.sendRedirect(request.getContextPath() + "/ServletInicio?action=LogIn");
                         }
                     } else {
-                        session.setAttribute("error", "El usuario o password no existen , Vuelva a Ingresar las credenciales");
-                        view = request.getRequestDispatcher("inicioDeSesion.jsp");
-                        view.forward(request, response);
+                        request.getSession().setAttribute("error", "El usuario o password no existen , Vuelva a Ingresar las credenciales");
+                        response.sendRedirect(request.getContextPath() + "/ServletInicio?action=LogIn");
                     }
                 }
-
-
-
                 break;
 
             case "autenticacionSeguridad":

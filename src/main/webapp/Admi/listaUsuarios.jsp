@@ -134,7 +134,6 @@
                                 <%
                                     for (int i = regMin; i < regMax; i++) {
                                         BUsuarios usuario = lista.get(i); %>
-                                <%if(usuario.getEstado()!=2 && usuario!=null){%>
                                 <tr>
                                     <th><%=i+1%>
                                     </th>
@@ -147,7 +146,21 @@
                                         <img src="resources/Images/usu.png" height="60rem" width="60rem">
                                         <%}%>
                                     </td>
-                                    <td class="card-text"><%=usuario.getApellido().toUpperCase() + ", " + usuario.getNombre()%>
+                                    <td class="card-text">
+                                        <%=usuario.getApellido().toUpperCase() + ", " + usuario.getNombre()%>
+                                        <% if(usuario.getEstado()==2){%>
+                                            <p style="color:red;">"El usuario ha sido dado de baja"</p>
+                                        <%}
+                                        else if(usuario.getEstado()==1){%>
+                                        <p style="color:green;">"El usuario se encuentra registrado en la web"</p>
+                                        <%}
+                                        else if(usuario.getEstado()==3){%>
+                                        <p style="color:blue;">"El usuario aun no se registra en la web"</p>
+                                        <%}
+                                        else {%>
+                                        <p style="color:blue;">"El usuario aun no establece su contraseña"</p>
+                                        <%}%>
+
                                     </td>
                                     <th style="color:#B1120D;"><%=usuario.getCodigo()%>
                                     </th>
@@ -155,12 +168,9 @@
                                     </td>
                                     <td style="padding-left: 2rem;"><a
                                             href="<%=request.getContextPath()%>/ServletAdmin?action=Editar&id=<%=usuario.getIdUsuario()%>"
-                                            class="btn btn-primary">Editar</a></td>
-
+                                            class="btn btn-primary">Editar</a>
+                                    </td>
                                 </tr>
-                                <%
-                                    }
-                                %>
                                 <%
                                     }
                                 %>

@@ -3,6 +3,7 @@ package com.example.gigacontrol_g2.daos;
 import com.example.gigacontrol_g2.beans.BUsuarios;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -51,6 +52,21 @@ public class DaoAdmin extends BaseDao {
             throw new RuntimeException(e);
         }
     }
+    public void reactivar(String userID) {
+
+        String sql = "UPDATE usuario SET estado=? WHERE idUsuario = ?";
+
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, "1");
+            pstmt.setString(2, userID);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void guardar(BUsuarios user){
 
         String sql = "INSERT INTO usuario (Nombre,Apellido,Correo,Codigo,DNI,Celular,Categoria,Rol_idRol,estado) VALUES (?,?,?,?,?,?,?,?,?)";
