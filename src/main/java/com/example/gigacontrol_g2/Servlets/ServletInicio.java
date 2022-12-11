@@ -205,17 +205,23 @@ public class ServletInicio extends HttpServlet {
                         usersDao.crearCredencialesUsuario(codigoPUCPSeg,contrasenaTemporalSeguridad,idUsuario);
                         String estadoUsuarioSeg = "4";
                         usersDao.actualizarEstadoDeUsuario(idUsuario,estadoUsuarioSeg);
-                        session.setAttribute("msgSeg","LISTO! Ya falta poco...\n" +
+                        request.getSession().setAttribute("msgSeg","LISTO! Ya falta poco...\n" +
+                                "Se envió a su correo: \n" +
+                                "Su  Contraseña Temporal De Acceso a la Aplicación\n" +
+                                "Inicie sesión y establezca su Nueva Contraseña");
+                        /*session.setAttribute("msgSeg","LISTO! Ya falta poco...\n" +
                                                             "Se envió a su correo: \n" +
                                                             "Su  Contraseña Temporal De Acceso a la Aplicación\n" +
-                                                            "Inicie sesión y establezca su Nueva Contraseña");
+                                                            "Inicie sesión y establezca su Nueva Contraseña");*/
                         view = request.getRequestDispatcher("index.jsp");
                         view.forward(request, response);
                     }
                 }
-                session.setAttribute("errorSeg","No Se Encontró alguno de los Campos , Vuelva a Ingresar Correctamente");
-                view = request.getRequestDispatcher("RegistroSeguridad.jsp");
-                view.forward(request, response);
+                //session.setAttribute("errorSeg","No Se Encontró alguno de los Campos , Vuelva a Ingresar Correctamente");
+                //view = request.getRequestDispatcher("RegistroSeguridad.jsp");
+                //view.forward(request, response);
+                request.getSession().setAttribute("errorSeg","No Se Encontró alguno de los Campos , Vuelva a Ingresar Correctamente");
+                response.sendRedirect(request.getContextPath() + "/ServletInicio?action=Registroseguridad");
                 break;
 
                 case "establecernuevacontraseg":
@@ -230,9 +236,11 @@ public class ServletInicio extends HttpServlet {
                         usersDao.actualizarEstadoDeUsuario(idUsuario,estadoUsuario);
                         response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                     }else {
-                        session.setAttribute("errorSeg2","Las Contraseñas no coinciden , vuelva a ingresar correctamente");
-                        view = request.getRequestDispatcher("EstablecerNuevaContraSeguridad.jsp");
-                        view.forward(request, response);
+                        //session.setAttribute("errorSeg2","Las Contraseñas no coinciden , vuelva a ingresar correctamente");
+                        //view = request.getRequestDispatcher("EstablecerNuevaContraSeguridad.jsp");
+                        //view.forward(request, response);
+                        request.getSession().setAttribute("errorSeg2","Las Contraseñas no coinciden , vuelva a ingresar correctamente");
+                        response.sendRedirect(request.getContextPath() + "/ServletInicio?action=establecerNuevaContraSeguridad");
                     }
                     break;
 

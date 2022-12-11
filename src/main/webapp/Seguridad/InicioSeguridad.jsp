@@ -309,7 +309,7 @@
                                                 </p>
 
                                             </td>
-                                        </tr>
+                                        <!--</tr>
 
                                             <td>
                                                 <div class="d-flex flex-row-reverse">
@@ -322,7 +322,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </table>
                                     <!--<table>
                                       <tr>
