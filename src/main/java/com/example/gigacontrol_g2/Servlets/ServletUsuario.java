@@ -148,6 +148,7 @@ public class ServletUsuario extends HttpServlet {
 
 
                     request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
+
                     request.setAttribute("ListaNombres", usersDao.getUsersList());
                     request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
                     request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
@@ -239,22 +240,38 @@ public class ServletUsuario extends HttpServlet {
                 usersDao.destacarEstrella(usuario.getIdUsuario(), incidenciaid);
                 response.sendRedirect(request.getContextPath() + "/ServletUsuario");
                 break;
+
+            case "destacarIncVer":
+                String idincidenciaV = request.getParameter("idi");
+                int incidenciaidV = Integer.parseInt(idincidenciaV);
+                usersDao.destacarEstrella(usuario.getIdUsuario(), incidenciaidV);
+                response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=verIncidencia&id="+idincidenciaV);
+                break;
+
             case "quitardestacado":
                 String idincidencia1 = request.getParameter("idi");
                 int incidenciaid1 = Integer.parseInt(idincidencia1);
                 usersDao.eliminarDestacado(usuario.getIdUsuario(), incidenciaid1);
                 response.sendRedirect(request.getContextPath() + "/ServletUsuario");
                 break;
+
+            case "quitardestacadoIncVer":
+                String idincidencia1V = request.getParameter("idi");
+                int incidenciaid1V = Integer.parseInt(idincidencia1V);
+                usersDao.eliminarDestacado(usuario.getIdUsuario(), incidenciaid1V);
+                response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=verIncidencia&id="+idincidencia1V);
+                break;
+
+
             case "verIncidencia":
                 String idIncidenciaStr = request.getParameter("id");
                 int idIncidencia = Integer.parseInt(idIncidenciaStr);
                 Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
-                System.out.println("id indicencia usuario: "+incidencia.getUsuario().getIdUsuario());
                 request.setAttribute("incidencia", incidencia);
                 ArrayList<Estado> listaEstados = daoDatosFijos.obtenerListaEstados();
                 request.setAttribute("ListaEstados", listaEstados);
-                ArrayList<ComentarIncidencia> listaDeComentarios = daoDatosFijos.obtenerComentariosDeIncidencia(idIncidencia);
-                request.setAttribute("ListaComentarios", listaDeComentarios);
+                ArrayList<ComentarIncidencia> listaComentarios = daoDatosFijos.obtenerComentariosDeIncidencia(idIncidencia);
+                request.setAttribute("ListaComentarios", listaComentarios);
                 request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
                 request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
                 requestDispatcher = request.getRequestDispatcher("Usuario/VerIncidencia.jsp");
@@ -316,6 +333,9 @@ public class ServletUsuario extends HttpServlet {
                     request.setAttribute("valor_pagina", valor_pagina);
                 }
                 request.setAttribute("ListaDeIncidencias", lista);
+                if(lista.size()==1){
+                    System.out.println("idprueba: "+lista.get(0).getIdIncidencia());
+                }
                 request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
                 request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");

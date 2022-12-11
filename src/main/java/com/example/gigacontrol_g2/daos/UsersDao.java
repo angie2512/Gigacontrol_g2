@@ -215,6 +215,7 @@ public class UsersDao extends BaseDao{
         SeguridadDao seguridadDao = new SeguridadDao();
         String sql = "select * from incidencia where NombreDeIncidencia like ?";
         ArrayList<Incidencia> listaFiltrada = new ArrayList<>();
+        listaFiltrada.add(new Incidencia(0));
 
         try(Connection conn = this.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);){
