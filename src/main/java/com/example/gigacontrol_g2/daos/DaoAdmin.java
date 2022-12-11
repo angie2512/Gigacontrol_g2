@@ -38,8 +38,22 @@ public class DaoAdmin extends BaseDao {
             e.printStackTrace();
         }
     }
-    public void borrar(String userID) {
+    public void banear(String userID) {
 
+        String sql = "UPDATE usuario SET estado=? WHERE idUsuario = ?";
+
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, "5");
+            pstmt.setString(2, userID);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void changeStatus(String status, String userID){
         String sql = "UPDATE usuario SET estado=? WHERE idUsuario = ?";
 
         try (Connection connection = this.getConnection();
@@ -52,6 +66,25 @@ public class DaoAdmin extends BaseDao {
             throw new RuntimeException(e);
         }
     }
+
+    public void borrar(String userID) {
+
+        changeStatus("2",userID);
+
+        String sql = "DELETE from validacionusuarionuevo  WHERE usuario_idUsuario = ?";
+
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, userID);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
     public void reactivar(String userID) {
 
         String sql = "UPDATE usuario SET estado=? WHERE idUsuario = ?";

@@ -97,13 +97,17 @@
 
             <br>
             <div class="d-flex justify-content-center">
-              <% if(user.getEstado()==2){%>
+              <% if(user.getEstado()==5){%>
               <a type="button" class="btn btn-success"
                  onclick="return confirm('¿Estas seguro(a) que deseas reactivar este usuario?')"
                  href="<%=request.getContextPath()%>/ServletAdmin?action=reactivar&id=<%=user.getIdUsuario()%>">Reactivar Usuario
               </a>
               <%}
               else if(user.getEstado()==1 || user.getEstado()==4){%>
+              <a type="button" class="btn btn-danger"
+                 onclick="return confirm('¿Estas seguro(a) que deseas desbloquear este usuario?')"
+                 href="<%=request.getContextPath()%>/ServletAdmin?action=banear&id=<%=user.getIdUsuario()%>">Bloquear
+              </a>
               <a type="button" class="btn btn-danger"
                  onclick="return confirm('¿Estas seguro(a) que deseas borrar este usuario?')"
                  href="<%=request.getContextPath()%>/ServletAdmin?action=borrar&id=<%=user.getIdUsuario()%>">Eliminar

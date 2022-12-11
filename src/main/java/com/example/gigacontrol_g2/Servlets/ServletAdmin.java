@@ -96,9 +96,14 @@ ServletAdmin extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("Admi/registarusuario.jsp");
                 requestDispatcher.forward(request, response);
                 break;
+            case "banear":
+                String userID_ban = request.getParameter("id");
+                daoAdmin.banear(userID_ban);
+                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
+                break;
             case "borrar":
-                String userID_b = request.getParameter("id");
-                daoAdmin.borrar(userID_b);
+                String userID_del = request.getParameter("id");
+                daoAdmin.borrar(userID_del);
                 response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
                 break;
             case "reactivar":
@@ -107,7 +112,6 @@ ServletAdmin extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
                 break;
             case "mostrafoto":
-
                 String idStr = request.getParameter("id");
                 int id = Integer.parseInt(idStr);
                 daoAdmin.viewImage(id,response);

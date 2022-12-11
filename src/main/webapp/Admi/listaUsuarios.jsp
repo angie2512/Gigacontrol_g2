@@ -157,8 +157,11 @@
                                         else if(usuario.getEstado()==3){%>
                                         <p style="color:blue;">"El usuario aun no se registra en la web"</p>
                                         <%}
-                                        else {%>
+                                        else if (usuario.getEstado()==4){%>
                                         <p style="color:blue;">"El usuario aun no establece su contraseña"</p>
+                                        <%}
+                                        else {%>
+                                        <p style="color:red;">"El usuario ha sido bloqueado"</p>
                                         <%}%>
 
                                     </td>
