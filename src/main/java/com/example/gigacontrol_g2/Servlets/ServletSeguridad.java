@@ -167,15 +167,14 @@ public class ServletSeguridad extends HttpServlet {
                 requestDispatcher.forward(request, response);
                 break;
             case "descargar":
-
                 System.out.println("si llego");
                 try(PrintWriter salir =  response.getWriter()) {
                     ArrayList<Incidencia> incidencias = (ArrayList<Incidencia>) session.getAttribute("listaDescargar");
                     int i = 1;
                     String text = "Codigo%Nombre%Estado%Nivel de Urgencia%Tipo de Incidencia\n";
                     for(Incidencia incidencia2 : incidencias){
-                        text += incidencia2.getUsuario().getCodigo() +".%"+incidencia2.getUsuario().getNombre()+".%"+incidencia2.getEstado().getNombre()+".%"+
-                                incidencia2.getNivelDeUrgencia().getNombre()+".%"+incidencia2.getTipoDeIncidencia().getNombre()+"\n";
+                        text += incidencia2.getUsuario().getCodigo() +"%"+incidencia2.getUsuario().getNombre()+"%"+incidencia2.getEstado().getNombre()+"%"+
+                                incidencia2.getNivelDeUrgencia().getNombre()+"%"+incidencia2.getTipoDeIncidencia().getNombre()+"\n";
                         i ++;
                     }
                     System.out.println(text.length());

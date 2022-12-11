@@ -23,9 +23,7 @@ public class JavaPDF {
         PDDocument document= new PDDocument(); //Creamos un documento
         PDPage page= new PDPage(PDRectangle.A4); //Creamos una pagina tipo A4
         document.addPage(page); //Añadimos una pagina al documento
-
         PDPageContentStream contentStream= new PDPageContentStream(document,page);
-
         PDRectangle mediaBox= page.getMediaBox();//Para obtener dimensiones de la pagina
 
 
@@ -37,7 +35,6 @@ public class JavaPDF {
         //Listamos
         String[] operadores=text.split("\n");//Obtenemos las filas
         int cantColumnas= operadores[0].split("%").length;
-
         String[][] tablaOperadores= new String[operadores.length][cantColumnas];
         int x=0;
 

@@ -126,11 +126,9 @@ public class ServletInicio extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/ServletInicio?action=LogIn");
                 }else {
                     BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
-
                     if (usuariolog != null) {
                         if(usuariolog.getEstado()!=5){
                             session.setAttribute("userlogged", usuariolog);
-                            //Para primer inicio de sesion y cambio de contraseña ( seguridad y usuario pucp).
                             if(usuariolog.getEstado() == 4){
                                 response.sendRedirect(request.getContextPath() + "/ServletInicio?action=establecerNuevaContraSeguridad");
                             } else if (usuariolog.getRolId() == 3 && usuariolog.getEstado() == 1) {
