@@ -163,8 +163,8 @@
                   <option value="2">Profesor</option>
                   <option value="3">Jefe de páctica</option>
                   <option value="4">Seguridad</option>
+                  <option value="5">Trabajador DTI</option>
                 </select>
-                <!--<input type="text" class="form-control"  id="categoria" name="categoria"  value="<%=user.getCategoria()%>">-->
               </ul>
               <br>
               <ul class="list-group list-group-flush">
