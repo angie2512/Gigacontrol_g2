@@ -21,11 +21,11 @@ public class SeguridadDao extends BaseDao{
         //DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
 
         //String sql = "select * from incidencia";
-        String sql = "select i.* , u.Nombre, u.Apellido, u.Correo, u.Codigo , u.Categoria ,t.nombre, n.nombre,e.nombre from incidencia i " +
-        "left join usuario u on i.idUsuario = u.idUsuario " +
-        "left join tipoincidencia t on i.idTipoIncidencia = t.idTipoIncidencia "+
-        "left join nivelurgencia n on i.idNivelUrgencia = n.idNivelUrgencia "+
-        "left join estado e on i.idEstado = e.idEstado ";
+        String sql = "select i.* , u.Nombre, u.Apellido, u.Correo, u.Codigo , u.Categoria ,t.nombre, n.nombre,e.nombre, u.idUsuario from incidencia i " +
+                "left join usuario u on i.idUsuario = u.idUsuario " +
+                "left join tipoincidencia t on i.idTipoIncidencia = t.idTipoIncidencia "+
+                "left join nivelurgencia n on i.idNivelUrgencia = n.idNivelUrgencia "+
+                "left join estado e on i.idEstado = e.idEstado ";
 
         //UsersDao userDao = new UsersDao();
 
@@ -108,7 +108,7 @@ public class SeguridadDao extends BaseDao{
 
         return listaDeIncidencias;
     }
-// Para Ver la Incidencia
+    // Para Ver la Incidencia
     public Incidencia buscarIncidencia(int idIncidencia) {
         Incidencia incidencia1 = new Incidencia();
 

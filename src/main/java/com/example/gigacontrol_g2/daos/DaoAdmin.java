@@ -8,10 +8,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DaoAdmin extends BaseDao {
@@ -68,20 +65,7 @@ public class DaoAdmin extends BaseDao {
             pstmt.setString(4, user.getCodigo());
             pstmt.setString(5, user.getDni());
             pstmt.setString(6, user.getCelular());
-            switch (user.getCategoria()){
-                case "1":
-                    pstmt.setString(7,"Alumno");
-                    break;
-                case "2":
-                    pstmt.setString(7,"Profesor");
-                    break;
-                case "3":
-                    pstmt.setString(7,"Jefe de practica");
-                    break;
-                case "4":
-                    pstmt.setString(7,"Seguridad");
-                    break;
-            }
+            pstmt.setString(7, user.getCategoria());
             pstmt.setInt(8,user.getRolId());
             pstmt.setString(9,"3");
 
@@ -233,6 +217,56 @@ public class DaoAdmin extends BaseDao {
             throw new RuntimeException(e);
         }
         return nro_filas_total_busqueda_apellido;
+    }
+    public ArrayList<BUsuarios> getUsersList() {
+        ArrayList<BUsuarios> usersList = new ArrayList<>();
+        String sql = "select * from usuario";
+
+        try (Connection conn = this.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet resultSet = stmt.executeQuery(sql)) {
+            while (resultSet.next()) {
+                BUsuarios newUser = new BUsuarios();
+                newUser.setIdUsuario(resultSet.getInt(1));
+                newUser.setNombre(resultSet.getString(2));
+                newUser.setApellido(resultSet.getString(3));
+                newUser.setCorreo(resultSet.getString(4));
+                newUser.setCodigo(resultSet.getString(5));
+                newUser.setDni(resultSet.getString(6));
+                newUser.setCelular(resultSet.getString(7));
+                newUser.setCategoria(resultSet.getString(8));
+                newUser.setFotoPerfil(resultSet.getString(9));
+                newUser.setRolId(resultSet.getInt(10));
+                newUser.setEstado((char) resultSet.getInt(11));
+                usersList.add(newUser);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usersList;
+    }
+    public boolean validarDNI(String dni){
+        ArrayList<BUsuarios> listaUsuarios = getUsersList();
+        boolean valid  = true;
+        for(BUsuarios u : listaUsuarios){
+            if(u.getDni().equalsIgnoreCase(dni)){
+                valid=false;
+                break;
+            }
+        }
+        return valid;
+    }
+    public boolean validarCodigo(String codigo){
+        ArrayList<BUsuarios> listaUsuarios = getUsersList();
+        boolean valid  = true;
+        for(BUsuarios u : listaUsuarios){
+            if(u.getCodigo().equalsIgnoreCase(codigo)){
+                valid=false;
+                break;
+            }
+        }
+        return valid;
     }
 
 }

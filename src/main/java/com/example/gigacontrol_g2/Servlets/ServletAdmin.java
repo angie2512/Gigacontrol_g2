@@ -147,23 +147,62 @@ ServletAdmin extends HttpServlet {
                 String celular = request.getParameter("celular");
                 String categoria_c = request.getParameter("categoria");
                 String rolstr_C = request.getParameter("rolID");
-
-                try {
-                    int rolID = Integer.parseInt(rolstr_C);
-                    BUsuarios newuser = new BUsuarios();
-                    newuser.setNombre(nombre_c);
-                    newuser.setApellido(apellido_c);
-                    newuser.setDni(dni_c);
-                    newuser.setCodigo(codigo_c);
-                    newuser.setCorreo(correo_c);
-                    newuser.setCategoria(categoria_c);
-                    newuser.setRolId(rolID);
-                    newuser.setCelular(celular);
-                    daoAdmin.guardar(newuser);
-                    response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
-                } catch (NumberFormatException e) {
-                    response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=guardar");
+                System.out.println("nombre null?" + "hola" + nombre_c + "pedo");
+                BUsuarios newuser = new BUsuarios();
+                if (nombre_c.equals("") || apellido_c == null || correo_c == null || codigo_c == null || dni_c == null || celular == null || categoria_c == null || rolstr_C == null) {
+                    System.out.println("entra?");
+                    request.getSession().setAttribute("err", "Debe LLenar todos los campos");
+                    response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
+                } else {
+                    if (dni_c.length() == 8) {
+                        if (daoAdmin.validarDNI(dni_c)) {
+                            if (codigo_c.length() == 8) {
+                                if (daoAdmin.validarCodigo(codigo_c)) {
+                                    try {//celular
+                                        int number = Integer.parseInt(celular);
+                                        if (celular.length() == 9) {
+                                            if (correo_c.contains("@")) {
+                                                if (categoria_c != null) {
+                                                    if (rolstr_C != null) {
+                                                        newuser.setNombre(nombre_c);
+                                                        newuser.setApellido(apellido_c);
+                                                        newuser.setDni(dni_c);
+                                                        newuser.setCelular(celular);
+                                                        newuser.setCodigo(codigo_c);
+                                                        newuser.setCorreo(correo_c);
+                                                        newuser.setCategoria(categoria_c);
+                                                        newuser.setRolId(Integer.parseInt(rolstr_C));
+                                                        daoAdmin.guardar(newuser);
+                                                        response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
+                                                    } else {
+                                                        request.getSession().setAttribute("msj6", "Debe seleccionar una rol");
+                                                    }
+                                                } else {
+                                                    request.getSession().setAttribute("msj5", "Debe seleccionar una categoria");
+                                                }
+                                            } else {
+                                                request.getSession().setAttribute("msj4", "Debe ingresar un correo valido");
+                                            }
+                                        } else {
+                                            request.getSession().setAttribute("msj3", "El numero debe tener 9 digitos");
+                                        }
+                                    } catch (NumberFormatException e) {
+                                        request.getSession().setAttribute("msj3", "Ingrese valores numericos");
+                                    }
+                                } else {
+                                    request.getSession().setAttribute("msj2", "El codigo ingresado ya se encuntra registrado");
+                                }
+                            } else {
+                                request.getSession().setAttribute("msj2", "El codigo PUCP debe tener 8 digitos");
+                            }
+                        } else {
+                            request.getSession().setAttribute("msj", "El Numero de DNI ingresado ya se encuntra registrado");
+                        }
+                    } else {
+                        request.getSession().setAttribute("msj", "El Numero de DNI debe tener 8 digitos");
+                    }
                 }
+               // response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                 break;
 
 

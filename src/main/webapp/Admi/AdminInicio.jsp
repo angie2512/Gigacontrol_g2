@@ -15,7 +15,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
         <style>
             body {
-                background: url("https://images.adsttc.com/media/images/531f/2bd5/c07a/802c/2700/03ff/large_jpg/CAMARA_2.jpg?1394551725");
+                background: url("resources/Images/FONDOclaro.png");
                 background-position: center center;
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -45,7 +45,8 @@
         <!-- nav -->
         <nav class="navbar navbar-expand-lg" style="background-color: #131950;" aria-label="Eighth navbar example">
             <div class="container">
-                <a class="navbar-brand" href="/AdminInicio.jsp"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
+                <a class="navbar-brand" href="#"><img src="resources/Images/logo_blanco.png" alt="Logo" width="100"
+                                                      height="40" class="d-inline-block align-text-top img-fluid"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

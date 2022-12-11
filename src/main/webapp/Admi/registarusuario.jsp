@@ -8,6 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session"
              class="com.example.gigacontrol_g2.beans.BUsuarios"/>
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,7 +22,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <style>
         body {
-            background: url("https://images.adsttc.com/media/images/531f/2bd5/c07a/802c/2700/03ff/large_jpg/CAMARA_2.jpg?1394551725");
+            background: url("resources/Images/FONDOclaro.png");
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -49,8 +52,9 @@
 <!-- nav -->
 <nav class="navbar navbar-expand-lg" style="background-color: #131950;" aria-label="Eighth navbar example">
     <div class="container">
-        <a class="navbar-brand" href="/AdminInicio.jsp"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#"><img src="resources/Images/logo_blanco.png" alt="Logo" width="100"
+                                              height="40" class="d-inline-block align-text-top img-fluid"></a>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -274,6 +278,12 @@
                         <div class="card-body">
                             <h5 class="card-title" style="font-family: Georgia">REGISTRO</h5>
                             <h5>Ingrese sus datos</h5>
+                            <% if(session.getAttribute("err")!=null){%>
+                            <div class="alert alert-danger" role="alert">
+                                <%=session.getAttribute("err")%>
+                            </div>
+                            <% session.removeAttribute("err");%>
+                            <%}%>
                             <form action="<%=request.getContextPath()%>/ServletAdmin?action=guardar" method="post">
                                 <div class=" table-responsive">
 
@@ -324,6 +334,12 @@
                                                     <div class="col-auto">
                                                         <input type="text" id="dni" class="form-control"
                                                                aria-describedby="passwordHelpInline" name="dni">
+                                                        <% if(session.getAttribute("msj")!=null){%>
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <%=session.getAttribute("msj")%>
+                                                            </div>
+                                                        <% session.removeAttribute("msj");%>
+                                                        <%}%>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -335,6 +351,12 @@
                                                     <div class="col-auto">
                                                         <input type="text" id="celular" class="form-control"
                                                                aria-describedby="passwordHelpInline" name="celular">
+                                                        <% if(session.getAttribute("msj3")!=null){%>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <%=session.getAttribute("msj3")%>
+                                                        </div>
+                                                        <% session.removeAttribute("msj3");%>
+                                                        <%}%>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -349,6 +371,12 @@
                                                     <div class="col-auto">
                                                         <input type="text" id="codigo" class="form-control"
                                                                aria-describedby="passwordHelpInline" name="codigo">
+                                                        <% if(session.getAttribute("msj2")!=null){%>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <%=session.getAttribute("msj2")%>
+                                                        </div>
+                                                        <% session.removeAttribute("msj2");%>
+                                                        <%}%>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -361,6 +389,12 @@
                                                     <div class="col-auto">
                                                         <input type="text" id="correo" class="form-control"
                                                                aria-describedby="passwordHelpInline" name="correo">
+                                                        <% if(session.getAttribute("msj4")!=null){%>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <%=session.getAttribute("msj4")%>
+                                                        </div>
+                                                        <% session.removeAttribute("msj4");%>
+                                                        <%}%>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -375,11 +409,18 @@
                                                     <div class="input-group mb-3">
                                                         <select class="form-select" id="categoria" name="categoria">
                                                             <option selected>Elegir...</option>
-                                                            <option value="1">Alumno</option>
-                                                            <option value="2">Profesor</option>
-                                                            <option value="3">Jefe de páctica</option>
-                                                            <option value="4">Administrativo</option>
+                                                            <option value="Alumno">Alumno</option>
+                                                            <option value="Profesor">Profesor</option>
+                                                            <option value="Jefe de practica">Jefe de páctica</option>
+                                                            <option value="Seguridad">Seguridad</option>
+                                                            <option value="Administrador">Trabajador DTI</option>
                                                         </select>
+                                                        <% if(session.getAttribute("msj5")!=null){%>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <%=session.getAttribute("msj5")%>
+                                                        </div>
+                                                        <% session.removeAttribute("msj5");%>
+                                                        <%}%>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -395,6 +436,12 @@
                                                             <option value="2">usuario pucp</option>
                                                             <option value="3">administrador</option>
                                                         </select>
+                                                        <% if(session.getAttribute("msj6")!=null){%>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <%=session.getAttribute("msj6")%>
+                                                        </div>
+                                                        <% session.removeAttribute("msj6");%>
+                                                        <%}%>
                                                     </div>
                                                 </td>
                                             </tr>

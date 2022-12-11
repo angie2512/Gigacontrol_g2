@@ -48,16 +48,26 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
             padding: 0;
         }
     </style>
+    <style>
+        body {
+            background: url("resources/Images/FONDOclaro.png");
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            height: 100vh;
+            bgcolor: "#800000";
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYO577C0s-mTgU94RJbr7HZ6sTL41Uobg&callback=initMap&v=weekly"></script>
 </head>
-<body style="background: url(https://ambientesdigital.com/wp-content/uploads/2017/07/10-biblioteca-ciencias-ingenieria-arquitectura-pucp-foto-juan-solano-ojasi.jpg);
-               background-repeat: no-repeat;
-               background-position: center center;
-               background-attachment: fixed;
-               background-size: cover;" class="p-3 m-0 border-0 bd-example">
+<body>
 <nav class="navbar navbar-expand-lg" style="background-color: #4C9978;" aria-label="Eighth navbar example">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
+        <a class="navbar-brand" href="#"><img src="resources/Images/logo_blanco.png" alt="Logo" width="100" height="40" class="d-inline-block align-text-top img-fluid"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -74,6 +84,13 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
 
             <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
                 <li><a href="#" class="nav-link px-2"><b style="color:white"><%=userlogged.getNombre()%> <%=userlogged.getApellido()%></b></a></li>
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
+                        <img src="<%=userlogged.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>"
+                             class="rounded mx-auto d-block " alt="mdo" width="32" height="32"
+                             class="rounded-circle">
+                    </a>
+                </div>
 
             </ul>
 
@@ -101,9 +118,10 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                             </tbody>
                         </table>
                         <br>
-                        <table style="display:flex; justify-items: center">
+
+                        <!-- <table style="display:flex; justify-content: space-around">
                             <tr>
-                                <td><h6 class="card-text" style="color:#B1120D;padding-right: 5rem;margin-right:40px"><b>ESTADO: <%=incidencia.getEstado().getNombre()%></b></h6>
+                                <td><h6 class="card-text" style="color:#B1120D"><b>ESTADO: <%=incidencia.getEstado().getNombre()%></b></h6>
                                 </td>
                                 <td></td>
                                 <td style="background-color:#DAD9BA"><h6>Nivel de urgencia: <b><%=incidencia.getNivelDeUrgencia().getNombre()%></b></h6> </td>
@@ -112,46 +130,72 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                                     <div class="btn btn-primary" >
                                             <select class="form-select" id="estado" name="estado" required>
                                                 <option value="<%=incidencia.getEstado().getIdEstado()%>" selected>Actualizar Estado</option>
-                                                <!--< %
-                                                    for (Estado est : listaEstados) {
-                                                %>-->
                                                 <option value="<%=listaEstados.get(2).getIdEstado()%>"><%=listaEstados.get(2).getNombre()%>
                                                 </option>
                                                 <option value="<%=listaEstados.get(3).getIdEstado()%>"><%=listaEstados.get(3).getNombre()%>
                                                 </option>
-                                                <!-- < % }%> -->
                                             </select>
                                     </div>
                                     </form>
                                 </td>
                             </tr>
-                        </table>
+                        </table> -->
+                        <div style="display:flex ; justify-items: auto; padding-bottom:5px;">
+                            <h6 class="card-text" style="color:#B1120D"><b>ESTADO: <%=incidencia.getEstado().getNombre()%></b></h6>
+                            <b style="color:darkblue;padding-left: 110px;">Nivel de Urgencia: <%=incidencia.getNivelDeUrgencia().getNombre()%></b>
+                            <form id="myform" method="post" action="<%=request.getContextPath()%>/ServletSeguridad?action=actualizarIncidencia">
+                                <div class="btn btn-primary" style="margin-left:110px">
+                                    <select class="form-select" id="estado" name="estado" required>
+                                        <option value="<%=incidencia.getEstado().getIdEstado()%>" selected>Actualizar Estado</option>
+                                        <option value="<%=listaEstados.get(2).getIdEstado()%>"><%=listaEstados.get(2).getNombre()%>
+                                        </option>
+                                        <option value="<%=listaEstados.get(3).getIdEstado()%>"><%=listaEstados.get(3).getNombre()%>
+                                        </option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+
                         <br>
-                        <table style="display:flex ; justify-items: center">
-                            <tr style="justify-items: center">
-                                <!--<td><img src="resources/Images/userSeguridad.png" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem"></td> -->
-                                <td style="padding-left: 2rem; color:#2C3166"><p class="card-text"><b><%=incidencia.getUsuario().getApellido()%>, <%=incidencia.getUsuario().getNombre()%> </b>
-                                    <b style="color:#B1120D; padding-left: 2rem;"><%=incidencia.getUsuario().getCodigo()%></b>
-                                    <b style="color:#C0C4C7; padding-left: 2rem;"><%=incidencia.getUsuario().getCategoria()%></b></p>
+                        <!--  style="display: flex ; justify-content: space-evenly" -->
+                        <div style="display:flex ; justify-items: auto; padding-bottom:5px;">
+                            <b><%=incidencia.getUsuario().getCategoria()%>: <%=incidencia.getUsuario().getNombre()%> <%=incidencia.getUsuario().getApellido()%> </b>
+                            <b style="color:#B1120D;padding-left: 2rem;">Código: <%=incidencia.getUsuario().getCodigo()%></b>
+                            <b style="color:#B1120D;margin-left:180px;">Redacte su Comentario Aqui:</b>
+                        </div>
+
+                         <!--
+                        <table>
+                            <tr style="display: flex ; justify-content: space-evenly">
+
+                                <td style="padding-left: 2rem; color:#2C3166">
+                                    <b>< %=incidencia.getUsuario().getApellido()%>, < %=incidencia.getUsuario().getNombre()%> </b>
+                                    <b style="color:#B1120D; padding-left: 2rem;">< %=incidencia.getUsuario().getCodigo()%></b>
+                                    <b style="color:#C0C4C7; padding-left: 2rem;">< %=incidencia.getUsuario().getCategoria()%></b>
+                                    <b style="color:#B1120D;">Redacte su Comentario Aqui:</b>
+
                                 </td>
 
                             </tr>
 
-                        </table>
+                        </table> -->
                         <br>
 
-                        <div style="display:flex ; justify-items: auto">
+                        <div style="display:flex ; justify-items: auto; padding-bottom:10px;" >
                             <div>
 
                                 <div>
                                     <div class="row">
-                                        <div class="col-6">
-                                            <b style="color:#B1120D;">Comentario de Incidencia:</b>
-                                        </div>
+
 
                                         <div class="col-6">
                                             <b style="color:#B1120D;">Zona PUCP:</b>
                                         </div>
+
+                                        <div class="col-6">
+                                            <b style="color:#B1120D;">Ubicación:</b>
+                                        </div>
+
 
                                     </div>
                                     <br>
@@ -168,8 +212,8 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                                 <table style="display:flex ; justify-items: center">
                                     <tr>
                                         <td style="padding-left: 0rem; color:#2C3166"><p class="card-text"><b>Tipo de Incidencia: </b> <%=incidencia.getTipoDeIncidencia().getNombre()%>
-                                            <b style="color:#F0C00D; padding-left: 8rem;">★ Destacados</b>
-                                            <b style="padding-left: 3rem;">👤 15 </b></p></td>
+                                            <!--<b style="color:#F0C00D; padding-left: 8rem;">★ Destacados</b>
+                                            <b style="padding-left: 3rem;">👤 15 </b></p> --></td>
                                     </tr>
 
                                 </table>
@@ -198,14 +242,15 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
 
 
                             </div>
-                            <!-- <form method="post" action="< %=request.getContextPath()%>/ServletSeguridad?action=guardarComentario"> -->
+                            <form method="post" action="< %=request.getContextPath()%>/ServletSeguridad?action=guardarComentario">
                             <div style="margin-left:40px">
                                 <input form="myform" type="hidden" name="idIncidencia" value="<%=incidencia.getIdIncidencia()%>">
                                 <div class="form-floating">
-                                    <input form="myform" style="height:424px;width:260px" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="resolucionIncidencia" >
-                                    <label for="floatingTextarea2">Redacte su Comentario Aquí...</label>
+                                    <!--<input form="myform" style="height:424px;width:260px" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="resolucionIncidencia" > -->
+                                    <textarea name="resolucionIncidencia" form="myform" style="height:424px;width:260px" class="form-control"></textarea>
+                                    <!--<label for="floatingTextarea2">Redacte su Comentario Aquí...</label> -->
                                 </div>
-                                <button form="myform" ype="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
+                                <button style="margin-left:50px;margin-top:10px" form="myform" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:darkred">
                                     Guardar Cambios
                                 </button>
                             </div>
@@ -213,41 +258,7 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                         </div>
                         <br>
 
-                        <!--<table>
-                            <br>
-                            <div class="card">
-                                <h5 class="card-header">Comentario Actual del Usuario</h5>
-                                <div class="card-body">
-                                    <p class="card-text">Ok conforme</p>
-                                </div>
-                            </div>
-                            <br>
 
-                            <div class="accordion" id="accordionExample" height="200rem" width="200rem">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Comentarios Anteriores
-                                        </button>
-                                    </h2>
-                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <ol>
-                                                <li>
-                                                    <p>No estoy de acuerdo</p>
-                                                </li>
-                                                <li>
-                                                    <p>Aun no estoy de acuerdo</p>
-                                                </li>
-                                                <li>
-                                                    <p>Tampoco estoy de acuerdo</p>
-                                                </li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </table> -->
                     </div>
                 </div>
                 <br>

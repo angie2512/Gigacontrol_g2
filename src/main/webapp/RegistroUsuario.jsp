@@ -16,7 +16,7 @@
         <title>Registro Usuario</title>
         <style>
             body {
-                background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
+                background: url("https://files.pucp.education/puntoedu/wp-content/uploads/2020/04/17221616/explanada-cia-2.jpg");
                 background-position: center center;
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -107,7 +107,7 @@
                                name="codigo2">
                     </div>
 
-                    <!--Falta obtener el error-->
+                     Falta obtener el error
 
                         <% if (session.getAttribute("err") != null) { %>
                     <div class="text-danger mb-2"><%=session.getAttribute("err")%>
@@ -207,29 +207,29 @@
             </div>
         </center> -->
         <br>
-        <!-- SOLO ES PRUEBAAA-->
+        <!-- SI ESTÁ BIENN -->
         <center>
-            <div class="card mb-3" style="max-width:50rem ;background-color:rgba(255,255,255,0.70); top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); position: absolute">
+            <div class="card mb-3" style="max-width:40rem ;background-color:rgba(255,255,255,0.70);  top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); position: absolute">
                 <div class="card-header">
                     <img src="resources/Images/LOGO_azul.png" alt="Logo" width="145rem;" height="48rem"
                          class="rounded float-start img-fluid">
                 </div>
                 <div class="card-body">
                     <center>
-                        <h1 style="font-family:'Georgia';color:#4b71bb" class="card-title"><b>Usuario PUCP</b></h1>
-                        <h5 style="font-family: 'Mukta Mahee', sans-serif;color:#40936d" class="card-subtitle mb-2">Crear cuenta nueva</h5>
-                        <h6 >Ingrese sus Datos</h6>
+                        <h1 style="font-family: 'Georgia' " class="card-title"><b style="color: rgba(255,255,255,0.1)">...</b><b style="color:#4467b0;">USUARIO PUCP</b><b style="color: rgba(255,255,255,0.1)">...</b></h1>
+                        <h5 style="color:#40936d" class="card-subtitle mb-2">Crear cuenta nueva</h5>
+                        <h6 style="font-family: 'Georgia' ">Ingrese sus Datos</h6>
+                        <br>
                         <div class="d-grid gap-2 mx-auto">
                             <form method="post" class="form-signin"
                                   action="<%=request.getContextPath()%>/ServletInicio?action=ValidacionRegistroUsuario">
-                                <div class="mb-3 d-grid gap-2 col-8 mx-auto">
-                                    <label align="left" for="correo" class="form-label" style="color:#FFFFFF">Correo PUCP</label>
+                                <div class="mb-3 d-grid gap-2 col-8 mx-auto" >
+                                    <label align="left" for="correo" class="form-label" style="color:#4467b0; font-family: 'KrinkesDecorPERSONAL';"><b>Correo PUCP</b></label>
                                     <input type="correo" class="form-control" id="correo" name="correo">
                                 </div>
                                 <div class="mb-3 d-grid gap-2 col-8 mx-auto">
-                                    <label align="left" for="codigo2" class="form-label" style="color:#FFFFFF">Código PUCP</label>
-                                    <input type="codigo2" class="form-control" id="codigo2"
-                                           name="codigo2">
+                                    <label align="left" for="codigo2" class="form-label" style="color:#4467b0;font-family: 'KrinkesDecorPERSONAL';"><b>Código PUCP</b></label>
+                                    <input type="codigo2" class="form-control" id="codigo2" name="codigo2">
                                 </div>
 
                                 <!--Falta obtener el error-->
@@ -247,13 +247,24 @@
                                     <% } %>
 
 
-                                <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button"
-                                   style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
-                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                <!-- <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
                                     Enviar
-                                </button>
+                                </button>    BOTON DE ENVIAR-->
+
+
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
+                                        Enviar
+                                    </button> <!-- boton de enviar -->
+                                    <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button"
+                                       style="margin-left: 0rem; background-color:#D12C22 ; border: none; width: 4rem"> Atrás </a>
+                                </div>
                             </form>
+                            <!--<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button"
+                               style="margin-left: 0rem; background-color:#D12C22 ; border: none; width: 4rem"> Atrás </a></center> -->
+
                         </div>
                     </center>
                 </div>

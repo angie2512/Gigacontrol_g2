@@ -38,7 +38,7 @@
         <title>Inicio</title>
         <style>
             body {
-                background: url("https://ambientesdigital.com/wp-content/uploads/2017/07/10-biblioteca-ciencias-ingenieria-arquitectura-pucp-foto-juan-solano-ojasi.jpg");
+                background: url("resources/Images/FONDOclaro.png");
                 background-position: center center;
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -77,9 +77,7 @@
     <body class="p-3 m-0 border-0 bd-example">
         <nav class="navbar navbar-expand-lg" style="background-color: #4C9978;" aria-label="Eighth navbar example">
             <div class="container">
-                <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40"
-                                                      height="40" class="d-inline-block align-text-top"><b
-                        style="color:#FFFFFF"> GIGACONTROL</b></a>
+                <a class="navbar-brand" href="#"><img src="resources/Images/logo_blanco.png" alt="Logo" width="100" height="40" class="d-inline-block align-text-top img-fluid"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -105,7 +103,9 @@
                         </b></a></li>
                         <div class="dropdown text-end">
                             <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                                <!--img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle"--->
+                                <img src="<%=userlogged.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>"
+                                     class="rounded mx-auto d-block " alt="mdo" width="32" height="32"
+                                     class="rounded-circle">
                             </a>
                         </div>
                     </ul>
@@ -138,7 +138,7 @@
                                   <div> -->
 
                           <!--      <form class="d-flex" role="search" method="post"
-                                      action="<%=request.getContextPath()%>/ServletSeguridad?action=buscarIncidencia">
+                                      action="< %=request.getContextPath()%>/ServletSeguridad?action=buscarIncidencia">
                                     <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar"
                                            aria-label="Buscar">
                                     <button class="btn btn-outline-primary" type="submit">Buscar</button>
@@ -148,13 +148,14 @@
                                       accept-charset="UTF-8" role="form"
                                       action="<%=request.getContextPath()%>/ServletSeguridad?action=buscarIncidencia">
                                     <div>
-                                        <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar"
+                                        <h6 class="card-text" for="edit-sort-by" style="color:#B1120D;font-size:20px"><b>BUSCADOR DE INCIDENCIAS</b></h6>
+                                        <input class="form-control me-2" type="search" name="searchText" placeholder="Ingrese el Nombre o Palabra Clave de Incidencia"
                                                aria-label="Buscar">
                                         <div class="views-exposed-form">
                                             <div class="views-exposed-widgets clearfix">
                                                 <div class="views-exposed-widget views-widget-sort-by">
                                                     <div class="form-item form-type-select form-item-sort-by form-group">
-                                                        <label for="edit-sort-by">Estado</label>
+                                                        <h6 for="edit-sort-by" class="card-text" style="color:#B1120D">Seleccione el Estado de la Incidencia </h6>
                                                         <select class="form-control form-select" id="edit-sort-by" name="estado">
                                                             <option value="1" selected="selected">Todos</option>
                                                             <option value="Registrado">Registrado</option>
@@ -166,7 +167,7 @@
 
                                                 <div class="views-exposed-widget views-widget-sort-order">
                                                     <div class="form-item form-type-select form-item-sort-order form-group">
-                                                        <label for="edit-sort-order">Nivel de Urgencia </label>
+                                                        <h6 for="edit-sort-by" class="card-text" style="color:#B1120D">Seleccione el Nivel de Urgencia de la Incidencia </h6>
                                                         <select class="form-control form-select" id="edit-sort-order"
                                                                 name="nivelurg">
                                                             <option value="1" selected>Todos</option>
@@ -176,11 +177,12 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <br>
+                                                <!--<p><textarea name="comentario" rows="5" cols="50">Escribe aquí tu comentario: </textarea></p> -->
+                                                <!--<input name="comentario" class="textarea" rows="5" cols="50">Escribe aquí tu comentario:</input>
+                                                <br> -->
 
                                                 <div class="views-exposed-widget views-submit-button">
-                                                    <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Filtrar</button>
-                                                    <button onclick="generatePDF()">Descargar PDF</button>
+                                                    <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Buscar</button>
                                                 </div>
 
                                             </div>
@@ -188,88 +190,8 @@
                                     </div>
                                 </form>
 
-                                <!--Se colocará el div que contenga botón para descargar pdf--->
-
-
-
-
-                                <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
-                                <script>
-                                    function generatePDF(){
-                                        var pdfObject = jsPDFInvoiceTemplate.default(props);
-
-                                        console.log("Object created: ", pdfObject);
-                                    }
-
-                                    var props = {
-                                        outputType: jsPDFInvoiceTemplate.OutputType.Save,
-                                        returnJsPDFDocObject: true,
-                                        fileName: "Invoice 2021",
-                                        orientationLandscape: false,
-                                        compress: true,
-
-                                        stamp: {
-                                            inAllPages: true, //by default = false, just in the last page
-                                            src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
-                                            type: 'JPG', //optional, when src= data:uri (nodejs case)
-                                            width: 20, //aspect ratio = width/height
-                                            height: 20,
-                                            margin: {
-                                                top: 0, //negative or positive num, from the current position
-                                                left: 0 //negative or positive num, from the current position
-                                            }
-                                        },
-                                        business: {
-                                            name: "GIGACONTROL",
-                                            address: "Atención para toda la comunidad PUCP",
-                                        },
-                                        contact: {
-                                            name: "Lista de incidencias:",
-                                        },
-                                        invoice: {
-                                            label: "Número de Incidencias: ",
-                                            num: 5,
-                                            headerBorder: false,
-                                            tableBodyBorder: false,
-
-                                            header: [
-                                                {
-                                                    title: "Código",
-                                                    style: {
-                                                        width: 20
-                                                    }
-                                                },
-                                                {
-                                                    title: "Nombre",
-                                                    style: {
-                                                        width: 30
-                                                    }
-                                                },
-                                                {
-                                                    title: "Descripción",
-                                                    style: {
-                                                        width: 50
-                                                    }
-                                                },
-                                                { title: "Tipo de incidencia"},
-                                                { title: "Estado"},
-                                                { title: "Nivel de Urgencia"},
-
-                                            ],
-
-
-                                            invDescLabel: "GIGACONTROL ASSITANT",
-                                            invDesc: "Todos los datos de las incidencias serán de suma importancias a la hora de llevar a cabo la resolución de estas, por favor tenga en consideración cada una de ellas.",
-                                        },
-                                        footer: {
-                                            text: "The invoice is created on a computer and is valid without the signature and stamp.",
-                                        },
-                                        pageEnable: true,
-                                        pageLabel: "Page ",
-                                    };
-
-
-                                </script>
+                                <br>
+                                <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargar" class="btn btn-primary">Descargar PDF</a>
 
 
                                 <%  if(!(listaDeIncidencias.size()==1 && listaDeIncidencias.get(0).getIdIncidencia()==0)){
@@ -297,7 +219,7 @@
                                                          style="padding-left: 3rem;">
                                                         <a href="<%=request.getContextPath()%>/ServletSeguridad?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>"
                                                            class="btn btn-danger">Ver Más</a>
-                                                        <!--a href="< %=request.getContextPath()%>/ServletSeguridad?action=reporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a> --->
+                                                        <a href="< %=request.getContextPath()%>/ServletSeguridad?action=reporte&id=<%=incidencia.getIdIncidencia()%>" class="btn btn-primary">Descargar</a>
                                                     </div>--%>
                                                 </td>
                                             </tr>
@@ -320,16 +242,22 @@
 
 
                                         <tr>
-                                            <td class="col-sm-9">
-                                                <p><b>Descripción:</b> <%=incidencia.getDescripcion()%></p>
+                                            <td>
+                                                <h6 style="color:#585151; font-family:Georgia, serif"><b>Descripción: <%=incidencia.getDescripcion()%> </b></h6>
                                             </td>
                                             <td>
-                                                <p class="text-end"><b>Tipo de Incidencia:</b> <%=incidencia.getTipoDeIncidencia().getNombre()%>
+                                                <!--
+                                                <p class="text-end"><b>Tipo de Incidencia:</b> < %=incidencia.getTipoDeIncidencia().getNombre()%>
+                                                </p> -->
+                                                <p style="color:#9d1616">
+                                                    <b>Tipo de Incidencia: <%=incidencia.getTipoDeIncidencia().getNombre()%></b>
                                                 </p>
+                                                <!--<p class="text-end"><b>Nivel de Urgencia:</b> < %=incidencia.getNivelDeUrgencia().getNombre()%>
+                                                </p> -->
                                             </td>
                                         </tr>
 
-
+                                        <!--style="display: flex;justify-content:space-around" -->
                                         <tr>
                                             <td>
                                                 <div class="p-2">
@@ -338,8 +266,10 @@
                                             </td>
 
                                             <td class="col-sm-3">
-                                                <p class="text-end"><b>Nivel de Urgencia:</b> <%=incidencia.getNivelDeUrgencia().getNombre()%>
+                                                <p style="color:#9d1616">
+                                                    <b>Nivel de Urgencia: <%=incidencia.getNivelDeUrgencia().getNombre()%></b>
                                                 </p>
+
                                             </td>
                                         </tr>
 

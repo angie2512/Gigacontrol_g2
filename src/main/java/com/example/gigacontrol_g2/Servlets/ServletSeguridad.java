@@ -1,5 +1,6 @@
 package com.example.gigacontrol_g2.Servlets;
 
+import com.example.gigacontrol_g2.JavaPDF;
 import com.example.gigacontrol_g2.beans.*;
 import com.example.gigacontrol_g2.daos.DaoDatosFijos;
 import com.example.gigacontrol_g2.daos.SeguridadDao;
@@ -8,8 +9,10 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -73,7 +76,12 @@ public class ServletSeguridad extends HttpServlet {
                         request.setAttribute("valor_pagina", valor_pagina);
                     }
 
-                    //cierre paginacion
+                    if(session.getAttribute("listaDescargar")!= null){
+                        session.removeAttribute("listaDescargar");
+                        session.setAttribute("listaDescargar",seguridadDao.obtenerListaDeIncidencias());
+                    }else{
+                        session.setAttribute("listaDescargar",seguridadDao.obtenerListaDeIncidencias());
+                    }
 
                     request.setAttribute("listaIncidencias", seguridadDao.obtenerListaDeIncidencias());
                     requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
@@ -151,16 +159,41 @@ public class ServletSeguridad extends HttpServlet {
                 BUsuarios bUsuarios = (BUsuarios) session.getAttribute("userlogged");
                 seguridadDao.mostrarImagen(bUsuarios.getIdUsuario(), response);
                 break;
-            default:
-                response.sendRedirect(request.getContextPath());
-                break;
+
 
             case "agregar":
                 request.setAttribute("ListaIncidencias", seguridadDao.obtenerListaDeIncidencias());
                 requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
                 requestDispatcher.forward(request, response);
                 break;
+            case "descargar":
 
+                System.out.println("si llego");
+                try(PrintWriter salir =  response.getWriter()) {
+                    ArrayList<Incidencia> incidencias = (ArrayList<Incidencia>) session.getAttribute("listaDescargar");
+                    int i = 1;
+                    String text = "Codigo%Nombre%Estado%Nivel de Urgencia%Tipo de Incidencia\n";
+                    for(Incidencia incidencia2 : incidencias){
+                        text += incidencia2.getUsuario().getCodigo() +".%"+incidencia2.getUsuario().getNombre()+".%"+incidencia2.getEstado().getNombre()+".%"+
+                                incidencia2.getNivelDeUrgencia().getNombre()+".%"+incidencia2.getTipoDeIncidencia().getNombre()+"\n";
+                        i ++;
+                    }
+                    System.out.println(text.length());
+                    response.setContentType("application/pdf");
+                    response.setHeader("Content-Disposition", "attachment; filename=gigacontrol.pdf");
+                    JavaPDF javaPDF= new JavaPDF();
+                    String nombre = "GIGACONTROL REPORTE";
+                    byte[] pdf= javaPDF.pdfFuncionTable(text,nombre);
+                    InputStream in =new ByteArrayInputStream(pdf);
+                    int f;
+                    while((f=in.read())!=-1){
+                        salir.write(f);
+                    }
+                    in.close();
+                }
+                break;
+            default:
+                response.sendRedirect(request.getContextPath());
 
 
         }
@@ -190,6 +223,12 @@ public class ServletSeguridad extends HttpServlet {
                 String nivelurg = request.getParameter("nivelurg")==null?"":request.getParameter("nivelurg");
                 ArrayList<Incidencia> lista = seguridadDao.BuscarIncidencia(searchText, estado, nivelurg);
 
+                if(session.getAttribute("listaDescargar")!= null){
+                    session.removeAttribute("listaDescargar");
+                    session.setAttribute("listaDescargar", lista);
+                }else{
+                    session.setAttribute("listaDescargar", lista);
+                }
                 Incidencia inc  = new Incidencia();
                 inc.setIdIncidencia(0);
                 int valor_total_filas_int = lista.size();
@@ -221,13 +260,11 @@ public class ServletSeguridad extends HttpServlet {
                     request.setAttribute("regMax", regMax);
                     request.setAttribute("valor_pagina", valor_pagina);
                 }
-
                 //cierre paginacion
                 request.setAttribute("listaIncidencias", lista);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
                 requestDispatcher.forward(request, response);
                 break;
-
 
             /*case "buscar":
                 String opcion  = request.getParameter("opcion");
@@ -255,6 +292,7 @@ public class ServletSeguridad extends HttpServlet {
                 seguridadDao.actualizarEstado(idEstado , idIncidencia);
                 response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                 break;
+
         }
     }
 }

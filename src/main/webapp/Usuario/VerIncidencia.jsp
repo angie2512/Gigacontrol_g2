@@ -12,7 +12,6 @@
     ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
     HashMap<Integer, Integer> numDestacados = (HashMap<Integer, Integer>) request.getAttribute("numDestacados");
     BUsuarios u = (BUsuarios) session.getAttribute("userlogged");
-    BUsuarios usuario = (BUsuarios) session.getAttribute("usuario");
 
 %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
@@ -54,7 +53,7 @@
             padding: 0;
         }
         body {
-            background: url("https://ambientesdigital.com/wp-content/uploads/2017/07/10-biblioteca-ciencias-ingenieria-arquitectura-pucp-foto-juan-solano-ojasi.jpg");
+            background: url("resources/Images/FONDOclaro.png");
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -70,7 +69,8 @@
 <p></p>
 <nav class="navbar navbar-expand-lg" style="background-color: #5f6694;" aria-label="Eighth navbar example">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
+        <a class="navbar-brand" href="#"><img src="resources/Images/logo_blanco.png" alt="Logo" width="100"
+                                              height="40" class="d-inline-block align-text-top img-fluid"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -126,32 +126,32 @@
 
         <div class="col-md-8">
 
-            <div class="p-4 p-md-5 mb-4" style="background-color: #f7eeff">
+            <div class="p-4 p-md-5 mb-4" style="background-color: white">
                 <div class="px-0">
-                    <h1 class="display-4 fst-italic" style="color:#2C3166"><b><%=incidencia.getNombreDeIncidencia()%></b></h1>
+                    <h1 class="card-text" style="color:#2C3166"><b><%=incidencia.getNombreDeIncidencia()%></b></h1>
                     <p style="color: #af0f14"><b>ESTADO: <%=incidencia.getEstado().getNombre()%></b></p>
+                    <br>
                     <div class="row">
                         <div class="col-lg-3">
                             <!-- IMAGEN -->
-
-                            <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimgPerfil&id=<%=u.getIdUsuario()%>" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem">
+                            <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimgPerfil&idp=<%=incidencia.getUsuario().getIdUsuario()%>" class="rounded mx-auto d-block img-fluid" alt="userphoto">
                         </div>
                         <div class="col-lg-3">
-                            <p style="color: #2C3166"><%=incidencia.getUsuario().getApellido()%>, <%=incidencia.getUsuario().getNombre()%></p>
+                            <h5 style="color: #2C3166"><b><%=incidencia.getUsuario().getApellido()%>,</b> <%=incidencia.getUsuario().getNombre()%></h5>
                         </div>
                         <div class="col-lg-3">
-                            <p style="color: #B1120D"><%=incidencia.getUsuario().getCodigo()%></p>
+                            <h6 style="color: #B1120D"><b><%=incidencia.getUsuario().getCodigo()%> </b></h6>
                         </div>
                         <div class="col-lg-3">
                             <p style="color: #6a727e"><%=incidencia.getUsuario().getCategoria()%></p>
                         </div>
                     </div>
-
+                    <br><p></p>
                     <div class="row">
-                        <div class="col-lg-4">
-                            <p><b style="color:#2C3166">Tipo de Incidencia: </b> <%=incidencia.getTipoDeIncidencia().getNombre()%></p>
+                        <div class="col-lg-3">
+                            <h6><b style="color:#2C3166">Tipo de Incidencia: </b> <%=incidencia.getTipoDeIncidencia().getNombre()%></h6>
                         </div>
-                        <div class="d-flex flex-row-reverse">
+                       <!-- <div class="col-lg-3">
                             <% if (numDestacados.get(incidencia.getIdIncidencia()) != null) {%>
                             <div class="p-2"><b
                                     style="color:#DCBA38 ">Estado:<%=incidencia.getEstado().getNombre()%>
@@ -173,18 +173,47 @@
                                    style="color:rgba(93,131,196,0.38)">★Destacar</a>
                             </div>
                             <%}%>
+                        </div> -->
+                        <div class="col-lg-3">
+                            <% if (numDestacados.get(incidencia.getIdIncidencia()) != null) {%>
+                            <div class="p-2"><b
+                                    style="color:#dc8238 ">Estado:</b> <b style="color:#cc6540 "><%=incidencia.getEstado().getNombre()%> </b></h5>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="p-2">
+                                <b>👤 <%=numDestacados.get(incidencia.getIdIncidencia())%>
+                                </b></div>
+                            <%} else {%>
+                            <div class="p-2"><b>👤 0</b></div>
+                            <%}%>
+                        </div>
+                        <%if (listaDestacados.contains(incidencia.getIdIncidencia())) { %>
+                        <div class="col-lg-3">
+                            <div class="p-2">
+                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacado&idi=<%=incidencia.getIdIncidencia()%>"
+                                   style="color:#F0C00D"><b>★ Destacar</b></a>
+                            </div>
+                            <% } else { %>
+                            <div class="p-2">
+                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=destacar&idi=<%=incidencia.getIdIncidencia()%>"
+                                   style="color:rgba(93,131,196,0.38)">★Destacar</a>
+                            </div>
+                            <%}%>
                         </div>
                     </div>
+                    <br>
                     <h6 style="color:#0a7437"> <b> Descripción: </b></h6>
-                    <h6><%=incidencia.getDescripcion()%></h6>
+                    <p><%=incidencia.getDescripcion()%></p>
                     <h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPucp()%></h6>
                     <div class="container py-4">
                         <div class="row align-item-md-strech">
                             <div class="col-md-6">
-                                <h3>Foto Incidencia</h3>
-                                <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="215rem" style="padding-left: 2rem;">
+                                <h5>Foto Incidencia</h5>
+                                <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" class="rounded mx-auto d-block img-fluid" alt="userphoto" height="300rem" width="315rem" style="padding-left: 2rem;">
                             </div>
                             <div class="col-6">
+                                <h5>Ubicación</h5>
                                 <div id="map-container">
                                     <div id="map"></div>
                                 </div>

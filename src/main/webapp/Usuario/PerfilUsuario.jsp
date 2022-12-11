@@ -18,7 +18,7 @@
     <script src="https://kit.fontawesome.com/46baa8e193.js" crossorigin="anonymous"></script>
     <style>
         body {
-            background: url("https://ambientesdigital.com/wp-content/uploads/2017/07/10-biblioteca-ciencias-ingenieria-arquitectura-pucp-foto-juan-solano-ojasi.jpg");
+            background: url("resources/Images/FONDOclaro.png");
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -100,7 +100,8 @@
 <p></p>
 <nav class="navbar navbar-expand-lg" style="background-color: #5f6694;" aria-label="Eighth navbar example">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="resources/Images/logopucp.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top"><b style="color:#FFFFFF"> GIGACONTROL</b></a>
+        <a class="navbar-brand" href="#"><img src="resources/Images/logo_blanco.png" alt="Logo" width="100"
+                                              height="40" class="d-inline-block align-text-top img-fluid"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -194,7 +195,6 @@
                         <td class="text-center">ADMINISTRADOR</td>
                         <%}%></h4>
                 </div>
-
                 <p></p>
                 <blockquote class="blockquote mb-0">
                     <h5 style="text-align: center;color:#21547D"><b><%=userlogged.getNombre() + " " + userlogged.getApellido()%></b></h5>

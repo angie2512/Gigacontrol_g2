@@ -12,7 +12,7 @@
     <title>Registro Seguridad</title>
     <style>
         body {
-            background: url("resources/Images/fondoOscuro.png");
+            background: url("https://files.pucp.education/puntoedu/wp-content/uploads/2020/04/17221616/explanada-cia-2.jpg");
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -45,7 +45,7 @@
 
 </head>
 <body class="p-3 m-0 border-0 bd-example">
-<table>
+  <!-- <table>
     <tr>
     <tr>
     <tr>
@@ -101,15 +101,15 @@
             <div class="alert alert-success"><%=session.getAttribute("msgSeg")%>
             </div>
             <% session.removeAttribute("msgSeg"); %>
-            <% } %>
+            <% } %> -->
 
-            <!-- MODAL -->
+            <!-- MODAL
               <div class="d-flex justify-content-center">
                   <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
                         Enviar
                     </button>
               </div>
-        </form>
+        </form>-->
         <!--< % if (session.getAttribute("errorSeg") != null) {%>
         <div class="text-danger mb-2">< %=session.getAttribute("errorSeg")%></div>
         < % session.removeAttribute("errorSeg"); %> -->
@@ -149,13 +149,65 @@
                             </div>
                         </div>
                     </div> -->
-                </div>
+              <!--  </div>
             <br>
     </div>
-</center>
-<br></br>
-<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</center> -->
+   <!-- PRUEBA -->
+   <center>
+       <div class="card mb-3" style="max-width:40rem ;background-color:rgba(255,255,255,0.70);  top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); position: absolute">
+           <div class="card-header">
+               <img src="resources/Images/LOGO_azul.png" alt="Logo" width="145rem;" height="48rem"
+                    class="rounded float-start img-fluid">
+           </div>
+           <div class="card-body">
+               <h1 style="font-family: 'Georgia' " class="card-title"><b style="color: rgba(255,255,255,0.1)">.....</b><b style="color:#b0a244;">SEGURIDAD</b><b style="color: rgba(255,255,255,0.1)">.....</b></h1>
+               <h5 style="color:#40936d" class="card-subtitle mb-2">Crear cuenta nueva</h5>
+               <h6 style="font-family: 'Georgia' ">Ingrese sus Datos</h6>
+               <br>
+               <div class="d-grid gap-2 mx-auto">
+                   <form method="post" class="form-signin" action="<%=request.getContextPath()%>/ServletInicio?action=registroSeguridad">
+                       <div class="mb-3 d-grid gap-2 col-8 mx-auto">
+                           <label align= "left" for="exampleInputEmail1" class="form-label" style="color:#4467b0; font-family: 'KrinkesDecorPERSONAL'"><b>Correo PUCP</b></label>
+                           <input type="email" name= "correoPUCPSeg" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                       </div>
+                       <div class="mb-3 d-grid gap-2 col-8 mx-auto">
+                           <label align= "left" for="exampleInputEmail1" class="form-label" style="color:#4467b0; font-family: 'KrinkesDecorPERSONAL'"><b>Código PUCP</b></label>
+                           <input type="numbers" name= "codigoPUCPSeg" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                       </div>
+                       <p></p>
+                       <p></p>
+                       <% if (session.getAttribute("errorSeg") != null) {%>
+                       <div class="text-danger mb-2"><%=session.getAttribute("errorSeg")%></div>
+                       <% session.removeAttribute("errorSeg"); %>
+                       <% } %>
+
+                       <% if (session.getAttribute("msgSeg") != null) {%>
+                       <div class="alert alert-success"><%=session.getAttribute("msgSeg")%>
+                       </div>
+                       <% session.removeAttribute("msgSeg"); %>
+                       <% } %>
+
+                       <!-- MODAL -->
+                       <!--<div class="d-flex justify-content-center">
+                           <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:#C91B1B">
+                               Enviar
+                           </button>
+                       </div> -->
+                       <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                               <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                                   Enviar
+                               </button>
+                           <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none; width: 4rem"> Atrás </a>
+                       </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </center>
+<br>
+<!-- <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+--><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 </body>
 

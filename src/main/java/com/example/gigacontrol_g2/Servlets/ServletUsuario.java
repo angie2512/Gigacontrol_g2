@@ -140,9 +140,12 @@ public class ServletUsuario extends HttpServlet {
                 break;
 
             case "listarimgPerfil":
+                System.out.println("listar img");
                 String idusuarioimg = request.getParameter("idp");
                 int usuarioidimg = Integer.parseInt(idusuarioimg);
+                System.out.println("idimg: "+usuarioidimg);
                 daoDatosFijos.listarImgPerfil(usuarioidimg, response);
+
                 break;
 
             case "editar":
@@ -186,7 +189,7 @@ public class ServletUsuario extends HttpServlet {
                     request.setAttribute("ListaDeIncidenciasDelUsuario", usersDao.obtenerIncidenciasDelUsuario(usuario.getIdUsuario()));
                     ArrayList<Incidencia> listaDeMisIncidenciasD = usersDao.obtenerIncidenciasDestacadas(usuario.getIdUsuario());
                     /*if(listaDeMisIncidenciasD != null){*/
-                        request.setAttribute("ListaDeIncidenciasDestacadas", listaDeMisIncidenciasD);
+                    request.setAttribute("ListaDeIncidenciasDestacadas", listaDeMisIncidenciasD);
                     /*}*/
                     requestDispatcher = request.getRequestDispatcher("Usuario/MisIncidencias.jsp");
                     //enviar
@@ -220,6 +223,7 @@ public class ServletUsuario extends HttpServlet {
                 String idIncidenciaStr = request.getParameter("id");
                 int idIncidencia = Integer.parseInt(idIncidenciaStr);
                 Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
+                System.out.println("id indicencia usuario: "+incidencia.getUsuario().getIdUsuario());
                 request.setAttribute("incidencia", incidencia);
                 ArrayList<Estado> listaEstados = daoDatosFijos.obtenerListaEstados();
                 request.setAttribute("ListaEstados", listaEstados);
@@ -254,6 +258,37 @@ public class ServletUsuario extends HttpServlet {
                 String searchText = request.getParameter("searchText");
 
                 ArrayList<Incidencia> lista = usersDao.BuscarIncidencia(searchText);
+                Incidencia inc  = new Incidencia();
+                inc.setIdIncidencia(0);
+                int valor_total_filas_int = lista.size();
+                if(valor_total_filas_int==0){
+                    lista.add(inc);
+                }
+                float valor_total_filas = (float) valor_total_filas_int;
+
+                float maxPag = (float) (valor_total_filas / 3);
+                int maxPag2 = (int) Math.ceil(maxPag);
+
+                int valor_pagina = 1;
+                //paginacion
+
+                int regMin = (valor_pagina-1)*3;
+
+                if(valor_pagina != maxPag2){
+                    int regMax = valor_pagina * 3;
+
+                    request.setAttribute("maxPag2", maxPag2);
+                    request.setAttribute("regMin", regMin);
+                    request.setAttribute("regMax", regMax);
+                    request.setAttribute("valor_pagina", valor_pagina);
+                }else{
+                    int regMax = valor_total_filas_int;
+
+                    request.setAttribute("maxPag2", maxPag2);
+                    request.setAttribute("regMin", regMin);
+                    request.setAttribute("regMax", regMax);
+                    request.setAttribute("valor_pagina", valor_pagina);
+                }
                 request.setAttribute("ListaDeIncidencias", lista);
                 request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
                 request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
