@@ -16,7 +16,7 @@
         <title>Registro Usuario</title>
         <style>
             body {
-                background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
+                background: url("https://files.pucp.education/puntoedu/wp-content/uploads/2020/04/17221616/explanada-cia-2.jpg");
                 background-position: center center;
                 background-size: cover;
                 background-repeat: no-repeat;

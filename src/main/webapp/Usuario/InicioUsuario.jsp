@@ -44,7 +44,7 @@
         <title>Inicio Usuario</title>
         <style>
             body {
-                background: url("https://ambientesdigital.com/wp-content/uploads/2017/07/10-biblioteca-ciencias-ingenieria-arquitectura-pucp-foto-juan-solano-ojasi.jpg");
+                background: url("resources/Images/FONDOclaro.png");
                 background-position: center center;
                 background-size: cover;
                 background-repeat: no-repeat;

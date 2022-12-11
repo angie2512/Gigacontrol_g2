@@ -15,7 +15,7 @@
     <title>Establecer Nueva Contraseña</title>
     <style>
       body {
-        background: url("resources/Images/fondoOscuro.png");
+        background: url("https://files.pucp.education/puntoedu/wp-content/uploads/2020/04/17221616/explanada-cia-2.jpg");
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;

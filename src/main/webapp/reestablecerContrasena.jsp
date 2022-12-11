@@ -17,7 +17,7 @@
   <title>Recuperar contraseña</title>
   <style>
     body {
-      background: url("https://brandemia.org/contenido/subidas/2021/07/01-pucp-peru-imagenes-brandemia-web.jpg");
+      background: url("https://files.pucp.education/puntoedu/wp-content/uploads/2020/04/17221616/explanada-cia-2.jpg");
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
