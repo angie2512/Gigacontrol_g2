@@ -127,15 +127,17 @@
 <!-- AQUIIIIIIIIII -->
 
 <main class="container">
-    <div class="row g-5">
+    <div class="row mb-2">
 
         <div class="col-md-8">
 
             <div class="p-4 p-md-5 mb-4" style="background-color: white">
                 <div class="px-0">
+                    <!-- nombre de la card -->
                     <h1 class="card-text" style="color:#2C3166"><b><%=incidencia.getNombreDeIncidencia()%></b></h1>
                     <p style="color: #af0f14"><b>ESTADO: <%=incidencia.getEstado().getNombre()%></b></p>
                     <br>
+                    <!-- IMAGEN, NOMBRE, CODIGO, USUARIO -->
                     <div class="row">
                         <div class="col-lg-3">
                             <!-- IMAGEN -->
@@ -151,7 +153,10 @@
                             <p style="color: #6a727e"><%=incidencia.getUsuario().getCategoria()%></p>
                         </div>
                     </div>
+
+                    <!-- FIN IMAGEN, NOMBRE, CODIGO, USUARIO -->
                     <br><p></p>
+                    <!-- TIPO, ESTADO, PERSNA, DESTACADO -->
                     <div class="row">
                         <div class="col-lg-3">
                             <h6><b style="color:#2C3166">Tipo de Incidencia: </b> <%=incidencia.getTipoDeIncidencia().getNombre()%></h6>
@@ -193,8 +198,9 @@
                             <div class="p-2"><b>👤 0</b></div>
                             <%}%>
                         </div>
-                        <%if (listaDestacados.contains(incidencia.getIdIncidencia())) { %>
+
                         <div class="col-lg-3">
+                            <%if (listaDestacados.contains(incidencia.getIdIncidencia())) { %>
                             <div class="col-lg-3">
                                 <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacado&idi=<%=incidencia.getIdIncidencia()%>"
                                    style="color:#F0C00D"><b>★Destacar</b></a>
@@ -207,24 +213,27 @@
                             <%}%>
                         </div>
                     </div>
+                    <!-- FIN TIPO, ESTADO, PERSNA, DESTACADO -->
                     <br>
                     <h6 style="color:#0a7437"> <b> Descripción: </b></h6>
                     <p><%=incidencia.getDescripcion()%></p>
                     <h6 style="color:#274362"><b>Zona PUCP:</b> <%=incidencia.getZonaPucp()%></h6>
+                    <!-- FOTO DE LA INCIDENCIA Y UBIICACION -->
                     <div class="container py-4">
                         <div class="row align-item-md-strech">
                             <div class="col-md-6">
                                 <h5>Foto Incidencia</h5>
                                 <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" class="rounded mx-auto d-block img-fluid" alt="userphoto" height="300rem" width="315rem" style="padding-left: 2rem;">
                             </div>
-                            <div class="col-6">
-                                <h5>Ubicación</h5>
-                                <div id="map-container">
-                                    <div id="map"></div>
+                                <div class="col-6">
+                                    <h5>Ubicación</h5>
+                                    <div id="map-container">
+                                        <div id="map"></div>
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
+                    <!-- FIN FOTO DE LA INCIDENCIA Y UBIICACION -->
                 </div>
             </div>
 
