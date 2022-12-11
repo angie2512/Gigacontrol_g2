@@ -202,12 +202,12 @@
                         <div class="col-lg-3">
                             <%if (listaDestacados.contains(incidencia.getIdIncidencia())) { %>
                             <div class="col-lg-3">
-                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacado&idi=<%=incidencia.getIdIncidencia()%>"
+                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacadoIncVer&idi=<%=incidencia.getIdIncidencia()%>"
                                    style="color:#F0C00D"><b>★Destacar</b></a>
                             </div>
                             <% } else { %>
                             <div class="col-lg-3">
-                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=destacar&idi=<%=incidencia.getIdIncidencia()%>"
+                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=destacarIncVer&idi=<%=incidencia.getIdIncidencia()%>"
                                    style="color:rgba(93,131,196,0.38)"><b>★Destacar</b></a>
                             </div>
                             <%}%>
@@ -310,6 +310,9 @@
         initMap();
     });
 </script>
-
+<br>
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletUsuario" role="button"
+   style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+<br><br>
 </body>
 </html>

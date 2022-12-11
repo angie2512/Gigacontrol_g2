@@ -215,7 +215,9 @@ public class UsersDao extends BaseDao{
         SeguridadDao seguridadDao = new SeguridadDao();
         String sql = "select * from incidencia where NombreDeIncidencia like ?";
         ArrayList<Incidencia> listaFiltrada = new ArrayList<>();
-        listaFiltrada.add(new Incidencia(0));
+        Incidencia inc = new Incidencia();
+        inc.setIdIncidencia(0);
+        listaFiltrada.add(inc);
 
         try(Connection conn = this.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);){
@@ -269,6 +271,7 @@ public class UsersDao extends BaseDao{
         }catch (SQLException e){
             e.printStackTrace();
         }
+        System.out.println("tamaño: "+listaFiltrada.size());
         return listaFiltrada;
     }
 

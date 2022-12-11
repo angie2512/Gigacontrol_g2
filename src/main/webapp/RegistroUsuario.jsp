@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
-
+<!--jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
+-->
 
 <!doctype html>
 <html lang="en">
@@ -107,27 +107,7 @@
                                name="codigo2">
                     </div>
 
-                     Falta obtener el error
 
-                        <% if (session.getAttribute("err") != null) { %>
-                    <div class="text-danger mb-2"><%=session.getAttribute("err")%>
-                    </div>
-                        <% session.removeAttribute("err"); %>
-                        <% } %>
-
-                        <% if (session.getAttribute("msg") != null) {%>
-                    <div class="alert alert-success"><%=session.getAttribute("msg")%>
-                    </div>
-                        <% session.removeAttribute("msg"); %>
-                        <% } %>
-
-
-                    <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button"
-                       style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
-                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
-                        Enviar
-                    </button> -->
 
 
 
@@ -199,7 +179,7 @@
 
                     <br>--%>
 
-         <!--   </div>
+           </div>
             </form>
             <p></p>
 
@@ -262,8 +242,7 @@
                                        style="margin-left: 0rem; background-color:#D12C22 ; border: none; width: 4rem"> Atrás </a>
                                 </div>
                             </form>
-                            <!--<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button"
-                               style="margin-left: 0rem; background-color:#D12C22 ; border: none; width: 4rem"> Atrás </a></center> -->
+
 
                         </div>
                     </center>
