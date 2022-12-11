@@ -82,10 +82,10 @@ ServletAdmin extends HttpServlet {
                 break;
             case "Editar":
                 String userID = request.getParameter("id");
-                user = usersDao.buscarPorId(userID);
-
+                BUsuarios userNew = daoAdmin.buscarPorId(userID);
+               // user = usersDao.buscarPorId(userID);
                 if (user != null) { //abro el form para editar
-                    request.setAttribute("user", user);
+                    request.setAttribute("user", userNew);
                     requestDispatcher = request.getRequestDispatcher("Admi/edituser.jsp");
                     requestDispatcher.forward(request, response);
                 } else { //id no encontrado
@@ -138,12 +138,17 @@ ServletAdmin extends HttpServlet {
                 String correo = request.getParameter("correo");
                 String categoria = request.getParameter("categoria");
                 String rolstr = request.getParameter("rolID");
+                System.out.println("id: " + userIDstr);
+                System.out.println("rol: " + rolstr);
                 try {
+                    System.out.println("entra?");
                     int rolID = Integer.parseInt(rolstr);
                     int userID = Integer.parseInt(userIDstr);
-                    usersDao.actualizar(userID, nombre, apellido, dni, codigo, correo, categoria, rolID);
+                    daoAdmin.update(userID,nombre,apellido,dni,codigo,correo,categoria,rolID);
+                    //usersDao.actualizar(userID, nombre, apellido, dni, codigo, correo, categoria, rolID);
                     response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
                 } catch (NumberFormatException e) {
+                    System.out.println("prob");
                     response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Editar&id=" + userIDstr);
                 }
                 break;

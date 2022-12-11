@@ -170,13 +170,13 @@
               </ul>
               <br>
               <ul class="list-group list-group-flush">
-                <select class="form-select" id="categoria" name="categoria">
-                  <option selected><%=user.getCategoria()%></option>
-                  <option value="1">Alumno</option>
-                  <option value="2">Profesor</option>
-                  <option value="3">Jefe de páctica</option>
-                  <option value="4">Seguridad</option>
-                  <option value="5">Trabajador DTI</option>
+                <select class="form-select" id="categoria" name="categoria" title="MUUU">
+                  <option selected ><%=user.getCategoria()%></option>
+                  <option value="Alumno">Alumno</option>
+                  <option value="Profesor">Profesor</option>
+                  <option value="Jefe de páctica">Jefe de páctica</option>
+                  <option value="Seguridad">Seguridad</option>
+                  <option value="Trabajador DTI">Trabajador DTI</option>
                 </select>
               </ul>
               <br>
@@ -192,7 +192,7 @@
                       else{
                         i="Administrador";
                       }%>
-                  <option selected>
+                  <option selected value="<%=user.getRolId()%>">
                     <%=i%>
                   </option>
                   <option value="1">seguridad</option>

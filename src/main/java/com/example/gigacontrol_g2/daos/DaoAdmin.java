@@ -100,6 +100,31 @@ public class DaoAdmin extends BaseDao {
         }
     }
 
+
+    public void update(int userID, String nombre, String apellido, String DNI, String codigo, String correo, String categoria, int rolID) {
+
+        String sql = "UPDATE usuario SET Nombre = ?, Apellido = ?, Correo = ?, Codigo = ?, DNI = ?, Categoria = ?, ROl_idRol = ? WHERE idUsuario = ?";
+
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            System.out.println(nombre);
+            pstmt.setString(1,nombre);
+            pstmt.setString(2,apellido);
+            pstmt.setString(3,correo);
+            pstmt.setString(4,codigo);
+            pstmt.setString(5,DNI);
+            pstmt.setString(6,categoria);
+            pstmt.setInt(7,rolID);
+            pstmt.setInt(8,userID);
+
+            pstmt.executeUpdate();
+            System.out.println("ejecuta");
+        } catch (SQLException e) {
+            System.out.println("PROBLEMA");
+            throw new RuntimeException(e);
+        }
+    }
+
     public void guardar(BUsuarios user){
 
         String sql = "INSERT INTO usuario (Nombre,Apellido,Correo,Codigo,DNI,Celular,Categoria,Rol_idRol,estado) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -317,5 +342,33 @@ public class DaoAdmin extends BaseDao {
         }
         return valid;
     }
+
+    public BUsuarios buscarPorId(String userID) {
+        String sql = "select * from usuario WHERE idUsuario = ?";
+        BUsuarios newUser = new BUsuarios();
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setInt(1, Integer.parseInt(userID));
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                if (resultSet.next()) {
+                    newUser.setIdUsuario(resultSet.getInt(1));
+                    newUser.setNombre(resultSet.getString(2));
+                    newUser.setApellido(resultSet.getString(3));
+                    newUser.setCorreo(resultSet.getString(4));
+                    newUser.setCodigo(resultSet.getString(5));
+                    newUser.setDni(resultSet.getString(6));
+                    newUser.setCelular(resultSet.getString(7));
+                    newUser.setCategoria(resultSet.getString(8));
+                    newUser.setFotoPerfil(resultSet.getString(9));
+                    newUser.setRolId(resultSet.getInt(10));
+                    newUser.setEstado((char) resultSet.getInt(11));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return newUser;
+    }
+
 
 }
