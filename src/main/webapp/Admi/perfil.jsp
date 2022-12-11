@@ -222,7 +222,13 @@
     <br>
     <center>
         <div class="card-body" style="max-width: 30rem;">
-            <form>
+
+            <blockquote class="blockquote mb-0">
+                <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizarFoto" enctype="multipart/form-data">
+                    <input type="file" name="photo">
+                    <button type="submit">actualizar</button>
+                </form>
+            </blockquote>
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label" style="background-color: #FFFFFF"><b>Correo:</b></label>
                     <div class="col-sm-10">
@@ -244,7 +250,6 @@
                         </li>
                     </div>
                 </div>
-            </form>
         </div>
     </center>
 </main>

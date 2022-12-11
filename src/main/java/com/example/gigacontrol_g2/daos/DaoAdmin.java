@@ -11,6 +11,9 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.io.InputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 public class DaoAdmin extends BaseDao {
     public void viewImage(int id, HttpServletResponse response) {
@@ -97,6 +100,20 @@ public class DaoAdmin extends BaseDao {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void updatePhoto(int id, InputStream fotoPerfil){
+        String sql="UPDATE usuario SET FotoPerfil = ? where idUsuario = ?";
+
+        try(Connection conn= this.getConnection();
+            PreparedStatement pstmt= conn.prepareStatement(sql)){
+            pstmt.setBlob(1,fotoPerfil);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        }catch(SQLException e) {
+            System.out.println("Error en la conexión!");
+            e.printStackTrace();
         }
     }
 

@@ -2,6 +2,7 @@ package com.example.gigacontrol_g2.Servlets;
 
 import com.example.gigacontrol_g2.beans.BUsuarios;
 import com.example.gigacontrol_g2.daos.DaoAdmin;
+import com.example.gigacontrol_g2.daos.SeguridadDao;
 import com.example.gigacontrol_g2.daos.UsersDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -13,7 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
+@MultipartConfig
 @WebServlet(name = "ServletAdmin", urlPatterns = {"/ServletAdmin"})
 public class
 ServletAdmin extends HttpServlet {
@@ -125,7 +126,8 @@ ServletAdmin extends HttpServlet {
         String action = request.getParameter("action");
         DaoAdmin daoAdmin = new DaoAdmin();
         UsersDao usersDao = new UsersDao();
-
+        HttpSession session= request.getSession();
+        BUsuarios usuario=(BUsuarios) session.getAttribute("userlogged");
 
         switch (action) {
             case "actualizar":
@@ -283,6 +285,27 @@ ServletAdmin extends HttpServlet {
 
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Admi/listaUsuarios.jsp");
                 requestDispatcher.forward(request, response);
+                break;
+
+            case "actualizarFoto":
+                SeguridadDao  seguridadDao= new SeguridadDao();
+                Part part= request.getPart("photo");
+                InputStream foto= part.getInputStream();
+                seguridadDao.editarFoto(usuario.getIdUsuario(), foto);
+                usuario.setFotoPerfil(foto.toString());
+
+                /*
+                response.sendRedirect(request.getContextPath()+"/ServletSeguridad?action=perfil");
+
+                System.out.println("user to chanf fo :"+ usuario.getIdUsuario());
+                Part part= request.getPart("Newphoto");
+
+                InputStream foto= part.getInputStream();
+
+                daoAdmin.updatePhoto(usuario.getIdUsuario(),foto);
+
+                usuario.setFotoPerfil(foto.toString());*/
+                response.sendRedirect(request.getContextPath()+"/ServletAdmin?action=Perfil");
                 break;
         }
     }
