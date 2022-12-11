@@ -19,7 +19,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <style>
     body {
-      background: url("https://images.adsttc.com/media/images/531f/2bd5/c07a/802c/2700/03ff/large_jpg/CAMARA_2.jpg?1394551725");
+      background: url("resources/Images/FONDOclaro.png");
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
