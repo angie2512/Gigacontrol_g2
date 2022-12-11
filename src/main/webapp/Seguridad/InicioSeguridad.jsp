@@ -177,7 +177,9 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <br>
+                                                <!--<p><textarea name="comentario" rows="5" cols="50">Escribe aquí tu comentario: </textarea></p> -->
+                                                <!--<input name="comentario" class="textarea" rows="5" cols="50">Escribe aquí tu comentario:</input>
+                                                <br> -->
 
                                                 <div class="views-exposed-widget views-submit-button">
                                                     <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Buscar</button>
@@ -321,16 +323,22 @@
 
 
                                         <tr>
-                                            <td class="col-sm-9">
-                                                <p><b>Descripción:</b> <%=incidencia.getDescripcion()%></p>
+                                            <td>
+                                                <h6 style="color:#585151; font-family:Georgia, serif"><b>Descripción: <%=incidencia.getDescripcion()%> </b></h6>
                                             </td>
                                             <td>
-                                                <p class="text-end"><b>Tipo de Incidencia:</b> <%=incidencia.getTipoDeIncidencia().getNombre()%>
+                                                <!--
+                                                <p class="text-end"><b>Tipo de Incidencia:</b> < %=incidencia.getTipoDeIncidencia().getNombre()%>
+                                                </p> -->
+                                                <p style="color:#9d1616">
+                                                    <b>Tipo de Incidencia: <%=incidencia.getTipoDeIncidencia().getNombre()%></b>
                                                 </p>
+                                                <!--<p class="text-end"><b>Nivel de Urgencia:</b> < %=incidencia.getNivelDeUrgencia().getNombre()%>
+                                                </p> -->
                                             </td>
                                         </tr>
 
-
+                                        <!--style="display: flex;justify-content:space-around" -->
                                         <tr>
                                             <td>
                                                 <div class="p-2">
@@ -339,8 +347,10 @@
                                             </td>
 
                                             <td class="col-sm-3">
-                                                <p class="text-end"><b>Nivel de Urgencia:</b> <%=incidencia.getNivelDeUrgencia().getNombre()%>
+                                                <p style="color:#9d1616">
+                                                    <b>Nivel de Urgencia: <%=incidencia.getNivelDeUrgencia().getNombre()%></b>
                                                 </p>
+
                                             </td>
                                         </tr>
 
