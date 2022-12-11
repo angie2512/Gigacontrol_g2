@@ -55,7 +55,7 @@ public class SeguridadEXCEL {
 
         style.setAlignment(HorizontalAlignment.CENTER);
         createCells(row,0,"Incidencias",style);
-        sheet.addMergedRegion(new CellRangeAddress(0,0,0,8));
+        sheet.addMergedRegion(new CellRangeAddress(0,0,0,6));
         font.setFontHeightInPoints((short) 10);
 
         row = sheet.createRow(1); //cabecera
@@ -63,10 +63,12 @@ public class SeguridadEXCEL {
         font.setFontHeight(16);//puede variar
         style.setFont(font);
         createCell(row, 0,"Código",style);
-        createCell(row, 1,"Nombre",style);
-        createCell(row, 2,"Estado",style);
-        createCell(row, 3,"Nivel De Urgencia",style);
-        createCell(row, 4,"Tipo de Incidencia",style);
+        createCell(row, 1,"Nombres",style);
+        createCell(row, 2,"Categoria",style);
+        createCell(row, 3,"Estado",style);
+        createCell(row, 4,"Nivel De Urgencia",style);
+        createCell(row, 5,"Tipo de Incidencia",style);
+        createCell(row, 6,"Zona",style);
 
     }
     private void writeCustomerData(){
@@ -82,10 +84,12 @@ public class SeguridadEXCEL {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
             createCells(row,columnCount++,incidencia.getUsuario().getCodigo(), style);
-            createCells(row,columnCount++,incidencia.getUsuario().getNombre(), style);
+            createCells(row,columnCount++,incidencia.getUsuario().getNombre()+" "+incidencia.getUsuario().getApellido(), style);
+            createCells(row,columnCount++,incidencia.getUsuario().getCategoria(), style);
             createCells(row,columnCount++,incidencia.getEstado().getNombre(), style);
             createCells(row,columnCount++,incidencia.getNivelDeUrgencia().getNombre(), style);
             createCells(row,columnCount++,incidencia.getTipoDeIncidencia().getNombre(), style);
+            createCells(row,columnCount++,incidencia.getZonaPucp(), style);
         }
     }
 
