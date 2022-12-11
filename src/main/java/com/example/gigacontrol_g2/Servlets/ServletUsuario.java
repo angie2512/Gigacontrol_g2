@@ -13,31 +13,45 @@ import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-@WebServlet(name = "ServletUsuario", value = "/ServletUsuario")
+@WebServlet(name = "ServletUsuario", urlPatterns ={"/ServletUsuario"} )
 public class ServletUsuario extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
+
         String action = request.getParameter("action") == null ? "inicio" : request.getParameter("action");
+
+
         HttpSession session = request.getSession();
         BUsuarios usuario = (BUsuarios) session.getAttribute("userlogged");
-
         RequestDispatcher requestDispatcher;
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         UsersDao usersDao = new UsersDao();
         usersDao.obtenerIncidenciasDelUsuario(usuario.getIdUsuario());
         SeguridadDao seguridadDao = new SeguridadDao();
 
-        ///INCIDENCIAS GENERALES///
-        String valor_total_filas_str = daoDatosFijos.contarIncidencias();
-        int valor_total_filas_int = Integer.parseInt(valor_total_filas_str);
-        float valor_total_filas = Float.parseFloat(valor_total_filas_str);
 
+
+        ///CONTADORES PAGINACION INCIDENCIAS GENERALES --FALTA REPLICAR EL NULL DE DESTACADAS. ///
+        int valor_total_filas_int = 0;
+        float valor_total_filas = 0;
+        String valor_total_filas_str = daoDatosFijos.contarIncidencias();
+        if(valor_total_filas_str == null){
+            valor_total_filas_int = 0;
+            valor_total_filas = 0;
+        }else{
+            valor_total_filas_int = Integer.parseInt(valor_total_filas_str);
+            valor_total_filas = Float.parseFloat(valor_total_filas_str);
+        }
         float maxPag = (float) (valor_total_filas / 3);
         int maxPag2 = (int) Math.ceil(maxPag);
+        ////////////////////////////////////////////
 
+        ///CONTADORES PAGINACION - MIS INCIDENCIAS DESTACADAS///
         int valor_total_filas_int2 = 0;
         float valor_total_filas2 = 0;
-        ///MIS INCIDENCIAS DESTACADAS///
         String valor_total_filas_str2 = usersDao.ContarIncidenciasDestacadas(usuario.getIdUsuario());
         if (valor_total_filas_str2 == null) {
             valor_total_filas_int2 = 0;
@@ -46,35 +60,53 @@ public class ServletUsuario extends HttpServlet {
             valor_total_filas_int2 = Integer.parseInt(valor_total_filas_str2);
             valor_total_filas2 = Float.parseFloat(valor_total_filas_str2);
         }
-
-
         float maxPag3 = (float) (valor_total_filas2 / 3);
         int maxPag4 = (int) Math.ceil(maxPag3);
-        ////////////////////////
+
+        ////////////////////////////////////////////
+
+        ////lista_numero_pagina
+
+        ArrayList<Integer> list2 = new ArrayList<>();
+        for(int i=1;i<maxPag4+1;i++){
+            list2.add(i);
+        }
 
 
-        request.setCharacterEncoding("UTF-8");
-        BUsuarios userSeg = (BUsuarios) request.getSession().getAttribute("userlogged");
+
 
         switch (action) {
 
             case "inicio":
+                if (usuario != null && usuario.getRolId() == 2) {
 
-                if (userSeg != null && userSeg.getRolId() == 2) {
+
                     int valor_pagina = 1;
-                    /*request.setAttribute("listaUsuarios", usersDao.getUsersList());*/
-
                     //paginacion
 
-                    if (request.getParameter("pg") != null) {
-                        valor_pagina = Integer.parseInt(request.getParameter("pg"));
+                    String s = request.getParameter("pg");
+                    boolean isNumeric = (s != null && s.matches("[0-9]+"));
+
+
+
+                    if(request.getParameter("pg") != "") {
+                        if (isNumeric == true){
+                            if (request.getParameter("pg") != null && list2.contains(Integer.parseInt(request.getParameter("pg")))) {
+                                valor_pagina = Integer.parseInt(request.getParameter("pg"));
+                            } else {
+                                valor_pagina = 1;
+                            }
+                        }else{
+                            valor_pagina = 1;
+                        }
+                    }else{
+                        valor_pagina = 1;
                     }
 
-                    int regMin = (valor_pagina - 1) * 3;
 
+                    int regMin = (valor_pagina - 1) * 3;
                     if (valor_pagina != maxPag2) {
                         int regMax = valor_pagina * 3;
-
                         request.setAttribute("maxPag2", maxPag2);
                         request.setAttribute("regMin", regMin);
                         request.setAttribute("regMax", regMax);
@@ -90,15 +122,12 @@ public class ServletUsuario extends HttpServlet {
 
 
                     request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
-
-
                     request.setAttribute("ListaNombres", usersDao.getUsersList());
                     request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
                     request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
                     requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
                     requestDispatcher.forward(request, response);
                 } else {
-
                     requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
                     requestDispatcher.forward(request, response);
                 }
@@ -130,21 +159,13 @@ public class ServletUsuario extends HttpServlet {
                 break;
 
             case "listaMisIncidencias":
-
-
-                if (userSeg != null && userSeg.getRolId() == 2) {
+                if (usuario != null && usuario.getRolId() == 2) {
                     int valor_pagina2 = 1;
-                    /*request.setAttribute("listaUsuarios", usersDao.getUsersList());*/
-
-
                     //paginacion de mis incidencias destacadas
-
                     if (request.getParameter("pg1") != null) {
                         valor_pagina2 = Integer.parseInt(request.getParameter("pg1"));
                     }
-
                     int regMin2 = (valor_pagina2 - 1) * 3;
-
                     if (valor_pagina2 != maxPag4) {
                         int regMax2 = valor_pagina2 * 3;
 
@@ -163,8 +184,6 @@ public class ServletUsuario extends HttpServlet {
 
                     //asignar
                     request.setAttribute("ListaDeIncidenciasDelUsuario", usersDao.obtenerIncidenciasDelUsuario(usuario.getIdUsuario()));
-
-
                     ArrayList<Incidencia> listaDeMisIncidenciasD = usersDao.obtenerIncidenciasDestacadas(usuario.getIdUsuario());
                     /*if(listaDeMisIncidenciasD != null){*/
                         request.setAttribute("ListaDeIncidenciasDestacadas", listaDeMisIncidenciasD);
@@ -176,34 +195,27 @@ public class ServletUsuario extends HttpServlet {
                     requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
                     requestDispatcher.forward(request, response);
                 }
-
-
                 break;
-
             case "nuevaIncidencia":
                 requestDispatcher = request.getRequestDispatcher("Usuario/NuevaIncidencia.jsp");
                 requestDispatcher.forward(request, response);
                 break;
-
             case "perfil":
                 requestDispatcher = request.getRequestDispatcher("Usuario/PerfilUsuario.jsp");
                 requestDispatcher.forward(request, response);
                 break;
-
             case "destacar":
                 String idincidencia = request.getParameter("idi");
                 int incidenciaid = Integer.parseInt(idincidencia);
                 usersDao.destacarEstrella(usuario.getIdUsuario(), incidenciaid);
                 response.sendRedirect(request.getContextPath() + "/ServletUsuario");
                 break;
-
             case "quitardestacado":
                 String idincidencia1 = request.getParameter("idi");
                 int incidenciaid1 = Integer.parseInt(idincidencia1);
                 usersDao.eliminarDestacado(usuario.getIdUsuario(), incidenciaid1);
                 response.sendRedirect(request.getContextPath() + "/ServletUsuario");
                 break;
-
             case "verIncidencia":
                 String idIncidenciaStr = request.getParameter("id");
                 int idIncidencia = Integer.parseInt(idIncidenciaStr);
@@ -230,11 +242,13 @@ public class ServletUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String action = request.getParameter("action") == null ? "lista" : request.getParameter("action");
         UsersDao usersDao = new UsersDao();
         HttpSession session = request.getSession();
-        BUsuarios usuario = (BUsuarios) session.getAttribute("userlogged");
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
+        BUsuarios usuario = (BUsuarios) session.getAttribute("userlogged");
+
+        String action = request.getParameter("action"); /*== null ? "lista" : request.getParameter("action");*/
+
         switch (action) {
             case "buscar":
                 String searchText = request.getParameter("searchText");

@@ -1,4 +1,16 @@
+<%@ page import="com.example.gigacontrol_g2.beans.BUsuarios" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%
+    BUsuarios usuario = (BUsuarios) session.getAttribute("userlogged");
+    if (usuario != null && usuario.getIdUsuario() > 0 && usuario.getRolId() == 1) {
+        response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
+    } else if (usuario != null && usuario.getIdUsuario() > 0 && usuario.getRolId() == 2) {
+        response.sendRedirect(request.getContextPath() + "/ServletUsuario");
+    } else if (usuario != null && usuario.getIdUsuario() > 0 && usuario.getRolId() == 3) {
+        response.sendRedirect(request.getContextPath() + "/ServletAdmin");
+    }
+%>
 <!doctype html>
 <html lang="en">
     <head>
@@ -69,51 +81,7 @@
     </head>
 
     <body class="p-3 m-0 border-0 bd-example">
-        <!--<table>
-            <tr>
-            <tr>
-            <tr>
-            <tr>
-                <td>
-                <td>
-                <td>
-                <td>
-                <td><img src="resources/Images/Logo_img.png" alt="Logo" width="125rem;" height="65rem" class="d-inline-block align-text-top"></td>
-                </td>
-                </td>
-                </td>
-                </td>
-            </tr>
-            </tr>
-            </tr>
-            </tr>
-        </table>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>-->
-        <!--
-<center>
-        <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
-            <br>
-            <h1 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>BIENVENID@ A GIGACONTROL</b></h1>
-            <h6 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#FBFCFC" class="card-subtitle mb-2 text-muted">Servicio de ayuda a incidencias en la comunidad PUCP</h6>
-            <center>
-                <img src="https://saludpublica.uchile.cl/dam/jcr:1e8f3e0a-5c5e-4087-b942-987580a7bb82/linea-celeste-final.png" alt="linea" class="card-img" width="90%" height="10%">
-            </center>
-            <p></p>
-            <p></p>
-            <h4 style="font-family: 'Times New Roman', Times, serif; color:#78BBFD" class="card-text"><b> SELECCIONE LA OPCIÓN </b></h4>
-            <br>
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <a href="<%=request.getContextPath()%>/ServletInicio?action=LogIn"><button class="btn-1" type="button"><b>Iniciar Sesión</b></button></a>
-                <a href="<%=request.getContextPath()%>/ServletInicio?action=registro"><button class="btn-2" type="button"><b>Registrarse</b></button></a>
-                <br>
-            </div>
-        </div>
-    </div>
-</center> -->
+
 
         <center>
             <div class="card mb-3"

@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet(name = "ServletInicio", urlPatterns = {"","/ServletInicio"})
 public class ServletInicio extends HttpServlet {
@@ -19,14 +20,31 @@ public class ServletInicio extends HttpServlet {
         //String action = request.getParameter("action") == null ? "mostarIndex" : request.getParameter("action");
         RequestDispatcher view;
         EnvioCorreo envioCorreo = new EnvioCorreo();
-        if (action == null) {
-            view = request.getRequestDispatcher("index.jsp");
-            view.forward(request, response);
-        } else {
-            BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
-            switch (action) {
-                case "LogIn":
-                    if (user != null && user.getIdUsuario() != 0) {
+
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add(null);
+        list.add("LogIn");
+        list.add("establecerNuevaContraSeguridad");
+        list.add("autenticarSeguridad");
+        list.add("logout");
+        list.add("registro");
+        list.add("Registrousuario");
+        list.add("Registroseguridad");
+        list.add("OlvidoContrasena");
+
+        if(list.contains(action)) {
+
+            if (action == null) {
+                view = request.getRequestDispatcher("index.jsp");
+                view.forward(request, response);
+            } else {
+                BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
+                switch (action) {
+
+                    case "LogIn":
+
+                    if (user != null && user.getIdUsuario() > 0) {
                         if (user.getRolId() == 2) {
                             response.sendRedirect(request.getContextPath() + "/ServletUsuario");
                         } else if (user.getRolId() == 3) {
@@ -34,96 +52,105 @@ public class ServletInicio extends HttpServlet {
                         } else if (user.getRolId()==1){
                             response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
                         }
-                        //response.sendRedirect(request.getContextPath());
                     } else {
                         view = request.getRequestDispatcher("inicioDeSesion.jsp");
                         view.forward(request, response);
-                    }
-                    break;
+                        }
+                        break;
 
-                case "establecerNuevaContraSeguridad":
-                    view = request.getRequestDispatcher("EstablecerNuevaContraSeguridad.jsp");
-                    view.forward(request, response);
-                    break;
+                    case "establecerNuevaContraSeguridad":
+                        view = request.getRequestDispatcher("EstablecerNuevaContraSeguridad.jsp");
+                        view.forward(request, response);
+                        break;
+                    case "autenticarSeguridad":
+                        int codigoAutenticacion = envioCorreo.generarCodigoDeAutenticacion();
+                        String correoDestino = user.getCorreo();
+                        envioCorreo.enviarCodigoDeAutenticacion(codigoAutenticacion, correoDestino);
+                        String codigoAutenticacionStr = Integer.toString(codigoAutenticacion);
+                        request.setAttribute("Codigo", codigoAutenticacionStr);
+                        view = request.getRequestDispatcher("AutenticacionSeguridad.jsp");
+                        view.forward(request, response);
+                        break;
 
+                    case "logout":
+                        HttpSession session = request.getSession();
+                        session.invalidate();
+                        response.sendRedirect(request.getContextPath() + "/ServletInicio");
+                        break;
+                    case "registro":
+                        view = request.getRequestDispatcher("registro.jsp");
+                        view.forward(request, response);
+                        break;
+                    case "Registrousuario":
+                        view = request.getRequestDispatcher("RegistroUsuario.jsp");
+                        view.forward(request, response);
+                        break;
+                    case "Registroseguridad":
+                        view = request.getRequestDispatcher("RegistroSeguridad.jsp");
+                        view.forward(request, response);
+                        break;
 
-                case "autenticarSeguridad":
-                    int codigoAutenticacion = envioCorreo.generarCodigoDeAutenticacion();
-                    String correoDestino = user.getCorreo();
-                    envioCorreo.enviarCodigoDeAutenticacion(codigoAutenticacion, correoDestino);
-                    String codigoAutenticacionStr = Integer.toString(codigoAutenticacion);
-                    request.setAttribute("Codigo", codigoAutenticacionStr);
-                    view = request.getRequestDispatcher("AutenticacionSeguridad.jsp");
-                    view.forward(request, response);
-                    break;
-
-                case "logout":
-                    HttpSession session = request.getSession();
-                    session.invalidate();
-                    response.sendRedirect(request.getContextPath() + "/ServletInicio");
-                    break;
-                case "registro":
-                    view = request.getRequestDispatcher("registro.jsp");
-                    view.forward(request, response);
-                    break;
-                case "Registrousuario":
-                    view = request.getRequestDispatcher("RegistroUsuario.jsp");
-                    view.forward(request, response);
-                    break;
-                case "Registroseguridad":
-                    view = request.getRequestDispatcher("RegistroSeguridad.jsp");
-                    view.forward(request, response);
-                    break;
-
-                case "OlvidoContrasena":
-                    view = request.getRequestDispatcher("OlvidasteTuContrasena.jsp");
-                    view.forward(request, response);
-                    break;
+                    case "OlvidoContrasena":
+                        view = request.getRequestDispatcher("OlvidasteTuContrasena.jsp");
+                        view.forward(request, response);
+                        break;
+                }
             }
+        }else{
+            response.sendRedirect(request.getContextPath() + "/ServletInicio");
         }
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
-        //String action = request.getParameter("action");
-        String action = request.getParameter("action") == null ? "IniciarSesion" : request.getParameter("action");
-
         RequestDispatcher view;
         HttpSession session = request.getSession();
         UsersDao usersDao = new UsersDao();
         EnvioCorreo envioCorreo = new EnvioCorreo();
+        //////////////////////////////////////////////////////////////
 
 
+        String action = request.getParameter("action") == null ? "IniciarSesion" : request.getParameter("action");
         //int num_intentos = 3;
+
+
 
         switch (action) {
             case "IniciarSesion":
                 String codigo = request.getParameter("codigo");
                 String contrasena = request.getParameter("contrasena");
 
-                BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
-                if (usuariolog != null) {
-                    session.setAttribute("userlogged", usuariolog);
-                    System.out.println("rol: "+ usuariolog.getRolId());
-                    //Para primer inicio de sesion y cambio de contraseña ( seguridad y usuario pucp).
-                    if(usuariolog.getEstado() == 4){
-                        response.sendRedirect(request.getContextPath() + "/ServletInicio?action=establecerNuevaContraSeguridad");
-                    } else if (usuariolog.getRolId() == 3 && usuariolog.getEstado() == 1) {
-                        response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Inicio");
-                        //Avance de Doble Ausdsatenticacion Seguridad
-                    } else if (usuariolog.getRolId() == 1 && usuariolog.getEstado() == 1){
-                        response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");
-                    }else if (usuariolog.getRolId() ==2 && usuariolog.getEstado() == 1) {
-                        response.sendRedirect(request.getContextPath() + "/ServletUsuario");
-                    }
-                } else {
-                    session.setAttribute("error", "Hubo un Error en su Código o Contraseña , Vuelva a Ingresar");
-                    view = request.getRequestDispatcher("inicioDeSesion.jsp");
+                if (codigo == null || contrasena == null) {
+                    request.setAttribute("error", "El usuario o password no pueden ser vacíos");
+                    view = request.getRequestDispatcher("login/loginForm.jsp");
                     view.forward(request, response);
+                }else {
+                    BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
+                    if (usuariolog != null) {
+                        session.setAttribute("userlogged", usuariolog);
+                        System.out.println("rol: "+ usuariolog.getRolId());
+                        //Para primer inicio de sesion y cambio de contraseña ( seguridad y usuario pucp).
+                        if(usuariolog.getEstado() == 4){
+                            response.sendRedirect(request.getContextPath() + "/ServletInicio?action=establecerNuevaContraSeguridad");
+                        } else if (usuariolog.getRolId() == 3 && usuariolog.getEstado() == 1) {
+                            response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Inicio");
+                            //Avance de Doble Ausdsatenticacion Seguridad
+                        } else if (usuariolog.getRolId() == 1 && usuariolog.getEstado() == 1){
+                            response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");
+                        }else if (usuariolog.getRolId() ==2 && usuariolog.getEstado() == 1) {
+                            response.sendRedirect(request.getContextPath() + "/ServletUsuario");
+                        }
+                    } else {
+                        session.setAttribute("error", "El usuario o password no existen , Vuelva a Ingresar las credenciales");
+                        view = request.getRequestDispatcher("inicioDeSesion.jsp");
+                        view.forward(request, response);
+                    }
                 }
+
+
+
                 break;
 
             case "autenticacionSeguridad":
@@ -162,7 +189,6 @@ public class ServletInicio extends HttpServlet {
                 break;
 
             case "registroSeguridad":
-             //   session.setAttribute("userlogged", usuariolog);
                 String correoPUCPSeg = request.getParameter("correoPUCPSeg");
                 String codigoPUCPSeg = request.getParameter("codigoPUCPSeg");
                 for (BUsuarios usuar : usersDao.getUsersList()){
@@ -187,7 +213,6 @@ public class ServletInicio extends HttpServlet {
 
                 case "establecernuevacontraseg":
 
-                    //session.setAttribute("userlogged", usuariolog);
                     String contrasena1= request.getParameter("contrasena1");
                     String contrasena2= request.getParameter("contrasena2");
                     String idUsuarioStr = request.getParameter("idUsuarioLog");
@@ -206,24 +231,15 @@ public class ServletInicio extends HttpServlet {
 
 
                 case "ValidacionRegistroUsuario":
-
-                    /*session.setAttribute("userlogged", usuariolog);*/
-
                     String correouser = request.getParameter("correo");
                     String codigouser = request.getParameter("codigo2");
-
                     BUsuarios usuariovalidado = daoDatosFijos.validarCorreoContraseniaUsuario(codigouser,correouser);
-
-                    /*System.out.println(usuariovalidado.getIdUsuario());  vale 6*/
-
 
                     if( usuariovalidado != null){
                         try{
                             //actualizar el estado en la master
                             daoDatosFijos.changeStateRegisterUser(usuariovalidado.getIdUsuario(),4);
                             // registrar en validacionusuarionuevo
-
-                            System.out.println("verificar");
 
                             String contrasenaTemporal = envioCorreo.generarContrasenaTemporalSeguridad();
                             envioCorreo.enviarContrasenaTemporal(contrasenaTemporal, correouser);
@@ -237,14 +253,10 @@ public class ServletInicio extends HttpServlet {
                             session.setAttribute("err","Error al registrar el usuario o datos incorrectos");
                             response.sendRedirect(request.getContextPath() + "/ServletInicio?action=Registrousuario");
                         }
-
                     }else{
                         session.setAttribute("err","Error al registrar el usuario o datos incorrectos");
                         response.sendRedirect(request.getContextPath() + "/ServletInicio?action=Registrousuario");
                     }
-
-                    /*session.setAttribute("user_register", usuariovalidado);*/
-
                     break;
 
         }
