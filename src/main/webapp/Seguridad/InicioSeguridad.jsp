@@ -185,7 +185,7 @@
                                     </div>
                                 </form>
                                 <br>
-                                <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargar" class="btn btn-primary">Descargar PDF</a>
+                                <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargarExcel" class="btn btn-primary">Descargar Excel</a>
 
 
                                 <%  if(!(listaDeIncidencias.size()==1 && listaDeIncidencias.get(0).getIdIncidencia()==0)){

@@ -17,15 +17,12 @@ public class JavaPDF {
 
     public byte[] pdfFuncionTable(String text, String titulo) throws IOException {
 
-        //DOCUMENTO PDF
         int marginTop = 20; // Margen que yo quiera
-
         PDDocument document= new PDDocument(); //Creamos un documento
         PDPage page= new PDPage(PDRectangle.A4); //Creamos una pagina tipo A4
         document.addPage(page); //Añadimos una pagina al documento
         PDPageContentStream contentStream= new PDPageContentStream(document,page);
         PDRectangle mediaBox= page.getMediaBox();//Para obtener dimensiones de la pagina
-
 
         //Título
         PDFont font= PDType1Font.HELVETICA_BOLD;

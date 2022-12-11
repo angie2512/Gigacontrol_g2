@@ -14,7 +14,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 @WebServlet(name = "ServletSeguridad", value = "/ServletSeguridad")
 public class ServletSeguridad extends HttpServlet {
@@ -166,6 +169,7 @@ public class ServletSeguridad extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
                 requestDispatcher.forward(request, response);
                 break;
+
             case "descargar":
                 System.out.println("si llego");
                 try(PrintWriter salir =  response.getWriter()) {
@@ -179,7 +183,7 @@ public class ServletSeguridad extends HttpServlet {
                     }
                     System.out.println(text.length());
                     response.setContentType("application/pdf");
-                    response.setHeader("Content-Disposition", "attachment; filename=gigacontrol.pdf");
+                    response.setHeader("Content-Disposition","attachment;filename=gigacontrol.pdf");
                     JavaPDF javaPDF= new JavaPDF();
                     String nombre = "GIGACONTROL REPORTE";
                     byte[] pdf= javaPDF.pdfFuncionTable(text,nombre);
@@ -191,6 +195,19 @@ public class ServletSeguridad extends HttpServlet {
                     in.close();
                 }
                 break;
+
+            case "descargarExcel":
+                response.setContentType("application/octet-stream");
+                DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+                String currentDateTime = dateFormatter.format(new Date());
+                String headerKey = "Content-Disposition";
+                String headerValue = "attachment; filename=incidencias_EXCEL_" + currentDateTime + ".xlsx";
+                response.setHeader(headerKey, headerValue);
+                ArrayList<Incidencia> listIncidencias = (ArrayList<Incidencia>) session.getAttribute("listaDescargar");
+                SeguridadEXCEL excelExporter = new SeguridadEXCEL(listIncidencias);
+                excelExporter.exportDataToExcel(response);
+
+
             default:
                 response.sendRedirect(request.getContextPath());
 

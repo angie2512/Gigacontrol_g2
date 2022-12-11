@@ -89,7 +89,7 @@ public class SeguridadEXCEL {
         }
     }
 
-    private void exportDataToExcel(HttpServletResponse response) throws IOException {
+    public void exportDataToExcel(HttpServletResponse response) throws IOException {
         createHeaderRow();
         writeCustomerData();
         ServletOutputStream outputStream = response.getOutputStream();
