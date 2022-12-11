@@ -207,7 +207,7 @@
             </div>
         </center> -->
         <br>
-        <!-- SOLO ES PRUEBAAA-->
+        <!-- SI ESTÁ BIENN -->
         <center>
             <div class="card mb-3" style="max-width:40rem ;background-color:rgba(255,255,255,0.70);  top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); position: absolute">
                 <div class="card-header">
