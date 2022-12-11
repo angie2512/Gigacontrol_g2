@@ -2,7 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 <!doctype html>
-<%BUsuarios u= (BUsuarios) session.getAttribute("userlogged");%>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -67,6 +66,13 @@
 
           <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
             <li><a href="#" class="nav-link px-2"><b style="color:white"><%=userlogged.getNombre()%> <%=userlogged.getApellido()%></b></a></li>
+            <div class="dropdown text-end">
+              <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
+                <img src="<%=userlogged.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>"
+                     class="rounded mx-auto d-block " alt="mdo" width="32" height="32"
+                     class="rounded-circle">
+              </a>
+            </div>
 
           </ul>
 
@@ -82,7 +88,7 @@
 
     <div class="container" style="max-width: 40rem;">
       <div class="abs-center">
-        <img src="<%=u.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
+        <img src="<%=userlogged.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
         <br>
 
         <div class="card"style="background-color:#F2F2F3">
