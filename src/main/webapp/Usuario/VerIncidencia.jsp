@@ -134,7 +134,7 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <!-- IMAGEN -->
-                            <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimgPerfil&idp=<%=incidencia.getUsuario().getIdUsuario()%>" class="rounded mx-auto d-block img-fluid" alt="userphoto">
+                            <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimgPerfil&idp=<%=incidencia.getUsuario().getIdUsuario()%>" class="rounded mx-auto d-block img-fluid" alt="userphoto" style="width: 140px">
                         </div>
                         <div class="col-lg-3">
                             <h5 style="color: #2C3166"><b><%=incidencia.getUsuario().getApellido()%>,</b> <%=incidencia.getUsuario().getNombre()%></h5>
@@ -190,14 +190,14 @@
                         </div>
                         <%if (listaDestacados.contains(incidencia.getIdIncidencia())) { %>
                         <div class="col-lg-3">
-                            <div class="p-2">
+                            <div class="col-lg-3">
                                 <a href="<%=request.getContextPath()%>/ServletUsuario?action=quitardestacado&idi=<%=incidencia.getIdIncidencia()%>"
-                                   style="color:#F0C00D"><b>★ Destacar</b></a>
+                                   style="color:#F0C00D"><b>★Destacar</b></a>
                             </div>
                             <% } else { %>
-                            <div class="p-2">
+                            <div class="col-lg-3">
                                 <a href="<%=request.getContextPath()%>/ServletUsuario?action=destacar&idi=<%=incidencia.getIdIncidencia()%>"
-                                   style="color:rgba(93,131,196,0.38)">★Destacar</a>
+                                   style="color:rgba(93,131,196,0.38)"><b>★Destacar</b></a>
                             </div>
                             <%}%>
                         </div>
