@@ -12,7 +12,6 @@
     ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
     HashMap<Integer, Integer> numDestacados = (HashMap<Integer, Integer>) request.getAttribute("numDestacados");
     BUsuarios u = (BUsuarios) session.getAttribute("userlogged");
-    BUsuarios usuario = (BUsuarios) session.getAttribute("usuario");
 
 %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
@@ -135,7 +134,7 @@
                         <div class="col-lg-3">
                             <!-- IMAGEN -->
 
-                            <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimgPerfil&id=<%=u.getIdUsuario()%>" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem">
+                            <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimgPerfil&idp=<%=incidencia.getUsuario().getIdUsuario()%>" class="rounded mx-auto d-block " alt="userphoto" height="60rem" width="60rem">
                         </div>
                         <div class="col-lg-3">
                             <p style="color: #2C3166"><%=incidencia.getUsuario().getApellido()%>, <%=incidencia.getUsuario().getNombre()%></p>

@@ -483,7 +483,7 @@ public class UsersDao extends BaseDao{
                 "    inner join estado e on i.idEstado = e.idEstado\n" +
                 "    inner join tipoincidencia t on i.idTipoIncidencia = t.idTipoIncidencia\n" +
                 "    where destacarincidencia.idUsuario=? \n" +
-        "group by  i.NombreDeIncidencia, u.Nombre, u.Apellido, t.nombre, e.nombre ";
+                "group by  i.NombreDeIncidencia, u.Nombre, u.Apellido, t.nombre, e.nombre ";
 
         try (Connection conn = this.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){

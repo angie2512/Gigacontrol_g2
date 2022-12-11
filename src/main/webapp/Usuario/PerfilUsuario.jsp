@@ -195,7 +195,6 @@
                         <td class="text-center">ADMINISTRADOR</td>
                         <%}%></h4>
                 </div>
-
                 <p></p>
                 <blockquote class="blockquote mb-0">
                     <h5 style="text-align: center;color:#21547D"><b><%=userlogged.getNombre() + " " + userlogged.getApellido()%></b></h5>

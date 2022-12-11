@@ -90,8 +90,6 @@ public class ServletUsuario extends HttpServlet {
 
 
                     request.setAttribute("ListaDeIncidencias", seguridadDao.obtenerListaDeIncidencias());
-
-
                     request.setAttribute("ListaNombres", usersDao.getUsersList());
                     request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
                     request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
@@ -111,9 +109,12 @@ public class ServletUsuario extends HttpServlet {
                 break;
 
             case "listarimgPerfil":
+                System.out.println("listar img");
                 String idusuarioimg = request.getParameter("idp");
                 int usuarioidimg = Integer.parseInt(idusuarioimg);
+                System.out.println("idimg: "+usuarioidimg);
                 daoDatosFijos.listarImgPerfil(usuarioidimg, response);
+
                 break;
 
             case "editar":
@@ -167,7 +168,7 @@ public class ServletUsuario extends HttpServlet {
 
                     ArrayList<Incidencia> listaDeMisIncidenciasD = usersDao.obtenerIncidenciasDestacadas(usuario.getIdUsuario());
                     /*if(listaDeMisIncidenciasD != null){*/
-                        request.setAttribute("ListaDeIncidenciasDestacadas", listaDeMisIncidenciasD);
+                    request.setAttribute("ListaDeIncidenciasDestacadas", listaDeMisIncidenciasD);
                     /*}*/
                     requestDispatcher = request.getRequestDispatcher("Usuario/MisIncidencias.jsp");
                     //enviar
@@ -208,6 +209,7 @@ public class ServletUsuario extends HttpServlet {
                 String idIncidenciaStr = request.getParameter("id");
                 int idIncidencia = Integer.parseInt(idIncidenciaStr);
                 Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidencia);
+                System.out.println("id indicencia usuario: "+incidencia.getUsuario().getIdUsuario());
                 request.setAttribute("incidencia", incidencia);
                 ArrayList<Estado> listaEstados = daoDatosFijos.obtenerListaEstados();
                 request.setAttribute("ListaEstados", listaEstados);
