@@ -64,34 +64,36 @@
 </nav>
 <br>
 <br>
-<div class="d-flex justify-content-center">
-    <div class="col-8">
-        <div class="card">
+<center>
+<div class="d-flex justify-content-center" >
+    <div class="col-6" >
+        <div class="card" style="max-width: 60rem">
             <div class="card-body" >
-                <center> <h5 class="card-title">INGRESE NUEVA INCIDENCIA</h5></center>
+                <center> <h3 class="card-title" style="font-family: 'Georgia'; color: #548db2"><b>INGRESE NUEVA INCIDENCIA</b></h3></center>
+                <br>
                 <form action="<%=request.getContextPath()%>/ServletUsuario?action=registroIncidencia" method="post">
                     <div class=" table-responsive">
 
                         <div class="input-group mb-3" >
-                            <span for="inputName" class="col-lg-2 input-group-text" id="basic-addon1" style="text-align: center"> Nombre</span>
+                            <span for="inputName" class="col-lg-2 input-group-text" id="basic-addon1" style="text-align: center; background-color: #e4edc1; color: #5c6914;font-family: 'Georgia'"><b> Nombre</b></span>
                             <input type="text" id="inputName" class="form-control" placeholder="Nombre de la incidencia" name="nombre" aria-describedby="passwordHelpInline">
                         </div>
                         <div class="input-group mb-3">
-                            <span for="inputDescripcion" class="col-lg-2 input-group-text" id="basic-addon1"><center> Descripción</center></span>
-                            <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripción de la incidencia" name="descripcion" aria-describedby="passwordHelpInline">
+                            <span for="inputDescripcion" class="col-lg-2 input-group-text" id="basic-addon1" style="text-align: center; background-color: #e4edc1; color: #5c6914;font-family: 'Georgia'"><center><b> Descripción</b></center></span>
+                            <input type="text" class="form-control" id="inputDescripcion" placeholder="Descripción de la incidencia" name="descripcion" aria-describedby="passwordHelpInline" >
 
                         </div>
                         <div class="input-group mb-3">
-                            <span for="inputZonaPucp" class=" col-lg-2 input-group-text" id="basic-addon1"> Zona PUCP </span>
+                            <span for="inputZonaPucp" class=" col-lg-2 input-group-text" id="basic-addon1" style="text-align: center; background-color: #e4edc1; color: #5c6914;font-family: 'Georgia'"><b> Zona PUCP </b></span>
                             <input type="text" id="inputZonaPucp" class="form-control" placeholder="Zona de la incidencia" name="zonaPucp" aria-describedby="passwordHelpInline">
                         </div>
                         <div class="input-group mb-3">
-                            <span for="inputUbica" class="col-lg-2 input-group-text" id="basic-addon1"><center> Ubicación</center></span>
+                            <span for="inputUbica" class="col-lg-2 input-group-text" id="basic-addon1" style="text-align: center; background-color: #e4edc1; color: #5c6914;font-family: 'Georgia'"><center><b> Ubicación</b></center></span>
                             <input type="text" id="inputUbica" class="form-control" placeholder="Ubicacion de la incidencia" name="ubicacion" aria-describedby="passwordHelpInline">
                         </div>
 
                         <div class="input-group mb-3">
-                            <label for="tipoIncidencia" class="col-lg-2 input-group-text" ><center> Tipo de incidencia</center></label>
+                            <label for="tipoIncidencia" class="col-lg-2 input-group-text" style="text-align: center; background-color: #e4edc1; color: #5c6914;font-family: 'Georgia'"><center><b> Tipo de incidencia</b></center></label>
                             <select class="form-select" id="tipoIncidencia" name="tipoIncidenciaID">
                                 <option selected>Seleccionar...</option>
                                 <option value="1">Robo</option>
@@ -103,7 +105,7 @@
                             </select>
                         </div>
                         <div class="input-group mb-3">
-                            <label class="col-lg-2 input-group-text" for="nivelUrgencia"><center> Nivel de Urgencia</center></label>
+                            <label class="col-lg-2 input-group-text" for="nivelUrgencia" style="text-align: center; background-color: #e4edc1; color: #5c6914;font-family: 'Georgia'"><center> <b>Nivel de Urgencia</b></center></label>
                             <select class="form-select" id="nivelUrgencia" name="nivelUrgenciaID">
                                 <option selected>Seleccionar...</option>
                                 <option value="1">Leve</option>
@@ -114,7 +116,7 @@
 
 
                         <div class="input-group mb-3" style="max-width: 60rem">
-                            <span for="imagen" class="col-lg-2 input-group-text"><center>Insertar Foto</center></span>
+                            <span for="imagen" class="col-lg-2 input-group-text" style="text-align: center; background-color: #e4edc1; color: #5c6914;font-family: 'Georgia'"><center><b>Insertar Foto</b></center></span>
                             <label class="input-group-text" for="imagen"><img src="https://img.icons8.com/metro/26/null/camera.png"/></label>
                             <input type="file" class="form-control" id="imagen">
                         </div>
@@ -161,6 +163,8 @@
     </div>
 </div>
 
+</center>
+<br>
 </body>
 
 </html>
