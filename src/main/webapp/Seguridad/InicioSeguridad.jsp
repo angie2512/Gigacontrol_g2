@@ -104,7 +104,9 @@
                         </b></a></li>
                         <div class="dropdown text-end">
                             <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
-                                <!--img src="http://diaferdesign.com/wp-content/uploads/2017/11/diana-fondo-desenfocado-circular-300x283.png" alt="mdo" width="32" height="32" class="rounded-circle"--->
+                                <img src="<%=userlogged.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>"
+                                     class="rounded mx-auto d-block " alt="mdo" width="32" height="32"
+                                     class="rounded-circle">
                             </a>
                         </div>
                     </ul>
@@ -137,7 +139,7 @@
                                   <div> -->
 
                           <!--      <form class="d-flex" role="search" method="post"
-                                      action="<%=request.getContextPath()%>/ServletSeguridad?action=buscarIncidencia">
+                                      action="< %=request.getContextPath()%>/ServletSeguridad?action=buscarIncidencia">
                                     <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar"
                                            aria-label="Buscar">
                                     <button class="btn btn-outline-primary" type="submit">Buscar</button>
@@ -147,13 +149,14 @@
                                       accept-charset="UTF-8" role="form"
                                       action="<%=request.getContextPath()%>/ServletSeguridad?action=buscarIncidencia">
                                     <div>
-                                        <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar"
+                                        <h6 class="card-text" for="edit-sort-by" style="color:#B1120D;font-size:20px"><b>BUSCADOR DE INCIDENCIAS</b></h6>
+                                        <input class="form-control me-2" type="search" name="searchText" placeholder="Ingrese el Nombre o Palabra Clave de Incidencia"
                                                aria-label="Buscar">
                                         <div class="views-exposed-form">
                                             <div class="views-exposed-widgets clearfix">
                                                 <div class="views-exposed-widget views-widget-sort-by">
                                                     <div class="form-item form-type-select form-item-sort-by form-group">
-                                                        <label for="edit-sort-by">Estado</label>
+                                                        <h6 for="edit-sort-by" class="card-text" style="color:#B1120D">Seleccione el Estado de la Incidencia </h6>
                                                         <select class="form-control form-select" id="edit-sort-by" name="estado">
                                                             <option value="1" selected="selected">Todos</option>
                                                             <option value="Registrado">Registrado</option>
@@ -165,7 +168,7 @@
 
                                                 <div class="views-exposed-widget views-widget-sort-order">
                                                     <div class="form-item form-type-select form-item-sort-order form-group">
-                                                        <label for="edit-sort-order">Nivel de Urgencia </label>
+                                                        <h6 for="edit-sort-by" class="card-text" style="color:#B1120D">Seleccione el Nivel de Urgencia de la Incidencia </h6>
                                                         <select class="form-control form-select" id="edit-sort-order"
                                                                 name="nivelurg">
                                                             <option value="1" selected>Todos</option>
@@ -178,7 +181,7 @@
                                                 <br>
 
                                                 <div class="views-exposed-widget views-submit-button">
-                                                    <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Filtrar</button>
+                                                    <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Buscar</button>
                                                     <button onclick="generatePDF()">Descargar PDF</button>
                                                 </div>
 
