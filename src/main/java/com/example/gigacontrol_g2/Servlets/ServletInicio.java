@@ -203,7 +203,8 @@ public class ServletInicio extends HttpServlet {
                                                             "Se envió a su correo: \n" +
                                                             "Su  Contraseña Temporal De Acceso a la Aplicación\n" +
                                                             "Inicie sesión y establezca su Nueva Contraseña");
-                        response.sendRedirect(request.getContextPath() + "/ServletInicio");
+                        view = request.getRequestDispatcher("index.jsp");
+                        view.forward(request, response);
                     }
                 }
                 session.setAttribute("errorSeg","No Se Encontró alguno de los Campos , Vuelva a Ingresar Correctamente");
@@ -223,7 +224,7 @@ public class ServletInicio extends HttpServlet {
                         usersDao.actualizarEstadoDeUsuario(idUsuario,estadoUsuario);
                         response.sendRedirect(request.getContextPath()+"/ServletSeguridad");
                     }else {
-                        session.setAttribute("errorSeg2","No Se Encontró alguno de los Campos , Ingrese Correctamente");
+                        session.setAttribute("errorSeg2","Las Contraseñas no coinciden , vuelva a ingresar correctamente");
                         view = request.getRequestDispatcher("EstablecerNuevaContraSeguridad.jsp");
                         view.forward(request, response);
                     }

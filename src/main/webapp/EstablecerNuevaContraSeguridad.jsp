@@ -60,7 +60,7 @@
         <br>
         <h6 style="font-family: 'Times New Roman', Times, serif; color:#C6D6F5" class="card-text"><b> Ingrese
           Su Nueva Contraseña </b></h6>
-        <h6 style="font-family: 'Times New Roman', Times, serif; color:#C6D6F5" class="card-text"><b> "Se Recomienda Que Su Nueva Contraseña Sea De Minimo 8 Caracteres en donde Utilize Numeros,Letras,Mayusculas y Simbolos" </b></h6>
+        <h6 style="font-family: 'Times New Roman', Times, serif; color:darkblue" class="card-text"><b> "Se Recomienda Que Su Nueva Contraseña Sea De Minimo 8 Caracteres en donde Utilize Numeros,Letras,Mayusculas y Simbolos" </b></h6>
         <p></p>
         <form method="post" class="form-signin" action="<%=request.getContextPath()%>/ServletInicio?action=establecernuevacontraseg">
           <div class="d-grid gap-2 col-12 mx-auto form-floating">

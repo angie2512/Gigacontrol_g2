@@ -224,7 +224,9 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                                         <div class="col-6"><p style="padding-left: 2rem;color:#274362"><b> Foto de Incidencia </b></p>
                                         </div>
 
-                                        <div class="col-6"><p style="padding-left: 4rem;color:#274362"><b> Ubicación:</b></p>
+                                        <div class="col-6">
+                                            <p style="padding-left: 4rem;color:#274362"><b> Ubicación:</b></p>
+                                            <!-- (Haga Click en las 2 rayitas encima del Muñeco Amarillo Para Agrandar el Mapa) -->
                                         </div>
                                     </div>
 

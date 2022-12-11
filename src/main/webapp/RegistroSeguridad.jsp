@@ -92,16 +92,7 @@
             </div>
             <p></p>
             <p></p>
-            <% if (session.getAttribute("errorSeg") != null) {%>
-            <div class="text-danger mb-2"><%=session.getAttribute("errorSeg")%></div>
-            <% session.removeAttribute("errorSeg"); %>
-            <% } %>
-
-            <% if (session.getAttribute("msgSeg") != null) {%>
-            <div class="alert alert-success"><%=session.getAttribute("msgSeg")%>
-            </div>
-            <% session.removeAttribute("msgSeg"); %>
-            <% } %> -->
+            -->
 
             <!-- MODAL
               <div class="d-flex justify-content-center">
