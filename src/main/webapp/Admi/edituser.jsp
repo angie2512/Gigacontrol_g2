@@ -113,7 +113,6 @@
             <%}
             else{%>
             <img src="resources/Images/usu.png" class="rounded mx-auto d-block "  height="300rem" width="300rem">
-
             <%}%>
             <br>
             <div class="d-flex justify-content-center">
@@ -133,6 +132,14 @@
                  href="<%=request.getContextPath()%>/ServletAdmin?action=borrar&id=<%=user.getIdUsuario()%>">Eliminar
               </a>
               <%}%>
+
+              <% if(user.getRolId()==3 && user.getEstado()==9){%>
+              <a type="button" class="btn btn-success"
+                 href="<%=request.getContextPath()%>/ServletAdmin?action=HabilitarAdmin&id=<%=user.getIdUsuario()%>">Habilitar Admin
+              </a>
+              <%}%>
+
+
             </div>
           </div>
           <!-- IMAGEN -->

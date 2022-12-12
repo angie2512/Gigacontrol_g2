@@ -170,6 +170,12 @@ ServletAdmin extends HttpServlet {
                 daoAdmin.reactivar(userID_react);
                 response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
                 break;
+            case "HabilitarAdmin":
+                String idAdmin = request.getParameter("id");
+                BUsuarios admin = daoAdmin.buscarPorId(idAdmin);
+                daoAdmin.crearCredencialesAdmin(admin.getCodigo(), admin.getIdUsuario());
+                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
+                break;
             case "mostrafoto":
                 String idStr = request.getParameter("id");
                 int id = Integer.parseInt(idStr);
@@ -225,7 +231,6 @@ ServletAdmin extends HttpServlet {
                 String celular = request.getParameter("celular");
                 String categoria_c = request.getParameter("categoria");
                 String rolstr_C = request.getParameter("rolID");
-                System.out.println("nombre null?" + "hola" + nombre_c + "pedo");
                 BUsuarios newuser = new BUsuarios();
                 if (nombre_c.equals("") || apellido_c == null || correo_c == null || codigo_c == null || dni_c == null || celular == null || categoria_c == null || rolstr_C == null) {
                     System.out.println("entra?");
@@ -254,6 +259,7 @@ ServletAdmin extends HttpServlet {
                                                                 newuser.setCategoria(categoria_c);
                                                                 newuser.setRolId(Integer.parseInt(rolstr_C));
                                                                 daoAdmin.guardar(newuser);
+
                                                                 response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
                                                             } else if ((categoria_c.equals("Seguridad") && (rolstr_C.equals("1")))){
                                                                 newuser.setNombre(nombre_c);
@@ -266,7 +272,8 @@ ServletAdmin extends HttpServlet {
                                                                 newuser.setRolId(Integer.parseInt(rolstr_C));
                                                                 daoAdmin.guardar(newuser);
                                                                 response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
-                                                            } else if (categoria_c.equals("Trabajador DTI") && rolstr_C.equals("3")) {
+                                                            } else if (categoria_c.equals("Administrador") && rolstr_C.equals("3")) {
+                                                                System.out.println("entra");
                                                                 newuser.setNombre(nombre_c);
                                                                 newuser.setApellido(apellido_c);
                                                                 newuser.setDni(dni_c);
@@ -276,6 +283,7 @@ ServletAdmin extends HttpServlet {
                                                                 newuser.setCategoria(categoria_c);
                                                                 newuser.setRolId(Integer.parseInt(rolstr_C));
                                                                 daoAdmin.guardar(newuser);
+                                                                System.out.println("id en servler desp gurdar " + newuser.getIdUsuario());
                                                                 response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
                                                             } else {
                                                                 request.getSession().setAttribute("msj6", "Roles mal asignados. " +

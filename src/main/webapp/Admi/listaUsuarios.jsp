@@ -172,6 +172,9 @@
                                         else if (usuario.getEstado()==4){%>
                                         <p style="color:blue;">"El usuario aun no establece su contraseña"</p>
                                         <%}
+                                        else if (usuario.getEstado()==9){%>
+                                        <p style="color:red;">"El Admin aun no ha sido habilitado"</p>
+                                        <%}
                                         else {%>
                                         <p style="color:red;">"El usuario ha sido bloqueado"</p>
                                         <%}%>
