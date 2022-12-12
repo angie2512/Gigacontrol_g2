@@ -215,7 +215,7 @@
                                         </h6>
                                     </td >
                                     <td>
-                                        <p style="color:#9b2525"><b>Código: <%=incidencia.getUsuario().getCodigo()%></b></p>
+                                        <p style="color:#0d1673"><b>Código: <%=incidencia.getUsuario().getCodigo()%></b></p>
                                     </td>
                                 </tr>
 
@@ -228,7 +228,7 @@
                                         <p class="text-end"><b>Tipo de Incidencia:</b> < %=incidencia.getTipoDeIncidencia().getNombre()%>
                                         </p> -->
                                         <p style="color: #000000">
-                                            <b style="color:#6a568f">Tipo de Incidencia:</b> <%=incidencia.getTipoDeIncidencia().getNombre()%>
+                                            <b style="color:#0b2479">Tipo de Incidencia:</b> <%=incidencia.getTipoDeIncidencia().getNombre()%>
                                         </p>
                                         <!--<p class="text-end"><b>Nivel de Urgencia:</b> < %=incidencia.getNivelDeUrgencia().getNombre()%>
                                         </p> -->
@@ -245,7 +245,7 @@
 
                                     <td class="col-sm-3">
                                         <p style="color:#000000">
-                                            <b style="color:#6a568f">Nivel de Urgencia:</b> <%=incidencia.getNivelDeUrgencia().getNombre()%>
+                                            <b style="color:#0b2479">Nivel de Urgencia:</b> <%=incidencia.getNivelDeUrgencia().getNombre()%>
                                         </p>
 
                                             </td>
@@ -256,9 +256,7 @@
 
                                                     <div class="col-lg-3">
                                                         <% if (numDestacados.get(incidencia.getIdIncidencia()) != null) {%>
-                                                        <div class="p-2"><b
-                                                                style="color:#dc8238 ">Estado:</b> <b style="color:#cc6540 "><%=incidencia.getEstado().getNombre()%> </b></h5>
-                                                        </div>
+
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <div class="p-2">
