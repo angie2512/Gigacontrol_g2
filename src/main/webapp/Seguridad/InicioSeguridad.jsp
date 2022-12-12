@@ -173,7 +173,7 @@
                             <center>
                                 <div class="col-auto">
                                     <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Buscar</button>
-                                    <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargarExcel" class="btn btn-primary">Descargar Excel</a>
+                                    <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargarExcel" class="btn btn-primary">Descargar Reporte de Incidencias</a>
                                 </div>
                             </center>
                         </form>
