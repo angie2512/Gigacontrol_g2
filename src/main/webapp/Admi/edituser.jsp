@@ -116,13 +116,14 @@
             <%}%>
             <br>
             <div class="d-flex justify-content-center">
+              <%System.out.println(user.getRolId());%>
               <% if(user.getEstado()==5){%>
               <a type="button" class="btn btn-success"
                  onclick="return confirm('¿Estas seguro(a) que deseas reactivar este usuario?')"
                  href="<%=request.getContextPath()%>/ServletAdmin?action=reactivar&id=<%=user.getIdUsuario()%>">Reactivar Usuario
               </a>
               <%}
-              else if(user.getEstado()==1 || user.getEstado()==4){%>
+              else if((user.getEstado()==1 || user.getEstado()==4) && user.getRolId()!=3){%>
               <a type="button" class="btn btn-warning"
                  onclick="return confirm('¿Estas seguro(a) que deseas desbloquear este usuario?')"
                  href="<%=request.getContextPath()%>/ServletAdmin?action=banear&id=<%=user.getIdUsuario()%>">Bloquear
