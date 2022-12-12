@@ -17,7 +17,7 @@
     <title>P@gina@ Error!</title>
     <style>
         body {
-            background: url("https://s3.amazonaws.com/files.pucp.edu.pe/puntoedu/wp-content/uploads/2021/03/31184656/campus-pucp-cia-letras-2020_03-1920x1080-1-1536x864.jpg");
+            background: url("resources/Images/FONDOclaro.png");
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -26,42 +26,99 @@
             height: 100vh;
             bgcolor: "#800000";
         }
-        @font-face {
-            font-family: Decor;
-            src: url(KrinkesDecorPERSONAL.ttf);
-        }
-        @font-face{
-            font-family: Decor;
-            src: url(KrinkesRegularPERSONAL.ttf);
-            font-style: italic;
-        }
-        p{
-            font-family: Decor;
+        .main-container {
+            width: 100%;
+            min-height: 400px;
+            margin-top: 10%;
+            text-align: center;
         }
 
+        .input-container {
+            text-align: center;
+            margin: 20px auto;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+            color: white;
+            cursor: pointer;
+            border: 2px dashed white;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .input-container [type=file] {
+            cursor: inherit;
+            display: block;
+            font-size: 999px;
+            filter: alpha(opacity=0);
+            min-height: 100%;
+            min-width: 100%;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            text-align: right;
+            top: 0;
+        }
+
+        .preview-container {
+            margin: 0 auto;
+            width: 200px;
+            min-height: 200px;
+            background-color: white;
+            padding: 10px;
+        }
+
+        .preview-container > img {
+            margin: 0;
+            width: 100%;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: white;
+        }
+
+        .bottom{
+            border-left: 1px;
+            margin-left: 110px;
+            background-color: white;
+            border-radius: 20px;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body class="p-3 m-0 border-0 bd-example">
+
+<p></p>
+<nav class="navbar navbar-expand-lg" style="background-color: #231e1e;" aria-label="Eighth navbar example">
+    <div class="container">
+        <a class="navbar-brand" href="#"><img src="resources/Images/logo_blanco.png" alt="Logo" width="100"
+                                              height="40" class="d-inline-block align-text-top img-fluid"></a>
+    </div>
+
+</nav>
 
 
 
-
-
+<body>
 
     <center>
-    <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
+    <div class="card mb-3" style="max-width: 100rem; height: 40rem; background-color:#00000090; top: 50px;">
         <br>
         <h1 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title"><b>Oh no! Hay un problema</b></h1>
-        <h6 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#000000" class="card-subtitle mb-2 text-muted">Vuelve a intentarlo más tarde</h6>
-        <h6 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#000000" class="card-subtitle mb-2 text-muted">Trata de volver a cargar esta página o no dudes en contactar con nosotros si el problema persistente</h6>
-        <h6 style="font-family: 'Comic Sans MS', cursive, sans-serif; color:#000000" class="card-subtitle mb-2 text-muted">Escribenos a nuestro correo: serviciocorreogigacontrol@gmail.com</h6>
+        <h3 style="font-family: 'KrinkesDecorPERSONAL'; color:#E2FAFF" class="card-title">¡Dale clic al botón que te redirige al login! o Inténtalo más tarde</h3>
         <div class="spinner-border text-danger" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
         <center>
-            <img src="https://toppng.com/public/uploads/thumbnail/homero-11529080094wjpkdyozs5.png" alt="linea" class="card-img">
+            <img src="https://toppng.com/public/uploads/thumbnail/homero-11529080094wjpkdyozs5.png" alt="linea" class="card-img-2">
+            <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio" role="button" style="margin-left: 0rem ; background-color:#D12C22 ; border: none;"> LOGIN </a>
         </center>
         <br>
     </div>
