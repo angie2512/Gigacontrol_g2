@@ -311,7 +311,7 @@
     });
 </script>
 <br>
-<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletUsuario" role="button"
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletUsuario?action=listaMisIncidencias" role="button"
    style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
 <br><br>
 </body>
