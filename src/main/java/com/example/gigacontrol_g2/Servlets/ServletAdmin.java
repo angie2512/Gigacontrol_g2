@@ -196,33 +196,42 @@ ServletAdmin extends HttpServlet {
                                                         response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
                                                     } else {
                                                         request.getSession().setAttribute("msj6", "Debe seleccionar una rol");
+                                                        response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                                                     }
                                                 } else {
                                                     request.getSession().setAttribute("msj5", "Debe seleccionar una categoria");
+                                                    response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                                                 }
                                             } else {
                                                 request.getSession().setAttribute("msj4", "Debe ingresar un correo valido");
+                                                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                                             }
                                         } else {
                                             request.getSession().setAttribute("msj3", "El numero debe tener 9 digitos");
+                                            response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                                         }
                                     } catch (NumberFormatException e) {
                                         request.getSession().setAttribute("msj3", "Ingrese valores numericos");
+                                        response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                                     }
                                 } else {
                                     request.getSession().setAttribute("msj2", "El codigo ingresado ya se encuntra registrado");
+                                    response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                                 }
                             } else {
                                 request.getSession().setAttribute("msj2", "El codigo PUCP debe tener 8 digitos");
+                                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                             }
                         } else {
                             request.getSession().setAttribute("msj", "El Numero de DNI ingresado ya se encuntra registrado");
+                            response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                         }
                     } else {
                         request.getSession().setAttribute("msj", "El Numero de DNI debe tener 8 digitos");
+                        response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                     }
                 }
-               // response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
+
                 break;
 
 
