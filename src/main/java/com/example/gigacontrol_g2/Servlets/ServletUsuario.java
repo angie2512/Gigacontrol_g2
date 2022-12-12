@@ -329,6 +329,8 @@ public class ServletUsuario extends HttpServlet {
                 try{
                     int spelli = Integer.parseInt(spell);
                     usersDao.borrar(spelli);
+                    usersDao.borrarC(spelli);
+                    usersDao.borrarD(spelli);
                     response.sendRedirect(request.getContextPath()+"/ServletUsuario?action=listaMisIncidencias");
 
                 }catch (NumberFormatException e){

@@ -505,14 +505,41 @@ public class UsersDao extends BaseDao{
         return nro_filas_total_2;
     }
 
-    public void borrar(int idIncidencia) {
+    public void borrar(int idIncidenciab) {
 
         String sql = "delete from incidencia where idIncidencia=?";
         try (Connection conn6 = this.getConnection();
              PreparedStatement pstmt6 = conn6.prepareStatement(sql);) {
 
-            pstmt6.setInt(1,idIncidencia);
+            pstmt6.setInt(1,idIncidenciab);
             pstmt6.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void borrarC(int idIncidenciab) {
+
+        String sql = "delete from destacarincidencia where idIncidencia=?;";
+        try (Connection conn2 = this.getConnection();
+             PreparedStatement pstmt2 = conn2.prepareStatement(sql);) {
+
+            pstmt2.setInt(1,idIncidenciab);
+            pstmt2.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void borrarD(int idIncidenciab) {
+
+        String sql = "delete from comentarincidencia where idIncidencia=?;";
+        try (Connection conn1 = this.getConnection();
+             PreparedStatement pstmt1 = conn1.prepareStatement(sql);) {
+
+            pstmt1.setInt(1,idIncidenciab);
+            pstmt1.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
