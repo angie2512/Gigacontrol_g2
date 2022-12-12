@@ -118,8 +118,8 @@
         <p></p>
       </div>-->
       <div class="d-grid gap-2 mx-auto">
-        <a href="<%=request.getContextPath()%>/ServletInicio?action=Registrousuario"><button class="btn-1" type="button" >Usuario PUCP</button></a>
-        <a href="<%=request.getContextPath()%>/ServletInicio?action=Registroseguridad"><button class="btn-2" type="button">Seguridad</button></a>
+        <a href="<%=request.getContextPath()%>/ServletInicio?action=Registrousuario"><button class="btn-1" type="button" ><b>Usuario PUCP</b></button></a>
+        <a href="<%=request.getContextPath()%>/ServletInicio?action=Registroseguridad"><button class="btn-2" type="button"><b>Seguridad</b></button></a>
         <br>
       </div>
     </div>
