@@ -626,7 +626,7 @@ public class UsersDao extends BaseDao{
         //,InputStream foto//
 
         String sql = "INSERT INTO incidencia (NombreDeIncidencia, Descripcion, ZonaPUCP, " +
-                "Ubicacion,idUsuario, idTipoIncidencia, idNivelUrgencia,idEstado , Foto) VALUES (?,?,?,?,?,?,?,?,?)";
+                "Ubicacion,idUsuario, idTipoIncidencia, idNivelUrgencia,idEstado) VALUES (?,?,?,?,?,?,?,?)";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
