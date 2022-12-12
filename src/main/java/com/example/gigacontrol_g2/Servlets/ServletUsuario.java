@@ -247,6 +247,13 @@ public class ServletUsuario extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=verIncidencia&id="+idincidenciaV);
                 break;
 
+            case "destacarIncVerMis":
+                String idincidenciaVmis = request.getParameter("idi");
+                int incidenciaidVmis = Integer.parseInt(idincidenciaVmis);
+                usersDao.destacarEstrella(usuario.getIdUsuario(), incidenciaidVmis);
+                response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=verMisIncidencia&id="+idincidenciaVmis);
+                break;
+
             case "quitardestacado":
                 String idincidencia1 = request.getParameter("idi");
                 int incidenciaid1 = Integer.parseInt(idincidencia1);
@@ -259,6 +266,13 @@ public class ServletUsuario extends HttpServlet {
                 int incidenciaid1V = Integer.parseInt(idincidencia1V);
                 usersDao.eliminarDestacado(usuario.getIdUsuario(), incidenciaid1V);
                 response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=verIncidencia&id="+idincidencia1V);
+                break;
+
+            case "quitardestacadoIncVerMis":
+                String idincidencia1Vmis = request.getParameter("idi");
+                int incidenciaid1Vmis = Integer.parseInt(idincidencia1Vmis);
+                usersDao.eliminarDestacado(usuario.getIdUsuario(), incidenciaid1Vmis);
+                response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=verMisIncidencia&id="+idincidencia1Vmis);
                 break;
 
 
@@ -276,6 +290,22 @@ public class ServletUsuario extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("Usuario/VerIncidencia.jsp");
                 requestDispatcher.forward(request, response);
                 break;
+
+            case "verMisIncidencia":
+                String idMisIncidenciaStr = request.getParameter("id");
+                int idMisIncidencia = Integer.parseInt(idMisIncidenciaStr);
+                Incidencia incidenciaMis = seguridadDao.buscarIncidencia(idMisIncidencia);
+                request.setAttribute("incidencia", incidenciaMis);
+                ArrayList<Estado> listaEstadosMis = daoDatosFijos.obtenerListaEstados();
+                request.setAttribute("ListaEstados", listaEstadosMis);
+                ArrayList<ComentarIncidencia> listaComentariosMis = daoDatosFijos.obtenerComentariosDeIncidencia(idMisIncidencia);
+                request.setAttribute("ListaComentarios", listaComentariosMis);
+                request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
+                request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
+                requestDispatcher = request.getRequestDispatcher("Usuario/VerMisIncidencias.jsp");
+                requestDispatcher.forward(request, response);
+                break;
+
             case "mostrarFotoPerfil":
                 String idUsuario = request.getParameter("idu");
                 int idUsuario1 = Integer.parseInt(idUsuario);
@@ -347,11 +377,18 @@ public class ServletUsuario extends HttpServlet {
                 String zonaPucp_ = request.getParameter("zonaPucp");
                 String ubicacion_ = request.getParameter("ubicacion");
                 TipoDeIncidencia ti = new TipoDeIncidencia();
+                System.out.println(request.getParameter("tipoIncidenciaID"));
                 ti.setIdTipoDeIncidencia(Integer.parseInt(request.getParameter("tipoIncidenciaID")));
+                //ti.setIdTipoDeIncidencia(1);
                 NivelDeUrgencia nu = new NivelDeUrgencia();
                 nu.setIdNivelDeUrgencia(Integer.parseInt(request.getParameter("nivelUrgenciaID")));
+                //nu.setIdNivelDeUrgencia(1);
                 Estado estado = new Estado();
                 estado.setIdEstado(1);
+                //fotoIncidencia
+                //Part partin = request.getPart("fotoIncidencia");
+                //InputStream fotoin = partin.getInputStream();
+
 
                 try {
                     Incidencia newIncidencia = new Incidencia();
@@ -362,7 +399,9 @@ public class ServletUsuario extends HttpServlet {
                     newIncidencia.setTipoDeIncidencia(ti);
                     newIncidencia.setNivelDeUrgencia(nu);
                     newIncidencia.setEstado(estado);
+                    //newIncidencia.setFoto(fotoin);
                     usersDao.nuevaIncidencia(newIncidencia, usuario.getIdUsuario());
+                    //usersDao.nuevaIncidencia(newIncidencia, usuario.getIdUsuario(), fotoin);
 
                     response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=inicio");
 

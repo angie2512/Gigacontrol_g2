@@ -194,7 +194,7 @@
                                     </td>
                                     <td>
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                            <a href="<%=request.getContextPath()%>/ServletUsuario?action=verIncidencia&id=<%=incidencia2.getIdIncidencia()%>"
+                                            <a href="<%=request.getContextPath()%>/ServletUsuario?action=verMisIncidencia&id=<%=incidencia2.getIdIncidencia()%>"
                                                class="btn btn-danger">Ver Más</a>
                                         </div>
                                     </td>

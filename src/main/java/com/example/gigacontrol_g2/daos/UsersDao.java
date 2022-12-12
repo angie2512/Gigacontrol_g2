@@ -156,7 +156,7 @@ public class UsersDao extends BaseDao{
                     Incidencia incidencia = new Incidencia();
                     TipoDeIncidencia tipoIncidencia = new TipoDeIncidencia();
                     Estado estadoIncidencia = new Estado();
-                    //incidencia.setIdIncidencia(rs.getInt(1));
+                    incidencia.setIdIncidencia(rs.getInt(1));
                     incidencia.setNombreDeIncidencia(rs.getString(2));
                     incidencia.setUsuario(usuario);
                     usuario.setNombre(rs.getString(3));
@@ -583,9 +583,10 @@ public class UsersDao extends BaseDao{
     //NUEVA INCIDENCIA
 
     public void nuevaIncidencia(Incidencia nIncidencia, int idUsuario) {
+        //,InputStream foto//
 
         String sql = "INSERT INTO incidencia (NombreDeIncidencia, Descripcion, ZonaPUCP, " +
-                "Ubicacion,idUsuario, idTipoIncidencia, idNivelUrgencia,idEstado) VALUES (?,?,?,?,?,?,?,?)";
+                "Ubicacion,idUsuario, idTipoIncidencia, idNivelUrgencia,idEstado , Foto) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -598,6 +599,7 @@ public class UsersDao extends BaseDao{
             pstmt.setInt(6, nIncidencia.getTipoDeIncidencia().getIdTipoDeIncidencia());
             pstmt.setInt(7, nIncidencia.getNivelDeUrgencia().getIdNivelDeUrgencia());
             pstmt.setInt(8, nIncidencia.getEstado().getIdEstado());
+            //pstmt.setBlob(9, foto);
 
             pstmt.executeUpdate();
 
@@ -605,6 +607,7 @@ public class UsersDao extends BaseDao{
             throw new RuntimeException(e);
         }
     }
+
 
     //EDITAR INCIDENCIA
     public void actualizarIncidencia(int userID, String nombre, String descripcion, String zonaPucp, String ubicacion, int ti, int nu, int estado) {
