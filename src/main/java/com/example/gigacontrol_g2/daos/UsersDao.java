@@ -629,6 +629,19 @@ public class UsersDao extends BaseDao{
             throw new RuntimeException(e);
         }
     }
+    public void editarFotoUsuario(int id, InputStream fotoPerfil){
+        String sql="UPDATE gigacontrol.usuario SET FotoPerfil = ? where idUsuario = ?";
+
+        try(Connection conn= this.getConnection();
+            PreparedStatement pstmt= conn.prepareStatement(sql)){
+            pstmt.setBlob(1,fotoPerfil);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        }catch(SQLException e) {
+            System.out.println("Error en la conexión!");
+            e.printStackTrace();
+        }
+    }
 
 
 

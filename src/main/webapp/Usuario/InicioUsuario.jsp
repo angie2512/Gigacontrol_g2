@@ -218,11 +218,10 @@
                                 <center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">TODAS LAS
                                     INCIDENCIAS </b></center>
                             </h4>
+
                             <p></p>
-                            <form class="d-flex" role="search" method="post"
-                                  action="<%=request.getContextPath()%>/ServletUsuario?action=buscar">
-                                <input class="form-control me-2" type="search" name="searchText" placeholder="Buscar"
-                                       aria-label="Buscar">
+                            <form class="d-flex" role="search" method="post" action="<%=request.getContextPath()%>/ServletUsuario?action=buscar">
+                                <input class="form-control me-2" type="search" name="searchText" placeholder="Ingrese el Nombre o Palabra Clave de Incidencia" aria-label="Buscar">
                                 <button class="btn btn-outline-primary" type="submit">Buscar</button>
 
                                 <a href="<%=request.getContextPath()%>/ServletUsuario"

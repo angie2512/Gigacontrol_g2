@@ -14,7 +14,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link href="styles.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/46baa8e193.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/usuario.css">
     <script src="https://kit.fontawesome.com/46baa8e193.js" crossorigin="anonymous"></script>
     <style>
         body {
@@ -150,21 +149,32 @@
                <!-- <button>SELECCIONA ARCHIVO</button>
                 <input type="file" name="" id="file-upload" hidden multiple>  -->
     <div class="abs-center">
+
                     <img id="image" src="<%=u.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
 
                     <br>
                     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
 
-                        <label for="file-upload" class="custom-file-upload btn btn-danger" title="Subir Foto" style="background-color: #5f6694; border-color: #5f6694">
-                            <i class="fa fa-camera"></i>
-                        </label>
-                        <input id="file-upload" type="file" name="Newphoto"/>
 
-                        <td class="text-center" action="<%=request.getContextPath()%>/PerfilUsuario?action=actualizarFoto" enctype="multipart/form-data">
-                            <a type="submit" class="btn btn-danger" title="Guardar Foto", style="background-color: #5f6694; border-color: #5f6694">
+                       <!--<label for ="imagen" class="custom-file-upload btn btn-danger" title="Subir Foto" style="background-color: #5f6694; border-color: #5f6694" ><i class="fa fa-camera"></i> </label>
+                       <input id="imagen" class="d-none" type="file" name="imagen" onchange="mostrarimagen();" />-->
+
+                       <form method="post" class="text-center" action="<%=request.getContextPath()%>/PerfilUsuario?action=actualizarFotoPerfil" enctype="multipart/form-data">
+
+                           <label for="file-upload" class="custom-file-upload btn btn-danger" title="Subir Foto" style="background-color: #5f6694; border-color: #5f6694">
+                               <i class="fa fa-camera"></i>
+                           </label>
+                           <input id="file-upload" type="file" name="Newphoto"/>
+
+                            <button type="submit" class="btn btn-danger" title="Guardar Foto", style="background-color: #5f6694; border-color: #5f6694">
                                 <i class="fa-solid fa-check"></i>
-                            </a>
-                        </td>
+                            </button>
+
+                        </form>
+
+
+
+
                         <td class="text-center">
                             <button class="btn btn-danger" onclick="changeImage()" title="Borrar Foto" style="background-color: #5f6694; border-color: #5f6694">
                                 <i class="fa-solid fa-trash"></i>
@@ -218,3 +228,4 @@
 <br><br>
 </body>
 </html>
+

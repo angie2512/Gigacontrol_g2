@@ -231,9 +231,12 @@ public class ServletUsuario extends HttpServlet {
                 requestDispatcher.forward(request, response);
                 break;
             case "perfil":
+                request.setCharacterEncoding("UTF-8");
+                
                 requestDispatcher = request.getRequestDispatcher("Usuario/PerfilUsuario.jsp");
                 requestDispatcher.forward(request, response);
                 break;
+
             case "destacar":
                 String idincidencia = request.getParameter("idi");
                 int incidenciaid = Integer.parseInt(idincidencia);
@@ -282,6 +285,7 @@ public class ServletUsuario extends HttpServlet {
                 int idUsuario1 = Integer.parseInt(idUsuario);
                 daoDatosFijos.mostrarImagenUsuario(idUsuario1, response);
                 break;
+
         }
     }
 

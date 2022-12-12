@@ -46,6 +46,14 @@ public class PerfilUsuario extends HttpServlet {
                 response.sendRedirect(request.getContextPath()+"/ServletSeguridad?action=perfil");
                 break;
 
+            case "actualizarFotoPerfil":
+                Part part1= request.getPart("Newphoto");
+                InputStream foto1= part1.getInputStream();
+                seguridadDao.editarFoto(usuario.getIdUsuario(), foto1);
+                usuario.setFotoPerfil(foto1.toString());
+                response.sendRedirect(request.getContextPath()+"/ServletUsuario?action=perfil");
+                break;
+
         }
     }
 }
