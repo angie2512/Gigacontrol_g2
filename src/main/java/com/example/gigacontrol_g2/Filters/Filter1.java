@@ -12,6 +12,7 @@ import java.io.IOException;
 public class Filter1 implements Filter {
 
 
+
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
 
@@ -21,10 +22,11 @@ public class Filter1 implements Filter {
         HttpServletResponse response = (HttpServletResponse) resp;
 
         BUsuarios usuario = (BUsuarios) request.getSession().getAttribute("userlogged");
-        if (usuario == null) {
-            response.sendRedirect(request.getContextPath());
+        if (usuario == null /*&& usuario.getIdUsuario() > 0*/) {
+            response.sendRedirect(request.getContextPath() + "/ServletInicio");
         } else {
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+            response.addHeader("Cache-Control", "post-check=0, pre-check=0");
             response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
             response.setDateHeader("Expires", 0);
 

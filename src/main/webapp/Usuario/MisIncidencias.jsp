@@ -154,8 +154,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="p-7 mb-2 bg-primary text-white" style="--bs-bg-opacity: .5;">
-                        <h4 style="text-align: center; color: white; font-family:'Times New Roman', Times, serif">MIS
-                            INCIDENCIAS</h4>
+                        <h4 style="text-align: center; color: white; font-family:'Times New Roman', Times, serif">MIS INCIDENCIAS</h4>
                     </div>
                     <br>
 
@@ -194,9 +193,9 @@
                                         </center>
                                     </td>
                                     <td>
-                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                            <a href=<%=request.getContextPath()%>/VerIncidenciaUsuario
-                                               class="btn btn-primary">Ver Mas</a>
+                                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                            <a href="<%=request.getContextPath()%>/ServletUsuario?action=verIncidencia&id=<%=incidencia2.getIdIncidencia()%>"
+                                               class="btn btn-danger">Ver Más</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -247,10 +246,11 @@
                                         </td>
                                         <td data-titulo="Estado"><%= incidencia.getEstado().getNombre() %>
                                         </td>
+
                                         <td>
-                                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                                <a href=<%=request.getContextPath()%>/VerIncidenciaUsuario
-                                                   class="btn btn-danger">Ver Mas</a>
+                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                <a href="<%=request.getContextPath()%>/ServletUsuario?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>"
+                                                   class="btn btn-danger">Ver Más</a>
                                             </div>
                                         </td>
                                     </tr>

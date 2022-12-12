@@ -18,6 +18,15 @@
     int regMin = (int) request.getAttribute("regMin");
     int regMax = (int) request.getAttribute("regMax");
     int valor_pagina = (int) request.getAttribute("valor_pagina");
+
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0);
+
+
+
+
 %>
 
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session"
