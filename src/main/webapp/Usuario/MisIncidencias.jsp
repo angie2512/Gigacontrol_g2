@@ -8,6 +8,8 @@
     ArrayList<Incidencia> IncidenciasUsuario = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidenciasDelUsuario");
     ArrayList<Incidencia> IncidenciasDestacadas = (ArrayList<Incidencia>) request.getAttribute("ListaDeIncidenciasDestacadas");
     BUsuarios u = (BUsuarios) session.getAttribute("userlogged");
+    ArrayList<Incidencia> listaDeMisIncidencias = (ArrayList<Incidencia>) request.getAttribute("listaDeMisIncidencias");
+
 %>
 
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session"
@@ -208,36 +210,10 @@
                             </td>
                             <td>
                                 <center>
-                                    <div class="d-flex justify-content-center">
-                                        <button type="button" class="btn btn-danger" style="background-color: #5f6694; border-color: #5f6694" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                        <div class="modal fade" id="exampleModal" tabindex="-1"
-                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Se borrará la incidencia seleccionada</h5>
-                                                        <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="d-flex justify-content-center">
-                                                            <h3 style="color:#5397DF">¿Desea Continuar?</h3>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <div class="d-flex justify-content-center">
-                                                            <button type="submit" class="btn btn-primary">Confirmar</button>
-                                                            <br><a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletUsuario?action=borrar&id"
-                                                                   role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;">
-                                                            Cancelar</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <a type="button" class="btn btn-success" type="button" class="btn btn-danger" style="background-color: #5f6694; border-color: #5f6694"
+                                   onclick="return confirm('¿Estas seguro(a) que deseas eliminar esta incidencia?')"
+                                   href="<%=request.getContextPath()%>/ServletUsuario?action=borrar&id=<%=incidencia2.getIdIncidencia()%>"><i class="fa fa-trash"></i>
+                                </a>
                                 </center>
                             </td>
                         </tr>
