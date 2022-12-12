@@ -94,7 +94,12 @@
             else{%>
             <img src="resources/Images/usu.png" class="rounded mx-auto d-block "  height="200rem" width="200rem">
             <%}%>
-
+            <blockquote class="blockquote mb-0">
+              <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizarFoto&idphoto=<%=user.getIdUsuario()%>" enctype="multipart/form-data">
+                <input type="file" name="photo">
+                <button type="submit">actualizar</button>
+              </form>
+            </blockquote>
             <br>
             <div class="d-flex justify-content-center">
               <% if(user.getEstado()==5){%>

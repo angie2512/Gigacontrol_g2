@@ -33,6 +33,9 @@ ServletAdmin extends HttpServlet {
         float maxPag = (float) (valor_total_filas / 9);
         int maxPag2 = (int) Math.ceil(maxPag);
         BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
+        if(action==null){
+            action="Inicio";
+        }
         switch (action) {
             case "Inicio":
                 if(user != null /*&& user.getIdUsuario()!=1 && user.getIdUsuario()!=2 */){
@@ -288,11 +291,25 @@ ServletAdmin extends HttpServlet {
                 break;
 
             case "actualizarFoto":
+                System.out.println("llega");
                 SeguridadDao  seguridadDao= new SeguridadDao();
                 Part part= request.getPart("photo");
                 InputStream foto= part.getInputStream();
-                seguridadDao.editarFoto(usuario.getIdUsuario(), foto);
-                usuario.setFotoPerfil(foto.toString());
+                String iduser = request.getParameter("idphoto");
+
+                System.out.println("el id es: " + iduser);
+                if(iduser==null){
+                    seguridadDao.editarFoto(usuario.getIdUsuario(), foto);
+                    usuario.setFotoPerfil(foto.toString());
+                    response.sendRedirect(request.getContextPath()+"/ServletAdmin?action=Perfil");
+                }
+                else{
+                    BUsuarios editedUser = daoAdmin.buscarPorId(iduser);
+                    seguridadDao.editarFoto(editedUser.getIdUsuario(), foto);
+                    editedUser.setFotoPerfil(foto.toString());
+                    response.sendRedirect(request.getContextPath()+"/ServletAdmin?action=Editar&id="+iduser);
+                }
+
 
                 /*
                 response.sendRedirect(request.getContextPath()+"/ServletSeguridad?action=perfil");
@@ -305,7 +322,7 @@ ServletAdmin extends HttpServlet {
                 daoAdmin.updatePhoto(usuario.getIdUsuario(),foto);
 
                 usuario.setFotoPerfil(foto.toString());*/
-                response.sendRedirect(request.getContextPath()+"/ServletAdmin?action=Perfil");
+
                 break;
         }
     }
