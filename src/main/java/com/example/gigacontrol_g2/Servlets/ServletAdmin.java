@@ -346,24 +346,19 @@ ServletAdmin extends HttpServlet {
                 break;
 
             case "actualizarFoto":
-                SeguridadDao seguridadDao = new SeguridadDao();
+                String id = request.getParameter("idphoto");
                 Part part = request.getPart("photo");
                 InputStream foto = part.getInputStream();
-                seguridadDao.editarFoto(usuario.getIdUsuario(), foto);
-                usuario.setFotoPerfil(foto.toString());
-
-                /*
-                response.sendRedirect(request.getContextPath()+"/ServletSeguridad?action=perfil");
-
-                System.out.println("user to chanf fo :"+ usuario.getIdUsuario());
-                Part part= request.getPart("Newphoto");
-
-                InputStream foto= part.getInputStream();
-
-                daoAdmin.updatePhoto(usuario.getIdUsuario(),foto);
-
-                usuario.setFotoPerfil(foto.toString());*/
-                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Perfil");
+                System.out.println("el id es? :" + id);
+                if(id==null){
+                    daoAdmin.updatePhoto(usuario.getIdUsuario(), foto);
+                    usuario.setFotoPerfil(foto.toString());
+                    response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Perfil");
+                }else {
+                    BUsuarios editedUser = daoAdmin.buscarPorId(id);
+                    daoAdmin.updatePhoto(editedUser.getIdUsuario(), foto);
+                    response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Editar&id="+id);
+                }
                 break;
         }
     }

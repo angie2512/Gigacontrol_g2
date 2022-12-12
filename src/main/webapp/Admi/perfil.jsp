@@ -286,10 +286,22 @@
             </div>
         </div>
     </div>
+
     <!-- FIN CARD -->
 </center>
 </main>
 <br><br>
+<center>
+    <div class="card ">
+        <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizarFoto" enctype="multipart/form-data">
+            <input type="file" name="photo">
+            <button type="submit">actualizar</button>
+        </form>
+    </div>
+</center>
+
+
+
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
