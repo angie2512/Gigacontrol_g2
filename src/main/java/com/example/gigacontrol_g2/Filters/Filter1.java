@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebFilter(filterName = "Filter1"/*, urlPatterns = {"/ServletUsuario"}*/)
+@WebFilter(filterName = "Filter1", urlPatterns = {"/ServletUsuario"})
 public class Filter1 implements Filter {
 
 
@@ -22,8 +22,8 @@ public class Filter1 implements Filter {
         HttpServletResponse response = (HttpServletResponse) resp;
 
         BUsuarios usuario = (BUsuarios) request.getSession().getAttribute("userlogged");
-        if (usuario == null && usuario.getIdUsuario() > 0) {
-            response.sendRedirect(request.getContextPath());
+        if (usuario == null /*&& usuario.getIdUsuario() > 0*/) {
+            response.sendRedirect(request.getContextPath() + "/ServletInicio");
         } else {
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
             response.addHeader("Cache-Control", "post-check=0, pre-check=0");
