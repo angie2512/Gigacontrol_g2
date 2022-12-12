@@ -150,7 +150,7 @@
                 <input type="file" name="" id="file-upload" hidden multiple>  -->
     <div class="abs-center">
 
-                    <img id="image" src="<%=u.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
+                    <img id="image" src="<%=u.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block " alt="userphoto" height="240rem" width="210rem">
 
                     <br>
                     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
@@ -166,7 +166,7 @@
                            </label>
                            <input id="file-upload" type="file" name="Newphoto"/>
 
-                            <button type="submit" class="btn btn-danger" title="Guardar Foto", style="background-color: #5f6694; border-color: #5f6694">
+                            <button type="submit" class="btn btn-danger" title="Actualizar", style="background-color: #5f6694; border-color: #5f6694">
                                 <i class="fa-solid fa-check"></i>
                             </button>
 
@@ -175,7 +175,7 @@
 
 
 
-                        <td class="text-center">
+                        <!--<td class="text-center">
                             <button class="btn btn-danger" onclick="changeImage()" title="Borrar Foto" style="background-color: #5f6694; border-color: #5f6694">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
@@ -187,7 +187,7 @@
                                     }
                             </script>
 
-                        </td>
+                        </td>-->
 
                 </br>
 
