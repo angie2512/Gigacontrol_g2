@@ -17,6 +17,9 @@
     <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <title>Admin Inicio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/46baa8e193.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/46baa8e193.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/usuario.css">
     <style>
         body {
             background: url("resources/Images/FONDOclaro.png");
@@ -27,18 +30,6 @@
             margin: 0;
             height: 100vh;
             bgcolor: "#800000";
-        }
-        @font-face {
-            font-family: Decor;
-            src: url(KrinkesDecorPERSONAL.ttf);
-        }
-        @font-face{
-            font-family: Decor;
-            src: url(KrinkesRegularPERSONAL.ttf);
-            font-style: italic;
-        }
-        p{
-            font-family: Decor;
         }
 
     </style>
@@ -205,9 +196,15 @@
 
 <main class="container">
 
-        <div class="row mb-2">
+       <!-- <div class="row mb-2">
             <div class="col-md-6">
                     <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=userlogged.getIdUsuario()%>" class="img-fluid rounded float-end" alt="FotoPerfil" style="width: 16rem">
+                    <blockquote class="blockquote mb-0">
+                        <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizarFoto" enctype="multipart/form-data">
+                            <input type="file" name="photo">
+                            <button type="submit">actualizar</button>
+                        </form>
+                    </blockquote>
             </div>
             <div class="col-md-6" style="border:none">
                 <div class="md-250 position-relative">
@@ -251,7 +248,41 @@
                     </div>
                 </div>
         </div>
-    </center>
+    </center> -->
+
+    <!-- CARD -->
+<center>
+    <div class="card " style="max-width: 60rem; ">
+
+        <div class="row g-5">
+            <div class="col-md-8">
+                <br>
+                <center>
+                    <!-- IMAGEN DE AQUÍ -->
+                    <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=userlogged.getIdUsuario()%>" class="img-fluid rounded float-end" alt="FotoPerfil" style="width: 26rem">
+                </center>
+            </div>
+            <div class="col-md-4">
+                <br>
+
+                <p class="display-4 text-start" style="font-family: 'Felix Titling'"><b style="color:#da9e3d;"><%=userlogged.getNombre()%></b><b style="color: rgba(0,0,0,0)">..</b></p>
+                <h2 class="mb-0"><b style="color:#abc45c; font-family: 'Felix Titling'"><b style="color: rgba(0,0,0,0)">..</b><%=userlogged.getApellido()%></b><b style="color: rgba(0,0,0,0)">..</b></h2>
+                <br>
+                <br>
+                <h5 style="color: #316F54; font-family: 'Decor'" class="text-start"><b style="color: rgba(0,0,0,0)">..</b><b>Correo</b></h5>
+                <p class="text-start"><b style="color: rgba(0,0,0,0); font-family: 'Georgia'">......</b><%=userlogged.getCorreo()%></p>
+                <br>
+                <h5 style="color: #316F54; font-family: 'Decor'" class="text-start"><b style="color: rgba(0,0,0,0)">..</b><b>DNI</b></h5>
+                <p class="text-start"><b style="color: rgba(0,0,0,0); font-family: 'Georgia'">......</b><%=userlogged.getDni()%></p>
+                <br>
+                <h5 style="color: #316F54; font-family: 'Decor'" class="text-start"><b style="color: rgba(0,0,0,0)">..</b><b>Celular</b></h5>
+                <p class="text-start"><b style="color: rgba(0,0,0,0); font-family: 'Georgia'">......</b><%=userlogged.getCelular()%></p>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!-- FIN CARD -->
+</center>
 </main>
 <br><br>
 

@@ -47,7 +47,15 @@ public class ServletSeguridad extends HttpServlet {
 
         switch (action) {
             case "mostrarFoto":
+
                 seguridadDao.mostrarImagen(usuario.getIdUsuario(),response);
+
+                //String idStr = request.getParameter("id");
+                //int id = Integer.parseInt(idStr);
+                //seguridadDao.mostrarImagen(id,response);
+
+                //daoAdmin.viewImage(id,response);
+
                 break;
 
             case "listarIncidencia":
@@ -222,7 +230,7 @@ public class ServletSeguridad extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
-        //BUsuarios bUsuarios = (BUsuarios) session.getAttribute("userlogged");
+        BUsuarios bUsuarios = (BUsuarios) session.getAttribute("userlogged");
         String action = request.getParameter("action") == null ? "actualizarIncidencia": request.getParameter("action");
         SeguridadDao seguridadDao = new SeguridadDao();
 
@@ -235,6 +243,13 @@ public class ServletSeguridad extends HttpServlet {
         estados.add("nombre");
 
         switch (action){
+            case "actualizarFotoPerfil":
+                Part part1= request.getPart("Newphoto");
+                InputStream foto1= part1.getInputStream();
+                seguridadDao.editarFoto(bUsuarios.getIdUsuario(), foto1);
+                bUsuarios.setFotoPerfil(foto1.toString());
+                response.sendRedirect(request.getContextPath()+"/ServelSeguridad?action=perfil");
+                break;
 
             case "buscarIncidencia":
                 String searchText = request.getParameter("searchText")==null?"":request.getParameter("searchText");

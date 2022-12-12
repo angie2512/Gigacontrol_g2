@@ -310,7 +310,7 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                 <div class="px-0">
                     <h1 class="card-text"><b style="color:#2C3166"><%=incidencia.getNombreDeIncidencia()%></b></h1>
                     <h6 class="card-text" style="color:#B1120D"><b>ESTADO: <%=incidencia.getEstado().getNombre()%></b></h6>
-                    <p style="font-size: xx-small">Foto de incidencia</p>
+
                     <br>
                     <!-- ESTADO, NIVEL DE URGENCIA, ACTUALIZAR -->
                     <div class="row">
@@ -319,11 +319,11 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                             <img src="<%=request.getContextPath()%>/ServletUsuario?action=listarimg&id=<%=incidencia.getIdIncidencia()%>" class="rounded mx-auto d-block img-fluid" alt="userphoto" style="width: 240px">
                         </div>
                         <div class="col-lg-3">
-                            <h6 style="color: #2C3166"> <b><%=incidencia.getUsuario().getNombre()%>,</b> <%=incidencia.getUsuario().getApellido()%> </h6>
-                            <p style="font-size: xx-small"><%=incidencia.getUsuario().getCategoria()%></p>
+                            <h6 style="color: #0b2479"> <b><%=incidencia.getUsuario().getNombre()%>,</b> <%=incidencia.getUsuario().getApellido()%> </h6>
+                            <p style="color: #030c2c"> <b><%=incidencia.getUsuario().getCategoria()%></b></p>
                         </div>
                         <div class="col-lg-3">
-                            <h6 style="color:#B1120D"><b style="color:#B1120D">Código:</b><%=incidencia.getUsuario().getCodigo()%></h6>
+                            <h6 style="color:#276706"><b style="color:#276706">Código:</b><%= incidencia.getUsuario().getCodigo()%></h6>
                         </div>
                         <div class="col-lg-3">
                             <form id="myform" method="post" action="<%=request.getContextPath()%>/ServletSeguridad?action=actualizarIncidencia">
@@ -343,19 +343,19 @@ ArrayList<ComentarIncidencia> listaComentarios = (ArrayList<ComentarIncidencia>)
                     <!-- NIVEL DE URGENCIA,  ZONA PUCP, UBIICACION, UBICACION-->
                     <div class="row">
                         <div class="col-lg-3">
-                            <h6><b style="color:darkblue;">Nivel de Urgencia:</b></h6>
+                            <h6><b style="color:#0b2479;">Nivel de Urgencia:</b></h6>
                             <p><%=incidencia.getNivelDeUrgencia().getNombre()%></p>
                         </div>
                         <div class="col-lg-3">
-                            <h6><b style="color:#0a7437">Descripción: </b></h6>
+                            <h6><b style="color:#0b2479">Descripción: </b></h6>
                             <p><%=incidencia.getDescripcion()%></p>
                         </div>
                         <div class="col-lg-3">
-                            <h6><b style="color:#274362">Zona PUCP: </b></h6>
+                            <h6><b style="color:#0b2479">Zona PUCP: </b></h6>
                             <p><%=incidencia.getZonaPucp()%></p>
                         </div>
                         <div class="col-lg-3">
-                            <p style="font-size: x-small">Ubicación</p>
+                            <h6><b style="color:#0b2479">Ubicación: </b></h6>
                             <div id="map-container">
                                 <div id="map"></div>
                             </div>
