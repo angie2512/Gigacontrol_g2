@@ -269,15 +269,10 @@
 
         <div class="container text-center">
             <div class="row justify-content-start">
-                <div class="col-4">
-                    <img src="resources/Images/usu.png" class="img-fluid" height="200rem"
-                         width="200rem" alt="Usuario">
-                </div>
-                <div class="col-8">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title" style="font-family: Georgia">REGISTRO</h5>
-                            <h5>Ingrese sus datos</h5>
+                            <h1 class="card-title" style="font-family: Georgia; color:#dca838">REGISTRO</h1>
+                            <h6>Ingrese sus datos</h6>
                             <% if(session.getAttribute("err")!=null){%>
                             <div class="alert alert-danger" role="alert">
                                 <%=session.getAttribute("err")%>
@@ -300,7 +295,7 @@
                                             <tr>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <label for="nombre" class="col-form-label">Nombres:</label>
+                                                        <label for="nombre" class="col-form-label"><b style="color: #177e72">Nombres:</b></label>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -310,12 +305,12 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <div class="row g-3 align-items-center">
-                                                        <div class="col-auto">
-                                                            <label for="apellido"
-                                                                   class="col-form-label">Apellidos:</label>
-                                                        </div>
-                                                    </div>
+
+                                                   <div class="col-auto">
+                                                        <label for="apellido"
+                                                                   class="col-form-label"><b style="color: #177e72">Apellidos:</b></label>
+                                                   </div>
+
                                                 </td>
                                                 <td>
                                                     <div class="col-auto">
@@ -327,7 +322,7 @@
                                             <tr>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <label for="dni" class="col-form-label">DNI:</label>
+                                                        <label for="dni" class="col-form-label"><b style="color: #177e72">DNI:</b></label>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -344,7 +339,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <label for="celular" class="col-form-label">Celular:</label>
+                                                        <label for="celular" class="col-form-label"><b style="color: #177e72">Celular:</b></label>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -363,8 +358,8 @@
                                             <tr>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <label for="codigo" class="col-form-label">Código
-                                                            PUCP:</label>
+                                                        <label for="codigo" class="col-form-label"><b style="color: #177e72">Código
+                                                            PUCP:</b></label>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -381,8 +376,8 @@
                                                 </td>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <label for="correo" class="col-form-label">Correo
-                                                            PUCP:</label>
+                                                        <label for="correo" class="col-form-label"><b style="color: #177e72">Correo
+                                                            PUCP:</b></label>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -401,8 +396,8 @@
                                             <tr>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <label for="categoria" class="col-form-label">Categoría
-                                                            PUCP:</label>
+                                                        <label for="categoria" class="col-form-label"><b style="color: #177e72">Categoría
+                                                            PUCP:</b></label>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -425,7 +420,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="col-auto">
-                                                        <label for="rolID" class="col-form-label">Rol:</label>
+                                                        <label for="rolID" class="col-form-label"><b style="color: #177e72">Rol:</b></label>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -493,7 +488,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
         </div>
 
