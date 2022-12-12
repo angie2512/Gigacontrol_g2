@@ -218,12 +218,9 @@
                   </ul>
                 </div>
               </div>
-
+              <button type="submit" class="btn btn-primary">Actualizar</button>
             </form>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
           </div>
-
-
         </div>
       </div>
     </div>
