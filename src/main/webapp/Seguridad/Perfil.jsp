@@ -88,25 +88,26 @@
 
     <div class="container" style="max-width: 40rem;">
       <div class="abs-center">
-        <img src="<%=userlogged.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block " alt="userphoto" height="200rem" width="210rem">
+        <img src="<%=userlogged.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block img-fluid" alt="userphoto" height="200rem" width="210rem">
         <br>
 
         <div class="card"style="background-color:#F2F2F3">
           <div class="card-body" >
-            <div class="p-1 mb-8 text-white" style="background-color:#4C9978">
-              <h4 style="text-align: center; color: white; font-family:Giorgia, serif"><b>PERSONAL DE SEGURIDAD</b></h4>
+            <div class="p-1 mb-8 text-white" style="background-color:#9bd3ae">
+              <h4 style="text-align: center; color: #4C9978; font-family:Giorgia, serif"><b>PERSONAL DE SEGURIDAD</b></h4>
             </div>
 
             <p></p>
             <blockquote class="blockquote mb-0">
               <form method="post" action="<%=request.getContextPath()%>/PerfilUsuario?action=actualizarFoto" enctype="multipart/form-data">
-              <h5 style="text-align: center;color:#316F54"><b><%=userlogged.getNombre()%> <%=userlogged.getApellido()%></b></h5>
-              <h6 style="text-align: center;"><%=userlogged.getCorreo()%></h6>
-              <h6 style="text-align: center;"><%=userlogged.getCodigo()%></h6>
-              <input type="file" name="Newphoto">
-                <button type="submit">actualizar</button>
-            </form>
+                <h5 style="text-align: center;color:#316F54"><b><%=userlogged.getNombre()%> <%=userlogged.getApellido()%></b></h5>
+                <h6 style="text-align: center;"><%=userlogged.getCorreo()%></h6>
+                <h6 style="text-align: center;"><%=userlogged.getCodigo()%></h6>
+
+              </form>
             </blockquote>
+            <center><input type="file" name="Newphoto">
+            <button type="submit">Actualizar</button></center>
           </div>
         </div>
       </div>
