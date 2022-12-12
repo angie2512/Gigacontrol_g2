@@ -99,7 +99,7 @@
 <p></p>
 <nav class="navbar navbar-expand-lg" style="background-color: #5f6694;" aria-label="Eighth navbar example">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="resources/Images/logo_blanco.png" alt="Logo" width="100"
+        <a class="navbar-brand" ><img src="resources/Images/logo_blanco.png" alt="Logo" width="100"
                                               height="40" class="d-inline-block align-text-top img-fluid"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
