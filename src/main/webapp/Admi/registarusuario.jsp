@@ -416,7 +416,7 @@
                                                 <td>
                                                     <div class="input-group mb-3">
                                                         <select class="form-select" id="categoria" name="categoria">
-                                                            <option selected>Elegir...</option>
+                                                            <option selected value="">Elegir...</option>
                                                             <option value="Alumno">Alumno</option>
                                                             <option value="Profesor">Profesor</option>
                                                             <option value="Jefe de practica">Jefe de páctica</option>
@@ -439,7 +439,7 @@
                                                 <td>
                                                     <div class="input-group mb-3">
                                                         <select class="form-select" id="rolID" name="rolID">
-                                                            <option selected>Elegir...</option>
+                                                            <option selected value="">Elegir...</option>
                                                             <option value="1">seguridad</option>
                                                             <option value="2">usuario pucp</option>
                                                             <option value="3">administrador</option>
