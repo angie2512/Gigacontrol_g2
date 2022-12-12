@@ -398,27 +398,32 @@ public class ServletUsuario extends HttpServlet {
                 requestDispatcher.forward(request, response);
                 break;
             case "registroIncidencia":
+
+
+
+
+
                 String nombre_ = request.getParameter("nombre");
                 String descripcion_ = request.getParameter("descripcion");
                 String zonaPucp_ = request.getParameter("zonaPucp");
                 String ubicacion_ = request.getParameter("ubicacion");
                 TipoDeIncidencia ti = new TipoDeIncidencia();
                 System.out.println(request.getParameter("tipoIncidenciaID"));
-                if (request.getParameter("tipoIncidenciaID") != null){
-                    ti.setIdTipoDeIncidencia(Integer.parseInt(request.getParameter("tipoIncidenciaID")));
-                }
+                ti.setIdTipoDeIncidencia(Integer.parseInt(request.getParameter("tipoIncidenciaID")));
+
 
                 //ti.setIdTipoDeIncidencia(1);
                 NivelDeUrgencia nu = new NivelDeUrgencia();
-                if (request.getParameter("nivelUrgenciaID") != null){
-                    nu.setIdNivelDeUrgencia(Integer.parseInt(request.getParameter("nivelUrgenciaID")));
-                }
+                nu.setIdNivelDeUrgencia(Integer.parseInt(request.getParameter("nivelUrgenciaID")));
+
                 //nu.setIdNivelDeUrgencia(1);
                 Estado estado = new Estado();
                 estado.setIdEstado(1);
                 //fotoIncidencia
-                Part foto = request.getPart("foto");
+                /*Part foto = request.getPart("foto");
+                System.out.println(foto);
                 InputStream foto1= foto.getInputStream();
+                System.out.println(foto1);*/
 
                 //Part partin = request.getPart("fotoIncidencia");
                 //InputStream fotoin = partin.getInputStream();
@@ -433,7 +438,7 @@ public class ServletUsuario extends HttpServlet {
                     newIncidencia.setTipoDeIncidencia(ti);
                     newIncidencia.setNivelDeUrgencia(nu);
                     newIncidencia.setEstado(estado);
-                    newIncidencia.setFoto(foto1);
+                    /*newIncidencia.setFoto(foto1);*/
                     usersDao.nuevaIncidencia(newIncidencia, usuario.getIdUsuario());
                     //usersDao.nuevaIncidencia(newIncidencia, usuario.getIdUsuario(), fotoin);
 

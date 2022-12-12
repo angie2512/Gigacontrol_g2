@@ -612,7 +612,7 @@ public class UsersDao extends BaseDao{
             pstmt.setInt(6, nIncidencia.getTipoDeIncidencia().getIdTipoDeIncidencia());
             pstmt.setInt(7, nIncidencia.getNivelDeUrgencia().getIdNivelDeUrgencia());
             pstmt.setInt(8, nIncidencia.getEstado().getIdEstado());
-            pstmt.setBlob(9, nIncidencia.getFoto());
+            /*pstmt.setBlob(9, nIncidencia.getFoto());*/
 
             pstmt.executeUpdate();
 
@@ -622,7 +622,7 @@ public class UsersDao extends BaseDao{
     }
 
 
-    public void anadirfoto(int id, InputStream fotoPerfil){
+    /*public void anadirfoto(int id, InputStream fotoPerfil){
         String sql="UPDATE gigacontrol.usuario SET FotoPerfil = ? where idUsuario = ? and FotoPerfil is null";
 
         try(Connection conn= this.getConnection();
@@ -634,7 +634,7 @@ public class UsersDao extends BaseDao{
             System.out.println("Error en la conexión!");
             e.printStackTrace();
         }
-    }
+    }*/
 
 
     //EDITAR INCIDENCIA
