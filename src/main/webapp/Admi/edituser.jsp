@@ -142,6 +142,11 @@
             <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizar">
 
               <div class="mb-3 row">
+                  <input type="text" class="form-control"   id="id" name="id"  value="<%=user.getIdUsuario()%>" hidden>
+              </div>
+
+
+              <div class="mb-3 row">
                 <label for="nombre" class="col-sm-5 col-form-label">Nombre</label>
                 <div class="col-sm-7">
                   <input type="text" class="form-control"   id="nombre" name="nombre"  value="<%=user.getNombre()%>">

@@ -194,7 +194,7 @@ ServletAdmin extends HttpServlet {
         switch (action) {
             case "actualizar":
                 System.out.println("entraaa");
-                String userIDstr = request.getParameter("userID");
+                String userIDstr = request.getParameter("id");
                 String nombre = request.getParameter("nombre");
                 String apellido = request.getParameter("apellido");
                 String dni = request.getParameter("dni");
