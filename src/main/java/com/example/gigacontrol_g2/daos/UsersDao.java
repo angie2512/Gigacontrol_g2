@@ -646,18 +646,60 @@ public class UsersDao extends BaseDao{
             throw new RuntimeException(e);
         }
     }
-    public void editarFotoUsuario(int id, InputStream fotoPerfil){
-        String sql="UPDATE gigacontrol.usuario SET FotoPerfil = ? where idUsuario = ?";
+    public void editarFotoUsuario(int id, InputStream fotoPerfil) {
+        String sql = "UPDATE gigacontrol.usuario SET FotoPerfil = ? where idUsuario = ?";
 
-        try(Connection conn= this.getConnection();
-            PreparedStatement pstmt= conn.prepareStatement(sql)){
-            pstmt.setBlob(1,fotoPerfil);
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setBlob(1, fotoPerfil);
             pstmt.setInt(2, id);
             pstmt.executeUpdate();
-        }catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Error en la conexión!");
             e.printStackTrace();
         }
+    }
+
+    public void guardarComentario(int idUsuario,int idIncidencia, String comentario){
+
+        String sql="insert into comentarincidencia (idUsuario,idIncidencia,ComentarioIncidencia," +
+                "FechaDeComentario) " +
+                "values (?,?,?,CURRENT_TIMESTAMP) ";
+
+        try (Connection connection = this.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setInt(1,idUsuario); //idUsuario
+            pstmt.setInt(2, idIncidencia);
+            pstmt.setString(3, comentario);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public int contarComentario(int idInci) {
+
+        int incioCont =0;
+
+        String sql = "select count(*) from comentarincidencia\n" +
+                "        inner join usuario u on comentarincidencia.idUsuario = u.idUsuario\n" +
+                "        where (idIncidencia = "+idInci+" and u.Rol_idRol=2) group by comentarincidencia.idUsuario";
+
+        try (Connection connection = this.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)){
+        //     stmt.setInt(1,idInci);
+                try(ResultSet rs = stmt.executeQuery(sql)) {
+                    if (rs.next()) {
+                        incioCont = rs.getInt(1);
+                    }
+                }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return incioCont;
     }
 
 

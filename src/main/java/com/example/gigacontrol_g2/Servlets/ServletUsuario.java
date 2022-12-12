@@ -7,6 +7,7 @@ import com.example.gigacontrol_g2.daos.UsersDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.apache.catalina.User;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -254,7 +255,7 @@ public class ServletUsuario extends HttpServlet {
                 String idincidenciaVmis = request.getParameter("idi");
                 int incidenciaidVmis = Integer.parseInt(idincidenciaVmis);
                 usersDao.destacarEstrella(usuario.getIdUsuario(), incidenciaidVmis);
-                response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=verMisIncidencia&id="+idincidenciaVmis);
+                response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=verMisIncidencias&id="+idincidenciaVmis);
                 break;
 
             case "quitardestacado":
@@ -275,7 +276,7 @@ public class ServletUsuario extends HttpServlet {
                 String idincidencia1Vmis = request.getParameter("idi");
                 int incidenciaid1Vmis = Integer.parseInt(idincidencia1Vmis);
                 usersDao.eliminarDestacado(usuario.getIdUsuario(), incidenciaid1Vmis);
-                response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=verMisIncidencia&id="+idincidencia1Vmis);
+                response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=verMisIncidencias&id="+idincidencia1Vmis);
                 break;
 
 
@@ -305,6 +306,7 @@ public class ServletUsuario extends HttpServlet {
                 request.setAttribute("ListaComentarios", listaComentariosMis);
                 request.setAttribute("listaDestacados", usersDao.incidenciasDestacadas(usuario.getIdUsuario()));
                 request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
+                request.setAttribute("numeroComentarios", usersDao.contarComentario(idMisIncidencia));
                 requestDispatcher = request.getRequestDispatcher("Usuario/VerMisIncidencias.jsp");
                 requestDispatcher.forward(request, response);
                 break;
@@ -450,6 +452,15 @@ public class ServletUsuario extends HttpServlet {
                 }
                 break;
 
+            case "ingresarComentario":
+                String resolucion = request.getParameter("resolucionIncidencia");
+                BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
+                int id = Integer.parseInt(request.getParameter("idIncidencia"));
+                System.out.println("idInc"+id);
+                usersDao.guardarComentario(user.getIdUsuario(), id, resolucion);
+
+                response.sendRedirect(request.getContextPath()+"/ServletUsuario?action=verMisIncidencia&id=" + id);
+                break;
 
         }
     }
