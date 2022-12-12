@@ -61,8 +61,7 @@ public class DaoAdmin extends BaseDao {
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setString(1, "2");
-            pstmt.setString(2, userID);
+            pstmt.setString(1, userID);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
