@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 <!doctype html>
 <html lang="en">
@@ -252,21 +251,26 @@
 
     <!-- CARD -->
 <center>
-    <div class="card " style="max-width: 60rem; ">
+    <div class="card " style="max-width: 50rem; background-color:rgba(255,255,255,0.88); border-color: #0b2479;">
 
-        <div class="row g-5">
+        <div class="row g-5"  >
             <div class="col-md-8">
                 <br>
                 <center>
-                    <!-- IMAGEN DE AQUÍ -->
-                    <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=userlogged.getIdUsuario()%>" class="img-fluid rounded float-end" alt="FotoPerfil" style="width: 26rem">
+                    <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=userlogged.getIdUsuario()%>" class="img-fluid rounded float-end" alt="FotoPerfil" style="max-width: 26rem">
+                    <blockquote class="blockquote mb-0">
+                        <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizarFoto" enctype="multipart/form-data">
+                            <input type="file" name="photo">
+
+                            <button type="submit">actualizar</button>
+                        </form>
+                    </blockquote>
                 </center>
             </div>
             <div class="col-md-4">
                 <br>
-
-                <p class="display-4 text-start" style="font-family: 'Felix Titling'"><b style="color:#da9e3d;"><%=userlogged.getNombre()%></b><b style="color: rgba(0,0,0,0)">..</b></p>
-                <h2 class="mb-0"><b style="color:#abc45c; font-family: 'Felix Titling'"><b style="color: rgba(0,0,0,0)">..</b><%=userlogged.getApellido()%></b><b style="color: rgba(0,0,0,0)">..</b></h2>
+                <p class="display-4 text-start" style="font-family: 'Georgia';color:#233a70;"><b><%=userlogged.getNombre()%></b><b style="color: rgba(0,0,0,0)">..</b></p>
+                <h2 class="mb-0"><b style="color:#206181; font-family: 'Felix Titling'"><b style="color: rgba(0,0,0,0)">..</b><%=userlogged.getApellido()%></b><b style="color: rgba(0,0,0,0)">..</b></h2>
                 <br>
                 <br>
                 <h5 style="color: #316F54; font-family: 'Decor'" class="text-start"><b style="color: rgba(0,0,0,0)">..</b><b>Correo</b></h5>

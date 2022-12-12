@@ -16,7 +16,7 @@
     <title>Recuperar contraseña</title>
     <style>
         body {
-            background: url("https://files.pucp.education/puntoedu/wp-content/uploads/2020/04/17221616/explanada-cia-2.jpg");
+            background: url("resources/Images/fondoOscuro.png");
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
@@ -44,29 +44,32 @@
 
 </head>
 <body>
-<center>
-    <br>
-    <br>
-    <br>
-    <div class="card mb-3" style="max-width: 58rem; background-color:#00000090">
-        <p></p>
-        <p></p>
-        <h2 style="font-family: 'KrinkesDecorPERSONAL'; color:#FFFFFF" class="card-title"><b>¿No recuerdas tu contraseña?</b></h2>
-        <h6 style="font-family: 'Candara', cursive, sans-serif; color:#e7de71" class="card-subtitle"><b>No te preocupes, nos sucede a todos. Ingresa tu Email y te ayudaremos.</b></h6>
-        <br>
-        <form>
-            <div class="mb-3 d-grid gap-2 col-8 mx-auto" >
-                <label align= "left" for="exampleInputEmail1" class="form-label" style="color:#FFFFFF">Correo </label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="usuariopucp@pucp.edu.pe">
-            </div>
+<main class="container">
+        <center>
             <br>
-            <center><button type="button" class="btn btn-primary">Enviar</button></center>
-        </form>
-        <a href="<%=request.getContextPath()%>/reestablecerContrasena.jsp">REESTABLECER CONTRA -DEBE DE IR EN CORREO</a>
-    </div>
-</center>
+            <br>
+            <br>
+            <div class="card mb-3" style="max-width: 58rem; background-color:#00000090; top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); position: absolute">
+                <p></p>
+                <p></p>
+                <h2 style="font-family: 'KrinkesDecorPERSONAL'; color:#FFFFFF" class="card-title"><b>¿No recuerdas tu contraseña?</b></h2>
+                <h6 style="font-family: 'Candara', cursive, sans-serif; color:#e7de71" class="card-subtitle"><b>No te preocupes, nos sucede a todos. Ingresa tu Email y te ayudaremos.</b></h6>
+                <br>
+                <form>
+                    <div class="mb-3 d-grid gap-2 col-8 mx-auto" >
+                        <label align= "left" for="exampleInputEmail1" class="form-label" style="color:#FFFFFF">Correo </label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="usuariopucp@pucp.edu.pe">
+                    </div>
+                    <br>
+                    <center><button type="button" class="btn btn-primary">Enviar</button></center>
+                </form>
+                <a href="<%=request.getContextPath()%>/reestablecerContrasena.jsp">Reestablecer contraseña</a>
+            </div>
+
+        </center>
+</main>
 <br>
-<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletInicio?action=registro" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 </body>

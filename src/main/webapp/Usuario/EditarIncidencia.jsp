@@ -73,6 +73,8 @@
                 <center> <h5 class="card-title">EDICION DE LA INCIDENCIA</h5></center>
                 <form action="<%=request.getContextPath()%>/ServletUsuario?action=editarIncidencia" method="post">
                     <div class=" table-responsive">
+                        <input type ="hidden" value="<%=incidencia.getIdIncidencia()%>" name="inciID" >
+
 
                         <div class="input-group mb-3" >
                             <span for="inputName" class="col-lg-2 input-group-text" id="basic-addon1" style="text-align: center"> Nombre</span>
@@ -84,8 +86,8 @@
 
                         </div>
                         <div class="input-group mb-3">
-                            <span for="inputZonaPucp" class=" col-lg-2 input-group-text" id="basic-addon1"> Zona PUCP </span>
-                            <input type="text" id="inputZonaPucp" class="form-control" placeholder="Zona de la incidencia" value="<%=incidencia.getZonaPucp()%>" name="zonaPucp" aria-describedby="passwordHelpInline">
+                            <span for="inputZonaPucp" class=" col-lg-2 input-group-text" id="basic-addon1"> Zona PUCP</span>
+                            <input type="text" id="inputZonaPucp" class="form-control" placeholder="Zona de la incidencia" value="<%=incidencia.getZonaPucp()%>" name="zonaPucp"  aria-describedby="passwordHelpInline" >
                         </div>
                         <div class="input-group mb-3">
                             <span for="inputUbica" class="col-lg-2 input-group-text" id="basic-addon1"><center> Ubicación</center></span>
@@ -95,22 +97,20 @@
                         <div class="input-group mb-3">
                             <label for="tipoIncidencia" class="col-lg-2 input-group-text" ><center> Tipo de incidencia</center></label>
                             <select class="form-select" id="tipoIncidencia" value="<%=incidencia.getTipoDeIncidencia()%>" name="tipoIncidenciaID">
-                                <option selected>Seleccionar...</option>
-                                <option value="1">Robo</option>
-                                <option value="2">Objeto perdido</option>
-                                <option value="3">Infraestructura en mal estado</option>
-                                <option value="4">Ambulancia PUCP</option>
-                                <option value="5">Accidente</option>
-                                <option value="6">Otros...</option>
+                                <option value="1" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==1?"selected":""%> >Robo</option>
+                                <option value="2" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==2?"selected":""%> >Objeto perdido</option>
+                                <option value="3" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==3?"selected":""%> > Infraestructura en mal estado</option>
+                                <option value="4" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==4?"selected":""%> >Accidente</option>
+                                <option value="5" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==5?"selected":""%> >Ambulancia PUCP</option>
+                                <option value="6" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==6?"selected":""%> >Otros...</option>
                             </select>
                         </div>
                         <div class="input-group mb-3">
-                            <label class="col-lg-2 input-group-text" for="nivelUrgencia"><center> Nivel de Urgencia</center></label>
+                            <label class="col-lg-2 input-group-text" for="nivelUrgencia"><center> Nivel de Urgencia</center> </label>
                             <select class="form-select" id="nivelUrgencia" value="<%=incidencia.getNivelDeUrgencia()%>" name="nivelUrgenciaID">
-                                <option selected>Seleccionar...</option>
-                                <option value="1">Leve</option>
-                                <option value="2">Moderado</option>
-                                <option value="3">Crítico</option>
+                                <option value="1" <%=incidencia.getNivelDeUrgencia().getIdNivelDeUrgencia()==1?"selected":""%> >Leve</option>
+                                <option value="2" <%=incidencia.getNivelDeUrgencia().getIdNivelDeUrgencia()==2?"selected":""%> >Moderado</option>
+                                <option value="3" <%=incidencia.getNivelDeUrgencia().getIdNivelDeUrgencia()==3?"selected":""%> >Crítico</option>
                             </select>
                         </div>
 
@@ -147,7 +147,7 @@
                                         <div class="modal-footer">
                                             <div class="d-flex justify-content-center">
                                                 <button type="submit" class="btn btn-primary">Confirmar</button>
-                                                <br><a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletUsuario?action"
+                                                <br><a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletUsuario?action=editar&id=<%=incidencia.getIdIncidencia()%>"
                                                        role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;">
                                                 Cancelar</a>
                                             </div>

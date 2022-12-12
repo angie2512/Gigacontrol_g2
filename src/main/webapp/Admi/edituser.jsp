@@ -79,20 +79,24 @@
 </nav>
 
 <br>
-<div class="d-flex justify-content-center">
-  <div class="card">
-    <div class="card-body">
+<br>
 
-      <table>
 
-        <tr>
-          <td>
+<!-- CARD RESPONSIVE  -->
 
+<main class="container">
+    <div class="d-flex justify-content-center">
+      <div class="card">
+        <div class="card-body">
+          <div class="row g-5">
+          <!-- IMAGEN -->
+          <div class="col-md-4">
             <%if(user.getFotoPerfil()!=null){%>
-            <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=user.getIdUsuario()%>" class="rounded mx-auto d-block "  height="200rem" width="200rem">
+            <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=user.getIdUsuario()%>" class="rounded mx-auto d-block img-fluid"  height="200rem" width="200rem">
             <%}
             else{%>
-            <img src="resources/Images/usu.png" class="rounded mx-auto d-block "  height="200rem" width="200rem">
+            <img src="resources/Images/usu.png" class="rounded mx-auto d-block "  height="300rem" width="300rem">
+
             <%}%>
             <blockquote class="blockquote mb-0">
               <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizarFoto&idphoto=<%=user.getIdUsuario()%>" enctype="multipart/form-data">
@@ -109,114 +113,115 @@
               </a>
               <%}
               else if(user.getEstado()==1 || user.getEstado()==4){%>
-              <a type="button" class="btn btn-danger"
+              <a type="button" class="btn btn-warning"
                  onclick="return confirm('¿Estas seguro(a) que deseas desbloquear este usuario?')"
                  href="<%=request.getContextPath()%>/ServletAdmin?action=banear&id=<%=user.getIdUsuario()%>">Bloquear
               </a>
-              <a type="button" class="btn btn-danger"
+              <a type="button" class="btn btn-info"
                  onclick="return confirm('¿Estas seguro(a) que deseas borrar este usuario?')"
                  href="<%=request.getContextPath()%>/ServletAdmin?action=borrar&id=<%=user.getIdUsuario()%>">Eliminar
               </a>
               <%}%>
             </div>
-          </td>
-          <td style="padding-left: 2rem;">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item" style="border-radius: 10%;color:#346A99"><b>Nombres:</b></li>
-            </ul>
-            <br>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item" style="border-radius: 10%;color:#346A99"><b>Apellidos:</b></li>
-            </ul>
-            <br>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item" style="border-radius: 10%;color:#346A99"><b>DNI:</b></li>
-            </ul>
-            <br>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item" style="border-radius: 10%;color:#346A99"><b>Codigo PUCP:</b></li>
-            </ul>
-            <br>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item" style="border-radius: 10%;color:#346A99"><b>Correo PUCP:</b></li>
-            </ul>
-            <br>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item" style="border-radius: 10%;color:#346A99"><b>Categoria PUCP:</b></li>
-            </ul>
-            <br>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item" style="border-radius: 10%;color:#346A99"><b>Rol:</b></li>
-            </ul>
-            </td>
-          <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizar">
-            <td style="padding-left: 2rem;">
-              <ul class="list-group list-group-flush">
-              <input type="hidden" name = "userID" value="<%=user.getIdUsuario()%>">
-            </ul>
-              <ul class="list-group list-group-flush">
-                <input type="text" class="form-control"   id="nombre" name="nombre"  value="<%=user.getNombre()%>">
-              </ul>
-              <br>
-              <ul class="list-group list-group-flush">
-                <input type="text" class="form-control"   id="apellido" name="apellido" value="<%=user.getApellido()%>">
-              </ul>
-              <br>
-              <ul class="list-group list-group-flush">
-                <input type="text" class="form-control"  id="dni" name="dni"  value="<%=user.getDni()%>">
-              </ul>
-              <br>
-              <ul class="list-group list-group-flush">
-                <input type="text" class="form-control"  id="codigo" name="codigo"  value="<%=user.getCodigo()%>">
-              </ul>
-              <br>
-              <ul class="list-group list-group-flush">
-                <input type="text" class="form-control"   id="correo" name="correo"  value="<%=user.getCorreo()%>">
-              </ul>
-              <br>
-              <ul class="list-group list-group-flush">
-                <select class="form-select" id="categoria" name="categoria" title="MUUU">
-                  <option selected ><%=user.getCategoria()%></option>
-                  <option value="Alumno">Alumno</option>
-                  <option value="Profesor">Profesor</option>
-                  <option value="Jefe de páctica">Jefe de páctica</option>
-                  <option value="Seguridad">Seguridad</option>
-                  <option value="Trabajador DTI">Trabajador DTI</option>
-                </select>
-              </ul>
-              <br>
-              <ul class="list-group list-group-flush">
-                <select class="form-select" id="rolID" name="rolID">
-                    <%String i;
-                      if(user.getRolId()==1){
-                        i="Seguridad";
-                      }
-                      else if(user.getRolId()==2){
-                        i="Usuario Pucp";
-                      }
-                      else{
-                        i="Administrador";
-                      }%>
-                  <option selected value="<%=user.getRolId()%>">
-                    <%=i%>
-                  </option>
-                  <option value="1">seguridad</option>
-                  <option value="2">usuario pucp</option>
-                  <option value="3">administrador</option>
-                </select>
-                <!--<input type="text" class="form-control"  id="rolID" name="rolID" value="<%=user.getRolId()%>">-->
-              </ul>
-              <ul>
-                <button type="submit" class="btn btn-primary">Actualizar</button>
-              </ul>
-            </td>
-          </form>
-        </tr>
-      </table>
+          </div>
+          <!-- IMAGEN -->
+
+
+          <div class="col-md-8">
+            <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizar">
+
+              <div class="mb-3 row">
+                <label for="nombre" class="col-sm-5 col-form-label">Nombre</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control"   id="nombre" name="nombre"  value="<%=user.getNombre()%>">
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="apellido" class="col-sm-5 col-form-label">Apellido</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control"   id="apellido" name="apellido" value="<%=user.getApellido()%>">
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="dni" class="col-sm-5 col-form-label">DNI</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control"  id="dni" name="dni"  value="<%=user.getDni()%>">
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="codigo" class="col-sm-5 col-form-label">Código PUCP</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control"  id="codigo" name="codigo"  value="<%=user.getCodigo()%>">
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="correo" class="col-sm-5 col-form-label">Correo PUCP</label>
+                <div class="col-sm-7">
+                  <input type="text" class="form-control"   id="correo" name="correo"  value="<%=user.getCorreo()%>">
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="categoria" class="col-sm-5 col-form-label">Categoría PUCP</label>
+                <div class="col-sm-7">
+                  <ul class="list-group list-group-flush">
+                    <select class="form-select" id="categoria" name="categoria" title="MUUU">
+                      <option selected ><%=user.getCategoria()%></option>
+                      <option value="Alumno">Alumno</option>
+                      <option value="Profesor">Profesor</option>
+                      <option value="Jefe de páctica">Jefe de páctica</option>
+                      <option value="Seguridad">Seguridad</option>
+                      <option value="Trabajador DTI">Trabajador DTI</option>
+                    </select>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mb-3 row">
+                <label for="rolID" class="col-sm-5 col-form-label">Rol</label>
+                <div class="col-sm-7">
+                  <ul class="list-group list-group-flush">
+                    <select class="form-select" id="rolID" name="rolID">
+                      <%String i;
+                        if(user.getRolId()==1){
+                          i="Seguridad";
+                        }
+                        else if(user.getRolId()==2){
+                          i="Usuario Pucp";
+                        }
+                        else{
+                          i="Administrador";
+                        }%>
+                      <option selected value="<%=user.getRolId()%>">
+                        <%=i%>
+                      </option>
+                      <option value="1">seguridad</option>
+                      <option value="2">usuario pucp</option>
+                      <option value="3">administrador</option>
+                    </select>
+
+                  </ul>
+                </div>
+              </div>
+
+            </form>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+          </div>
+
+
+        </div>
+      </div>
     </div>
   </div>
+</main>
 
-</div>
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 <br>
 <a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios" role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>

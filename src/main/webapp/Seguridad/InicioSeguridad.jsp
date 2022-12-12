@@ -161,6 +161,7 @@
                                     <option value="Registrado">Registrado</option>
                                     <option value="Atendido">Atendido</option>
                                     <option value="Resuelto">Resuelto</option>
+                                    <option value="En Proceso">En Proceso</option>
                                 </select>
                             </div>
                             <div class="col-sm-3">

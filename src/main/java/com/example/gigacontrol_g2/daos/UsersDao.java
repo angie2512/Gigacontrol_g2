@@ -156,7 +156,7 @@ public class UsersDao extends BaseDao{
                     Incidencia incidencia = new Incidencia();
                     TipoDeIncidencia tipoIncidencia = new TipoDeIncidencia();
                     Estado estadoIncidencia = new Estado();
-                    //incidencia.setIdIncidencia(rs.getInt(1));
+                    incidencia.setIdIncidencia(rs.getInt(1));
                     incidencia.setNombreDeIncidencia(rs.getString(2));
                     incidencia.setUsuario(usuario);
                     usuario.setNombre(rs.getString(3));
@@ -486,8 +486,7 @@ public class UsersDao extends BaseDao{
                 "    inner join usuario u on destacarincidencia.idUsuario = u.idUsuario\n" +
                 "    inner join estado e on i.idEstado = e.idEstado\n" +
                 "    inner join tipoincidencia t on i.idTipoIncidencia = t.idTipoIncidencia\n" +
-                "    where destacarincidencia.idUsuario=? \n" +
-                "group by  i.NombreDeIncidencia, u.Nombre, u.Apellido, t.nombre, e.nombre ";
+                "    where destacarincidencia.idUsuario=?";
 
         try (Connection conn = this.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -504,6 +503,20 @@ public class UsersDao extends BaseDao{
         }
 
         return nro_filas_total_2;
+    }
+
+    public void borrar(int idIncidencia) {
+
+        String sql = "delete from incidencia where idIncidencia=?";
+        try (Connection conn6 = this.getConnection();
+             PreparedStatement pstmt6 = conn6.prepareStatement(sql);) {
+
+            pstmt6.setInt(1,idIncidencia);
+            pstmt6.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -583,9 +596,10 @@ public class UsersDao extends BaseDao{
     //NUEVA INCIDENCIA
 
     public void nuevaIncidencia(Incidencia nIncidencia, int idUsuario) {
+        //,InputStream foto//
 
         String sql = "INSERT INTO incidencia (NombreDeIncidencia, Descripcion, ZonaPUCP, " +
-                "Ubicacion,idUsuario, idTipoIncidencia, idNivelUrgencia,idEstado) VALUES (?,?,?,?,?,?,?,?)";
+                "Ubicacion,idUsuario, idTipoIncidencia, idNivelUrgencia,idEstado , Foto) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -598,6 +612,7 @@ public class UsersDao extends BaseDao{
             pstmt.setInt(6, nIncidencia.getTipoDeIncidencia().getIdTipoDeIncidencia());
             pstmt.setInt(7, nIncidencia.getNivelDeUrgencia().getIdNivelDeUrgencia());
             pstmt.setInt(8, nIncidencia.getEstado().getIdEstado());
+            //pstmt.setBlob(9, foto);
 
             pstmt.executeUpdate();
 
@@ -606,10 +621,13 @@ public class UsersDao extends BaseDao{
         }
     }
 
-    //EDITAR INCIDENCIA
-    public void actualizarIncidencia(int userID, String nombre, String descripcion, String zonaPucp, String ubicacion, int ti, int nu, int estado) {
 
-        String sql = "UPDATE incidencia SET NombreDeIncidencia = ?, Descripcion = ?, ZonaPucp = ?, Ubicacion = ?, idTipoIncidencia = ?, idNivelUrgencia = ?, idEstado = ?  WHERE idUsuario = ?";
+    //EDITAR INCIDENCIA
+    public void actualizarIncidencia(int incidenciaID, String nombre, String descripcion, String zonaPucp,
+                                     String ubicacion, int ti, int nu) {
+
+        String sql = "UPDATE incidencia SET NombreDeIncidencia = ?, Descripcion = ?, ZonaPucp = ?," +
+                " Ubicacion = ?, idTipoIncidencia = ?, idNivelUrgencia = ?  WHERE idIncidencia = ?";
 
         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -619,9 +637,8 @@ public class UsersDao extends BaseDao{
             pstmt.setString(3, zonaPucp);
             pstmt.setString(4, ubicacion);
             pstmt.setInt(5, ti );
-            pstmt.setInt(6,nu );
-            pstmt.setInt(7, estado);
-            pstmt.setInt(8,userID);
+            pstmt.setInt(6, nu );
+            pstmt.setInt(7, incidenciaID);
 
             pstmt.executeUpdate();
 
