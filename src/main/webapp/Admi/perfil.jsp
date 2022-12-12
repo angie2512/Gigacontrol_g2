@@ -12,7 +12,7 @@
 
 <%
     BUsuarios u = (BUsuarios) session.getAttribute("userlogged");
-    
+
     %>
 <!doctype html>
 <html lang="en">
@@ -69,11 +69,11 @@
             </ul>
 
             <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2"><b
+                <li><a class="nav-link px-2"><b
                         style="color:#FFFFFF"><%=userlogged.getNombre() + " " + userlogged.getApellido()%>
                 </b></a></li>
                 <div class="dropdown text-end">
-                    <a href="#" class="d-block link-dark text-decoration-none" aria-expanded="false">
+                    <a class="d-block link-dark text-decoration-none" aria-expanded="false">
                         <img src="<%=u.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>"
                              class="rounded mx-auto d-block " alt="mdo" width="32" height="32"
                              class="rounded-circle">
@@ -278,13 +278,6 @@
                 <br>
                 <center>
                     <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=userlogged.getIdUsuario()%>" class="img-fluid rounded float-end" alt="FotoPerfil" style="max-width: 26rem">
-                    <blockquote class="blockquote mb-0">
-                        <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizarFoto" enctype="multipart/form-data">
-                            <input type="file" name="photo">
-
-                            <button type="submit">actualizar</button>
-                        </form>
-                    </blockquote>
                 </center>
             </div>
             <div class="col-md-4">
