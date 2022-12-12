@@ -17,7 +17,7 @@
   <title>Recuperar contraseña</title>
   <style>
     body {
-      background: url("https://files.pucp.education/puntoedu/wp-content/uploads/2020/04/17221616/explanada-cia-2.jpg");
+      background: url("resources/Images/fondoOscuro.png");
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -49,7 +49,9 @@
   <br>
   <br>
   <br>
-  <div class="card mb-3" style="max-width: 53rem; background-color:#2C53A9">
+
+
+  <div class="card mb-3" style="max-width: 53rem; background-color:rgba(44,83,169,0.25); top: 50%; left: 50%; transform: translateY(-50%) translateX(-50%); position: absolute"">
     <p></p>
     <p></p>
     <h2 style="font-family: 'KrinkesDecorPERSONAL'; color:#E7F8F0" class="card-title"><b>Restablecer la contraseña</b></h2>
@@ -58,22 +60,28 @@
     <h6 style="font-family: 'Candara', cursive, sans-serif; color:#e7de71" class="card-subtitle"><b>No use el espacio en blanco.</b></h6>
     <br>
     <div class="mb-3 row" align="center">
-      <label for="inputPassword" class="col-sm-4 col-form-label">Contraseña Nueva</label>
-      <div class="col-sm-10" style="max-width: 33rem">
+      <label for="inputPassword" class="col-sm-4 col-form-label" style="color: white">Contraseña Nueva</label>
+      <div class="col-sm-8" style="max-width: 33rem">
         <input type="password" class="form-control" id="inputPassword">
       </div>
     </div>
     <div class="mb-3 row" >
-      <label for="inputPassword" class="col-sm-4 col-form-label">Confirmar Contraseña Nueva</label>
-      <div class="col-sm-10" style="max-width: 33rem">
+      <label for="inputPassword" class="col-sm-4 col-form-label" style="color: white">Confirmar Contraseña Nueva</label>
+      <div class="col-sm-8" style="max-width: 33rem">
         <input type="password" class="form-control" id="inputPassword">
       </div>
     </div>
+      <div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Aceptar
+        </button>
+      </div>
+
   </div>
-  <!-- Button trigger modal -->
+  <!-- Button trigger modal
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Aceptar
-  </button>
+  </button> -->
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -87,7 +95,7 @@
           Su contrasña ha sido restablecida correctamente.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Cambios guardados</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
         </div>
       </div>
     </div>
