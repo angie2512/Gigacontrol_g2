@@ -257,8 +257,14 @@
             <div class="col-md-8">
                 <br>
                 <center>
-                    <!-- IMAGEN DE AQUÍ -->
                     <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=userlogged.getIdUsuario()%>" class="img-fluid rounded float-end" alt="FotoPerfil" style="max-width: 26rem">
+                    <blockquote class="blockquote mb-0">
+                        <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizarFoto" enctype="multipart/form-data">
+                            <input type="file" name="photo">
+                            <button type="submit">actualizar</button>
+                        </form>
+                    </blockquote>
+
                 </center>
             </div>
             <div class="col-md-4">
