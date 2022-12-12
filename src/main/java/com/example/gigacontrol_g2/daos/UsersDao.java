@@ -486,8 +486,7 @@ public class UsersDao extends BaseDao{
                 "    inner join usuario u on destacarincidencia.idUsuario = u.idUsuario\n" +
                 "    inner join estado e on i.idEstado = e.idEstado\n" +
                 "    inner join tipoincidencia t on i.idTipoIncidencia = t.idTipoIncidencia\n" +
-                "    where destacarincidencia.idUsuario=? \n";
-
+                "    where destacarincidencia.idUsuario=?";
 
         try (Connection conn = this.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -624,9 +623,11 @@ public class UsersDao extends BaseDao{
 
 
     //EDITAR INCIDENCIA
-    public void actualizarIncidencia(int userID, String nombre, String descripcion, String zonaPucp, String ubicacion, int ti, int nu, int estado) {
+    public void actualizarIncidencia(int incidenciaID, String nombre, String descripcion, String zonaPucp,
+                                     String ubicacion, int ti, int nu) {
 
-        String sql = "UPDATE incidencia SET NombreDeIncidencia = ?, Descripcion = ?, ZonaPucp = ?, Ubicacion = ?, idTipoIncidencia = ?, idNivelUrgencia = ?, idEstado = ?  WHERE idUsuario = ?";
+        String sql = "UPDATE incidencia SET NombreDeIncidencia = ?, Descripcion = ?, ZonaPucp = ?," +
+                " Ubicacion = ?, idTipoIncidencia = ?, idNivelUrgencia = ?  WHERE idIncidencia = ?";
 
         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -636,9 +637,8 @@ public class UsersDao extends BaseDao{
             pstmt.setString(3, zonaPucp);
             pstmt.setString(4, ubicacion);
             pstmt.setInt(5, ti );
-            pstmt.setInt(6,nu );
-            pstmt.setInt(7, estado);
-            pstmt.setInt(8,userID);
+            pstmt.setInt(6, nu );
+            pstmt.setInt(7, incidenciaID);
 
             pstmt.executeUpdate();
 

@@ -133,6 +133,10 @@
 
             <div class="p-4 p-md-5 mb-4" style="background-color: white">
                 <div class="px-0">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="<%=request.getContextPath()%>/ServletUsuario?action=editar&id=<%=incidencia.getIdIncidencia()%>"
+                           class="btn btn-danger">Editar</a>
+                    </div>
                     <!-- nombre de la card -->
                     <h1 class="card-text" style="color:#2C3166"><b><%=incidencia.getNombreDeIncidencia()%></b></h1>
                     <p style="color: #af0f14"><b>ESTADO: <%=incidencia.getEstado().getNombre()%></b></p>

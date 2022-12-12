@@ -91,14 +91,13 @@ public class ServletUsuario extends HttpServlet {
                     boolean isNumeric = (s != null && s.matches("[0-9]+"));
 
 
-
-                    if(request.getParameter("pg") != null) {
+                    if (request.getParameter("pg") != null) {
                         System.out.println("pasa validacion de vacio");
-                        if (request.getParameter("pg") != ""){
+                        if (request.getParameter("pg") != "") {
                             System.out.println("pasa validacion de que es numero");
-                            if (isNumeric == true){
+                            if (isNumeric == true) {
                                 System.out.println("pasa validacion de que no es null");
-                                if(Integer.parseInt(request.getParameter("pg")) > 0 && Integer.parseInt(request.getParameter("pg")) < maxPag2+1){
+                                if (Integer.parseInt(request.getParameter("pg")) > 0 && Integer.parseInt(request.getParameter("pg")) < maxPag2 + 1) {
                                     System.out.println("pasa validacion de estar limitado en los posibles valores de pagina");
                                     valor_pagina = Integer.parseInt(request.getParameter("pg"));
                                 }
@@ -112,16 +111,16 @@ public class ServletUsuario extends HttpServlet {
                                 if(valor_lista ==true){
                                     System.out.println("pasa filtro de que esta en la lista2");
                                     System.out.println("pg");*/
-                                    /*valor_pagina = Integer.parseInt(request.getParameter("pg"));*/
+                                /*valor_pagina = Integer.parseInt(request.getParameter("pg"));*/
 
 
                             } else {
                                 valor_pagina = 1;
                             }
-                        }else{
+                        } else {
                             valor_pagina = 1;
                         }
-                    }else{
+                    } else {
                         valor_pagina = 1;
                     }
 
@@ -165,21 +164,23 @@ public class ServletUsuario extends HttpServlet {
                 System.out.println("listar img");
                 String idusuarioimg = request.getParameter("idp");
                 int usuarioidimg = Integer.parseInt(idusuarioimg);
-                System.out.println("idimg: "+usuarioidimg);
+                System.out.println("idimg: " + usuarioidimg);
                 daoDatosFijos.listarImgPerfil(usuarioidimg, response);
 
                 break;
-
+            //incidencia
             case "editar":
                 String idinci = request.getParameter("id");
-                Incidencia inciden = new Incidencia();
-                inciden.getIdIncidencia();
+                int idIncidenciaa = Integer.parseInt(idinci);
+
                 if (idinci != null) { //abro el form para editar
-                    request.setAttribute("user", idinci);
+                    Incidencia incidencia = seguridadDao.buscarIncidencia(idIncidenciaa);
+                    System.out.println("hola");
+                    request.setAttribute("incidencia", incidencia);
                     requestDispatcher = request.getRequestDispatcher("Usuario/EditarIncidencia.jsp");
                     requestDispatcher.forward(request, response);
                 } else { //id no encontrado
-                    response.sendRedirect(request.getContextPath() + "/ServletUsuario");
+                    response.sendRedirect(request.getContextPath() + "/Usuario/VerMisIncidencias.jsp");
                 }
                 break;
 
@@ -225,6 +226,11 @@ public class ServletUsuario extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("Usuario/NuevaIncidencia.jsp");
                 requestDispatcher.forward(request, response);
                 break;
+
+            //case "regresaraMisIncidenciaUsuario":
+            //  requestDispatcher = request.getRequestDispatcher("Usuario/VerMisIncidencias.jsp");
+                //   requestDispatcher.forward(request, response);
+                //break;
             case "perfil":
                 request.setCharacterEncoding("UTF-8");
                 
@@ -423,31 +429,26 @@ public class ServletUsuario extends HttpServlet {
 
             case "editarIncidencia":
 
-                String userIDstr = request.getParameter("userID");
+                String incidenciaIDstr = request.getParameter("inciID");
                 String nombre = request.getParameter("nombre");
                 String descripcion = request.getParameter("descripcion");
                 String zonaPucp = request.getParameter("zonaPucp");
                 String ubicacion = request.getParameter("ubicacion");
+                System.out.println(ubicacion);
                 String tistr = request.getParameter("tipoIncidenciaID");
                 String nustr = request.getParameter("nivelUrgenciaID");
-                String estadostr = request.getParameter("estado");
-                //TipoDeIncidencia ti = new TipoDeIncidencia();
-                //ti.setIdTipoDeIncidencia(Integer.parseInt(request.getParameter("tipoIncidenciaID")));
-                //NivelDeUrgencia nu = new NivelDeUrgencia();
-                //nu.setIdNivelDeUrgencia(Integer.parseInt(request.getParameter("nivelUrgenciaID")));
-                //Estado estado = new Estado();
-                // estado.setIdEstado(1);
 
                 try {
 
-                    int userID = Integer.parseInt(userIDstr);
+                    int incidenID = Integer.parseInt(incidenciaIDstr);
+                    System.out.println(incidenID);
                     int tiID = Integer.parseInt(tistr);
                     int nuID = Integer.parseInt(nustr);
-                    int estadoID = Integer.parseInt(estadostr);
-                    usersDao.actualizarIncidencia(userID, nombre, descripcion, zonaPucp, ubicacion, tiID, nuID, estadoID);
-                    response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=listaMisIncidencias");
+                    System.out.println("llego id incidencia "+ incidenID);
+                    usersDao.actualizarIncidencia(incidenID, nombre, descripcion, zonaPucp, ubicacion, tiID, nuID);
+                    response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=verMisIncidencia&id=" + incidenciaIDstr);
                 } catch (NumberFormatException e) {
-                    response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=Editar&id=" + userIDstr);
+                    response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=verMisIncidencia&id=" + incidenciaIDstr);
                 }
                 break;
 
