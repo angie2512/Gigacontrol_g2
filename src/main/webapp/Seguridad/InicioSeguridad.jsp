@@ -148,12 +148,12 @@
                               accept-charset="UTF-8" role="form"
                               action="<%=request.getContextPath()%>/ServletSeguridad?action=buscarIncidencia">
                             <div class="col-sm-6">
-                                <label for="edit-sort-by" class="card-text" style="color:#264587; font-size: x-small"><b>Buscar incidencia</b></label>
+                                <label for="edit-sort-by" class="card-text" style="color:#264587; font-size: x-small"><h6>Buscar incidencia</h6></label>
                                 <input class="form-control me-2" type="search" name="searchText" placeholder="Ingrese el Nombre o Palabra Clave de Incidencia"
                                        aria-label="Buscar">
                             </div>
                             <div class="col-sm-3">
-                                <label for="edit-sort-by" class="card-text" style="color:#264587;font-size: x-small"><b>Estado Incidencia</b></label>
+                                <label for="edit-sort-by" class="card-text" style="color:#264587;font-size: x-small"><h6>Estado Incidencia</h6></label>
                                 <select class="form-control form-select" id="edit-sort-by" name="estado">
                                     <option value="1" selected="selected">Todos</option>
                                     <option value="Registrado">Registrado</option>
@@ -162,7 +162,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                <label for="edit-sort-by" class="card-text" style="color:#264587; font-size: x-small"><b>Nivel Urgencia</b></label>
+                                <label for="edit-sort-by" class="card-text" style="color:#264587; font-size: x-small"><h6>Nivel Urgencia</h6></label>
                                 <select class="form-control form-select" id="edit-sort-order" name="nivelurg">
                                     <option value="1" selected>Todos</option>
                                     <option value="Leve">Leve</option>
@@ -173,7 +173,7 @@
                             <center>
                                 <div class="col-auto">
                                     <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Buscar</button>
-                                    <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargarExcel" class="btn btn-primary">Descargar Reporte de Incidencias</a>
+                                    <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargarExcel" class="btn btn-primary">Descargar Reporte</a>
                                 </div>
                             </center>
                         </form>
