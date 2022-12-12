@@ -12,7 +12,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "ServletSeguridadBuscarIncidencia", value = "/ServletSeguridadBuscarIncidencia")
+@WebServlet(name = "ServletSeguridadBuscarIncidencia", urlPatterns = {"/ServletSeguridadBuscarIncidencia"})
 public class ServletSeguridadBuscarIncidencia extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
