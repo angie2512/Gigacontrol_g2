@@ -30,9 +30,7 @@ public class ServletUsuario extends HttpServlet {
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         UsersDao usersDao = new UsersDao();
 
-        /*if(usuario == null){
-            response.sendRedirect(request.getContextPath() + "/ServletInicio");
-        }*/
+
 
         /*usersDao.obtenerIncidenciasDelUsuario(usuario.getIdUsuario());*/
         SeguridadDao seguridadDao = new SeguridadDao();

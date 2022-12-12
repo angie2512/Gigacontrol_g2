@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+
 @MultipartConfig
 @WebServlet(name = "ServletAdmin", urlPatterns = {"/ServletAdmin"})
 public class
@@ -21,7 +22,8 @@ ServletAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String action = request.getParameter("action");
+
+        String action = request.getParameter("action") == null ? "Inicio" : request.getParameter("action");
         RequestDispatcher requestDispatcher;
         DaoAdmin daoAdmin = new DaoAdmin();
         UsersDao usersDao = new UsersDao();
@@ -36,13 +38,11 @@ ServletAdmin extends HttpServlet {
         BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
         switch (action) {
             case "Inicio":
-                if(user != null /*&& user.getIdUsuario()!=1 && user.getIdUsuario()!=2 */){
+                if (user != null /*&& user.getIdUsuario()!=1 && user.getIdUsuario()!=2 */) {
                     requestDispatcher = request.getRequestDispatcher("Admi/AdminInicio.jsp");
                     requestDispatcher.forward(request, response);
-                }
-                else {
-                    requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
-                    requestDispatcher.forward(request, response);
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/ServletInicio");
                 }
                 break;
 
@@ -61,22 +61,22 @@ ServletAdmin extends HttpServlet {
                 }
                 int regMin = (valor_pagina - 1) * 9;
 
-                if (valor_pagina != maxPag2){
+                if (valor_pagina != maxPag2) {
                     int regMax = valor_pagina * 9;
                     request.setAttribute("maxPag2", maxPag2);
                     request.setAttribute("regMin", regMin);
                     request.setAttribute("regMax", regMax);
                     request.setAttribute("valor_pagina", valor_pagina);
-                }else{
+                } else {
                     int regMax = valor_total_filas_int;
                     request.setAttribute("maxPag2", maxPag2);
                     request.setAttribute("regMin", regMin);
                     request.setAttribute("regMax", regMax);
                     request.setAttribute("valor_pagina", valor_pagina);
                 }
-                for(BUsuarios p : lista){
-                    if(p.getApellido().equalsIgnoreCase("maradona")){
-                        System.out.println("foto? " + p.getFotoPerfil() );
+                for (BUsuarios p : lista) {
+                    if (p.getApellido().equalsIgnoreCase("maradona")) {
+                        System.out.println("foto? " + p.getFotoPerfil());
                     }
                 }
                 requestDispatcher = request.getRequestDispatcher("Admi/listaUsuarios.jsp");
@@ -85,7 +85,7 @@ ServletAdmin extends HttpServlet {
             case "Editar":
                 String userID = request.getParameter("id");
                 BUsuarios userNew = daoAdmin.buscarPorId(userID);
-               // user = usersDao.buscarPorId(userID);
+                // user = usersDao.buscarPorId(userID);
                 if (user != null) { //abro el form para editar
                     request.setAttribute("user", userNew);
                     requestDispatcher = request.getRequestDispatcher("Admi/edituser.jsp");
@@ -116,7 +116,7 @@ ServletAdmin extends HttpServlet {
             case "mostrafoto":
                 String idStr = request.getParameter("id");
                 int id = Integer.parseInt(idStr);
-                daoAdmin.viewImage(id,response);
+                daoAdmin.viewImage(id, response);
                 break;
         }
     }
@@ -127,8 +127,8 @@ ServletAdmin extends HttpServlet {
         String action = request.getParameter("action");
         DaoAdmin daoAdmin = new DaoAdmin();
         UsersDao usersDao = new UsersDao();
-        HttpSession session= request.getSession();
-        BUsuarios usuario=(BUsuarios) session.getAttribute("userlogged");
+        HttpSession session = request.getSession();
+        BUsuarios usuario = (BUsuarios) session.getAttribute("userlogged");
 
         switch (action) {
             case "actualizar":
@@ -147,7 +147,7 @@ ServletAdmin extends HttpServlet {
                     System.out.println("entra?");
                     int rolID = Integer.parseInt(rolstr);
                     int userID = Integer.parseInt(userIDstr);
-                    daoAdmin.update(userID,nombre,apellido,dni,codigo,correo,categoria,rolID);
+                    daoAdmin.update(userID, nombre, apellido, dni, codigo, correo, categoria, rolID);
                     //usersDao.actualizar(userID, nombre, apellido, dni, codigo, correo, categoria, rolID);
                     response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
                 } catch (NumberFormatException e) {
@@ -219,7 +219,7 @@ ServletAdmin extends HttpServlet {
                         request.getSession().setAttribute("msj", "El Numero de DNI debe tener 8 digitos");
                     }
                 }
-               // response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
+                // response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                 break;
 
 
@@ -228,28 +228,26 @@ ServletAdmin extends HttpServlet {
                 String tipo = request.getParameter("tipoBusqueda");
                 String parameter = request.getParameter("parameter");
 
-                String nro_filas_total_busqueda_apellido_str="0";
+                String nro_filas_total_busqueda_apellido_str = "0";
 
-                if(tipo==null){
-                    tipo="apellido";
+                if (tipo == null) {
+                    tipo = "apellido";
                 }
 
-                if(tipo.equalsIgnoreCase("apellido")){
+                if (tipo.equalsIgnoreCase("apellido")) {
                     lista = daoAdmin.buscarPorApellido(parameter);
                     nro_filas_total_busqueda_apellido_str = daoAdmin.contarApellido(parameter);
-                }
-                else if (tipo.equalsIgnoreCase("nombre")){
+                } else if (tipo.equalsIgnoreCase("nombre")) {
                     lista = daoAdmin.buscarPorNombre(parameter);
                     nro_filas_total_busqueda_apellido_str = daoAdmin.contarNombre(parameter);
-                }
-                else if (tipo.equalsIgnoreCase("codigo")){
+                } else if (tipo.equalsIgnoreCase("codigo")) {
                     lista = daoAdmin.buscarPorCodigo(parameter);
                     nro_filas_total_busqueda_apellido_str = daoAdmin.contarCodigo(parameter);
                 }
 
                 int valor_pagina = 1;
 
-               // String nro_filas_total_busqueda_apellido_str = usersDao.contarxApellido(parameter);
+                // String nro_filas_total_busqueda_apellido_str = usersDao.contarxApellido(parameter);
 
 
                 int nro_filas_total_busqueda_apellido_int = Integer.parseInt(nro_filas_total_busqueda_apellido_str);
@@ -266,13 +264,13 @@ ServletAdmin extends HttpServlet {
 
                 int regMin = (valor_pagina - 1) * 9;
 
-                if (valor_pagina != maxPag2){
+                if (valor_pagina != maxPag2) {
                     int regMax = valor_pagina * 9;
                     request.setAttribute("maxPag2", maxPag2);
                     request.setAttribute("regMin", regMin);
                     request.setAttribute("regMax", regMax);
                     request.setAttribute("valor_pagina", valor_pagina);
-                }else{
+                } else {
                     int regMax = nro_filas_total_busqueda_apellido_int;
                     request.setAttribute("maxPag2", maxPag2);
                     request.setAttribute("regMin", regMin);
@@ -289,9 +287,9 @@ ServletAdmin extends HttpServlet {
                 break;
 
             case "actualizarFoto":
-                SeguridadDao  seguridadDao= new SeguridadDao();
-                Part part= request.getPart("photo");
-                InputStream foto= part.getInputStream();
+                SeguridadDao seguridadDao = new SeguridadDao();
+                Part part = request.getPart("photo");
+                InputStream foto = part.getInputStream();
                 seguridadDao.editarFoto(usuario.getIdUsuario(), foto);
                 usuario.setFotoPerfil(foto.toString());
 
@@ -306,7 +304,7 @@ ServletAdmin extends HttpServlet {
                 daoAdmin.updatePhoto(usuario.getIdUsuario(),foto);
 
                 usuario.setFotoPerfil(foto.toString());*/
-                response.sendRedirect(request.getContextPath()+"/ServletAdmin?action=Perfil");
+                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Perfil");
                 break;
         }
     }

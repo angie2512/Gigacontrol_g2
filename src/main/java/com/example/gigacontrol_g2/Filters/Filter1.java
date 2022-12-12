@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebFilter(filterName = "Filter1", urlPatterns = {"/ServletUsuario"})
+@WebFilter(filterName = "Filter1", urlPatterns = {"/ServletUsuario","/ServletAdmin"})
 public class Filter1 implements Filter {
 
 
