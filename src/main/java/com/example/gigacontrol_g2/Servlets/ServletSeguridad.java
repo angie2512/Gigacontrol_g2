@@ -52,7 +52,6 @@ public class ServletSeguridad extends HttpServlet {
 
             case "listarIncidencia":
 
-                request.setCharacterEncoding("UTF-8");
                 if(usuario != null && usuario.getRolId()==1 ) {
                     int valor_pagina = 1;
                     /*request.setAttribute("listaUsuarios", usersDao.getUsersList());*/

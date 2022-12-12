@@ -21,9 +21,14 @@ public class
 ServletAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
         String action = request.getParameter("action") == null ? "Inicio" : request.getParameter("action");
+        HttpSession session = request.getSession();
+
+        BUsuarios user = (BUsuarios) session.getAttribute("userlogged");
+
         RequestDispatcher requestDispatcher;
         DaoAdmin daoAdmin = new DaoAdmin();
         UsersDao usersDao = new UsersDao();
@@ -35,10 +40,10 @@ ServletAdmin extends HttpServlet {
 
         float maxPag = (float) (valor_total_filas / 9);
         int maxPag2 = (int) Math.ceil(maxPag);
-        BUsuarios user = (BUsuarios) request.getSession().getAttribute("userlogged");
+
         switch (action) {
             case "Inicio":
-                if (user != null /*&& user.getIdUsuario()!=1 && user.getIdUsuario()!=2 */) {
+                if (user != null && user.getRolId() == 3) {
                     requestDispatcher = request.getRequestDispatcher("Admi/AdminInicio.jsp");
                     requestDispatcher.forward(request, response);
                 } else {
@@ -124,11 +129,15 @@ ServletAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String action = request.getParameter("action");
+
         DaoAdmin daoAdmin = new DaoAdmin();
         UsersDao usersDao = new UsersDao();
         HttpSession session = request.getSession();
         BUsuarios usuario = (BUsuarios) session.getAttribute("userlogged");
+
+        String action = request.getParameter("action");
+
+
 
         switch (action) {
             case "actualizar":
