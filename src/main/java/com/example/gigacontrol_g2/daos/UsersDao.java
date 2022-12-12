@@ -139,7 +139,7 @@ public class UsersDao extends BaseDao{
     public ArrayList<Incidencia> obtenerIncidenciasDestacadas(int idUsuario){
         ArrayList<Incidencia> listaDeMisIncidencias = new ArrayList<>();
 
-        String sql = "select i.NombreDeIncidencia, u.Nombre, u.Apellido, t.nombre, e.nombre from destacarincidencia\n" +
+        String sql = "select i.idIncidencia, i.NombreDeIncidencia, u.Nombre, u.Apellido, t.nombre, e.nombre from destacarincidencia\n" +
                 "    inner join incidencia i on destacarincidencia.idIncidencia = i.idIncidencia\n" +
                 "    inner join usuario u on i.idUsuario = u.idUsuario\n" +
                 "    inner join estado e on i.idEstado = e.idEstado\n" +
@@ -157,13 +157,13 @@ public class UsersDao extends BaseDao{
                     TipoDeIncidencia tipoIncidencia = new TipoDeIncidencia();
                     Estado estadoIncidencia = new Estado();
                     //incidencia.setIdIncidencia(rs.getInt(1));
-                    incidencia.setNombreDeIncidencia(rs.getString(1));
+                    incidencia.setNombreDeIncidencia(rs.getString(2));
                     incidencia.setUsuario(usuario);
-                    usuario.setNombre(rs.getString(2));
-                    usuario.setApellido(rs.getString(3));
-                    tipoIncidencia.setNombre(rs.getString(4));
+                    usuario.setNombre(rs.getString(3));
+                    usuario.setApellido(rs.getString(4));
+                    tipoIncidencia.setNombre(rs.getString(5));
                     incidencia.setTipoDeIncidencia(tipoIncidencia);
-                    estadoIncidencia.setNombre(rs.getString(5));
+                    estadoIncidencia.setNombre(rs.getString(6));
                     incidencia.setEstado(estadoIncidencia);
                     listaDeMisIncidencias.add(incidencia);
                 }
@@ -193,7 +193,7 @@ public class UsersDao extends BaseDao{
                     Incidencia incidencia = new Incidencia();
                     TipoDeIncidencia tipoIncidencia = new TipoDeIncidencia();
                     Estado estadoIncidencia = new Estado();
-                    //  incidencia.setIdIncidencia(rs.getInt(1));
+                    incidencia.setIdIncidencia(rs.getInt(1));
                     incidencia.setNombreDeIncidencia(rs.getString(2));
                     incidencia.setTipoDeIncidencia(tipoIncidencia);
                     tipoIncidencia.setNombre(rs.getString(3));
