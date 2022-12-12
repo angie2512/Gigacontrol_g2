@@ -253,7 +253,7 @@
 <center>
     <div class="card " style="max-width: 50rem; background-color:rgba(255,255,255,0.88); border-color: #0b2479;">
 
-        <div class="row g-5">
+        <div class="row g-5"  >
             <div class="col-md-8">
                 <br>
                 <center>
@@ -261,6 +261,7 @@
                     <blockquote class="blockquote mb-0">
                         <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizarFoto" enctype="multipart/form-data">
                             <input type="file" name="photo">
+
                             <button type="submit">actualizar</button>
                         </form>
                     </blockquote>
