@@ -54,10 +54,12 @@ ServletAdmin extends HttpServlet {
                 }
                 break;
 
-            case "Perfil":
-                requestDispatcher = request.getRequestDispatcher("Admi/perfil.jsp");
+            case "perfil":
+                request.setCharacterEncoding("UTF-8");
+                requestDispatcher = request.getRequestDispatcher("Admi/AdminInicio.jsp");
                 requestDispatcher.forward(request, response);
                 break;
+
             case "ListaUsuarios":
 
 

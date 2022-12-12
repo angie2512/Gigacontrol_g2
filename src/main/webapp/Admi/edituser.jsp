@@ -68,9 +68,6 @@
           <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=Inicio" aria-current="page" style="color:#FFFFFF">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=Perfil" aria-current="page" href="#" style="color:#FFFFFF">Perfil</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link active"  href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios" aria-current="page" href="#" style="color:#FFFFFF">Usuarios</a>
         </li>
         <li class="nav-item">
@@ -118,12 +115,6 @@
             <img src="resources/Images/usu.png" class="rounded mx-auto d-block "  height="300rem" width="300rem">
 
             <%}%>
-            <blockquote class="blockquote mb-0">
-              <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizarFoto&idphoto=<%=user.getIdUsuario()%>" enctype="multipart/form-data">
-                <input type="file" name="photo">
-                <button type="submit">actualizar</button>
-              </form>
-            </blockquote>
             <br>
             <div class="d-flex justify-content-center">
               <% if(user.getEstado()==5){%>
