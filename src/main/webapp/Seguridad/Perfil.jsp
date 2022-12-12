@@ -92,6 +92,19 @@
         <img src="<%=userlogged.getFotoPerfil()==null?"resources/Images/userSeguridad.png":(request.getContextPath()+"/ServletSeguridad?action=mostrarFoto")%>" class="rounded mx-auto d-block img-fluid" alt="userphoto" height="200rem" width="210rem">
         <br>
 
+        <form method="post" class="text-center" action="<%=request.getContextPath()%>/PerfilUsuario?action=actualizarFoto" enctype="multipart/form-data">
+
+          <label for="file-upload" class="custom-file-upload btn btn-danger" title="Subir Foto" style="background-color: #5f6694; border-color: #5f6694">
+            <i class="fa fa-camera"></i>
+          </label>
+          <input id="file-upload" type="file" name="Newphoto"/>
+
+          <button type="submit" class="btn btn-danger" title="Actualizar", style="background-color: #5f6694; border-color: #5f6694">
+            <i class="fa-solid fa-check"></i>
+          </button>
+
+        </form>
+
         <div class="card"style="background-color:#F2F2F3">
           <div class="card-body" >
             <div class="p-1 mb-8 text-white" style="background-color:#9bd3ae">
@@ -107,8 +120,6 @@
 
               </form>
             </blockquote>
-            <center><input type="file" name="Newphoto">
-            <button type="submit">Actualizar</button></center>
           </div>
         </div>
       </div>
