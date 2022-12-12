@@ -263,7 +263,6 @@
             </div>
             <div class="col-md-4">
                 <br>
-
                 <p class="display-4 text-start" style="font-family: 'Georgia';color:#233a70;"><b><%=userlogged.getNombre()%></b><b style="color: rgba(0,0,0,0)">..</b></p>
                 <h2 class="mb-0"><b style="color:#206181; font-family: 'Felix Titling'"><b style="color: rgba(0,0,0,0)">..</b><%=userlogged.getApellido()%></b><b style="color: rgba(0,0,0,0)">..</b></h2>
                 <br>
