@@ -19,10 +19,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-@WebServlet(name = "ServletSeguridad", value = "/ServletSeguridad")
+@WebServlet(name = "ServletSeguridad", urlPatterns= {"/ServletSeguridad"})
 public class ServletSeguridad extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
         String action = request.getParameter("action") == null ? "listarIncidencia" : request.getParameter("action");
         RequestDispatcher requestDispatcher;
 

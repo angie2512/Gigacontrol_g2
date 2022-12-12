@@ -1,4 +1,20 @@
+<%@ page import="com.example.gigacontrol_g2.beans.BUsuarios" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%--<%
+    BUsuarios usuario = (BUsuarios) session.getAttribute("userlogged");
+    if (usuario != null && usuario.getIdUsuario() > 0 && usuario.getRolId() == 1) {
+        response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
+    } else if (usuario != null && usuario.getIdUsuario() > 0 && usuario.getRolId() == 2) {
+        response.sendRedirect(request.getContextPath() + "/ServletUsuario");
+    } else if (usuario != null && usuario.getIdUsuario() > 0 && usuario.getRolId() == 3) {
+        response.sendRedirect(request.getContextPath() + "/ServletAdmin");
+    }
+
+
+%>--%>
+
+
 
 <!doctype html>
 <html lang="en">

@@ -29,7 +29,12 @@ public class ServletUsuario extends HttpServlet {
         RequestDispatcher requestDispatcher;
         DaoDatosFijos daoDatosFijos = new DaoDatosFijos();
         UsersDao usersDao = new UsersDao();
-        usersDao.obtenerIncidenciasDelUsuario(usuario.getIdUsuario());
+
+        /*if(usuario == null){
+            response.sendRedirect(request.getContextPath() + "/ServletInicio");
+        }*/
+
+        /*usersDao.obtenerIncidenciasDelUsuario(usuario.getIdUsuario());*/
         SeguridadDao seguridadDao = new SeguridadDao();
 
 
@@ -52,7 +57,11 @@ public class ServletUsuario extends HttpServlet {
         ///CONTADORES PAGINACION - MIS INCIDENCIAS DESTACADAS///
         int valor_total_filas_int2 = 0;
         float valor_total_filas2 = 0;
-        String valor_total_filas_str2 = usersDao.ContarIncidenciasDestacadas(usuario.getIdUsuario());
+        String valor_total_filas_str2 =null;
+        if (usuario != null) {
+            valor_total_filas_str2 = usersDao.ContarIncidenciasDestacadas(usuario.getIdUsuario());
+        }
+
         if (valor_total_filas_str2 == null) {
             valor_total_filas_int2 = 0;
             valor_total_filas2 = 0;
@@ -65,25 +74,12 @@ public class ServletUsuario extends HttpServlet {
 
         ////////////////////////////////////////////
 
-        ////lista_numero_pagina
-
-        /*ArrayList<Integer> list2 = new ArrayList<>();
-        for(int i=1;i<maxPag4+1;i++){
-            list2.get(i-1);
-        }*/
-        ArrayList<Integer> list2 = new ArrayList<>();
-        for(int i=1;i<maxPag4+1;i++){
-            list2.add(i-1);
-
-        }
-
-
-
 
 
         switch (action) {
 
             case "inicio":
+
                 if (usuario != null && usuario.getRolId() == 2) {
 
 
@@ -98,14 +94,15 @@ public class ServletUsuario extends HttpServlet {
 
 
                     if(request.getParameter("pg") != null) {
-                        System.out.println("pasa filtro de vacio");
+                        System.out.println("pasa validacion de vacio");
                         if (request.getParameter("pg") != ""){
-                            System.out.println("pasa filtro de que es numero");
+                            System.out.println("pasa validacion de que es numero");
                             if (isNumeric == true){
-                                System.out.println("pasa filtro de que no es null");
-                                /*if(list2.contains(Integer.parseInt(request.getParameter("pg")))){*/
+                                System.out.println("pasa validacion de que no es null");
+                                if(Integer.parseInt(request.getParameter("pg")) > 0 && Integer.parseInt(request.getParameter("pg")) < maxPag2+1){
+                                    System.out.println("pasa validacion de estar limitado en los posibles valores de pagina");
                                     valor_pagina = Integer.parseInt(request.getParameter("pg"));
-
+                                }
                                 /*}*/
 
 
@@ -155,8 +152,7 @@ public class ServletUsuario extends HttpServlet {
                     requestDispatcher = request.getRequestDispatcher("Usuario/InicioUsuario.jsp");
                     requestDispatcher.forward(request, response);
                 } else {
-                    requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
-                    requestDispatcher.forward(request, response);
+                    response.sendRedirect(request.getContextPath() + "/ServletInicio");
                 }
                 break;
 

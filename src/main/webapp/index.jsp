@@ -3,14 +3,28 @@
 
 <%
     BUsuarios usuario = (BUsuarios) session.getAttribute("userlogged");
+    //////AGREGADO OK /////
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0);
+
+    /////////////
+
     if (usuario != null && usuario.getIdUsuario() > 0 && usuario.getRolId() == 1) {
         response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
     } else if (usuario != null && usuario.getIdUsuario() > 0 && usuario.getRolId() == 2) {
         response.sendRedirect(request.getContextPath() + "/ServletUsuario");
     } else if (usuario != null && usuario.getIdUsuario() > 0 && usuario.getRolId() == 3) {
         response.sendRedirect(request.getContextPath() + "/ServletAdmin");
-    }
+    }/*else if(usuario == null){
+        response.sendRedirect(request.getContextPath() + "/ServletInicio");
+    }*/
 %>
+
+<%--<jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session"
+             class="com.example.gigacontrol_g2.beans.BUsuarios"/>--%>
+
 <!doctype html>
 <html lang="en">
     <head>
