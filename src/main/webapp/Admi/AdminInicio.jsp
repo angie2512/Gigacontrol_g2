@@ -95,11 +95,11 @@
 
                                 <p></p>
                                 <blockquote class="blockquote mb-0">
-                                    <h5 style="text-align: center;color:#21547D"><%=userlogged.getNombre() + " " + userlogged.getApellido()%>
+                                    <h5 style="text-align: center;color:#21547D; font-family: 'Georgia'"><%=userlogged.getNombre() + " " + userlogged.getApellido()%>
                                     </h5>
-                                    <h6 style="text-align: center;"><%=userlogged.getCategoria()%>
+                                    <h6 style="text-align: center;font-family: 'Georgia'"><%=userlogged.getCategoria()%>
                                     </h6>
-                                    <h6 style="text-align: center;"><%=userlogged.getCodigo()%>
+                                    <h6 style="text-align: center;font-family: 'Georgia'"><%=userlogged.getCodigo()%>
                                     </h6>
                                 </blockquote>
                             </div>
