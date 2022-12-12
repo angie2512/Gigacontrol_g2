@@ -157,8 +157,12 @@ public class DaoAdmin extends BaseDao {
             pstmt.setString(6, user.getCelular());
             pstmt.setString(7, user.getCategoria());
             pstmt.setInt(8,user.getRolId());
-            pstmt.setString(9,"3");
-
+            if(user.getRolId()==3){
+                pstmt.setString(9,"1");
+            }else{
+                pstmt.setString(9,"3");
+            }
+            
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
