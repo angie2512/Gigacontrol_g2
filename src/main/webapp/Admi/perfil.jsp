@@ -264,7 +264,6 @@
                             <button type="submit">actualizar</button>
                         </form>
                     </blockquote>
-
                 </center>
             </div>
             <div class="col-md-4">
