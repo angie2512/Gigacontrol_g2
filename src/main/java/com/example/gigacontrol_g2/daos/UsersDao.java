@@ -486,8 +486,8 @@ public class UsersDao extends BaseDao{
                 "    inner join usuario u on destacarincidencia.idUsuario = u.idUsuario\n" +
                 "    inner join estado e on i.idEstado = e.idEstado\n" +
                 "    inner join tipoincidencia t on i.idTipoIncidencia = t.idTipoIncidencia\n" +
-                "    where destacarincidencia.idUsuario=? \n" +
-                "group by  i.NombreDeIncidencia, u.Nombre, u.Apellido, t.nombre, e.nombre ";
+                "    where destacarincidencia.idUsuario=? \n";
+
 
         try (Connection conn = this.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -504,6 +504,20 @@ public class UsersDao extends BaseDao{
         }
 
         return nro_filas_total_2;
+    }
+
+    public void borrar(int idIncidencia) {
+
+        String sql = "delete from incidencia where idIncidencia=?";
+        try (Connection conn6 = this.getConnection();
+             PreparedStatement pstmt6 = conn6.prepareStatement(sql);) {
+
+            pstmt6.setInt(1,idIncidencia);
+            pstmt6.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

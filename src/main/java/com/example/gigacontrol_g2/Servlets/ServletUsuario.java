@@ -20,7 +20,6 @@ public class ServletUsuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-
         String action = request.getParameter("action") == null ? "inicio" : request.getParameter("action");
 
 
@@ -310,6 +309,18 @@ public class ServletUsuario extends HttpServlet {
                 String idUsuario = request.getParameter("idu");
                 int idUsuario1 = Integer.parseInt(idUsuario);
                 daoDatosFijos.mostrarImagenUsuario(idUsuario1, response);
+                break;
+
+            case "borrar":
+                String spell = request.getParameter("id");
+                try{
+                    int spelli = Integer.parseInt(spell);
+                    usersDao.borrar(spelli);
+                    response.sendRedirect(request.getContextPath()+"/ServletUsuario?action=listaMisIncidencias");
+
+                }catch (NumberFormatException e){
+                    response.sendRedirect(request.getContextPath()+ "/ServletUsuario?action=listaMisIncidencias");
+                }
                 break;
 
         }

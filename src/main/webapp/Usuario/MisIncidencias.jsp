@@ -27,13 +27,17 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-        <title>Mis Incidencias</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-              crossorigin="anonymous">
+              crossorigin="anonymous">>
+        <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+        <title>Perfil USUARIO</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <link href="styles.css" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/46baa8e193.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/46baa8e193.js" crossorigin="anonymous"></script>
         <style>
+
             body {
                 background: url("resources/Images/FONDOclaro.png");
                 background-position: center center;
@@ -154,8 +158,9 @@
             <div class="card">
                 <div class="card-body">
                     <div class="p-7 mb-2 bg-primary text-white" style="--bs-bg-opacity: .5;">
-                        <h4 style="text-align: center; color: white; font-family:'Times New Roman', Times, serif">MIS INCIDENCIAS</h4>
+                        <h4 style="text-align: center; color: white; font-size: 30px; font-family:'Times New Roman', Times, serif">MIS INCIDENCIAS</h4>
                     </div>
+                    <form action="<%=request.getContextPath()%>/ServletUsuario?action=borrar&id" method="post">
                     <br>
 
                     <div class="card-body" style="height: 150px; overflow: auto">
@@ -173,6 +178,9 @@
                                     </th>
                                     <th scope="col">
                                         <center> Opciones</center>
+                                    </th>
+                                    <th scope="col">
+                                        <center> Eliminar</center>
                                     </th>
                                 </tr>
                             </thead>
@@ -198,11 +206,46 @@
                                                class="btn btn-danger">Ver Más</a>
                                         </div>
                                     </td>
+                                    <td>
+                                        <center>
+                                            <div class="d-flex justify-content-center">
+                                            <button type="button" class="btn btn-danger" style="background-color: #5f6694; border-color: #5f6694" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Se borrará la incidencia seleccionada</h5>
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="d-flex justify-content-center">
+                                                                <h3 style="color:#5397DF">¿Desea Continuar?</h3>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="d-flex justify-content-center">
+                                                                <button type="submit" class="btn btn-primary">Confirmar</button>
+                                                                <br><a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletUsuario?action=borrar&id"
+                                                                       role="button" style="margin-left: 0rem; background-color:#D12C22 ; border: none;">
+                                                                Cancelar</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    </td>
                                 </tr>
                                 <% } %>
                             </tbody>
                         </table>
                     </div>
+
                 </div>
                 <br>
             </div>
@@ -253,6 +296,7 @@
                                                    class="btn btn-danger">Ver Más</a>
                                             </div>
                                         </td>
+
                                     </tr>
 
 
