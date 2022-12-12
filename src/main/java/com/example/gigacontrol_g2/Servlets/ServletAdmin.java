@@ -54,10 +54,12 @@ ServletAdmin extends HttpServlet {
                 }
                 break;
 
-            case "Perfil":
-                requestDispatcher = request.getRequestDispatcher("Admi/perfil.jsp");
+            case "perfil":
+                request.setCharacterEncoding("UTF-8");
+                requestDispatcher = request.getRequestDispatcher("Admi/AdminInicio.jsp");
                 requestDispatcher.forward(request, response);
                 break;
+
             case "ListaUsuarios":
 
 
@@ -168,6 +170,12 @@ ServletAdmin extends HttpServlet {
                 daoAdmin.reactivar(userID_react);
                 response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
                 break;
+            case "HabilitarAdmin":
+                String idAdmin = request.getParameter("id");
+                BUsuarios admin = daoAdmin.buscarPorId(idAdmin);
+                daoAdmin.crearCredencialesAdmin(admin.getCodigo(), admin.getIdUsuario());
+                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
+                break;
             case "mostrafoto":
                 String idStr = request.getParameter("id");
                 int id = Integer.parseInt(idStr);
@@ -191,8 +199,8 @@ ServletAdmin extends HttpServlet {
 
         switch (action) {
             case "actualizar":
-
-                String userIDstr = request.getParameter("userID");
+                System.out.println("entraaa");
+                String userIDstr = request.getParameter("id");
                 String nombre = request.getParameter("nombre");
                 String apellido = request.getParameter("apellido");
                 String dni = request.getParameter("dni");
@@ -223,7 +231,6 @@ ServletAdmin extends HttpServlet {
                 String celular = request.getParameter("celular");
                 String categoria_c = request.getParameter("categoria");
                 String rolstr_C = request.getParameter("rolID");
-                System.out.println("nombre null?" + "hola" + nombre_c + "pedo");
                 BUsuarios newuser = new BUsuarios();
                 if (nombre_c.equals("") || apellido_c == null || correo_c == null || codigo_c == null || dni_c == null || celular == null || categoria_c == null || rolstr_C == null) {
                     System.out.println("entra?");
@@ -237,48 +244,96 @@ ServletAdmin extends HttpServlet {
                                     try {//celular
                                         int number = Integer.parseInt(celular);
                                         if (celular.length() == 9) {
-                                            if (correo_c.contains("@")) {
-                                                if (categoria_c != null) {
-                                                    if (rolstr_C != null) {
-                                                        newuser.setNombre(nombre_c);
-                                                        newuser.setApellido(apellido_c);
-                                                        newuser.setDni(dni_c);
-                                                        newuser.setCelular(celular);
-                                                        newuser.setCodigo(codigo_c);
-                                                        newuser.setCorreo(correo_c);
-                                                        newuser.setCategoria(categoria_c);
-                                                        newuser.setRolId(Integer.parseInt(rolstr_C));
-                                                        daoAdmin.guardar(newuser);
-                                                        response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
+                                            try {
+                                                int cod = Integer.parseInt(codigo_c);
+                                                if (correo_c.contains("@")) {
+                                                    if (!categoria_c.equals("")) {
+                                                        if (!rolstr_C.equals("")) {
+                                                            if((categoria_c.equals("Alumno") || categoria_c.equals("Profesor") || categoria_c.equals("Jefe de practica")) && (rolstr_C.equals("2"))){
+                                                                newuser.setNombre(nombre_c);
+                                                                newuser.setApellido(apellido_c);
+                                                                newuser.setDni(dni_c);
+                                                                newuser.setCelular(celular);
+                                                                newuser.setCodigo(codigo_c);
+                                                                newuser.setCorreo(correo_c);
+                                                                newuser.setCategoria(categoria_c);
+                                                                newuser.setRolId(Integer.parseInt(rolstr_C));
+                                                                daoAdmin.guardar(newuser);
+
+                                                                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
+                                                            } else if ((categoria_c.equals("Seguridad") && (rolstr_C.equals("1")))){
+                                                                newuser.setNombre(nombre_c);
+                                                                newuser.setApellido(apellido_c);
+                                                                newuser.setDni(dni_c);
+                                                                newuser.setCelular(celular);
+                                                                newuser.setCodigo(codigo_c);
+                                                                newuser.setCorreo(correo_c);
+                                                                newuser.setCategoria(categoria_c);
+                                                                newuser.setRolId(Integer.parseInt(rolstr_C));
+                                                                daoAdmin.guardar(newuser);
+                                                                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
+                                                            } else if (categoria_c.equals("Administrador") && rolstr_C.equals("3")) {
+                                                                System.out.println("entra");
+                                                                newuser.setNombre(nombre_c);
+                                                                newuser.setApellido(apellido_c);
+                                                                newuser.setDni(dni_c);
+                                                                newuser.setCelular(celular);
+                                                                newuser.setCodigo(codigo_c);
+                                                                newuser.setCorreo(correo_c);
+                                                                newuser.setCategoria(categoria_c);
+                                                                newuser.setRolId(Integer.parseInt(rolstr_C));
+                                                                daoAdmin.guardar(newuser);
+                                                                System.out.println("id en servler desp gurdar " + newuser.getIdUsuario());
+                                                                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=ListaUsuarios");
+                                                            } else {
+                                                                request.getSession().setAttribute("msj6", "Roles mal asignados. " +
+                                                                        "                                        Alumno, Profesor y Jefe de Practica solo pueden tener rol de Usuario PUCP" +
+                                                                                                                "Seguridad solo puede tener el rol de Seguridad" +
+                                                                                                                "Trabajdor DTI solo puede ser Administrador");
+                                                                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
+                                                            }
+                                                        } else {
+                                                            request.getSession().setAttribute("msj6", "Debe seleccionar un rol");
+                                                            response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
+                                                        }
                                                     } else {
-                                                        request.getSession().setAttribute("msj6", "Debe seleccionar una rol");
+                                                        request.getSession().setAttribute("msj5", "Debe seleccionar una categoria");
+                                                        response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                                                     }
                                                 } else {
-                                                    request.getSession().setAttribute("msj5", "Debe seleccionar una categoria");
-                                                }
-                                            } else {
-                                                request.getSession().setAttribute("msj4", "Debe ingresar un correo valido");
+                                                    request.getSession().setAttribute("msj4", "Debe ingresar un correo valido");
+                                                    response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
+                                                }//44
+                                            }catch (NumberFormatException e){
+                                                request.getSession().setAttribute("msj2", "Ingrese valores numericos");
+                                                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                                             }
                                         } else {
                                             request.getSession().setAttribute("msj3", "El numero debe tener 9 digitos");
+                                            response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                                         }
                                     } catch (NumberFormatException e) {
                                         request.getSession().setAttribute("msj3", "Ingrese valores numericos");
+                                        response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                                     }
                                 } else {
                                     request.getSession().setAttribute("msj2", "El codigo ingresado ya se encuntra registrado");
+                                    response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                                 }
                             } else {
                                 request.getSession().setAttribute("msj2", "El codigo PUCP debe tener 8 digitos");
+                                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                             }
                         } else {
                             request.getSession().setAttribute("msj", "El Numero de DNI ingresado ya se encuntra registrado");
+                            response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                         }
                     } else {
                         request.getSession().setAttribute("msj", "El Numero de DNI debe tener 8 digitos");
+                        response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
                     }
                 }
-                // response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=nuevoUsuario");
+
                 break;
 
 
@@ -346,24 +401,19 @@ ServletAdmin extends HttpServlet {
                 break;
 
             case "actualizarFoto":
-                SeguridadDao seguridadDao = new SeguridadDao();
+                String id = request.getParameter("idphoto");
                 Part part = request.getPart("photo");
                 InputStream foto = part.getInputStream();
-                seguridadDao.editarFoto(usuario.getIdUsuario(), foto);
-                usuario.setFotoPerfil(foto.toString());
-
-                /*
-                response.sendRedirect(request.getContextPath()+"/ServletSeguridad?action=perfil");
-
-                System.out.println("user to chanf fo :"+ usuario.getIdUsuario());
-                Part part= request.getPart("Newphoto");
-
-                InputStream foto= part.getInputStream();
-
-                daoAdmin.updatePhoto(usuario.getIdUsuario(),foto);
-
-                usuario.setFotoPerfil(foto.toString());*/
-                response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Perfil");
+                System.out.println("el id es? :" + id);
+                if(id==null){
+                    daoAdmin.updatePhoto(usuario.getIdUsuario(), foto);
+                    usuario.setFotoPerfil(foto.toString());
+                    response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Perfil");
+                }else {
+                    BUsuarios editedUser = daoAdmin.buscarPorId(id);
+                    daoAdmin.updatePhoto(editedUser.getIdUsuario(), foto);
+                    response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Editar&id="+id);
+                }
                 break;
         }
     }

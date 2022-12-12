@@ -61,11 +61,33 @@ public class DaoAdmin extends BaseDao {
 
         try (Connection connection = this.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
-            pstmt.setString(1, userID);
+            pstmt.setString(1,status);
+            pstmt.setString(2, userID);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+    public String createPasswordAdmin(String id){
+        String password;
+        BUsuarios user = buscarPorId(id);
+        password = user.getNombre() + user.getDni();
+        System.out.println("contra" + password);
+        return password;
+    }
+
+    public void crearCredencialesAdmin(String codigoPUCP,int idUsuarioNuevo){
+        String sql = "insert into validacionusuarionuevo values (sha2(?,256),?,?)";
+        try (Connection conn = this.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)){
+            String password = createPasswordAdmin(Integer.toString(idUsuarioNuevo));
+            pstmt.setString(1,password);
+            pstmt.setString(2,codigoPUCP);
+            pstmt.setInt(3,idUsuarioNuevo);
+            pstmt.executeUpdate();
+            changeStatus("1",Integer.toString(idUsuarioNuevo));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
@@ -141,6 +163,8 @@ public class DaoAdmin extends BaseDao {
         }
     }
 
+
+
     public void guardar(BUsuarios user){
 
         String sql = "INSERT INTO usuario (Nombre,Apellido,Correo,Codigo,DNI,Celular,Categoria,Rol_idRol,estado) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -157,8 +181,11 @@ public class DaoAdmin extends BaseDao {
             pstmt.setString(6, user.getCelular());
             pstmt.setString(7, user.getCategoria());
             pstmt.setInt(8,user.getRolId());
-            pstmt.setString(9,"3");
-
+            if(user.getRolId()==3){
+                pstmt.setString(9,"9");
+            }else{
+                pstmt.setString(9,"3");
+            }
             pstmt.executeUpdate();
 
         } catch (SQLException e) {

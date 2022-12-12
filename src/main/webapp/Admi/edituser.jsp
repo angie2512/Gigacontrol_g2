@@ -68,9 +68,6 @@
           <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=Inicio" aria-current="page" style="color:#FFFFFF">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=Perfil" aria-current="page" href="#" style="color:#FFFFFF">Perfil</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link active"  href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios" aria-current="page" href="#" style="color:#FFFFFF">Usuarios</a>
         </li>
         <li class="nav-item">
@@ -115,24 +112,18 @@
             <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=user.getIdUsuario()%>" class="rounded mx-auto d-block img-fluid"  height="200rem" width="200rem">
             <%}
             else{%>
-            <img src="resources/Images/usu.png" class="rounded mx-auto d-block "  height="300rem" width="300rem">
-
+            <img src="resources/Images/usu.png" class="rounded mx-auto d-block img-fluid"  height="200rem" width="200rem">
             <%}%>
-            <blockquote class="blockquote mb-0">
-              <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizarFoto&idphoto=<%=user.getIdUsuario()%>" enctype="multipart/form-data">
-                <input type="file" name="photo">
-                <button type="submit">actualizar</button>
-              </form>
-            </blockquote>
             <br>
             <div class="d-flex justify-content-center">
+              <%System.out.println(user.getRolId());%>
               <% if(user.getEstado()==5){%>
               <a type="button" class="btn btn-success"
                  onclick="return confirm('¿Estas seguro(a) que deseas reactivar este usuario?')"
                  href="<%=request.getContextPath()%>/ServletAdmin?action=reactivar&id=<%=user.getIdUsuario()%>">Reactivar Usuario
               </a>
               <%}
-              else if(user.getEstado()==1 || user.getEstado()==4){%>
+              else if((user.getEstado()==1 || user.getEstado()==4) && user.getRolId()!=3){%>
               <a type="button" class="btn btn-warning"
                  onclick="return confirm('¿Estas seguro(a) que deseas desbloquear este usuario?')"
                  href="<%=request.getContextPath()%>/ServletAdmin?action=banear&id=<%=user.getIdUsuario()%>">Bloquear
@@ -142,6 +133,14 @@
                  href="<%=request.getContextPath()%>/ServletAdmin?action=borrar&id=<%=user.getIdUsuario()%>">Eliminar
               </a>
               <%}%>
+
+              <% if(user.getRolId()==3 && user.getEstado()==9){%>
+              <a type="button" class="btn btn-success"
+                 href="<%=request.getContextPath()%>/ServletAdmin?action=HabilitarAdmin&id=<%=user.getIdUsuario()%>">Habilitar Admin
+              </a>
+              <%}%>
+
+
             </div>
           </div>
           <!-- IMAGEN -->
@@ -149,6 +148,11 @@
 
           <div class="col-md-8">
             <form method="post" action="<%=request.getContextPath()%>/ServletAdmin?action=actualizar">
+
+              <div class="mb-3 row">
+                  <input type="text" class="form-control"   id="id" name="id"  value="<%=user.getIdUsuario()%>" hidden>
+              </div>
+
 
               <div class="mb-3 row">
                 <label for="nombre" class="col-sm-5 col-form-label">Nombre</label>
@@ -227,12 +231,9 @@
                   </ul>
                 </div>
               </div>
-
+              <button type="submit" class="btn btn-primary">Actualizar</button>
             </form>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
           </div>
-
-
         </div>
       </div>
     </div>

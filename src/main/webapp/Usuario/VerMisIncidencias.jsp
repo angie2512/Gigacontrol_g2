@@ -12,7 +12,8 @@
     ArrayList<Integer> listaDestacados = (ArrayList<Integer>) request.getAttribute("listaDestacados");
     HashMap<Integer, Integer> numDestacados = (HashMap<Integer, Integer>) request.getAttribute("numDestacados");
     BUsuarios u = (BUsuarios) session.getAttribute("userlogged");
-
+    int numcomentario = (Integer) request.getAttribute("numeroComentarios");
+    //request.setAttribute("numeroComentarios", usersDao.contarComentario(idMisIncidencia));
 %>
 <jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 
@@ -102,7 +103,7 @@
 
             <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
                 <li><a class="nav-link px-2"><b
-                        style="color:#211426"><%=userlogged.getNombre() + " " + userlogged.getApellido()%>
+                        style="color:#ffffff"><%=userlogged.getNombre() + " " + userlogged.getApellido()%>
                 </b></a></li>
                 <div class="dropdown text-end">
                     <a class="d-block link-dark text-decoration-none" aria-expanded="false">
@@ -115,7 +116,7 @@
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                 <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
-                        style="color:#000000"><b>Cerrar sesion > </b></u></a>
+                        style="color:#ffffff"><b>Cerrar sesion > </b></u></a>
             </form>
         </div>
     </div>
@@ -238,6 +239,28 @@
                         </div>
                     </div>
                     <!-- FIN FOTO DE LA INCIDENCIA Y UBIICACION -->
+                    <% if(numcomentario <= 4){ %>
+                    <div>
+                        <div class="col-lg-2">
+                            <p style="color:#732c2c"><b>Redacte su comentario:</b></p>
+                        </div>
+                        <div class="col-lg-6" >  <!--action="<%=request.getContextPath()%>/ServletSeguridad?action=actualizarIncidencia" -->
+                            <form id="myform" method="post" action="<%=request.getContextPath()%>/ServletUsuario?action=ingresarComentario" >
+                                <input type = "hidden" value="<%=incidencia.getIdIncidencia()%>" name="idIncidencia">
+                                <div style="margin-left:40px">
+                                    <div class="form-floating">
+                                        <!--<input form="myform" style="height:424px;width:260px" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="resolucionIncidencia" > -->
+                                        <textarea name="resolucionIncidencia" form = "myform"  class="form-control" style="height: 150px"></textarea>
+                                        <!--<label for="floatingTextarea2">Redacte su Comentario Aquí...</label> -->
+                                    </div>
+                                </div>
+                                <center> <button style="margin-left:50px;margin-top:10px" form="myform" type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color:darkred">
+                                    Guardar Cambios
+                                </button> </center>
+                            </form>
+                        </div>
+                    </div>
+                    <% } %>
                 </div>
             </div>
 
@@ -315,7 +338,7 @@
     });
 </script>
 <br>
-<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletUsuario" role="button"
+<a class="btn btn-primary" href="<%=request.getContextPath()%>/ServletUsuario?action=listaMisIncidencias" role="button"
    style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
 <br><br>
 </body>

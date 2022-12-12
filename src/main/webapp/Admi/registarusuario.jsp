@@ -60,7 +60,7 @@
     <div class="container">
         <a class="navbar-brand" href="#"><img src="resources/Images/logo_blanco.png" alt="Logo" width="100"
                                               height="40" class="d-inline-block align-text-top img-fluid"></a>
-         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -70,13 +70,7 @@
                     <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=Inicio" aria-current="page" style="color:#FFFFFF">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=Perfil" aria-current="page" href="#" style="color:#FFFFFF">Perfil</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link active"  href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios" aria-current="page" href="#" style="color:#FFFFFF">Usuarios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=nuevoUsuario" aria-current="page" href="#" style="color:#FFFFFF">Registrar Usuario</a>
                 </li>
             </ul>
 
@@ -422,7 +416,7 @@
                                                 <td>
                                                     <div class="input-group mb-3">
                                                         <select class="form-select" id="categoria" name="categoria">
-                                                            <option selected>Elegir...</option>
+                                                            <option selected value="">Elegir...</option>
                                                             <option value="Alumno">Alumno</option>
                                                             <option value="Profesor">Profesor</option>
                                                             <option value="Jefe de practica">Jefe de páctica</option>
@@ -445,7 +439,7 @@
                                                 <td>
                                                     <div class="input-group mb-3">
                                                         <select class="form-select" id="rolID" name="rolID">
-                                                            <option selected>Elegir...</option>
+                                                            <option selected value="">Elegir...</option>
                                                             <option value="1">seguridad</option>
                                                             <option value="2">usuario pucp</option>
                                                             <option value="3">administrador</option>

@@ -75,12 +75,6 @@
                     <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=Inicio" aria-current="page" style="color:#FFFFFF">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=Perfil" aria-current="page" href="#" style="color:#FFFFFF">Perfil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active"  href="<%=request.getContextPath()%>/ServletAdmin?action=ListaUsuarios" aria-current="page" href="#" style="color:#FFFFFF">Usuarios</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link active" href="<%=request.getContextPath()%>/ServletAdmin?action=nuevoUsuario" aria-current="page" href="#" style="color:#FFFFFF">Registrar Usuario</a>
                 </li>
             </ul>
@@ -177,6 +171,9 @@
                                         <%}
                                         else if (usuario.getEstado()==4){%>
                                         <p style="color:blue;">"El usuario aun no establece su contraseña"</p>
+                                        <%}
+                                        else if (usuario.getEstado()==9){%>
+                                        <p style="color:red;">"El Admin aun no ha sido habilitado"</p>
                                         <%}
                                         else {%>
                                         <p style="color:red;">"El usuario ha sido bloqueado"</p>

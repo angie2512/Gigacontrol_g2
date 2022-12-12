@@ -135,7 +135,7 @@
 
             <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
                 <li><a  class="nav-link px-2"><b
-                        style="color:#211426"><%=userlogged.getNombre() + " " + userlogged.getApellido()%>
+                        style="color:#ffffff"><%=userlogged.getNombre() + " " + userlogged.getApellido()%>
                 </b></a></li>
                 <div class="dropdown text-end">
                     <a class="d-block link-dark text-decoration-none" aria-expanded="false">
@@ -148,7 +148,7 @@
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                 <a class="dropdown-item" href="<%=request.getContextPath()%>/ServletInicio?action=logout"><u
-                        style="color:#000000"><b>Cerrar sesion > </b></u></a>
+                        style="color:#ffffff"><b>Cerrar sesion > </b></u></a>
             </form>
         </div>
     </div>
@@ -383,13 +383,12 @@
 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-        crossorigin="anonymous"></script>
-<br>
-<a class="btn btn-primary" href="<%=request.getContextPath()%>/InicioUsuario" role="button"
-   style="margin-left: 0rem; background-color:#D12C22 ; border: none;"> ◄ Atrás </a>
-<br><br>
-</body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+                crossorigin="anonymous"></script>
+        <br>
+
+        <br><br>
+    </body>
 
 </html>
