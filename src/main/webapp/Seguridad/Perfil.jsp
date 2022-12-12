@@ -195,7 +195,7 @@
           <div class="card-body" >
             <div class="p-1 mb-8 text-white" style="background-color:#4C9978">
               <h4 style="text-align: center;"><% if(userlogged.getRolId() == 1) {%>
-                <td class="text-center"> SEGURIDAD</td>
+                <td class="text-center"> PERSONAL DE SEGURIDAD</td>
                 <%} else if (userlogged.getRolId() == 2){%>
                 <td class="text-center">USUARIO PUCP</td>
                 <%} else{ %>
