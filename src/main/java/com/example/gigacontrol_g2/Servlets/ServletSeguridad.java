@@ -87,6 +87,7 @@ public class ServletSeguridad extends HttpServlet {
                     }
 
                     request.setAttribute("listaIncidencias", seguridadDao.obtenerListaDeIncidencias());
+                    request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
                     requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
                     requestDispatcher.forward(request, response);
                 }else{
@@ -122,7 +123,7 @@ public class ServletSeguridad extends HttpServlet {
                     request.setAttribute("regMax", regMax);
                     request.setAttribute("valor_pagina", valor_pagina);
                 }
-
+                request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
                 requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
                 requestDispatcher.forward(request, response);
                 break;
@@ -143,6 +144,7 @@ public class ServletSeguridad extends HttpServlet {
                 request.setAttribute("ListaEstados",listaEstados);
                 ArrayList<ComentarIncidencia> listaDeComentarios = daoDatosFijos.obtenerComentariosDeIncidencia(idIncidencia);
                 request.setAttribute("ListaComentarios",listaDeComentarios);
+                request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
                 requestDispatcher = request.getRequestDispatcher("Seguridad/VerIncidencia.jsp");
                 requestDispatcher.forward(request, response);
                 break;
@@ -278,6 +280,7 @@ public class ServletSeguridad extends HttpServlet {
                 }
                 //cierre paginacion
                 request.setAttribute("listaIncidencias", lista);
+                request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
                 requestDispatcher.forward(request, response);
                 break;

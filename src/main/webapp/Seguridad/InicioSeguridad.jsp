@@ -122,14 +122,14 @@
 
 <center>
 
-    <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
-        <main class="bd-main order-1;overflow-auto" style="width: 820px; background-color: rgba(255,255,255,0)">
-            <div class="my-3 p-3 bg-body rounded shadow-sm position-relative"
-                 style="width: 820px; background-color: #84b6f4;">
-                <h4 class="border-bottom pb-2 mb-2" style="background-color:#84b6f4;color:#1a4170;">
-                    <center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">INCIDENCIAS REPORTADAS</b></center>
-                </h4>
-                <p></p>
+            <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout; overflow-auto">
+                <main class="bd-main order-1;overflow-auto" style="width: 820px; background-color: rgba(255,255,255,0)">
+                    <div class="my-3 p-3 bg-body rounded shadow-sm position-relative"
+                         style="width: 820px; background-color: #8CC67A;">
+                        <h4 class="border-bottom pb-2 mb-2" style="background-color:#6FCE92;color:#18542E;">
+                            <center><b style="font-family: 'Trebuchet MS',Helvetica, sans-serif;">INCIDENCIAS REPORTADAS</b></center>
+                        </h4>
+                        <p></p>
 
                 <div class="card" style="margin-top:10px">
                     <div class="card-body">
@@ -173,7 +173,7 @@
                             <center>
                                 <div class="col-auto">
                                     <button type="submit" id="edit-submit-dkan-datasets" value="Consultar" class="form-submit btn btn-default btn-primary">Buscar</button>
-                                    <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargar" class="btn btn-primary">Descargar PDF</a>
+                                    <a href="<%=request.getContextPath()%>/ServletSeguridad?action=descargarExcel" class="btn btn-primary">Descargar Excel</a>
                                 </div>
                             </center>
                         </form>
@@ -248,36 +248,39 @@
                                             <b style="color:#6a568f">Nivel de Urgencia:</b> <%=incidencia.getNivelDeUrgencia().getNombre()%>
                                         </p>
 
-                                    </td>
-                                    <!--</tr>
+                                            </td>
+                                        </tr>
 
                                         <td>
                                             <div class="d-flex flex-row-reverse">
 
-                                                <div class="p-2">
-                                                    <b>👤 15</b>
+                                                    <div class="col-lg-3">
+                                                        <% if (numDestacados.get(incidencia.getIdIncidencia()) != null) {%>
+                                                        <div class="p-2"><b
+                                                                style="color:#dc8238 ">Estado:</b> <b style="color:#cc6540 "><%=incidencia.getEstado().getNombre()%> </b></h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="p-2">
+                                                            <b>👤 <%=numDestacados.get(incidencia.getIdIncidencia())%>
+                                                            </b></div>
+                                                        <%} else {%>
+                                                        <div class="p-2"><b>👤 0</b></div>
+                                                        <%}%>
+                                                    </div>
+
+                                                    <div class="p-2">
+                                                        <b style="color:#b9940a">★ Destacados</b>
+                                                    </div>
                                                 </div>
-                                                <div class="p-2">
-                                                    <b style="color:#b9940a">★ Destacados</b>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr> -->
-                                </tbody>
-                            </table>
-                            <!--<table>
-                              <tr>
-                                <div class="d-flex flex-row-reverse">
-                                  <div class="p-2"><b style="color:#DCBA38 ">Estado:< %=incidencia.getEstado().getNombre()%></b></div>
-                                  <div class="p-2"><b>👤 15</b></div>
-                                  <div class="p-2"><b style="color:#F0C00D">★ Destacados</b></div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
                                 </div>
-                              </tr>
-                            </table>-->
-                        </div>
-                        <% }}else{ %>
-                        <h3>No se encontraron incidencias</h3>
-                        <%}%>
+                                <% }}else{ %>
+                                    <h3>No se encontraron incidencias</h3>
+                                <%}%>
 
 
                         <%
