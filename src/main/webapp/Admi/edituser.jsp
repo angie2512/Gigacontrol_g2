@@ -112,7 +112,7 @@
             <img src="<%=request.getContextPath()%>/ServletAdmin?action=mostrafoto&id=<%=user.getIdUsuario()%>" class="rounded mx-auto d-block img-fluid"  height="200rem" width="200rem">
             <%}
             else{%>
-            <img src="resources/Images/usu.png" class="rounded mx-auto d-block "  height="300rem" width="300rem">
+            <img src="resources/Images/usu.png" class="rounded mx-auto d-block img-fluid"  height="200rem" width="200rem">
             <%}%>
             <br>
             <div class="d-flex justify-content-center">
