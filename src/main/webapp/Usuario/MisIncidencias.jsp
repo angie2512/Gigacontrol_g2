@@ -246,6 +246,7 @@
                                         </td>
                                         <td data-titulo="Estado"><%= incidencia.getEstado().getNombre() %>
                                         </td>
+
                                         <td>
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                                 <a href="<%=request.getContextPath()%>/ServletUsuario?action=verIncidencia&id=<%=incidencia.getIdIncidencia()%>"
