@@ -74,14 +74,27 @@ public class ServletInicio extends HttpServlet {
                         view.forward(request, response);
                         break;
                     case "autenticarSeguridad":
+
+
+
+
+
+
+
                         BUsuarios user2 = (BUsuarios) request.getSession().getAttribute("userlogged");
                         int codigoAutenticacion = envioCorreo.generarCodigoDeAutenticacion();
                         String correoDestino = user2.getCorreo();
                         envioCorreo.enviarCodigoDeAutenticacion(codigoAutenticacion, correoDestino);
                         String codigoAutenticacionStr = Integer.toString(codigoAutenticacion);
                         request.setAttribute("Codigo", codigoAutenticacionStr);
+
+
+
+
                         view = request.getRequestDispatcher("AutenticacionSeguridad.jsp");
                         view.forward(request, response);
+
+
                         break;
 
                     case "logout":
@@ -141,7 +154,8 @@ public class ServletInicio extends HttpServlet {
                     BUsuarios usuariolog = daoDatosFijos.validUserPassword(codigo, contrasena);
                     System.out.println("es nulo?: " + usuariolog == null);
                     if (usuariolog != null) {
-                        session.setAttribute("userlogged", usuariolog);
+                        session.setAttribute("userlogged", usuariolog); /////////-----------------
+
                         //Para primer inicio de sesion y cambio de contraseña ( seguridad y usuario pucp).
                         System.out.println("usuario con estado 2 " + (usuariolog.getEstado() == 2));
                         if (usuariolog.getEstado() != 2) {
@@ -149,14 +163,20 @@ public class ServletInicio extends HttpServlet {
                             if (usuariolog.getEstado() == 4) {
                                 response.sendRedirect(request.getContextPath() + "/ServletInicio?action=establecerNuevaContraSeguridad");
                             } else if (usuariolog.getRolId() == 3 && usuariolog.getEstado() == 1) {
+
                                 response.sendRedirect(request.getContextPath() + "/ServletAdmin?action=Inicio");
                                 //Avance de Doble Ausdsatenticacion Seguridad
                             } else if (usuariolog.getRolId() == 1 && usuariolog.getEstado() == 1) {
+
                                 response.sendRedirect(request.getContextPath() + "/ServletInicio?action=autenticarSeguridad");
+
+
                             } else if (usuariolog.getRolId() == 2 && usuariolog.getEstado() == 1) {
+
                                 response.sendRedirect(request.getContextPath() + "/ServletUsuario");
                             }
                         } else {
+
                             System.out.println("entra a inactivo");
                             usuariolog = null;
                             contrasena = "";
@@ -179,7 +199,9 @@ public class ServletInicio extends HttpServlet {
                 String codigoAutenticacionOriginal = request.getParameter("codigoAutenticacion");
                 //while (num_intentos>0) {
                 if (codigoAutenticacionIngresado.equals(codigoAutenticacionOriginal)) {
+
                     response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
+
                 } else {
                     //s.out.println("error en el código");
                     //session.invalidate();

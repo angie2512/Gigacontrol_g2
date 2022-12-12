@@ -25,6 +25,8 @@
     int regMin = (int) request.getAttribute("regMin");
     int regMax = (int) request.getAttribute("regMax");
     int valor_pagina = (int) request.getAttribute("valor_pagina");
+
+    BUsuarios usuario = (BUsuarios) session.getAttribute("userlogged");
 %>
 
 <!doctype html>

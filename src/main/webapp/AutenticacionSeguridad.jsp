@@ -1,5 +1,32 @@
+<%@ page import="com.example.gigacontrol_g2.beans.BUsuarios" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% String codigoAutenticacion = (String) request.getAttribute("Codigo"); %>
+<% String codigoAutenticacion = (String) request.getAttribute("Codigo");
+
+
+
+
+
+    BUsuarios usuario = (BUsuarios) session.getAttribute("userlogged");
+
+
+
+    //////AGREGADO OK /////
+    /*response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0);*/
+
+
+    /*if (usuario != null && usuario.getIdUsuario() > 0 && usuario.getRolId() == 1) {
+        response.sendRedirect(request.getContextPath() + "/ServletSeguridad");
+    }*//* else if (usuario != null && usuario.getIdUsuario() > 0 && usuario.getRolId() == 2) {
+        response.sendRedirect(request.getContextPath() + "/ServletUsuario");
+    } else if (usuario != null && usuario.getIdUsuario() > 0 && usuario.getRolId() == 3) {
+        response.sendRedirect(request.getContextPath() + "/ServletAdmin");
+    }*/
+
+
+%>
 <!--< jsp:useBean id="userlogged" type="com.example.gigacontrol_g2.beans.BUsuarios" scope="session" class="com.example.gigacontrol_g2.beans.BUsuarios"/>
 -->
 
@@ -134,7 +161,7 @@
                         <h6 style="color:#b6d58f" class="card-subtitle mb-2">Ingrese el Código de Autenticación Enviado a su Correo</h6>
                         <br>
                         <div class="d-grid gap-2 mx-auto">
-                            <form method="post" class="form-signin" action="<%=request.getContextPath()%>/ServletInicio?action=autenticacionSeguridad">
+                            <form method="post" class="form-signin" action="<%=request.getContextPath()%>/ServletInicio?action=autenticacionSeguridad&m=2">
                                 <div class="d-grid gap-2 col-8 mx-auto form-floating mb-3">
                                     <input type="hidden" name="codigoAutenticacion" value="<%=codigoAutenticacion%>">
                                     <input type="numbers" class="form-control" id="codigoAutenticacionIngresado" placeholder="Código de Autenticación" name="codigoAutenticacionIngresado">

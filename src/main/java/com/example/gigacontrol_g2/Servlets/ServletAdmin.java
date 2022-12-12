@@ -43,6 +43,9 @@ ServletAdmin extends HttpServlet {
 
         switch (action) {
             case "Inicio":
+
+
+
                 if (user != null && user.getRolId() == 3) {
                     requestDispatcher = request.getRequestDispatcher("Admi/AdminInicio.jsp");
                     requestDispatcher.forward(request, response);
@@ -57,35 +60,82 @@ ServletAdmin extends HttpServlet {
                 break;
             case "ListaUsuarios":
 
-                int valor_pagina = 1;
 
-                request.setAttribute("lista", lista);
+                if (user != null && user.getRolId() == 3) {
 
-                if (request.getParameter("pg") != null) {
-                    valor_pagina = Integer.parseInt(request.getParameter("pg"));
-                }
-                int regMin = (valor_pagina - 1) * 9;
 
-                if (valor_pagina != maxPag2) {
-                    int regMax = valor_pagina * 9;
-                    request.setAttribute("maxPag2", maxPag2);
-                    request.setAttribute("regMin", regMin);
-                    request.setAttribute("regMax", regMax);
-                    request.setAttribute("valor_pagina", valor_pagina);
-                } else {
-                    int regMax = valor_total_filas_int;
-                    request.setAttribute("maxPag2", maxPag2);
-                    request.setAttribute("regMin", regMin);
-                    request.setAttribute("regMax", regMax);
-                    request.setAttribute("valor_pagina", valor_pagina);
-                }
-                for (BUsuarios p : lista) {
-                    if (p.getApellido().equalsIgnoreCase("maradona")) {
-                        System.out.println("foto? " + p.getFotoPerfil());
+                    int valor_pagina = 1;
+
+
+                    //paginacion
+
+                    String s = request.getParameter("pg");
+                    System.out.println("\n");
+                    System.out.println(s);
+                    boolean isNumeric = (s != null && s.matches("[0-9]+"));
+
+
+                    if (request.getParameter("pg") != null) {
+                        System.out.println("pasa validacion de vacio");
+                        if (request.getParameter("pg") != "") {
+                            System.out.println("pasa validacion de que es numero");
+                            if (isNumeric == true) {
+                                System.out.println("pasa validacion de que no es null");
+                                if (Integer.parseInt(request.getParameter("pg")) > 0 && Integer.parseInt(request.getParameter("pg")) < maxPag2 + 1) {
+                                    System.out.println("pasa validacion de estar limitado en los posibles valores de pagina");
+                                    valor_pagina = Integer.parseInt(request.getParameter("pg"));
+                                }
+                                /*}*/
+
+
+
+
+                                /*boolean valor_lista = list2.contains(Integer.parseInt(request.getParameter("pg")));
+                                System.out.println(valor_lista);
+                                if(valor_lista ==true){
+                                    System.out.println("pasa filtro de que esta en la lista2");
+                                    System.out.println("pg");*/
+                                /*valor_pagina = Integer.parseInt(request.getParameter("pg"));*/
+
+
+                            } else {
+                                valor_pagina = 1;
+                            }
+                        } else {
+                            valor_pagina = 1;
+                        }
+                    } else {
+                        valor_pagina = 1;
                     }
+
+
+                    int regMin = (valor_pagina - 1) * 9;
+
+                    if (valor_pagina != maxPag2) {
+                        int regMax = valor_pagina * 9;
+                        request.setAttribute("maxPag2", maxPag2);
+                        request.setAttribute("regMin", regMin);
+                        request.setAttribute("regMax", regMax);
+                        request.setAttribute("valor_pagina", valor_pagina);
+                    } else {
+                        int regMax = valor_total_filas_int;
+                        request.setAttribute("maxPag2", maxPag2);
+                        request.setAttribute("regMin", regMin);
+                        request.setAttribute("regMax", regMax);
+                        request.setAttribute("valor_pagina", valor_pagina);
+                    }
+                    for (BUsuarios p : lista) {
+                        if (p.getApellido().equalsIgnoreCase("maradona")) {
+                            System.out.println("foto? " + p.getFotoPerfil());
+                        }
+                    }
+                    request.setAttribute("lista", lista);
+                    requestDispatcher = request.getRequestDispatcher("Admi/listaUsuarios.jsp");
+                    requestDispatcher.forward(request, response);
+                }else{
+                    response.sendRedirect(request.getContextPath() + "/ServletInicio");
                 }
-                requestDispatcher = request.getRequestDispatcher("Admi/listaUsuarios.jsp");
-                requestDispatcher.forward(request, response);
+
                 break;
             case "Editar":
                 String userID = request.getParameter("id");

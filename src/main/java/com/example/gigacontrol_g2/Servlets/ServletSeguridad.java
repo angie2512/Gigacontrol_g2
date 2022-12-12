@@ -23,7 +23,10 @@ import java.util.Date;
 public class ServletSeguridad extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+
+
 
         String action = request.getParameter("action") == null ? "listarIncidencia" : request.getParameter("action");
         RequestDispatcher requestDispatcher;
@@ -70,6 +73,7 @@ public class ServletSeguridad extends HttpServlet {
                         valor_pagina = Integer.parseInt(request.getParameter("pg"));
                     }
 
+
                     int regMin = (valor_pagina-1)*3;
 
                     if(valor_pagina != maxPag2){
@@ -94,14 +98,14 @@ public class ServletSeguridad extends HttpServlet {
                     }else{
                         session.setAttribute("listaDescargar",seguridadDao.obtenerListaDeIncidencias());
                     }
-
                     request.setAttribute("listaIncidencias", seguridadDao.obtenerListaDeIncidencias());
                     request.setAttribute("numDestacados", daoDatosFijos.numDestacadosPorIncidencia());
+                    int m = 1;
+                    request.setAttribute("m", m);
                     requestDispatcher = request.getRequestDispatcher("Seguridad/InicioSeguridad.jsp");
                     requestDispatcher.forward(request, response);
                 }else{
-                    requestDispatcher = request.getRequestDispatcher("inicioDeSesion.jsp");
-                    requestDispatcher.forward(request, response);
+                    response.sendRedirect(request.getContextPath() + "/ServletInicio");
                 }
 
                 break;
