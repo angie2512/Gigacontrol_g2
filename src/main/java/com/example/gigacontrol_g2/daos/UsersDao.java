@@ -215,9 +215,9 @@ public class UsersDao extends BaseDao{
         SeguridadDao seguridadDao = new SeguridadDao();
         String sql = "select * from incidencia where NombreDeIncidencia like ?";
         ArrayList<Incidencia> listaFiltrada = new ArrayList<>();
-        Incidencia inc = new Incidencia();
+        /*Incidencia inc = new Incidencia();
         inc.setIdIncidencia(0);
-        listaFiltrada.add(inc);
+        listaFiltrada.add(inc);*/
 
         try(Connection conn = this.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql);){
@@ -612,12 +612,27 @@ public class UsersDao extends BaseDao{
             pstmt.setInt(6, nIncidencia.getTipoDeIncidencia().getIdTipoDeIncidencia());
             pstmt.setInt(7, nIncidencia.getNivelDeUrgencia().getIdNivelDeUrgencia());
             pstmt.setInt(8, nIncidencia.getEstado().getIdEstado());
-            //pstmt.setBlob(9, foto);
+            pstmt.setBlob(9, nIncidencia.getFoto());
 
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+
+    public void anadirfoto(int id, InputStream fotoPerfil){
+        String sql="UPDATE gigacontrol.usuario SET FotoPerfil = ? where idUsuario = ? and FotoPerfil is null";
+
+        try(Connection conn= this.getConnection();
+            PreparedStatement pstmt= conn.prepareStatement(sql)){
+            pstmt.setBlob(1,fotoPerfil);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+        }catch(SQLException e) {
+            System.out.println("Error en la conexión!");
+            e.printStackTrace();
         }
     }
 

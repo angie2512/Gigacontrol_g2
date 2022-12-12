@@ -244,8 +244,8 @@
                                 <div class="card-body">
                                     <div class="d-flex position-relative">
                                         <%  if(!(listaDeIncidencias.size()==1 && listaDeIncidencias.get(0).getIdIncidencia()==0)){
-                                              listaDeIncidencias.remove(0);
-                                              regMax-=1;
+                                              /*listaDeIncidencias.remove(0);
+                                              regMax-=1;*/
                                         %>
                                         <div>
 

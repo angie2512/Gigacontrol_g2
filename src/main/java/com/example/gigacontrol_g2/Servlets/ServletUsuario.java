@@ -40,15 +40,18 @@ public class ServletUsuario extends HttpServlet {
         int valor_total_filas_int = 0;
         float valor_total_filas = 0;
         String valor_total_filas_str = daoDatosFijos.contarIncidencias();
+        System.out.println(valor_total_filas_str);
         if(valor_total_filas_str == null){
             valor_total_filas_int = 0;
             valor_total_filas = 0;
         }else{
             valor_total_filas_int = Integer.parseInt(valor_total_filas_str);
+            System.out.println(valor_total_filas_int);
             valor_total_filas = Float.parseFloat(valor_total_filas_str);
         }
         float maxPag = (float) (valor_total_filas / 3);
         int maxPag2 = (int) Math.ceil(maxPag);
+        System.out.println(maxPag2);
         ////////////////////////////////////////////
 
         ///CONTADORES PAGINACION - MIS INCIDENCIAS DESTACADAS///
@@ -123,7 +126,11 @@ public class ServletUsuario extends HttpServlet {
                     }
 
 
+                    System.out.println(valor_pagina);
+
                     int regMin = (valor_pagina - 1) * 3;
+                    System.out.println(regMin + "#");
+
                     if (valor_pagina != maxPag2) {
                         int regMax = valor_pagina * 3;
                         request.setAttribute("maxPag2", maxPag2);
@@ -347,12 +354,14 @@ public class ServletUsuario extends HttpServlet {
 
                 ArrayList<Incidencia> lista = usersDao.BuscarIncidencia(searchText);
                 Incidencia inc  = new Incidencia();
-                inc.setIdIncidencia(0);
+                /*inc.setIdIncidencia(0);*/
                 int valor_total_filas_int = lista.size();
-                if(valor_total_filas_int==0){
+                System.out.println(valor_total_filas_int);
+                /*if(valor_total_filas_int==0){
                     lista.add(inc);
-                }
+                }*/
                 float valor_total_filas = (float) valor_total_filas_int;
+
 
                 float maxPag = (float) (valor_total_filas / 3);
                 int maxPag2 = (int) Math.ceil(maxPag);
@@ -393,14 +402,22 @@ public class ServletUsuario extends HttpServlet {
                 String ubicacion_ = request.getParameter("ubicacion");
                 TipoDeIncidencia ti = new TipoDeIncidencia();
                 System.out.println(request.getParameter("tipoIncidenciaID"));
-                ti.setIdTipoDeIncidencia(Integer.parseInt(request.getParameter("tipoIncidenciaID")));
+                if (request.getParameter("tipoIncidenciaID") != null){
+                    ti.setIdTipoDeIncidencia(Integer.parseInt(request.getParameter("tipoIncidenciaID")));
+                }
+
                 //ti.setIdTipoDeIncidencia(1);
                 NivelDeUrgencia nu = new NivelDeUrgencia();
-                nu.setIdNivelDeUrgencia(Integer.parseInt(request.getParameter("nivelUrgenciaID")));
+                if (request.getParameter("nivelUrgenciaID") != null){
+                    nu.setIdNivelDeUrgencia(Integer.parseInt(request.getParameter("nivelUrgenciaID")));
+                }
                 //nu.setIdNivelDeUrgencia(1);
                 Estado estado = new Estado();
                 estado.setIdEstado(1);
                 //fotoIncidencia
+                Part foto = request.getPart("foto");
+                InputStream foto1= foto.getInputStream();
+
                 //Part partin = request.getPart("fotoIncidencia");
                 //InputStream fotoin = partin.getInputStream();
 
@@ -414,7 +431,7 @@ public class ServletUsuario extends HttpServlet {
                     newIncidencia.setTipoDeIncidencia(ti);
                     newIncidencia.setNivelDeUrgencia(nu);
                     newIncidencia.setEstado(estado);
-                    //newIncidencia.setFoto(fotoin);
+                    newIncidencia.setFoto(foto1);
                     usersDao.nuevaIncidencia(newIncidencia, usuario.getIdUsuario());
                     //usersDao.nuevaIncidencia(newIncidencia, usuario.getIdUsuario(), fotoin);
 
@@ -424,6 +441,8 @@ public class ServletUsuario extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/ServletUsuario?action=nuevaIncidencia");
                 }
                 break;
+
+
 
             case "editarIncidencia":
 
