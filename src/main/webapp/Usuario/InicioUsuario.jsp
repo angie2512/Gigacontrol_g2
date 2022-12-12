@@ -148,16 +148,13 @@
                                href="<%=request.getContextPath()%>/ServletUsuario?action=perfil" style="color:#FFFFFF">Perfil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page"
-                               href="<%=request.getContextPath()%>/ServletUsuario?action=listaMisIncidencias"
-                               style="color:#FFFFFF">Mis Incidencias</a>
+                            <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/ServletUsuario?action=listaMisIncidencias" style="color:#FFFFFF">Mis Incidencias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page"
-                               href="<%=request.getContextPath()%>/ServletUsuario?action=nuevaIncidencia" style="color:#FFFFFF">Nueva
-                                Incidencia</a>
+                            <a class="nav-link active" aria-current="page" href="<%=request.getContextPath()%>/NuevaIncidencia" style="color:#FFFFFF">Nueva Incidencia</a>
                         </li>
                     </ul>
+
                     <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 justify-content-center mb-md-0">
                         <li><a href="#" class="nav-link px-2"><b
                                 style="color:#211426"><%=userlogged.getNombre() + " " + userlogged.getApellido()%>
@@ -178,6 +175,10 @@
                 </div>
             </div>
         </nav>
+
+
+
+
 
         <div class="container-xxl bd-gutter mt-3 my-md-4 bd-layout">
 

@@ -100,8 +100,8 @@
                                 <option value="1" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==1?"selected":""%> >Robo</option>
                                 <option value="2" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==2?"selected":""%> >Objeto perdido</option>
                                 <option value="3" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==3?"selected":""%> > Infraestructura en mal estado</option>
-                                <option value="4" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==4?"selected":""%> >Ambulancia PUCP</option>
-                                <option value="5" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==5?"selected":""%> >Accidente</option>
+                                <option value="4" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==4?"selected":""%> >Accidente</option>
+                                <option value="5" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==5?"selected":""%> >Ambulancia PUCP</option>
                                 <option value="6" <%=incidencia.getTipoDeIncidencia().getIdTipoDeIncidencia()==6?"selected":""%> >Otros...</option>
                             </select>
                         </div>
